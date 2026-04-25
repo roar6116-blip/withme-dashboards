@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>WithMe ダッシュボード</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+      background: linear-gradient(135deg, #1a1f3a 0%, #0f1424 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+      background: linear-gradient(90deg, #fff 0%, #a6c1ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      font-size: 1rem;
+      color: #a6c1ff;
+      letter-spacing: 0.1em;
+    }
+    .updated {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 16px;
+    }
+    .section {
+      margin-bottom: 50px;
+    }
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      padding-left: 12px;
+      border-left: 4px solid #a6c1ff;
+      color: #fff;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 28px;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #a6c1ff;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(166,193,255,0.2);
+    }
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .card-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+    .card.placeholder {
+      opacity: 0.4;
+      pointer-events: none;
+      background: rgba(255,255,255,0.02);
+      border-style: dashed;
+    }
+    .card.placeholder:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    footer {
+      text-align: center;
+      margin-top: 80px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(166,193,255,0.2);
+      color: #a6c1ff;
+      font-size: 0.7rem;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>WithMe Dashboards</h1>
+      <p class="subtitle">株式会社With Me / LANDCORE株式会社 社内共有ハブ</p>
+      <p class="updated">最終更新: 2026-04-26</p>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title">エステ事業部</h2>
+      <div class="grid">
+        <a href="salon/" class="card placeholder">
+          <div class="card-icon">📊</div>
+          <span class="badge">準備中</span>
+          <div class="card-title">売上ダッシュボード</div>
+          <div class="card-desc">3ブランド・5店舗の売上推移とKPI</div>
+        </a>
+        <a href="salon/" class="card placeholder">
+          <div class="card-icon">📈</div>
+          <span class="badge">準備中</span>
+          <div class="card-title">クロージング分析</div>
+          <div class="card-desc">CS入力データの月次傾向</div>
+        </a>
+        <a href="salon/" class="card placeholder">
+          <div class="card-icon">⭐</div>
+          <span class="badge">準備中</span>
+          <div class="card-title">口コミ分析</div>
+          <div class="card-desc">HPB・Google口コミの推移と返信状況</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">LANDCORE事業部</h2>
+      <div class="grid">
+        <a href="landcore/" class="card placeholder">
+          <div class="card-icon">🚜</div>
+          <span class="badge">準備中</span>
+          <div class="card-title">RC草刈機 販売管理</div>
+          <div class="card-desc">RC-IBEX 50/60 の販売実績</div>
+        </a>
+        <a href="landcore/" class="card placeholder">
+          <div class="card-icon">📦</div>
+          <span class="badge">準備中</span>
+          <div class="card-title">在庫・配送状況</div>
+          <div class="card-desc">配送進捗と在庫アラート</div>
+        </a>
+        <a href="landcore/" class="card placeholder">
+          <div class="card-icon">📞</div>
+          <span class="badge">準備中</span>
+          <div class="card-title">問い合わせ管理</div>
+          <div class="card-desc">HPからの問い合わせとフォロー</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">共通</h2>
+      <div class="grid">
+        <a href="common/" class="card placeholder">
+          <div class="card-icon">💰</div>
+          <span class="badge">準備中</span>
+          <div class="card-title">日計表サマリー</div>
+          <div class="card-desc">全事業の日次売上集計</div>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p>WithMe Dashboards · 社内向けに公開しています（機密情報は含まれません）</p>
+      <p style="margin-top: 8px;">問い合わせ: 雅章さん</p>
+    </footer>
+  </div>
+</body>
+</html>
