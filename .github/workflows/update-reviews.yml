@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         working-directory: scripts
         run: |
-          if [ -f package.json ]; then npm ci; fi
+          if [ -f package.json ]; then npm install --no-audit --no-fund; fi
 
       - name: Fetch Google reviews (Places API or GBP API)
         env:
