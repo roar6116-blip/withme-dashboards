@@ -1,0 +1,16 @@
+{
+  "name": "withme-dashboards-scripts",
+  "version": "1.0.0",
+  "description": "GitHub Actions cronから呼ばれるデータ更新スクリプト群",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fetch:google": "node fetch-google-reviews.js",
+    "fetch:hpb": "node fetch-hpb-data.js",
+    "build": "node build-reviews-json.js",
+    "history": "node append-history.js"
+  },
+  "dependencies": {
+    "googleapis": "^144.0.0"
+  }
+}

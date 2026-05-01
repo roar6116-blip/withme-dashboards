@@ -1,0 +1,162 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-05-01T00:00:00+09:00",
+  "data_sources": {
+    "google": "GBP API (auto, hourly)",
+    "hpb": "Spreadsheet manual input (monthly)",
+    "blog": "Spreadsheet manual input (monthly)"
+  },
+  "stores": [
+    {
+      "store_id": "sm_kofu",
+      "physical_name": "SlenderMe甲府店",
+      "brand": "SlenderMe",
+      "hpb_salons": [
+        {
+          "salon_name": "SlenderMe甲府店",
+          "review_count": 142,
+          "rating": 4.7,
+          "blog_count_total": 287,
+          "blog_count_this_month": 8,
+          "new_reviews_this_month": 3
+        }
+      ],
+      "google_business_profiles": [
+        {
+          "label": "SlenderMe甲府店",
+          "review_count": 87,
+          "rating": 4.6,
+          "new_reviews_this_month": 2,
+          "primary": true
+        }
+      ],
+      "totals": {
+        "review_count": 229,
+        "weighted_rating": 4.66,
+        "blog_count_total": 287,
+        "blog_count_this_month": 8,
+        "new_reviews_this_month": 5
+      },
+      "score": 78,
+      "rank": 3
+    },
+    {
+      "store_id": "tm_kofu_showa",
+      "physical_name": "TouchMe甲府昭和店",
+      "brand": "TouchMe",
+      "hpb_salons": [
+        {
+          "salon_name": "TouchMe甲府昭和店",
+          "review_count": 198,
+          "rating": 4.8,
+          "blog_count_total": 412,
+          "blog_count_this_month": 11,
+          "new_reviews_this_month": 4
+        },
+        {
+          "salon_name": "KaoKao甲府店",
+          "review_count": 56,
+          "rating": 4.7,
+          "blog_count_total": 124,
+          "blog_count_this_month": 5,
+          "new_reviews_this_month": 2
+        }
+      ],
+      "google_business_profiles": [
+        {
+          "label": "TouchMe甲府昭和店",
+          "review_count": 124,
+          "rating": 4.7,
+          "new_reviews_this_month": 3,
+          "primary": true
+        },
+        {
+          "label": "KaoKao甲府店",
+          "review_count": 38,
+          "rating": 4.6,
+          "new_reviews_this_month": 1,
+          "primary": false
+        }
+      ],
+      "totals": {
+        "review_count": 416,
+        "weighted_rating": 4.74,
+        "blog_count_total": 536,
+        "blog_count_this_month": 16,
+        "new_reviews_this_month": 10
+      },
+      "score": 92,
+      "rank": 1
+    },
+    {
+      "store_id": "tm_fuji",
+      "physical_name": "TouchMe富士店",
+      "brand": "TouchMe",
+      "hpb_salons": [
+        {
+          "salon_name": "TouchMe富士店",
+          "review_count": 245,
+          "rating": 4.8,
+          "blog_count_total": 487,
+          "blog_count_this_month": 12,
+          "new_reviews_this_month": 5
+        },
+        {
+          "salon_name": "KaoKao富士店",
+          "review_count": 67,
+          "rating": 4.7,
+          "blog_count_total": 156,
+          "blog_count_this_month": 6,
+          "new_reviews_this_month": 2
+        }
+      ],
+      "google_business_profiles": [
+        {
+          "label": "TouchMe富士店",
+          "review_count": 98,
+          "rating": 4.7,
+          "new_reviews_this_month": 3,
+          "primary": true
+        },
+        {
+          "label": "KaoKao富士店",
+          "review_count": 45,
+          "rating": 4.6,
+          "new_reviews_this_month": 1,
+          "primary": false
+        },
+        {
+          "label": "TouchMe富士店 (補助GBP)",
+          "review_count": 55,
+          "rating": 4.5,
+          "new_reviews_this_month": 1,
+          "primary": false,
+          "internal_note": "旧SlenderMe富士店GBP・2026-01統合・継続運用"
+        }
+      ],
+      "totals": {
+        "review_count": 510,
+        "weighted_rating": 4.69,
+        "blog_count_total": 643,
+        "blog_count_this_month": 18,
+        "new_reviews_this_month": 12
+      },
+      "score": 95,
+      "rank": 1
+    }
+  ],
+  "company_totals": {
+    "total_reviews": 1155,
+    "total_new_this_month": 27,
+    "average_rating": 4.7,
+    "total_blog_this_month": 42,
+    "total_blog_all": 1466
+  },
+  "alerts": [
+    {
+      "level": "info",
+      "store_id": "tm_fuji",
+      "message": "TouchMe富士店が今月新着12件で全社1位"
+    }
+  ]
+}

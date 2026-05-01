@@ -1,0 +1,63 @@
+name: Update Review Dashboard
+
+on:
+  schedule:
+    # 毎時0分に実行 (UTC) → JST毎時9分・19分・29分... ではなく毎時0分のまま
+    - cron: '0 * * * *'
+  workflow_dispatch:  # 手動実行も可能
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: scripts
+        run: |
+          if [ -f package.json ]; then npm ci; fi
+
+      - name: Fetch Google reviews (Places API or GBP API)
+        env:
+          # Places API (現状の運用・即利用可)
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+          # GBP API (申請承認後に有効化)
+          GBP_OAUTH_CLIENT_ID: ${{ secrets.GBP_OAUTH_CLIENT_ID }}
+          GBP_OAUTH_CLIENT_SECRET: ${{ secrets.GBP_OAUTH_CLIENT_SECRET }}
+          GBP_OAUTH_REFRESH_TOKEN: ${{ secrets.GBP_OAUTH_REFRESH_TOKEN }}
+          GBP_ACCOUNT_ID: ${{ secrets.GBP_ACCOUNT_ID }}
+        run: node scripts/fetch-google-reviews.js
+        continue-on-error: true
+
+      - name: Fetch HPB data from Google Sheets
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          REVIEW_MASTER_SHEET_ID: ${{ secrets.REVIEW_MASTER_SHEET_ID }}
+        run: node scripts/fetch-hpb-data.js
+        continue-on-error: true
+
+      - name: Calculate scores and merge data
+        run: node scripts/build-reviews-json.js
+
+      - name: Append history if month changed
+        run: node scripts/append-history.js
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add salon/data/reviews.json salon/data/reviews-history.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "auto: update review dashboard data ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi

@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "description": "月次推移データ。GitHub Actions cron が自動追記。",
+  "history": [
+    {
+      "year_month": "2025-11",
+      "stores": {
+        "sm_kofu":        { "google_count": 78, "google_rating": 4.5, "hpb_count": 130, "hpb_rating": 4.6, "blog_new": 7,  "score": 72 },
+        "tm_kofu_showa":  { "google_count": 145, "google_rating": 4.6, "hpb_count": 230, "hpb_rating": 4.7, "blog_new": 13, "score": 86 },
+        "tm_fuji":        { "google_count": 175, "google_rating": 4.6, "hpb_count": 280, "hpb_rating": 4.7, "blog_new": 15, "score": 89 }
+      }
+    },
+    {
+      "year_month": "2025-12",
+      "stores": {
+        "sm_kofu":        { "google_count": 81, "google_rating": 4.5, "hpb_count": 134, "hpb_rating": 4.6, "blog_new": 6,  "score": 73 },
+        "tm_kofu_showa":  { "google_count": 151, "google_rating": 4.6, "hpb_count": 238, "hpb_rating": 4.7, "blog_new": 14, "score": 87 },
+        "tm_fuji":        { "google_count": 181, "google_rating": 4.6, "hpb_count": 287, "hpb_rating": 4.7, "blog_new": 14, "score": 90 }
+      }
+    },
+    {
+      "year_month": "2026-01",
+      "stores": {
+        "sm_kofu":        { "google_count": 83, "google_rating": 4.5, "hpb_count": 137, "hpb_rating": 4.6, "blog_new": 8,  "score": 74 },
+        "tm_kofu_showa":  { "google_count": 156, "google_rating": 4.7, "hpb_count": 244, "hpb_rating": 4.7, "blog_new": 15, "score": 89 },
+        "tm_fuji":        { "google_count": 188, "google_rating": 4.7, "hpb_count": 296, "hpb_rating": 4.7, "blog_new": 16, "score": 92 }
+      }
+    },
+    {
+      "year_month": "2026-02",
+      "stores": {
+        "sm_kofu":        { "google_count": 84, "google_rating": 4.6, "hpb_count": 139, "hpb_rating": 4.7, "blog_new": 7,  "score": 75 },
+        "tm_kofu_showa":  { "google_count": 158, "google_rating": 4.7, "hpb_count": 248, "hpb_rating": 4.8, "blog_new": 14, "score": 90 },
+        "tm_fuji":        { "google_count": 192, "google_rating": 4.7, "hpb_count": 302, "hpb_rating": 4.8, "blog_new": 17, "score": 93 }
+      }
+    },
+    {
+      "year_month": "2026-03",
+      "stores": {
+        "sm_kofu":        { "google_count": 85, "google_rating": 4.6, "hpb_count": 140, "hpb_rating": 4.7, "blog_new": 9,  "score": 77 },
+        "tm_kofu_showa":  { "google_count": 161, "google_rating": 4.7, "hpb_count": 252, "hpb_rating": 4.8, "blog_new": 15, "score": 91 },
+        "tm_fuji":        { "google_count": 196, "google_rating": 4.7, "hpb_count": 308, "hpb_rating": 4.8, "blog_new": 18, "score": 94 }
+      }
+    },
+    {
+      "year_month": "2026-04",
+      "stores": {
+        "sm_kofu":        { "google_count": 87, "google_rating": 4.6, "hpb_count": 142, "hpb_rating": 4.7, "blog_new": 8,  "score": 78 },
+        "tm_kofu_showa":  { "google_count": 162, "google_rating": 4.7, "hpb_count": 254, "hpb_rating": 4.8, "blog_new": 16, "score": 92 },
+        "tm_fuji":        { "google_count": 198, "google_rating": 4.7, "hpb_count": 312, "hpb_rating": 4.8, "blog_new": 18, "score": 95 }
+      }
+    }
+  ]
+}
