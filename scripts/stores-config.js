@@ -50,10 +50,10 @@ export const STORES = [
       { label: 'TouchMe富士店', place_id: 'TODO_SET_PLACE_ID', primary: true },
       { label: 'KaoKao富士店', place_id: 'TODO_SET_PLACE_ID', primary: false },
       {
-        label: 'TouchMe富士店 (補助GBP)',
+        label: 'SlenderMe富士店',
         place_id: 'TODO_SET_PLACE_ID',
         primary: false,
-        internal_note: '旧SlenderMe富士店GBP・2026-01統合・継続運用'
+        internal_note: 'TouchMe富士店併設・2026-01に運営統合・GBPは独立継続'
       }
     ]
   }

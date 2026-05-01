@@ -18,26 +18,21 @@
   --white: #ffffff; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
   --gray-300: #cbd5e1; --gray-400: #94a3b8; --gray-500: #64748b; --gray-600: #475569;
   --gray-700: #334155; --gray-800: #1e293b; --gray-900: #0f172a;
-  --good: #059669; --good-bg: #d1fae5;
-  --warn: #d97706; --warn-bg: #fef3c7;
-  --bad: #dc2626; --bad-bg: #fee2e2;
-  --gold: #eab308; --gold-bg: #fef9c3;
-  --hpb-color: #ea580c;
-  --google-color: #3b82f6;
+  --good: #059669; --warn: #d97706; --bad: #dc2626; --gold: #eab308;
+  --hpb-color: #ea580c; --google-color: #3b82f6;
+  --touchme: #3b82f6; --slenderme: #f97316; --kaokao: #ec4899;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans-serif; background: var(--gray-50); color: var(--gray-900); line-height: 1.6; font-feature-settings: "palt"; -webkit-font-smoothing: antialiased; }
 .container { max-width: 1320px; margin: 0 auto; padding: 40px 28px; }
 @media (max-width: 768px) { .container { padding: 20px 14px; } }
-
-/* ヘッダー */
 .header { background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%); color: var(--white); padding: 40px 44px 44px; border-radius: 16px; margin-bottom: 32px; position: relative; overflow: hidden; }
 .header::before { content: ''; position: absolute; top: 0; right: 0; width: 500px; height: 100%; background: radial-gradient(circle at top right, rgba(249,115,22,0.18), transparent 60%); }
 .header-tag { display: inline-block; background: var(--orange-500); color: var(--white); padding: 5px 12px; border-radius: 4px; font-size: 10px; font-weight: 800; letter-spacing: 0.15em; margin-bottom: 16px; text-transform: uppercase; }
 .title { font-size: clamp(26px, 4vw, 36px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 10px; position: relative; z-index: 1; }
 .title-accent { color: var(--orange-400); }
-.subtitle { font-size: 14px; color: var(--navy-100); font-weight: 400; margin-bottom: 22px; position: relative; z-index: 1; }
+.subtitle { font-size: 14px; color: var(--navy-100); margin-bottom: 22px; position: relative; z-index: 1; }
 .meta { display: flex; gap: 22px; flex-wrap: wrap; font-size: 12px; color: var(--navy-100); position: relative; z-index: 1; font-family: 'JetBrains Mono', monospace; }
 .meta-item { display: flex; align-items: center; gap: 6px; }
 .meta-label { color: var(--orange-400); font-weight: 700; }
@@ -47,11 +42,9 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
   70% { box-shadow: 0 0 0 7px rgba(34,197,94,0); }
   100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
 }
-
-/* KPI巨大カード */
 .kpi-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 14px; margin-bottom: 44px; }
 @media (max-width: 968px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
-.kpi-card { background: var(--white); border-radius: 12px; padding: 24px 26px; border: 1px solid var(--gray-200); transition: all 0.2s ease; position: relative; overflow:hidden; }
+.kpi-card { background: var(--white); border-radius: 12px; padding: 24px 26px; border: 1px solid var(--gray-200); transition: all 0.2s ease; }
 .kpi-card:hover { border-color: var(--navy-600); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(15,36,68,0.08); }
 .kpi-card.featured { background: linear-gradient(135deg, var(--orange-600), var(--orange-500)); color: var(--white); border: none; }
 .kpi-label { font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 10px; }
@@ -62,50 +55,36 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
 .kpi-card.featured .kpi-unit { color: rgba(255,255,255,0.85); }
 .kpi-detail { font-size: 11px; color: var(--gray-500); margin-top: 6px; font-weight:500; }
 .kpi-card.featured .kpi-detail { color: rgba(255,255,255,0.85); }
-
-/* セクション */
 .section { margin-bottom: 48px; }
 .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 22px; padding-bottom: 14px; border-bottom: 2px solid var(--gray-200); }
 .section-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 800; color: var(--orange-500); }
 .section-title { font-size: 20px; font-weight: 800; color: var(--navy-900); letter-spacing: -0.01em; }
 .section-desc { font-size: 12px; color: var(--gray-500); margin-left: auto; font-weight:500; }
 
-/* ============================
-   比較テーブル（一目で店舗比較）
-   ============================ */
-.compare-table-wrap { background:var(--white); border:1px solid var(--gray-200); border-radius:12px; overflow:hidden; }
-.compare-table { width:100%; border-collapse:collapse; font-size:13px; }
+/* ===== 比較テーブル ===== */
+.compare-table-wrap { background:var(--white); border:1px solid var(--gray-200); border-radius:12px; overflow-x:auto; }
+.compare-table { width:100%; border-collapse:collapse; font-size:13px; min-width: 900px; }
 .compare-table th { background:var(--navy-50); padding:14px 12px; text-align:left; font-size:10px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:var(--navy-700); border-bottom:2px solid var(--navy-100); white-space:nowrap; }
 .compare-table th.num { text-align:right; }
 .compare-table td { padding:14px 12px; border-bottom:1px solid var(--gray-100); vertical-align:middle; }
 .compare-table tbody tr:last-child td { border-bottom:none; }
 .compare-table tbody tr:hover { background: var(--navy-50); }
 .compare-table td.num { text-align:right; font-family:'JetBrains Mono',monospace; font-weight:600; color:var(--navy-900); }
-.compare-table td.num .star { color: var(--gold); }
+.compare-table .star { color: var(--gold); }
 .compare-table td.delta { color: var(--good); font-weight:700; font-family:'JetBrains Mono',monospace; text-align:right; }
 .compare-table td.delta.zero { color: var(--gray-400); }
+.compare-table td.unavailable { color: var(--gray-400); font-size:11px; text-align:right; font-style:italic; }
 .compare-table .store-name-cell { font-weight:700; color:var(--navy-900); }
-.compare-table .brand-tag { display:inline-block; padding:2px 7px; background:var(--orange-50); color:var(--orange-700); border-radius:4px; font-size:10px; font-weight:700; margin-left:6px; letter-spacing:0.05em; }
-.compare-table .rank-cell { font-weight:800; font-family:'JetBrains Mono',monospace; }
-.compare-table .rank-1 { color: #d97706; font-size:18px; }
-.compare-table .rank-2 { color: var(--gray-500); font-size:16px; }
-.compare-table .rank-3 { color: #c2865b; font-size:14px; }
-.compare-table .score-cell {
-  display:inline-flex; align-items:center; gap:8px;
-  background: linear-gradient(90deg, var(--navy-50), var(--navy-100));
-  padding: 6px 12px; border-radius: 20px; font-weight:800;
-}
+.compare-table .brand-tag { display:inline-block; padding:2px 7px; border-radius:4px; font-size:10px; font-weight:700; margin-left:6px; letter-spacing:0.05em; }
+.brand-tag.touchme { background:rgba(59,130,246,0.12); color:var(--touchme); }
+.brand-tag.slenderme { background:rgba(249,115,22,0.12); color:var(--slenderme); }
+.brand-tag.kaokao { background:rgba(236,72,153,0.12); color:var(--kaokao); }
+.compare-table .rank-cell { font-weight:800; font-family:'JetBrains Mono',monospace; font-size:18px; }
+.compare-table .score-cell { display:inline-flex; align-items:center; gap:8px; background: linear-gradient(90deg, var(--navy-50), var(--navy-100)); padding: 6px 12px; border-radius: 20px; font-weight:800; }
 .compare-table .score-bar { width:60px; height:6px; background:var(--gray-200); border-radius:3px; overflow:hidden; }
 .compare-table .score-bar-fill { height:100%; background: linear-gradient(90deg, var(--orange-500), var(--orange-600)); }
 
-@media (max-width: 968px) {
-  .compare-table { font-size: 12px; }
-  .compare-table th, .compare-table td { padding: 10px 8px; }
-}
-
-/* ============================
-   店舗カード（リッチ版）
-   ============================ */
+/* ===== 店舗カード（リッチ版） ===== */
 .store-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap:20px; }
 .store-card { background:var(--white); border:1px solid var(--gray-200); border-radius:14px; overflow:hidden; transition: all 0.2s ease; display:flex; flex-direction:column; }
 .store-card:hover { border-color: var(--navy-600); transform: translateY(-3px); box-shadow:0 14px 36px rgba(15,36,68,0.12); }
@@ -113,36 +92,49 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
 
 .store-card-header { padding: 20px 22px 16px; background: linear-gradient(135deg, var(--navy-50), var(--white)); border-bottom: 1px solid var(--gray-100); position:relative; }
 .store-card.rank-1 .store-card-header { background: linear-gradient(135deg, #fef9c3, var(--white)); }
-.store-rank-pill { position:absolute; top:18px; right:18px; padding:5px 14px; border-radius:20px; font-size:11px; font-weight:800; letter-spacing:0.05em; background:var(--navy-700); color:var(--white); display:inline-flex; align-items:center; gap:4px; }
+.store-rank-pill { position:absolute; top:18px; right:18px; padding:5px 14px; border-radius:20px; font-size:11px; font-weight:800; letter-spacing:0.05em; background:var(--navy-700); color:var(--white); }
 .store-rank-pill.rank-1 { background: linear-gradient(135deg, #fbbf24, #d97706); }
 .store-rank-pill.rank-2 { background: var(--gray-500); }
 .store-rank-pill.rank-3 { background: #c2865b; }
 .store-name { font-size: 19px; font-weight:800; color:var(--navy-900); margin-bottom:4px; padding-right: 60px; }
-.store-brand { font-size:10px; font-weight:800; color:var(--orange-600); letter-spacing:0.15em; text-transform:uppercase; }
+.store-meta { display:flex; gap:8px; align-items:center; }
+.store-brand { font-size:10px; font-weight:800; letter-spacing:0.15em; text-transform:uppercase; padding: 2px 8px; border-radius:3px; }
+.store-brand.touchme { background:rgba(59,130,246,0.12); color:var(--touchme); }
+.store-brand.slenderme { background:rgba(249,115,22,0.12); color:var(--slenderme); }
+.store-brand.kaokao { background:rgba(236,72,153,0.12); color:var(--kaokao); }
+.store-area { font-size:11px; color:var(--gray-500); font-weight:600; }
 
 .store-card-body { padding: 18px 22px 4px; flex:1; }
 
 .platform-section { margin-bottom: 18px; }
-.platform-header { display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px; padding-bottom:8px; border-bottom: 2px solid; }
+.platform-header { display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px; padding-bottom:8px; border-bottom: 2px solid; gap:8px; flex-wrap:wrap; }
 .platform-header.hpb { border-color: var(--hpb-color); }
 .platform-header.google { border-color: var(--google-color); }
-.platform-header.blog { border-color: var(--gray-400); }
+.platform-header.unavailable { border-color: var(--gray-300); }
 .platform-name { font-size:11px; font-weight:800; letter-spacing:0.12em; text-transform:uppercase; }
 .platform-name.hpb { color: var(--hpb-color); }
 .platform-name.google { color: var(--google-color); }
-.platform-name.blog { color: var(--gray-700); }
+.platform-name.unavailable { color: var(--gray-400); }
 .platform-summary { font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:800; color:var(--navy-900); }
 .platform-summary .delta { color: var(--good); font-size:12px; margin-left:6px; }
 .platform-summary .star { color: var(--gold); }
+.platform-summary.unavailable { font-size:11px; font-weight:600; color:var(--gray-400); font-style:italic; font-family:'Inter',sans-serif; }
 
 .platform-detail-list { list-style:none; padding:0; margin:0; }
-.platform-detail-list li { display:flex; justify-content:space-between; align-items:center; padding: 6px 0; font-size: 12px; color: var(--gray-600); border-bottom:1px dashed var(--gray-100); }
-.platform-detail-list li:last-child { border-bottom:none; }
-.platform-detail-list .name { display:flex; align-items:center; gap:6px; }
-.platform-detail-list .value { font-family:'JetBrains Mono',monospace; font-weight:600; color: var(--gray-700); white-space:nowrap; }
-.platform-detail-list .value .star { color: var(--gold); }
+.platform-detail-list li { display:flex; justify-content:space-between; align-items:center; padding: 6px 0; font-size: 12px; color: var(--gray-600); }
+.platform-detail-list li + li { border-top:1px dashed var(--gray-100); }
 
-.tag-internal { display:inline-block; padding:1px 6px; background:var(--navy-100); color:var(--navy-700); border-radius:3px; font-size:9px; font-weight:700; cursor:help; }
+.url-link {
+  display: inline-flex; align-items:center; gap:4px;
+  padding: 4px 10px; border-radius: 6px; font-size:11px; font-weight:600;
+  text-decoration:none; transition: all 0.15s ease; border:1px solid transparent;
+}
+.url-link.hpb { background: rgba(234,88,12,0.08); color: var(--hpb-color); border-color: rgba(234,88,12,0.2); }
+.url-link.hpb:hover { background: var(--hpb-color); color:var(--white); }
+.url-link.google { background: rgba(59,130,246,0.08); color: var(--google-color); border-color: rgba(59,130,246,0.2); }
+.url-link.google:hover { background: var(--google-color); color:var(--white); }
+
+.note-box { font-size:11px; color:var(--gray-500); padding: 8px 12px; background: var(--gray-50); border-left:3px solid var(--gray-300); border-radius:4px; margin-top:6px; }
 
 .score-footer { background: linear-gradient(135deg, var(--navy-800), var(--navy-700)); color:var(--white); padding: 16px 22px; display:flex; justify-content:space-between; align-items:center; }
 .store-card.rank-1 .score-footer { background: linear-gradient(135deg, #d97706, #ea580c); }
@@ -151,9 +143,7 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
 .score-footer-value { font-size:34px; font-weight:800; font-family:'JetBrains Mono',monospace; line-height:1; }
 .score-footer-max { font-size:14px; opacity:0.6; }
 
-/* ============================
-   グラフ
-   ============================ */
+/* ===== チャート ===== */
 .chart-card { background:var(--white); border:1px solid var(--gray-200); border-radius:12px; padding:22px; margin-bottom:18px; }
 .chart-title { font-size:14px; font-weight:800; color:var(--navy-900); margin-bottom:4px; }
 .chart-desc { font-size:11px; color:var(--gray-500); margin-bottom:16px; font-weight:500; }
@@ -161,23 +151,19 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
 .charts-grid { display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
 @media (max-width: 968px) { .charts-grid { grid-template-columns: 1fr; } }
 
-/* ============================
-   アラート
-   ============================ */
+/* ===== アラート ===== */
 .alert-list { display:flex; flex-direction:column; gap:10px; }
 .alert { padding:14px 18px; border-radius:10px; display:flex; gap:12px; align-items:flex-start; background:var(--white); border:1px solid var(--gray-200); font-size:13px; }
 .alert-icon { font-size:18px; line-height:1; flex-shrink:0; }
 .alert-body { flex:1; }
 .alert-body strong { color: var(--navy-900); display:block; margin-bottom:2px; }
 .alert.info { border-left:4px solid var(--navy-500); }
-.alert.warn { border-left:4px solid var(--warn); background: var(--warn-bg); }
-.alert.bad { border-left:4px solid var(--bad); background: var(--bad-bg); }
+.alert.warn { border-left:4px solid var(--warn); background: #fef3c7; }
+.alert.bad { border-left:4px solid var(--bad); background: #fee2e2; }
 
-/* Footer */
 .footer { margin-top:60px; padding-top:24px; border-top:1px solid var(--gray-200); text-align:center; font-size:12px; color:var(--gray-500); }
 .footer .source { font-family: 'JetBrains Mono', monospace; font-size:10px; margin-top:6px; opacity:0.8; }
 .footer a { color:var(--navy-500); text-decoration:none; font-weight:600; }
-.footer a:hover { color: var(--orange-500); }
 .loading { text-align:center; padding:60px 20px; color:var(--gray-500); }
 </style>
 </head>
@@ -186,30 +172,28 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
   <header class="header">
     <span class="header-tag">SALON REVIEW DASHBOARD</span>
     <h1 class="title">店舗評価<span class="title-accent">ダッシュボード</span></h1>
-    <p class="subtitle">HPB・Google口コミ／HPBブログ投稿の月次推移と店舗ランキング</p>
+    <p class="subtitle">6ブランド店舗別 - HPB・Google口コミ／HPBブログ投稿の集計とランキング</p>
     <div class="meta">
       <div class="meta-item"><span class="live-dot"></span><span class="meta-label">LIVE</span><span id="meta-updated">--</span></div>
-      <div class="meta-item"><span class="meta-label">SOURCE</span><span>GBP API + HPB手動入力</span></div>
+      <div class="meta-item"><span class="meta-label">SOURCE</span><span>Google Maps + HPB</span></div>
       <div class="meta-item"><span class="meta-label">CYCLE</span><span>毎時自動更新</span></div>
     </div>
   </header>
 
-  <!-- 全社KPI -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">01</span>
       <h2 class="section-title">全社サマリー</h2>
-      <span class="section-desc">3物理店舗 / 5HPBブランド店舗 / 6 GBP合算</span>
+      <span class="section-desc">6ブランド店舗合算</span>
     </div>
     <div class="kpi-grid" id="kpi-grid"><div class="loading">データ読み込み中...</div></div>
   </section>
 
-  <!-- 比較テーブル -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">02</span>
       <h2 class="section-title">店舗比較ランキング</h2>
-      <span class="section-desc">クリックで該当店舗の詳細へ</span>
+      <span class="section-desc">広告露出単位の総合評価</span>
     </div>
     <div class="compare-table-wrap">
       <table class="compare-table" id="compare-table">
@@ -233,48 +217,45 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
     </div>
   </section>
 
-  <!-- 店舗別詳細 -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">03</span>
-      <h2 class="section-title">店舗別詳細</h2>
-      <span class="section-desc">プラットフォーム別の内訳</span>
+      <h2 class="section-title">店舗別詳細カード</h2>
+      <span class="section-desc">クリックで HPB / Google ページに遷移</span>
     </div>
     <div class="store-grid" id="store-grid"><div class="loading">データ読み込み中...</div></div>
   </section>
 
-  <!-- 推移グラフ -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">04</span>
-      <h2 class="section-title">月次推移</h2>
-      <span class="section-desc">過去6ヶ月の指標推移</span>
+      <h2 class="section-title">店舗別 比較グラフ</h2>
+      <span class="section-desc">現時点のスナップショット</span>
     </div>
     <div class="charts-grid">
       <div class="chart-card">
-        <div class="chart-title">📊 口コミ件数推移（HPB+Google合計）</div>
-        <div class="chart-desc">累計件数の伸び方を比較</div>
+        <div class="chart-title">📊 口コミ件数（HPB+Google合計）</div>
+        <div class="chart-desc">店舗別 累計件数</div>
         <div class="chart-canvas-wrap"><canvas id="chart-reviews"></canvas></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title">⭐ 平均評価推移</div>
-        <div class="chart-desc">HPB・Google平均</div>
+        <div class="chart-title">⭐ 平均評価（加重）</div>
+        <div class="chart-desc">HPB＋Google加重平均</div>
         <div class="chart-canvas-wrap"><canvas id="chart-rating"></canvas></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title">📝 月次ブログ投稿数</div>
-        <div class="chart-desc">HPBブログの月別本数</div>
+        <div class="chart-title">📝 今月のブログ投稿数</div>
+        <div class="chart-desc">HPBブログの月内本数</div>
         <div class="chart-canvas-wrap"><canvas id="chart-blog"></canvas></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title">🏆 総合スコア推移</div>
-        <div class="chart-desc">100点満点・店舗評価指標</div>
+        <div class="chart-title">🏆 総合スコア</div>
+        <div class="chart-desc">100点満点</div>
         <div class="chart-canvas-wrap"><canvas id="chart-score"></canvas></div>
       </div>
     </div>
   </section>
 
-  <!-- アラート -->
   <section class="section">
     <div class="section-header">
       <span class="section-num">05</span>
@@ -286,14 +267,13 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
 
   <footer class="footer">
     <p>WithMe エステ事業部 · 店舗評価ダッシュボード</p>
-    <p class="source">data: salon/data/reviews.json + reviews-history.json</p>
+    <p class="source">data: salon/data/reviews.json</p>
     <p style="margin-top:8px;"><a href="../index.html">← ハブに戻る</a></p>
   </footer>
 </div>
 
 <script>
-const STORE_COLORS = { sm_kofu: '#f97316', tm_kofu_showa: '#3d6bb3', tm_fuji: '#059669' };
-const STORE_LABELS = { sm_kofu: 'SlenderMe甲府店', tm_kofu_showa: 'TouchMe甲府昭和店', tm_fuji: 'TouchMe富士店' };
+const BRAND_COLORS = { TouchMe: '#3b82f6', SlenderMe: '#f97316', KaoKao: '#ec4899' };
 
 function el(tag, opts) {
   const node = document.createElement(tag);
@@ -302,8 +282,9 @@ function el(tag, opts) {
   if (opts.text != null) node.textContent = String(opts.text);
   if (opts.title) node.title = opts.title;
   if (opts.href) node.href = opts.href;
+  if (opts.target) node.target = opts.target;
+  if (opts.rel) node.rel = opts.rel;
   if (opts.style) Object.assign(node.style, opts.style);
-  if (opts.children) opts.children.forEach(c => c && node.appendChild(c));
   return node;
 }
 function clearChildren(parent) { while (parent.firstChild) parent.removeChild(parent.firstChild); }
@@ -311,11 +292,7 @@ function star() { return el('span', { cls: 'star', text: '★' }); }
 
 async function loadData() {
   const bust = '?t=' + Date.now();
-  const [latest, history] = await Promise.all([
-    fetch('./data/reviews.json' + bust).then(r => r.json()),
-    fetch('./data/reviews-history.json' + bust).then(r => r.json())
-  ]);
-  return { latest, history };
+  return fetch('./data/reviews.json' + bust).then(r => r.json());
 }
 
 function renderMeta(latest) {
@@ -324,7 +301,6 @@ function renderMeta(latest) {
     dt.toLocaleString('ja-JP', { year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit' });
 }
 
-// ===== KPI =====
 function buildKpiCard(label, value, unit, detail, featured) {
   const card = el('div', { cls: 'kpi-card' + (featured ? ' featured' : '') });
   card.appendChild(el('div', { cls: 'kpi-label', text: label }));
@@ -338,65 +314,48 @@ function renderKPI(latest) {
   const c = latest.company_totals;
   const grid = document.getElementById('kpi-grid');
   clearChildren(grid);
-  grid.appendChild(buildKpiCard('総口コミ件数', c.total_reviews.toLocaleString(), '件', 'HPB + Google 全店合算', true));
-  grid.appendChild(buildKpiCard('今月新着', '+' + c.total_new_this_month, '件', '前月比較は推移グラフ参照', false));
+  grid.appendChild(buildKpiCard('総口コミ件数', c.total_reviews.toLocaleString(), '件', `HPB + Google ${c.store_count}店舗合算`, true));
+  grid.appendChild(buildKpiCard('今月新着', '+' + c.total_new_this_month, '件', '全店舗合計', false));
   grid.appendChild(buildKpiCard('全社平均評価', c.average_rating.toFixed(2), '★', '5段階・加重平均', false));
-  grid.appendChild(buildKpiCard('今月ブログ', c.total_blog_this_month, '本', '累計 ' + c.total_blog_all.toLocaleString() + '本', false));
+  grid.appendChild(buildKpiCard('今月ブログ', c.total_blog_this_month, '本', `累計 ${c.total_blog_all.toLocaleString()}本`, false));
 }
 
-// ===== 比較テーブル =====
 function renderCompareTable(latest) {
   const tbody = document.getElementById('compare-tbody');
   clearChildren(tbody);
-  // ランク順にソート
   const sorted = [...latest.stores].sort((a,b) => a.rank - b.rank);
   sorted.forEach(s => {
     const tr = el('tr');
-    // 順位
-    const rankCls = s.rank === 1 ? 'rank-1' : s.rank === 2 ? 'rank-2' : 'rank-3';
-    const rankIcon = s.rank === 1 ? '🥇' : s.rank === 2 ? '🥈' : '🥉';
-    tr.appendChild(el('td', { cls: 'rank-cell ' + rankCls, text: rankIcon }));
+    const rankIcon = s.rank === 1 ? '🥇' : s.rank === 2 ? '🥈' : s.rank === 3 ? '🥉' : String(s.rank);
+    tr.appendChild(el('td', { cls: 'rank-cell', text: rankIcon }));
 
-    // 店舗名
     const nameTd = el('td', { cls: 'store-name-cell' });
-    nameTd.appendChild(document.createTextNode(s.physical_name));
-    nameTd.appendChild(el('span', { cls: 'brand-tag', text: s.brand }));
+    nameTd.appendChild(document.createTextNode(s.store_name));
+    nameTd.appendChild(el('span', { cls: 'brand-tag ' + s.brand.toLowerCase(), text: s.brand }));
     tr.appendChild(nameTd);
 
-    // HPB件数・評価
-    const hpbCount = s.hpb_salons.reduce((a,h) => a + h.review_count, 0);
-    const hpbRating = (() => {
-      const total = hpbCount;
-      if (total === 0) return 0;
-      return s.hpb_salons.reduce((a,h) => a + h.rating * h.review_count, 0) / total;
-    })();
-    tr.appendChild(el('td', { cls: 'num', text: hpbCount.toLocaleString() + '件' }));
-    const hpbRatingTd = el('td', { cls: 'num' });
-    hpbRatingTd.appendChild(star());
-    hpbRatingTd.appendChild(document.createTextNode(' ' + hpbRating.toFixed(2)));
-    tr.appendChild(hpbRatingTd);
+    if (s.hpb && s.hpb.available) {
+      tr.appendChild(el('td', { cls: 'num', text: s.hpb.review_count.toLocaleString() + '件' }));
+      const hpbR = el('td', { cls: 'num' });
+      hpbR.appendChild(star());
+      hpbR.appendChild(document.createTextNode(' ' + s.hpb.rating.toFixed(2)));
+      tr.appendChild(hpbR);
+    } else {
+      tr.appendChild(el('td', { cls: 'unavailable', text: '広告なし' }));
+      tr.appendChild(el('td', { cls: 'unavailable', text: '—' }));
+    }
 
-    // Google件数・評価
-    const gCount = s.google_business_profiles.reduce((a,g) => a + g.review_count, 0);
-    const gRating = (() => {
-      if (gCount === 0) return 0;
-      return s.google_business_profiles.reduce((a,g) => a + g.rating * g.review_count, 0) / gCount;
-    })();
-    tr.appendChild(el('td', { cls: 'num', text: gCount.toLocaleString() + '件' }));
-    const gRatingTd = el('td', { cls: 'num' });
-    gRatingTd.appendChild(star());
-    gRatingTd.appendChild(document.createTextNode(' ' + gRating.toFixed(2)));
-    tr.appendChild(gRatingTd);
+    tr.appendChild(el('td', { cls: 'num', text: s.google.review_count.toLocaleString() + '件' }));
+    const gR = el('td', { cls: 'num' });
+    gR.appendChild(star());
+    gR.appendChild(document.createTextNode(' ' + s.google.rating.toFixed(2)));
+    tr.appendChild(gR);
 
-    // 今月新着
     const newCount = s.totals.new_reviews_this_month;
     tr.appendChild(el('td', { cls: 'delta' + (newCount === 0 ? ' zero' : ''), text: newCount > 0 ? '+' + newCount : '0' }));
-
-    // 今月ブログ
     const blogMonth = s.totals.blog_count_this_month;
     tr.appendChild(el('td', { cls: 'delta' + (blogMonth === 0 ? ' zero' : ''), text: blogMonth > 0 ? '+' + blogMonth : '0' }));
 
-    // スコア
     const scoreTd = el('td', { cls: 'num' });
     const pill = el('span', { cls: 'score-cell' });
     const bar = el('span', { cls: 'score-bar' });
@@ -410,20 +369,26 @@ function renderCompareTable(latest) {
   });
 }
 
-// ===== 店舗カード =====
-function buildPlatformSection(platformKey, label, summary, items) {
+function buildPlatformSection(platformKey, label, summaryNode, urlNode, items, isUnavailable) {
   const sec = el('div', { cls: 'platform-section' });
-  const head = el('div', { cls: 'platform-header ' + platformKey });
-  head.appendChild(el('span', { cls: 'platform-name ' + platformKey, text: label }));
-  head.appendChild(summary);
+  const head = el('div', { cls: 'platform-header ' + (isUnavailable ? 'unavailable' : platformKey) });
+  head.appendChild(el('span', { cls: 'platform-name ' + (isUnavailable ? 'unavailable' : platformKey), text: label }));
+  if (urlNode) head.appendChild(urlNode);
+  if (summaryNode) head.appendChild(summaryNode);
   sec.appendChild(head);
 
   if (items && items.length > 0) {
     const list = el('ul', { cls: 'platform-detail-list' });
-    items.forEach(item => list.appendChild(item));
+    items.forEach(i => list.appendChild(i));
     sec.appendChild(list);
   }
   return sec;
+}
+
+function buildUrlLink(url, platformClass, label) {
+  const a = el('a', { cls: 'url-link ' + platformClass, href: url, target: '_blank', rel: 'noopener noreferrer' });
+  a.appendChild(document.createTextNode(label + ' ↗'));
+  return a;
 }
 
 function buildPlatformSummary(count, ratingValue, newCount) {
@@ -434,26 +399,9 @@ function buildPlatformSummary(count, ratingValue, newCount) {
     span.appendChild(document.createTextNode(ratingValue.toFixed(2)));
   }
   if (newCount > 0) {
-    span.appendChild(el('span', { cls: 'delta', text: '+' + newCount }));
+    span.appendChild(el('span', { cls: 'delta', text: ' +' + newCount }));
   }
   return span;
-}
-
-function buildPlatformItem(name, count, rating, newCount, internalNote) {
-  const li = el('li');
-  const nameSpan = el('span', { cls: 'name' });
-  nameSpan.appendChild(document.createTextNode(name));
-  if (internalNote) {
-    nameSpan.appendChild(el('span', { cls: 'tag-internal', text: '補助', title: internalNote }));
-  }
-  li.appendChild(nameSpan);
-
-  const valSpan = el('span', { cls: 'value' });
-  valSpan.appendChild(document.createTextNode(count + ' / '));
-  valSpan.appendChild(star());
-  valSpan.appendChild(document.createTextNode(rating.toFixed(1) + ' / +' + newCount));
-  li.appendChild(valSpan);
-  return li;
 }
 
 function buildStoreCard(s) {
@@ -461,42 +409,47 @@ function buildStoreCard(s) {
 
   // ヘッダー
   const header = el('div', { cls: 'store-card-header' });
-  const rankCls = s.rank === 1 ? 'rank-1' : s.rank === 2 ? 'rank-2' : 'rank-3';
+  const rankCls = s.rank === 1 ? 'rank-1' : s.rank === 2 ? 'rank-2' : s.rank === 3 ? 'rank-3' : '';
   const rankLabel = s.rank === 1 ? '🏆 1位' : (s.rank + '位');
   header.appendChild(el('span', { cls: 'store-rank-pill ' + rankCls, text: rankLabel }));
-  header.appendChild(el('div', { cls: 'store-name', text: s.physical_name }));
-  header.appendChild(el('div', { cls: 'store-brand', text: s.brand }));
+  header.appendChild(el('div', { cls: 'store-name', text: s.store_name }));
+  const meta = el('div', { cls: 'store-meta' });
+  meta.appendChild(el('span', { cls: 'store-brand ' + s.brand.toLowerCase(), text: s.brand }));
+  meta.appendChild(el('span', { cls: 'store-area', text: s.area }));
+  header.appendChild(meta);
   card.appendChild(header);
 
-  // ボディ
   const body = el('div', { cls: 'store-card-body' });
 
-  // HPB
-  const hpbCount = s.hpb_salons.reduce((a,h) => a + h.review_count, 0);
-  const hpbNew = s.hpb_salons.reduce((a,h) => a + h.new_reviews_this_month, 0);
-  const hpbRating = hpbCount > 0
-    ? s.hpb_salons.reduce((a,h) => a + h.rating * h.review_count, 0) / hpbCount
-    : 0;
-  const hpbItems = s.hpb_salons.map(h => buildPlatformItem(h.salon_name, h.review_count, h.rating, h.new_reviews_this_month));
-  body.appendChild(buildPlatformSection('hpb', 'ホットペッパービューティー', buildPlatformSummary(hpbCount, hpbRating, hpbNew), hpbItems));
-
-  // Google
-  const gCount = s.google_business_profiles.reduce((a,g) => a + g.review_count, 0);
-  const gNew = s.google_business_profiles.reduce((a,g) => a + g.new_reviews_this_month, 0);
-  const gRating = gCount > 0
-    ? s.google_business_profiles.reduce((a,g) => a + g.rating * g.review_count, 0) / gCount
-    : 0;
-  const gItems = s.google_business_profiles.map(g => buildPlatformItem(g.label, g.review_count, g.rating, g.new_reviews_this_month, g.internal_note));
-  const gLabel = 'Google マイビジネス (' + s.google_business_profiles.length + ' GBP)';
-  body.appendChild(buildPlatformSection('google', gLabel, buildPlatformSummary(gCount, gRating, gNew), gItems));
-
-  // ブログ
-  const blogSummary = el('span', { cls: 'platform-summary' });
-  blogSummary.appendChild(document.createTextNode(s.totals.blog_count_total + '本累計'));
-  if (s.totals.blog_count_this_month > 0) {
-    blogSummary.appendChild(el('span', { cls: 'delta', text: '+' + s.totals.blog_count_this_month + '本' }));
+  // HPB セクション
+  if (s.hpb && s.hpb.available) {
+    const hpbUrl = s.hpb.url ? buildUrlLink(s.hpb.url, 'hpb', 'HPBで確認') : null;
+    const hpbSummary = buildPlatformSummary(s.hpb.review_count, s.hpb.rating, s.hpb.new_reviews_this_month);
+    body.appendChild(buildPlatformSection('hpb', 'ホットペッパービューティー', hpbSummary, hpbUrl, null, false));
+  } else {
+    const unavailableSummary = el('span', { cls: 'platform-summary unavailable', text: '広告ページなし' });
+    const sec = buildPlatformSection('unavailable', 'ホットペッパービューティー', unavailableSummary, null, null, true);
+    if (s.hpb && s.hpb.note) {
+      const note = el('div', { cls: 'note-box', text: s.hpb.note });
+      sec.appendChild(note);
+    }
+    body.appendChild(sec);
   }
-  body.appendChild(buildPlatformSection('blog', 'HPBブログ投稿', blogSummary, null));
+
+  // Google セクション
+  const googleUrl = s.google.url ? buildUrlLink(s.google.url, 'google', 'Googleで確認') : null;
+  const googleSummary = buildPlatformSummary(s.google.review_count, s.google.rating, s.google.new_reviews_this_month);
+  body.appendChild(buildPlatformSection('google', 'Google マップ', googleSummary, googleUrl, null, false));
+
+  // ブログ セクション
+  if (s.hpb && s.hpb.available) {
+    const blogSummary = el('span', { cls: 'platform-summary' });
+    blogSummary.appendChild(document.createTextNode(s.totals.blog_count_total + '本累計'));
+    if (s.totals.blog_count_this_month > 0) {
+      blogSummary.appendChild(el('span', { cls: 'delta', text: ' +' + s.totals.blog_count_this_month + '本' }));
+    }
+    body.appendChild(buildPlatformSection('hpb', 'HPBブログ投稿', blogSummary, null, null, false));
+  }
 
   card.appendChild(body);
 
@@ -522,7 +475,6 @@ function renderStores(latest) {
   sorted.forEach(s => grid.appendChild(buildStoreCard(s)));
 }
 
-// ===== アラート =====
 function renderAlerts(latest) {
   const list = document.getElementById('alert-list');
   clearChildren(list);
@@ -549,74 +501,72 @@ function renderAlerts(latest) {
   });
 }
 
-// ===== グラフ =====
-function renderCharts(history) {
-  const labels = history.history.map(h => h.year_month);
-  const storeIds = ['sm_kofu', 'tm_kofu_showa', 'tm_fuji'];
+function renderCharts(latest) {
+  const sorted = [...latest.stores].sort((a,b) => a.rank - b.rank);
+  const labels = sorted.map(s => s.store_name);
+  const colors = sorted.map(s => BRAND_COLORS[s.brand] || '#94a3b8');
+
   const opts = (yLabel, yMin, yMax) => ({
     responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { position: 'bottom', labels: { boxWidth:12, padding:14, font:{size:11, weight:'600'} } } },
+    plugins: { legend: { display: false } },
     scales: {
       y: { beginAtZero: false, suggestedMin: yMin, suggestedMax: yMax,
            title: { display: true, text: yLabel, font: { size: 11, weight: '700' }, color: '#475569' },
            grid: { color: '#e2e8f0' }, ticks: { font: { size: 11 } } },
-      x: { grid: { display: false }, ticks: { font: { size: 11, weight: '600' } } }
+      x: { grid: { display: false }, ticks: { font: { size: 10, weight: '600' }, maxRotation: 45, minRotation: 30 } }
     }
   });
-  // 口コミ合計
+
   new Chart(document.getElementById('chart-reviews'), {
-    type: 'line',
-    data: { labels, datasets: storeIds.map(sid => ({
-      label: STORE_LABELS[sid],
-      data: history.history.map(h => h.stores[sid].google_count + h.stores[sid].hpb_count),
-      borderColor: STORE_COLORS[sid], backgroundColor: STORE_COLORS[sid] + '22',
-      borderWidth: 3, tension: 0.35, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#fff', pointBorderWidth: 2
-    })) },
-    options: opts('累計件数', 0, undefined)
+    type: 'bar',
+    data: { labels, datasets: [{
+      label: '総口コミ件数',
+      data: sorted.map(s => s.totals.review_count),
+      backgroundColor: colors, borderRadius: 6
+    }] },
+    options: opts('件数', 0, undefined)
   });
-  // 評価
+
   new Chart(document.getElementById('chart-rating'), {
-    type: 'line',
-    data: { labels, datasets: storeIds.map(sid => ({
-      label: STORE_LABELS[sid],
-      data: history.history.map(h => Number(((h.stores[sid].google_rating + h.stores[sid].hpb_rating) / 2).toFixed(2))),
-      borderColor: STORE_COLORS[sid], backgroundColor: STORE_COLORS[sid] + '22',
-      borderWidth: 3, tension: 0.35, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#fff', pointBorderWidth: 2
-    })) },
+    type: 'bar',
+    data: { labels, datasets: [{
+      label: '加重平均評価',
+      data: sorted.map(s => s.totals.weighted_rating),
+      backgroundColor: colors, borderRadius: 6
+    }] },
     options: opts('★', 4.0, 5.0)
   });
-  // ブログ
+
   new Chart(document.getElementById('chart-blog'), {
     type: 'bar',
-    data: { labels, datasets: storeIds.map(sid => ({
-      label: STORE_LABELS[sid],
-      data: history.history.map(h => h.stores[sid].blog_new),
-      backgroundColor: STORE_COLORS[sid], borderRadius: 6, borderSkipped: false
-    })) },
+    data: { labels, datasets: [{
+      label: '今月ブログ本数',
+      data: sorted.map(s => s.totals.blog_count_this_month),
+      backgroundColor: colors, borderRadius: 6
+    }] },
     options: opts('本数', 0, undefined)
   });
-  // スコア
+
   new Chart(document.getElementById('chart-score'), {
-    type: 'line',
-    data: { labels, datasets: storeIds.map(sid => ({
-      label: STORE_LABELS[sid],
-      data: history.history.map(h => h.stores[sid].score),
-      borderColor: STORE_COLORS[sid], backgroundColor: STORE_COLORS[sid] + '22',
-      borderWidth: 3, tension: 0.35, pointRadius: 5, pointHoverRadius: 7, pointBackgroundColor: '#fff', pointBorderWidth: 2
-    })) },
-    options: opts('スコア', 60, 100)
+    type: 'bar',
+    data: { labels, datasets: [{
+      label: '総合スコア',
+      data: sorted.map(s => s.score),
+      backgroundColor: colors, borderRadius: 6
+    }] },
+    options: opts('スコア', 0, 100)
   });
 }
 
 (async () => {
   try {
-    const { latest, history } = await loadData();
+    const latest = await loadData();
     renderMeta(latest);
     renderKPI(latest);
     renderCompareTable(latest);
     renderStores(latest);
     renderAlerts(latest);
-    renderCharts(history);
+    renderCharts(latest);
   } catch (e) {
     document.querySelectorAll('.loading').forEach(node => {
       node.textContent = 'データ取得エラー: ' + e.message;

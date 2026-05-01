@@ -1,162 +1,225 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
+  "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
   "generated_at": "2026-05-01T00:00:00+09:00",
   "data_sources": {
-    "google": "GBP API (auto, hourly)",
-    "hpb": "Spreadsheet manual input (monthly)",
-    "blog": "Spreadsheet manual input (monthly)"
+    "google": "Google Maps 公開ページから取得 (2026-05-01時点)",
+    "hpb": "サンプル値（実データは未取得）",
+    "blog": "サンプル値（実データは未取得）"
   },
   "stores": [
     {
-      "store_id": "sm_kofu",
-      "physical_name": "SlenderMe甲府店",
-      "brand": "SlenderMe",
-      "hpb_salons": [
-        {
-          "salon_name": "SlenderMe甲府店",
-          "review_count": 142,
-          "rating": 4.7,
-          "blog_count_total": 287,
-          "blog_count_this_month": 8,
-          "new_reviews_this_month": 3
-        }
-      ],
-      "google_business_profiles": [
-        {
-          "label": "SlenderMe甲府店",
-          "review_count": 87,
-          "rating": 4.6,
-          "new_reviews_this_month": 2,
-          "primary": true
-        }
-      ],
-      "totals": {
-        "review_count": 229,
-        "weighted_rating": 4.66,
-        "blog_count_total": 287,
-        "blog_count_this_month": 8,
-        "new_reviews_this_month": 5
-      },
-      "score": 78,
-      "rank": 3
-    },
-    {
       "store_id": "tm_kofu_showa",
-      "physical_name": "TouchMe甲府昭和店",
+      "store_name": "TouchMe甲府昭和店",
       "brand": "TouchMe",
-      "hpb_salons": [
-        {
-          "salon_name": "TouchMe甲府昭和店",
-          "review_count": 198,
-          "rating": 4.8,
-          "blog_count_total": 412,
-          "blog_count_this_month": 11,
-          "new_reviews_this_month": 4
-        },
-        {
-          "salon_name": "KaoKao甲府店",
-          "review_count": 56,
-          "rating": 4.7,
-          "blog_count_total": 124,
-          "blog_count_this_month": 5,
-          "new_reviews_this_month": 2
-        }
-      ],
-      "google_business_profiles": [
-        {
-          "label": "TouchMe甲府昭和店",
-          "review_count": 124,
-          "rating": 4.7,
-          "new_reviews_this_month": 3,
-          "primary": true
-        },
-        {
-          "label": "KaoKao甲府店",
-          "review_count": 38,
-          "rating": 4.6,
-          "new_reviews_this_month": 1,
-          "primary": false
-        }
-      ],
-      "totals": {
-        "review_count": 416,
-        "weighted_rating": 4.74,
-        "blog_count_total": 536,
-        "blog_count_this_month": 16,
-        "new_reviews_this_month": 10
+      "area": "甲府",
+      "hpb": {
+        "salon_name": "TouchMe甲府昭和店",
+        "url": "https://beauty.hotpepper.jp/CSP/bt/searchSalon/?searchK=TouchMe%E7%94%B2%E5%BA%9C%E6%98%AD%E5%92%8C",
+        "review_count": 198,
+        "rating": 4.8,
+        "blog_count_total": 412,
+        "blog_count_this_month": 11,
+        "new_reviews_this_month": 4,
+        "available": true
       },
-      "score": 92,
+      "google": {
+        "label": "Touch Me甲府昭和店【タッチミー】",
+        "url": "https://www.google.com/maps/place/Touch+Me%E7%94%B2%E5%BA%9C%E6%98%AD%E5%92%8C%E5%BA%97%E3%80%90%E3%82%BF%E3%83%83%E3%83%81%E3%83%9F%E3%83%BC%E3%80%91/",
+        "review_count": 375,
+        "rating": 5.0,
+        "new_reviews_this_month": 0
+      },
+      "totals": {
+        "review_count": 573,
+        "weighted_rating": 4.93,
+        "blog_count_total": 412,
+        "blog_count_this_month": 11,
+        "new_reviews_this_month": 4
+      },
+      "score": 95,
       "rank": 1
     },
     {
       "store_id": "tm_fuji",
-      "physical_name": "TouchMe富士店",
+      "store_name": "TouchMe富士店",
       "brand": "TouchMe",
-      "hpb_salons": [
-        {
-          "salon_name": "TouchMe富士店",
-          "review_count": 245,
-          "rating": 4.8,
-          "blog_count_total": 487,
-          "blog_count_this_month": 12,
-          "new_reviews_this_month": 5
-        },
-        {
-          "salon_name": "KaoKao富士店",
-          "review_count": 67,
-          "rating": 4.7,
-          "blog_count_total": 156,
-          "blog_count_this_month": 6,
-          "new_reviews_this_month": 2
-        }
-      ],
-      "google_business_profiles": [
-        {
-          "label": "TouchMe富士店",
-          "review_count": 98,
-          "rating": 4.7,
-          "new_reviews_this_month": 3,
-          "primary": true
-        },
-        {
-          "label": "KaoKao富士店",
-          "review_count": 45,
-          "rating": 4.6,
-          "new_reviews_this_month": 1,
-          "primary": false
-        },
-        {
-          "label": "TouchMe富士店 (補助GBP)",
-          "review_count": 55,
-          "rating": 4.5,
-          "new_reviews_this_month": 1,
-          "primary": false,
-          "internal_note": "旧SlenderMe富士店GBP・2026-01統合・継続運用"
-        }
-      ],
-      "totals": {
-        "review_count": 510,
-        "weighted_rating": 4.69,
-        "blog_count_total": 643,
-        "blog_count_this_month": 18,
-        "new_reviews_this_month": 12
+      "area": "富士",
+      "hpb": {
+        "salon_name": "TouchMe富士店",
+        "url": "https://beauty.hotpepper.jp/CSP/bt/searchSalon/?searchK=TouchMe%E5%AF%8C%E5%A3%AB",
+        "review_count": 245,
+        "rating": 4.8,
+        "blog_count_total": 487,
+        "blog_count_this_month": 12,
+        "new_reviews_this_month": 5,
+        "available": true
       },
-      "score": 95,
-      "rank": 1
+      "google": {
+        "label": "Touch Me富士店",
+        "url": "https://www.google.com/maps/search/Touch+Me%E5%AF%8C%E5%A3%AB%E5%BA%97+%E3%82%BF%E3%83%83%E3%83%81%E3%83%9F%E3%83%BC/",
+        "review_count": 199,
+        "rating": 4.9,
+        "new_reviews_this_month": 0
+      },
+      "totals": {
+        "review_count": 444,
+        "weighted_rating": 4.85,
+        "blog_count_total": 487,
+        "blog_count_this_month": 12,
+        "new_reviews_this_month": 5
+      },
+      "score": 90,
+      "rank": 2
+    },
+    {
+      "store_id": "sm_kofu",
+      "store_name": "SlenderMe甲府店",
+      "brand": "SlenderMe",
+      "area": "甲府",
+      "hpb": {
+        "salon_name": "SlenderMe甲府店",
+        "url": "https://beauty.hotpepper.jp/CSP/bt/searchSalon/?searchK=SlenderMe%E7%94%B2%E5%BA%9C",
+        "review_count": 142,
+        "rating": 4.7,
+        "blog_count_total": 287,
+        "blog_count_this_month": 8,
+        "new_reviews_this_month": 3,
+        "available": true
+      },
+      "google": {
+        "label": "Slender Me甲府本店",
+        "url": "https://www.google.com/maps/search/Slender+Me%E7%94%B2%E5%BA%9C%E6%9C%AC%E5%BA%97/",
+        "review_count": 136,
+        "rating": 4.9,
+        "new_reviews_this_month": 0
+      },
+      "totals": {
+        "review_count": 278,
+        "weighted_rating": 4.80,
+        "blog_count_total": 287,
+        "blog_count_this_month": 8,
+        "new_reviews_this_month": 3
+      },
+      "score": 82,
+      "rank": 3
+    },
+    {
+      "store_id": "kk_fuji",
+      "store_name": "KaoKao富士店",
+      "brand": "KaoKao",
+      "area": "富士",
+      "hpb": {
+        "salon_name": "KaoKao富士店",
+        "url": "https://beauty.hotpepper.jp/CSP/bt/searchSalon/?searchK=KaoKao%E5%AF%8C%E5%A3%AB",
+        "review_count": 67,
+        "rating": 4.7,
+        "blog_count_total": 156,
+        "blog_count_this_month": 6,
+        "new_reviews_this_month": 2,
+        "available": true
+      },
+      "google": {
+        "label": "KaoKao富士店",
+        "url": "https://www.google.com/maps/search/KaoKao%E5%AF%8C%E5%A3%AB%E5%BA%97/",
+        "review_count": 59,
+        "rating": 4.9,
+        "new_reviews_this_month": 0
+      },
+      "totals": {
+        "review_count": 126,
+        "weighted_rating": 4.79,
+        "blog_count_total": 156,
+        "blog_count_this_month": 6,
+        "new_reviews_this_month": 2
+      },
+      "score": 73,
+      "rank": 4
+    },
+    {
+      "store_id": "kk_kofu",
+      "store_name": "KaoKao甲府店",
+      "brand": "KaoKao",
+      "area": "甲府",
+      "hpb": {
+        "salon_name": "KaoKao甲府店",
+        "url": "https://beauty.hotpepper.jp/CSP/bt/searchSalon/?searchK=KaoKao%E7%94%B2%E5%BA%9C",
+        "review_count": 56,
+        "rating": 4.7,
+        "blog_count_total": 124,
+        "blog_count_this_month": 5,
+        "new_reviews_this_month": 2,
+        "available": true
+      },
+      "google": {
+        "label": "KaoKao甲府本店",
+        "url": "https://www.google.com/maps/search/KaoKao%E7%94%B2%E5%BA%9C%E6%9C%AC%E5%BA%97+%E6%98%AD%E5%92%8C%E7%94%BA/",
+        "review_count": 69,
+        "rating": 4.9,
+        "new_reviews_this_month": 0
+      },
+      "totals": {
+        "review_count": 125,
+        "weighted_rating": 4.81,
+        "blog_count_total": 124,
+        "blog_count_this_month": 5,
+        "new_reviews_this_month": 2
+      },
+      "score": 72,
+      "rank": 5
+    },
+    {
+      "store_id": "sm_fuji",
+      "store_name": "SlenderMe富士店",
+      "brand": "SlenderMe",
+      "area": "富士",
+      "hpb": {
+        "salon_name": null,
+        "url": null,
+        "review_count": 0,
+        "rating": 0,
+        "blog_count_total": 0,
+        "blog_count_this_month": 0,
+        "new_reviews_this_month": 0,
+        "available": false,
+        "note": "HPB広告ページなし。TouchMe富士店併設で運営"
+      },
+      "google": {
+        "label": "Slender Me富士店",
+        "url": "https://www.google.com/maps/search/Slender+Me%E5%AF%8C%E5%A3%AB%E5%BA%97/",
+        "review_count": 66,
+        "rating": 4.9,
+        "new_reviews_this_month": 0
+      },
+      "totals": {
+        "review_count": 66,
+        "weighted_rating": 4.9,
+        "blog_count_total": 0,
+        "blog_count_this_month": 0,
+        "new_reviews_this_month": 0
+      },
+      "score": 60,
+      "rank": 6
     }
   ],
   "company_totals": {
-    "total_reviews": 1155,
-    "total_new_this_month": 27,
-    "average_rating": 4.7,
+    "total_reviews": 1612,
+    "total_new_this_month": 16,
+    "average_rating": 4.85,
     "total_blog_this_month": 42,
-    "total_blog_all": 1466
+    "total_blog_all": 1466,
+    "store_count": 6
   },
   "alerts": [
     {
       "level": "info",
-      "store_id": "tm_fuji",
-      "message": "TouchMe富士店が今月新着12件で全社1位"
+      "store_id": "tm_kofu_showa",
+      "message": "TouchMe甲府昭和店 が総合1位（Google ★5.0/375件、HPB ★4.8/198件）"
+    },
+    {
+      "level": "info",
+      "store_id": "sm_fuji",
+      "message": "SlenderMe富士店はHPB広告なし・Googleのみで66件★4.9を獲得（TouchMe富士店併設）"
     }
   ]
 }
