@@ -165,6 +165,78 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
 .footer .source { font-family: 'JetBrains Mono', monospace; font-size:10px; margin-top:6px; opacity:0.8; }
 .footer a { color:var(--navy-500); text-decoration:none; font-weight:600; }
 .loading { text-align:center; padding:60px 20px; color:var(--gray-500); }
+
+.store-card { cursor: pointer; }
+.store-card-hint { position:absolute; bottom:10px; right:14px; font-size:10px; color:var(--gray-400); font-weight:600; opacity:0.6; }
+.store-card:hover .store-card-hint { opacity:1; color:var(--orange-500); }
+
+/* モーダル */
+.modal-overlay { position:fixed; inset:0; background: rgba(10,22,40,0.75); backdrop-filter: blur(6px); z-index:1000; display:none; align-items:flex-start; justify-content:center; overflow-y:auto; padding:40px 20px; }
+.modal-overlay.active { display:flex; animation: fadeIn 0.2s ease; }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+.modal-content { background: var(--white); width: 100%; max-width: 920px; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.5); animation: slideUp 0.25s ease; position:relative; }
+@keyframes slideUp { from { transform: translateY(30px); opacity:0; } to { transform: translateY(0); opacity:1; } }
+.modal-close { position:absolute; top:16px; right:16px; width:36px; height:36px; border-radius:50%; background: rgba(255,255,255,0.95); border:1px solid var(--gray-200); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:20px; font-weight:600; color:var(--gray-700); transition: all 0.15s ease; z-index:10; }
+.modal-close:hover { background: var(--bad); color:var(--white); border-color: var(--bad); transform: rotate(90deg); }
+
+.modal-header { padding: 32px 36px 28px; background: linear-gradient(135deg, var(--navy-900), var(--navy-700)); color: var(--white); position:relative; overflow:hidden; }
+.modal-header::before { content:''; position:absolute; top:0; right:0; width:300px; height:100%; background: radial-gradient(circle at top right, rgba(249,115,22,0.2), transparent 60%); }
+.modal-rank-pill { display:inline-block; padding:6px 14px; border-radius:20px; font-size:11px; font-weight:800; letter-spacing:0.05em; margin-bottom:14px; position:relative; z-index:1; }
+.modal-rank-pill.rank-1 { background: linear-gradient(135deg, #fbbf24, #d97706); }
+.modal-rank-pill.rank-2 { background: var(--gray-500); }
+.modal-rank-pill.rank-3 { background: #c2865b; }
+.modal-rank-pill.rank-other { background: var(--navy-600); }
+.modal-store-name { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; position:relative; z-index:1; }
+.modal-store-meta { display:flex; gap:10px; align-items:center; font-size:13px; color:var(--navy-100); position:relative; z-index:1; }
+.modal-brand-chip { padding:3px 10px; border-radius:4px; font-size:10px; font-weight:800; letter-spacing:0.1em; }
+.modal-brand-chip.touchme { background:rgba(59,130,246,0.25); color: #93c5fd; }
+.modal-brand-chip.slenderme { background:rgba(249,115,22,0.25); color: #fdba74; }
+.modal-brand-chip.kaokao { background:rgba(236,72,153,0.25); color: #f9a8d4; }
+
+.modal-body { padding: 28px 36px 36px; }
+.modal-section { margin-bottom: 28px; }
+.modal-section-title { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--gray-200); }
+.modal-stats-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin-bottom:8px; }
+@media (max-width: 640px) { .modal-stats-grid { grid-template-columns: repeat(2, 1fr); } }
+.modal-stat-card { background: var(--gray-50); border:1px solid var(--gray-200); border-radius:10px; padding: 16px; }
+.modal-stat-label { font-size:10px; font-weight:700; letter-spacing:0.1em; color: var(--gray-500); text-transform: uppercase; margin-bottom:6px; }
+.modal-stat-value { font-size:24px; font-weight:800; color:var(--navy-900); font-family:'JetBrains Mono',monospace; line-height:1; }
+.modal-stat-sub { font-size:11px; color:var(--gray-500); margin-top:4px; }
+
+.modal-platform-row { display:grid; grid-template-columns: 1fr 1fr; gap:14px; margin-top:8px; }
+@media (max-width: 640px) { .modal-platform-row { grid-template-columns: 1fr; } }
+.modal-platform-block { background: var(--white); border:1px solid var(--gray-200); border-radius:10px; padding: 18px; border-left:4px solid; }
+.modal-platform-block.hpb { border-left-color: var(--hpb-color); }
+.modal-platform-block.google { border-left-color: var(--google-color); }
+.modal-platform-block.unavailable { border-left-color: var(--gray-400); background: var(--gray-50); }
+.modal-platform-name { font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:8px; }
+.modal-platform-name.hpb { color: var(--hpb-color); }
+.modal-platform-name.google { color: var(--google-color); }
+.modal-platform-name.unavailable { color: var(--gray-400); }
+.modal-platform-stats { font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--navy-900); font-size:18px; margin-bottom:10px; }
+.modal-platform-stats .star { color: var(--gold); }
+.modal-platform-stats .delta { color: var(--good); font-size:12px; margin-left:6px; font-weight:700; }
+.modal-platform-cta { display:inline-flex; align-items:center; gap:5px; padding: 8px 16px; border-radius:8px; font-size:12px; font-weight:700; text-decoration:none; transition: all 0.15s ease; }
+.modal-platform-cta.hpb { background: var(--hpb-color); color: var(--white); }
+.modal-platform-cta.hpb:hover { background: var(--orange-700); }
+.modal-platform-cta.google { background: var(--google-color); color: var(--white); }
+.modal-platform-cta.google:hover { background: #2563eb; }
+.modal-unavailable-note { font-size:12px; color:var(--gray-500); font-style:italic; }
+
+.modal-trend-wrap { background: var(--white); border:1px solid var(--gray-200); border-radius:10px; padding: 18px; }
+.modal-trend-canvas { position:relative; height: 240px; }
+.modal-trend-summary { font-size: 12px; color: var(--gray-600); margin-top:10px; padding-top:10px; border-top:1px dashed var(--gray-200); }
+.modal-trend-summary strong { color: var(--navy-900); }
+
+.modal-score-bar-row { margin-bottom: 12px; }
+.modal-score-bar-label { display:flex; justify-content:space-between; font-size:11px; font-weight:700; color:var(--gray-700); margin-bottom:4px; }
+.modal-score-bar-track { width:100%; height:8px; background: var(--gray-200); border-radius:4px; overflow:hidden; }
+.modal-score-bar-fill { height:100%; border-radius:4px; transition: width 0.4s ease; }
+.modal-score-bar-fill.count { background: linear-gradient(90deg, var(--orange-500), var(--orange-600)); }
+.modal-score-bar-fill.rating { background: linear-gradient(90deg, var(--gold), #d97706); }
+.modal-score-bar-fill.blog { background: linear-gradient(90deg, var(--good), #047857); }
+
+body.modal-open { overflow: hidden; }
 </style>
 </head>
 <body>
@@ -270,6 +342,15 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
     <p class="source">data: salon/data/reviews.json</p>
     <p style="margin-top:8px;"><a href="../index.html">← ハブに戻る</a></p>
   </footer>
+</div>
+
+<!-- 店舗詳細モーダル -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-content" id="modal-content">
+    <button class="modal-close" id="modal-close" aria-label="閉じる">×</button>
+    <div class="modal-header" id="modal-header"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
 </div>
 
 <script>
@@ -406,6 +487,7 @@ function buildPlatformSummary(count, ratingValue, newCount) {
 
 function buildStoreCard(s) {
   const card = el('div', { cls: 'store-card' + (s.rank === 1 ? ' rank-1' : '') });
+  card.addEventListener('click', () => openModal(s));
 
   // ヘッダー
   const header = el('div', { cls: 'store-card-header' });
@@ -465,8 +547,196 @@ function buildStoreCard(s) {
   footer.appendChild(right);
   card.appendChild(footer);
 
+  // クリックヒント
+  const hint = el('div', { cls: 'store-card-hint', text: '▶ クリックで詳細' });
+  card.appendChild(hint);
+
   return card;
 }
+
+// ===== モーダル機能 =====
+let modalChartInstance = null;
+
+function openModal(s) {
+  const overlay = document.getElementById('modal-overlay');
+  const header = document.getElementById('modal-header');
+  const body = document.getElementById('modal-body');
+  clearChildren(header);
+  clearChildren(body);
+
+  // ヘッダー
+  const rankCls = s.rank === 1 ? 'rank-1' : s.rank === 2 ? 'rank-2' : s.rank === 3 ? 'rank-3' : 'rank-other';
+  const rankLabel = s.rank === 1 ? '🏆 総合 1位' : `総合 ${s.rank}位`;
+  header.appendChild(el('span', { cls: 'modal-rank-pill ' + rankCls, text: rankLabel }));
+  header.appendChild(el('h2', { cls: 'modal-store-name', text: s.store_name }));
+  const meta = el('div', { cls: 'modal-store-meta' });
+  meta.appendChild(el('span', { cls: 'modal-brand-chip ' + s.brand.toLowerCase(), text: s.brand }));
+  meta.appendChild(document.createTextNode(s.area + 'エリア'));
+  header.appendChild(meta);
+
+  // 統計サマリー
+  const statsSection = el('div', { cls: 'modal-section' });
+  statsSection.appendChild(el('div', { cls: 'modal-section-title', text: '統計サマリー' }));
+  const statsGrid = el('div', { cls: 'modal-stats-grid' });
+  statsGrid.appendChild(buildStatCard('総口コミ', s.totals.review_count, '件', 'HPB+Google'));
+  statsGrid.appendChild(buildStatCard('加重評価', s.totals.weighted_rating.toFixed(2), '★', '5段階平均'));
+  statsGrid.appendChild(buildStatCard('ブログ累計', s.totals.blog_count_total, '本', `今月+${s.totals.blog_count_this_month}本`));
+  statsGrid.appendChild(buildStatCard('総合スコア', s.score, '/100', '評価指標'));
+  statsSection.appendChild(statsGrid);
+  body.appendChild(statsSection);
+
+  // プラットフォーム詳細 + リンク
+  const platformSection = el('div', { cls: 'modal-section' });
+  platformSection.appendChild(el('div', { cls: 'modal-section-title', text: 'プラットフォーム別 詳細・リンク' }));
+  const platformRow = el('div', { cls: 'modal-platform-row' });
+
+  // HPB ブロック
+  const hpbBlock = el('div', { cls: 'modal-platform-block ' + (s.hpb && s.hpb.available ? 'hpb' : 'unavailable') });
+  hpbBlock.appendChild(el('div', { cls: 'modal-platform-name ' + (s.hpb && s.hpb.available ? 'hpb' : 'unavailable'), text: 'ホットペッパービューティー' }));
+  if (s.hpb && s.hpb.available) {
+    const hpbStats = el('div', { cls: 'modal-platform-stats' });
+    hpbStats.appendChild(document.createTextNode(s.hpb.review_count + '件 '));
+    hpbStats.appendChild(el('span', { cls: 'star', text: '★' }));
+    hpbStats.appendChild(document.createTextNode(s.hpb.rating.toFixed(2)));
+    if (s.hpb.new_reviews_this_month > 0) {
+      hpbStats.appendChild(el('span', { cls: 'delta', text: ' +' + s.hpb.new_reviews_this_month + '件 今月' }));
+    }
+    hpbBlock.appendChild(hpbStats);
+    if (s.hpb.url) {
+      const cta = el('a', { cls: 'modal-platform-cta hpb', href: s.hpb.url, target: '_blank', rel: 'noopener' });
+      cta.appendChild(document.createTextNode('HPBで確認 →'));
+      hpbBlock.appendChild(cta);
+    }
+  } else {
+    hpbBlock.appendChild(el('div', { cls: 'modal-unavailable-note', text: s.hpb && s.hpb.note ? s.hpb.note : 'HPB広告ページなし' }));
+  }
+  platformRow.appendChild(hpbBlock);
+
+  // Google ブロック
+  const gBlock = el('div', { cls: 'modal-platform-block google' });
+  gBlock.appendChild(el('div', { cls: 'modal-platform-name google', text: 'Google マップ' }));
+  const gStats = el('div', { cls: 'modal-platform-stats' });
+  gStats.appendChild(document.createTextNode(s.google.review_count + '件 '));
+  gStats.appendChild(el('span', { cls: 'star', text: '★' }));
+  gStats.appendChild(document.createTextNode(s.google.rating.toFixed(2)));
+  if (s.google.new_reviews_this_month > 0) {
+    gStats.appendChild(el('span', { cls: 'delta', text: ' +' + s.google.new_reviews_this_month + '件 今月' }));
+  }
+  gBlock.appendChild(gStats);
+  if (s.google.url) {
+    const cta = el('a', { cls: 'modal-platform-cta google', href: s.google.url, target: '_blank', rel: 'noopener' });
+    cta.appendChild(document.createTextNode('Googleで確認 →'));
+    gBlock.appendChild(cta);
+  }
+  platformRow.appendChild(gBlock);
+
+  platformSection.appendChild(platformRow);
+  body.appendChild(platformSection);
+
+  // 月次推移グラフ
+  if (s.monthly_trend && s.monthly_trend.length > 0) {
+    const trendSection = el('div', { cls: 'modal-section' });
+    trendSection.appendChild(el('div', { cls: 'modal-section-title', text: '口コミ投稿数 月次推移（HPBクチコミ・直近12ヶ月）' }));
+    const trendWrap = el('div', { cls: 'modal-trend-wrap' });
+    const canvasWrap = el('div', { cls: 'modal-trend-canvas' });
+    const canvas = el('canvas');
+    canvas.id = 'modal-trend-chart';
+    canvasWrap.appendChild(canvas);
+    trendWrap.appendChild(canvasWrap);
+
+    const totalTrend = s.monthly_trend.reduce((a,t) => a + t.count, 0);
+    const summary = el('div', { cls: 'modal-trend-summary' });
+    if (s.hpb && s.hpb.available) {
+      summary.appendChild(document.createTextNode('過去12ヶ月で '));
+      summary.appendChild(el('strong', { text: totalTrend + '件' }));
+      summary.appendChild(document.createTextNode(' のクチコミを獲得（HPBクチコミ最新120件分の集計）'));
+    } else {
+      summary.appendChild(document.createTextNode('HPB広告なしのため月次推移データなし'));
+    }
+    trendWrap.appendChild(summary);
+    trendSection.appendChild(trendWrap);
+    body.appendChild(trendSection);
+  }
+
+  // スコア内訳
+  const scoreSection = el('div', { cls: 'modal-section' });
+  scoreSection.appendChild(el('div', { cls: 'modal-section-title', text: 'スコア内訳' }));
+  const maxCount = 1000; // 想定最大件数
+  scoreSection.appendChild(buildScoreBar('総件数 (60%)', s.totals.review_count, maxCount, 'count', s.totals.review_count + '件'));
+  scoreSection.appendChild(buildScoreBar('加重評価 (30%)', s.totals.weighted_rating, 5, 'rating', '★' + s.totals.weighted_rating.toFixed(2)));
+  scoreSection.appendChild(buildScoreBar('ブログ累計 (10%)', s.totals.blog_count_total, 500, 'blog', s.totals.blog_count_total + '本'));
+  body.appendChild(scoreSection);
+
+  overlay.classList.add('active');
+  document.body.classList.add('modal-open');
+
+  // 推移グラフを描画（オーバーレイ表示後）
+  setTimeout(() => {
+    if (s.monthly_trend && s.monthly_trend.length > 0) {
+      const ctx = document.getElementById('modal-trend-chart');
+      if (modalChartInstance) modalChartInstance.destroy();
+      const brandColor = BRAND_COLORS[s.brand] || '#3d6bb3';
+      modalChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: s.monthly_trend.map(t => t.month.slice(2)),
+          datasets: [{
+            label: '月別クチコミ件数',
+            data: s.monthly_trend.map(t => t.count),
+            backgroundColor: brandColor,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false }, tooltip: { callbacks: { title: (items) => '20' + items[0].label } } },
+          scales: {
+            y: { beginAtZero: true, title: { display: true, text: '件数', font:{size:11,weight:'700'}, color:'#475569' }, grid: { color: '#e2e8f0' } },
+            x: { grid: { display: false }, ticks: { font: { size: 11, weight: '600' } } }
+          }
+        }
+      });
+    }
+  }, 50);
+}
+
+function buildStatCard(label, value, unit, sub) {
+  const card = el('div', { cls: 'modal-stat-card' });
+  card.appendChild(el('div', { cls: 'modal-stat-label', text: label }));
+  const valBox = el('div', { cls: 'modal-stat-value' });
+  valBox.appendChild(document.createTextNode(String(value)));
+  valBox.appendChild(el('span', { style: { fontSize: '14px', color: '#94a3b8', marginLeft: '3px' }, text: unit }));
+  card.appendChild(valBox);
+  card.appendChild(el('div', { cls: 'modal-stat-sub', text: sub }));
+  return card;
+}
+
+function buildScoreBar(label, value, max, cls, displayText) {
+  const row = el('div', { cls: 'modal-score-bar-row' });
+  const labelRow = el('div', { cls: 'modal-score-bar-label' });
+  labelRow.appendChild(el('span', { text: label }));
+  labelRow.appendChild(el('span', { text: displayText }));
+  row.appendChild(labelRow);
+  const track = el('div', { cls: 'modal-score-bar-track' });
+  const pct = Math.min(100, Math.max(0, (value / max) * 100));
+  track.appendChild(el('div', { cls: 'modal-score-bar-fill ' + cls, style: { width: pct + '%' } }));
+  row.appendChild(track);
+  return row;
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('active');
+  document.body.classList.remove('modal-open');
+  if (modalChartInstance) { modalChartInstance.destroy(); modalChartInstance = null; }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('modal-overlay').addEventListener('click', (e) => {
+    if (e.target.id === 'modal-overlay') closeModal();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+});
 
 function renderStores(latest) {
   const grid = document.getElementById('store-grid');
