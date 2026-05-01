@@ -1,77 +1,106 @@
-// 店舗マスタ設定
+// 店舗マスタ設定 (6ブランド店舗単位 schema v2.0)
 //
-// Place ID 取得方法:
-// 1. https://developers.google.com/maps/documentation/places/web-service/place-id を開く
-// 2. 「Find the ID for a particular place」のマップで店舗名を検索
-// 3. 表示される ChIJ... 形式の ID を以下の place_id にコピー
-//
-// 各GBPの実名（Gmail通知から判明 / 2026-04時点）:
-//   SlenderMe甲府店    → "Slender Me甲府本店"
-//   TouchMe甲府昭和店  → "Touch Me甲府昭和店【タッチミー】"
-//   KaoKao甲府店       → "小顔矯正コルギ専門店 KaoKao甲府本店"
-//                        ＋ "AO甲府本店" (補助GBP・別物の場合あり)
-//   TouchMe富士店      → "プレミアム全身脱毛Touch Me富士店【タッチミー】"
-//   KaoKao富士店       → "韓国式小顔矯正コルギ・肌管理専門店 KaoKao富士店"
-//   旧SlenderMe富士店  → "Slender Me富士店"
+// text_query: Places API Text Search で店舗を特定する検索文字列
+// hpb_url:    HPB クチコミページの正規URL
+
 export const STORES = [
   {
-    store_id: 'sm_kofu',
-    physical_name: 'SlenderMe甲府店',
-    brand: 'SlenderMe',
-    hpb_salons: [
-      { salon_name: 'SlenderMe甲府店', hpb_salon_id: 'TODO_SET_HPB_ID' }
-    ],
-    google_business_profiles: [
-      { label: 'SlenderMe甲府店', place_id: 'TODO_SET_PLACE_ID', primary: true }
-    ]
-  },
-  {
     store_id: 'tm_kofu_showa',
-    physical_name: 'TouchMe甲府昭和店',
+    store_name: 'TouchMe甲府昭和店',
     brand: 'TouchMe',
-    hpb_salons: [
-      { salon_name: 'TouchMe甲府昭和店', hpb_salon_id: 'TODO_SET_HPB_ID' },
-      { salon_name: 'KaoKao甲府店', hpb_salon_id: 'TODO_SET_HPB_ID' }
-    ],
-    google_business_profiles: [
-      { label: 'TouchMe甲府昭和店', place_id: 'TODO_SET_PLACE_ID', primary: true },
-      { label: 'KaoKao甲府店', place_id: 'TODO_SET_PLACE_ID', primary: false }
-    ]
+    area: '甲府',
+    google: {
+      label: 'Touch Me甲府昭和店【タッチミー】',
+      text_query: 'Touch Me甲府昭和店【タッチミー】 山梨県昭和町清水新居'
+    },
+    hpb: {
+      salon_name: 'TouchMe甲府昭和店',
+      url: 'https://beauty.hotpepper.jp/kr/slnH000530271/',
+      sln_id: 'slnH000530271'
+    }
   },
   {
     store_id: 'tm_fuji',
-    physical_name: 'TouchMe富士店',
+    store_name: 'TouchMe富士店',
     brand: 'TouchMe',
-    hpb_salons: [
-      { salon_name: 'TouchMe富士店', hpb_salon_id: 'TODO_SET_HPB_ID' },
-      { salon_name: 'KaoKao富士店', hpb_salon_id: 'TODO_SET_HPB_ID' }
-    ],
-    google_business_profiles: [
-      { label: 'TouchMe富士店', place_id: 'TODO_SET_PLACE_ID', primary: true },
-      { label: 'KaoKao富士店', place_id: 'TODO_SET_PLACE_ID', primary: false },
-      {
-        label: 'SlenderMe富士店',
-        place_id: 'TODO_SET_PLACE_ID',
-        primary: false,
-        internal_note: 'TouchMe富士店併設・2026-01に運営統合・GBPは独立継続'
-      }
-    ]
+    area: '富士',
+    google: {
+      label: 'Touch Me富士店【タッチミー】',
+      text_query: 'プレミアム全身脱毛Touch Me富士店【タッチミー】 静岡県富士市伝法'
+    },
+    hpb: {
+      salon_name: 'TouchMe富士店',
+      url: 'https://beauty.hotpepper.jp/kr/slnH000584577/',
+      sln_id: 'slnH000584577'
+    }
+  },
+  {
+    store_id: 'sm_kofu',
+    store_name: 'SlenderMe甲府店',
+    brand: 'SlenderMe',
+    area: '甲府',
+    google: {
+      label: 'Slender Me甲府本店',
+      text_query: '痩身ダイエット専門店 Slender Me甲府本店 山梨県甲府市徳行'
+    },
+    hpb: {
+      salon_name: 'SlenderMe甲府店',
+      url: 'https://beauty.hotpepper.jp/kr/slnH000494565/',
+      sln_id: 'slnH000494565'
+    }
+  },
+  {
+    store_id: 'kk_kofu',
+    store_name: 'KaoKao甲府店',
+    brand: 'KaoKao',
+    area: '甲府',
+    google: {
+      label: 'KaoKao甲府本店',
+      text_query: '小顔矯正コルギ専門店 KaoKao甲府本店 山梨県昭和町清水新居'
+    },
+    hpb: {
+      salon_name: 'KaoKao甲府店',
+      url: 'https://beauty.hotpepper.jp/kr/slnH000652811/',
+      sln_id: 'slnH000652811'
+    }
+  },
+  {
+    store_id: 'kk_fuji',
+    store_name: 'KaoKao富士店',
+    brand: 'KaoKao',
+    area: '富士',
+    google: {
+      label: 'KaoKao富士店',
+      text_query: '韓国式小顔矯正コルギ・肌管理専門店 KaoKao富士店 静岡県富士市伝法'
+    },
+    hpb: {
+      salon_name: 'KaoKao富士店',
+      url: 'https://beauty.hotpepper.jp/kr/slnH000748746/',
+      sln_id: 'slnH000748746'
+    }
+  },
+  {
+    store_id: 'sm_fuji',
+    store_name: 'SlenderMe富士店',
+    brand: 'SlenderMe',
+    area: '富士',
+    google: {
+      label: 'Slender Me富士店',
+      text_query: '痩身ダイエット専門店 Slender Me富士店 静岡県富士市伝法'
+    },
+    hpb: {
+      salon_name: null,
+      url: null,
+      sln_id: null,
+      available: false,
+      note: 'HPB広告ページなし。TouchMe富士店併設で運営'
+    }
   }
 ];
 
-// 総合スコアの重み (合計100点)
-export const SCORE_WEIGHTS = {
-  hpb_count_share: 25,    // HPB口コミ件数の全店比率
-  hpb_rating: 25,         // HPB平均評価 (★4.0未満は0点、★5.0で満点)
-  google_count_share: 15, // Google口コミ件数の全店比率
-  google_rating: 15,      // Google平均評価
-  blog_monthly: 10,       // 月次ブログ投稿 (10本で満点)
-  recent_growth: 10       // 直近3ヶ月の新規口コミ獲得数
-};
-
 // アラート閾値
 export const ALERT_THRESHOLDS = {
-  rating_warn: 4.5,       // ★が4.5を下回ったら警告
-  no_reviews_days: 30,    // 30日以上新着なし
-  no_blog_month: 1        // 月にブログ0本
+  rating_warn: 4.5,
+  no_reviews_days: 30,
+  no_blog_month: 1
 };

@@ -1,13 +1,5 @@
-// Places API (New) で各 Place の口コミ件数・平均評価を取得
+// Places API (New) Text Search で各店舗を検索 → 件数・評価・Place ID 取得
 // 出力: scripts/cache/google-reviews.json
-//
-// 切り替え方針:
-// - GBP API 承認済み (GBP_OAUTH_REFRESH_TOKEN がセット) → GBP API 経由 (口コミ本文も取得可)
-// - そうでなければ Places API (New) で件数・評価のみ取得 (本文は別経路)
-//
-// Places API (New) Place Details:
-//   POST https://places.googleapis.com/v1/places/{place_id}
-//   Header: X-Goog-Api-Key, X-Goog-FieldMask: id,displayName,rating,userRatingCount
 import fs from 'node:fs';
 import path from 'node:path';
 import { STORES } from './stores-config.js';
@@ -15,95 +7,81 @@ import { STORES } from './stores-config.js';
 const CACHE_DIR = path.resolve('scripts/cache');
 fs.mkdirSync(CACHE_DIR, { recursive: true });
 
-const PLACES_ENDPOINT = 'https://places.googleapis.com/v1';
-const FIELD_MASK = 'id,displayName,rating,userRatingCount';
+const ENDPOINT = 'https://places.googleapis.com/v1/places:searchText';
 
-async function fetchPlaceViaPlacesApi(placeId, apiKey) {
-  const url = `${PLACES_ENDPOINT}/places/${encodeURIComponent(placeId)}`;
-  const res = await fetch(url, {
-    method: 'GET',
+async function searchPlace(query, apiKey) {
+  const res = await fetch(ENDPOINT, {
+    method: 'POST',
     headers: {
+      'Content-Type': 'application/json',
       'X-Goog-Api-Key': apiKey,
-      'X-Goog-FieldMask': FIELD_MASK,
-      'Accept': 'application/json'
-    }
+      'X-Goog-FieldMask': 'places.id,places.displayName,places.formattedAddress,places.rating,places.userRatingCount'
+    },
+    body: JSON.stringify({ textQuery: query, languageCode: 'ja', regionCode: 'JP' })
   });
   if (!res.ok) {
     const body = await res.text();
     throw new Error(`Places API ${res.status}: ${body.slice(0, 200)}`);
   }
   const data = await res.json();
+  const top = (data.places || [])[0];
+  if (!top) return null;
   return {
-    review_count: data.userRatingCount ?? 0,
-    rating: data.rating ?? 0,
-    display_name: data.displayName?.text ?? null
+    place_id: top.id,
+    display_name: top.displayName?.text,
+    address: top.formattedAddress,
+    review_count: top.userRatingCount ?? 0,
+    rating: top.rating ?? 0
   };
 }
 
-async function fetchAllPlaces(apiKey) {
-  const result = {};
-  for (const store of STORES) {
-    result[store.store_id] = [];
-    for (const gbp of store.google_business_profiles) {
-      if (!gbp.place_id || gbp.place_id.startsWith('TODO_')) {
-        console.warn(`[google] Skipping ${gbp.label} (place_id not set)`);
-        continue;
-      }
-      try {
-        const data = await fetchPlaceViaPlacesApi(gbp.place_id, apiKey);
-        result[store.store_id].push({
-          label: gbp.label,
-          review_count: data.review_count,
-          rating: data.rating,
-          new_reviews_this_month: 0  // 履歴差分から計算するため、ここでは 0
-        });
-        console.log(`[google] ${gbp.label}: ${data.review_count} reviews, ★${data.rating}`);
-      } catch (e) {
-        console.error(`[google] Failed for ${gbp.label}: ${e.message}`);
-      }
-    }
-  }
-  return result;
+function readPrev() {
+  const p = path.join(CACHE_DIR, 'google-reviews.json');
+  return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : {};
 }
 
 async function main() {
-  const placesApiKey = process.env.GOOGLE_PLACES_API_KEY;
-  const gbpRefreshToken = process.env.GBP_OAUTH_REFRESH_TOKEN;
-
-  if (gbpRefreshToken) {
-    // 将来 GBP API 承認後に有効化するパス
-    console.log('[google] GBP API mode (not implemented yet, falling back to Places API)');
-  }
-
-  if (!placesApiKey) {
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+  if (!apiKey) {
     console.warn('[google] GOOGLE_PLACES_API_KEY not set. Skipping (will use existing data).');
     return;
   }
 
-  const result = await fetchAllPlaces(placesApiKey);
-  const cachePath = path.join(CACHE_DIR, 'google-reviews.json');
+  const prev = readPrev();
+  const result = {};
 
-  // 前月との差分から「今月新着件数」を計算（前回キャッシュがあれば）
-  const prevPath = path.join(CACHE_DIR, 'google-reviews-prev.json');
-  if (fs.existsSync(cachePath)) {
-    fs.copyFileSync(cachePath, prevPath);
-  }
-  if (fs.existsSync(prevPath)) {
-    const prev = JSON.parse(fs.readFileSync(prevPath, 'utf8'));
-    for (const storeId of Object.keys(result)) {
-      const prevList = prev[storeId] || [];
-      for (const cur of result[storeId]) {
-        const prevItem = prevList.find(p => p.label === cur.label);
-        if (prevItem) {
-          const diff = cur.review_count - prevItem.review_count;
-          cur.new_reviews_this_month = diff > 0 ? diff : 0;
-        }
+  for (const store of STORES) {
+    const q = store.google?.text_query;
+    if (!q) {
+      console.warn(`[google] Skipping ${store.store_id} (no text_query)`);
+      continue;
+    }
+    try {
+      const data = await searchPlace(q, apiKey);
+      if (!data) {
+        console.warn(`[google] No match for ${store.store_id}: "${q}"`);
+        continue;
       }
+      // 前回キャッシュとの差分から「今月新着件数」を算出
+      const prevCount = prev[store.store_id]?.review_count ?? data.review_count;
+      const newThisMonth = Math.max(0, data.review_count - prevCount);
+      result[store.store_id] = {
+        place_id: data.place_id,
+        label: data.display_name || store.google.label,
+        review_count: data.review_count,
+        rating: data.rating,
+        new_reviews_this_month: newThisMonth
+      };
+      console.log(`[google] ${store.store_id}: ${data.review_count} reviews, ★${data.rating} (${data.place_id})`);
+    } catch (e) {
+      console.error(`[google] Failed for ${store.store_id}: ${e.message}`);
+      // エラー時は前回の値を維持
+      if (prev[store.store_id]) result[store.store_id] = prev[store.store_id];
     }
   }
 
-  fs.writeFileSync(cachePath, JSON.stringify(result, null, 2));
-  console.log(`[google] cache written: ${cachePath}`);
+  fs.writeFileSync(path.join(CACHE_DIR, 'google-reviews.json'), JSON.stringify(result, null, 2));
+  console.log(`[google] cache written for ${Object.keys(result).length} stores`);
 }
 
 main().catch(e => { console.error(e); process.exit(1); });
