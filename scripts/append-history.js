@@ -1,5 +1,5 @@
-// reviews.json の最新スナップショットを reviews-history.json に月次で追記
-// 同一年月のデータが既に存在する場合は上書き
+// reviews.json (schema v2.0 - 6ブランド店舗単位) の最新スナップショットを
+// reviews-history.json に月次で追記
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -10,33 +10,24 @@ function main() {
   const latest = JSON.parse(fs.readFileSync(REVIEWS, 'utf8'));
   const history = fs.existsSync(HISTORY)
     ? JSON.parse(fs.readFileSync(HISTORY, 'utf8'))
-    : { schema_version: '1.0.0', description: '月次推移データ。GitHub Actions cron が自動追記。', history: [] };
+    : { schema_version: '2.0.0', description: '6ブランド店舗単位の月次推移DB。GitHub Actions cron が自動追記。', history: [] };
 
-  const now = new Date(latest.generated_at);
+  const now = new Date(latest.generated_at || Date.now());
   const ym = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
 
   const snapshot = {};
   for (const s of latest.stores) {
-    const googleCount = s.google_business_profiles.reduce((a, g) => a + g.review_count, 0);
-    const hpbCount = s.hpb_salons.reduce((a, h) => a + h.review_count, 0);
-    const googleRating = (() => {
-      const t = googleCount;
-      if (t === 0) return 0;
-      const sum = s.google_business_profiles.reduce((a, g) => a + g.rating * g.review_count, 0);
-      return Number((sum / t).toFixed(2));
-    })();
-    const hpbRating = (() => {
-      if (hpbCount === 0) return 0;
-      const sum = s.hpb_salons.reduce((a, h) => a + h.rating * h.review_count, 0);
-      return Number((sum / hpbCount).toFixed(2));
-    })();
+    const hpb = s.hpb || {};
+    const google = s.google || {};
     snapshot[s.store_id] = {
-      google_count: googleCount,
-      google_rating: googleRating,
-      hpb_count: hpbCount,
-      hpb_rating: hpbRating,
-      blog_new: s.totals.blog_count_this_month,
-      score: s.score
+      hpb_count: hpb.available ? (hpb.review_count || 0) : 0,
+      hpb_rating: hpb.available ? (hpb.rating || 0) : 0,
+      google_count: google.review_count || 0,
+      google_rating: google.rating || 0,
+      blog_total: hpb.available ? (hpb.blog_count_total || 0) : 0,
+      blog_new: s.totals?.blog_count_this_month || 0,
+      score: s.score || 0,
+      rank: s.rank || 0
     };
   }
 
@@ -46,14 +37,13 @@ function main() {
   } else {
     history.history.push({ year_month: ym, stores: snapshot });
     history.history.sort((a, b) => a.year_month.localeCompare(b.year_month));
-    // 直近24ヶ月のみ保持
     if (history.history.length > 24) {
       history.history = history.history.slice(-24);
     }
   }
 
   fs.writeFileSync(HISTORY, JSON.stringify(history, null, 2));
-  console.log(`[history] ${ym} updated (${history.history.length} months)`);
+  console.log(`[history] ${ym} updated (${history.history.length} months total)`);
 }
 
 main();
