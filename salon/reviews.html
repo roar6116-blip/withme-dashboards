@@ -81,8 +81,8 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
 .brand-tag.kaokao { background:rgba(236,72,153,0.12); color:var(--kaokao); }
 .compare-table .rank-cell { font-weight:800; font-family:'JetBrains Mono',monospace; font-size:18px; }
 .compare-table .score-cell { display:inline-flex; align-items:center; gap:8px; background: linear-gradient(90deg, var(--navy-50), var(--navy-100)); padding: 6px 12px; border-radius: 20px; font-weight:800; }
-.compare-table .score-bar { width:60px; height:6px; background:var(--gray-200); border-radius:3px; overflow:hidden; }
-.compare-table .score-bar-fill { height:100%; background: linear-gradient(90deg, var(--orange-500), var(--orange-600)); }
+.compare-table .score-bar { display:inline-block; width:60px; height:6px; background:var(--gray-200); border-radius:3px; overflow:hidden; flex-shrink:0; }
+.compare-table .score-bar-fill { display:block; height:100%; background: linear-gradient(90deg, var(--orange-500), var(--orange-600)); border-radius:3px; }
 
 /* ===== 店舗カード（リッチ版） ===== */
 .store-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap:20px; }
