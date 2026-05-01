@@ -4,7 +4,7 @@
   "generated_at": "2026-05-01T00:00:00+09:00",
   "data_sources": {
     "google": "Google Maps 公開ページから取得 (2026-05-01時点)",
-    "hpb": "サンプル値（実データは未取得）",
+    "hpb": "サンプル値（HPB公式URL未確定のためリンクなし）",
     "blog": "サンプル値（実データは未取得）"
   },
   "stores": [
@@ -15,7 +15,7 @@
       "area": "甲府",
       "hpb": {
         "salon_name": "TouchMe甲府昭和店",
-        "url": "https://beauty.hotpepper.jp/CSP/bt/searchSalon/?searchK=TouchMe%E7%94%B2%E5%BA%9C%E6%98%AD%E5%92%8C",
+        "url": null,
         "review_count": 198,
         "rating": 4.8,
         "blog_count_total": 412,
@@ -47,7 +47,7 @@
       "area": "富士",
       "hpb": {
         "salon_name": "TouchMe富士店",
-        "url": "https://beauty.hotpepper.jp/CSP/bt/searchSalon/?searchK=TouchMe%E5%AF%8C%E5%A3%AB",
+        "url": null,
         "review_count": 245,
         "rating": 4.8,
         "blog_count_total": 487,
@@ -79,7 +79,7 @@
       "area": "甲府",
       "hpb": {
         "salon_name": "SlenderMe甲府店",
-        "url": "https://beauty.hotpepper.jp/CSP/bt/searchSalon/?searchK=SlenderMe%E7%94%B2%E5%BA%9C",
+        "url": null,
         "review_count": 142,
         "rating": 4.7,
         "blog_count_total": 287,
@@ -96,7 +96,7 @@
       },
       "totals": {
         "review_count": 278,
-        "weighted_rating": 4.80,
+        "weighted_rating": 4.8,
         "blog_count_total": 287,
         "blog_count_this_month": 8,
         "new_reviews_this_month": 3
@@ -111,7 +111,7 @@
       "area": "富士",
       "hpb": {
         "salon_name": "KaoKao富士店",
-        "url": "https://beauty.hotpepper.jp/CSP/bt/searchSalon/?searchK=KaoKao%E5%AF%8C%E5%A3%AB",
+        "url": null,
         "review_count": 67,
         "rating": 4.7,
         "blog_count_total": 156,
@@ -143,7 +143,7 @@
       "area": "甲府",
       "hpb": {
         "salon_name": "KaoKao甲府店",
-        "url": "https://beauty.hotpepper.jp/CSP/bt/searchSalon/?searchK=KaoKao%E7%94%B2%E5%BA%9C",
+        "url": null,
         "review_count": 56,
         "rating": 4.7,
         "blog_count_total": 124,
