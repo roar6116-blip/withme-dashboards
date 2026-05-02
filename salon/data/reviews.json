@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-05-02T07:22:58.250Z",
+  "generated_at": "2026-05-02T08:59:27.617Z",
   "data_sources": {
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
@@ -110,7 +110,7 @@
       "google": {
         "label": "Touch Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJrw9otUMrGmARJgKg8v6_kF8",
-        "review_count": 199,
+        "review_count": 200,
         "rating": 4.9,
         "new_reviews_this_month": 0,
         "place_id": "ChIJrw9otUMrGmARJgKg8v6_kF8"
@@ -166,7 +166,7 @@
         }
       ],
       "totals": {
-        "review_count": 788,
+        "review_count": 789,
         "weighted_rating": 4.81,
         "blog_count_total": 370,
         "blog_count_this_month": 12,
@@ -510,7 +510,7 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2691,
+    "total_reviews": 2692,
     "total_new_this_month": 55,
     "average_rating": 4.86,
     "total_blog_this_month": 48,
