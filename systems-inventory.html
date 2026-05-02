@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>社内システム一覧 | 株式会社With Me</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-900: #0a1628; --navy-800: #0f2444; --navy-700: #1a3666; --navy-600: #2a4d8f;
+  --navy-500: #3d6bb3; --navy-100: #e8eef7; --navy-50: #f4f7fc;
+  --orange-700: #c2410c; --orange-600: #ea580c; --orange-500: #f97316;
+  --orange-400: #fb923c; --orange-100: #ffedd5; --orange-50: #fff7ed;
+  --white: #ffffff; --gray-50: #f8fafc; --gray-100: #f1f5f9; --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1; --gray-400: #94a3b8; --gray-500: #64748b; --gray-600: #475569;
+  --gray-700: #334155; --gray-800: #1e293b; --gray-900: #0f172a;
+  --good: #059669; --warn: #d97706; --bad: #dc2626; --gold: #eab308;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans-serif; background: var(--gray-50); color: var(--gray-900); line-height: 1.6; font-feature-settings: "palt"; -webkit-font-smoothing: antialiased; }
+.container { max-width: 1320px; margin: 0 auto; padding: 40px 28px; }
+@media (max-width: 768px) { .container { padding: 20px 14px; } }
+
+.header { background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%); color: var(--white); padding: 40px 44px 44px; border-radius: 16px; margin-bottom: 32px; position: relative; overflow: hidden; }
+.header::before { content: ''; position: absolute; top: 0; right: 0; width: 500px; height: 100%; background: radial-gradient(circle at top right, rgba(249,115,22,0.18), transparent 60%); }
+.header-tag { display: inline-block; background: var(--orange-500); color: var(--white); padding: 5px 12px; border-radius: 4px; font-size: 10px; font-weight: 800; letter-spacing: 0.15em; margin-bottom: 16px; text-transform: uppercase; position: relative; z-index: 1; }
+.title { font-size: clamp(26px, 4vw, 36px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 10px; position: relative; z-index: 1; }
+.title-accent { color: var(--orange-400); }
+.subtitle { font-size: 14px; color: var(--navy-100); margin-bottom: 22px; position: relative; z-index: 1; }
+.meta { display: flex; gap: 22px; flex-wrap: wrap; font-size: 12px; color: var(--navy-100); position: relative; z-index: 1; font-family: 'JetBrains Mono', monospace; }
+.meta-item { display: flex; align-items: center; gap: 6px; }
+.meta-label { color: var(--orange-400); font-weight: 700; }
+
+/* サマリーKPI */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 36px; }
+@media (max-width: 768px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+.kpi-card { background: var(--white); border-radius: 12px; padding: 20px 22px; border: 1px solid var(--gray-200); }
+.kpi-card.featured { background: linear-gradient(135deg, var(--orange-600), var(--orange-500)); color: var(--white); border: none; }
+.kpi-label { font-size: 10px; font-weight: 800; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 8px; }
+.kpi-card.featured .kpi-label { color: rgba(255,255,255,0.9); }
+.kpi-value { font-size: 36px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--navy-900); font-family: 'JetBrains Mono', monospace; }
+.kpi-card.featured .kpi-value { color: var(--white); }
+.kpi-detail { font-size: 11px; color: var(--gray-500); margin-top: 6px; }
+.kpi-card.featured .kpi-detail { color: rgba(255,255,255,0.85); }
+
+/* カテゴリセクション */
+.section { margin-bottom: 44px; }
+.section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid var(--gray-200); }
+.section-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 800; color: var(--orange-500); }
+.section-title { font-size: 20px; font-weight: 700; color: var(--navy-900); }
+.section-count { font-size: 12px; color: var(--gray-500); font-family: 'JetBrains Mono', monospace; margin-left: auto; }
+
+/* システムカード */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 14px; }
+.card { background: var(--white); border-radius: 10px; border: 1px solid var(--gray-200); padding: 18px 20px; transition: all 0.15s ease; position: relative; }
+.card:hover { border-color: var(--navy-500); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(15,36,68,0.08); }
+.card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.card-title { font-size: 15px; font-weight: 700; color: var(--navy-900); line-height: 1.3; }
+.badge { display: inline-block; padding: 3px 9px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
+.badge-good { background: #dcfce7; color: var(--good); }
+.badge-warn { background: #fef3c7; color: var(--warn); }
+.badge-bad  { background: #fee2e2; color: var(--bad); }
+.badge-info { background: var(--navy-50); color: var(--navy-700); }
+.card-skill { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--orange-600); margin-bottom: 8px; font-weight: 600; }
+.card-desc { font-size: 12px; color: var(--gray-600); line-height: 1.55; margin-bottom: 10px; }
+.card-meta { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 10px; color: var(--gray-500); font-family: 'JetBrains Mono', monospace; padding-top: 10px; border-top: 1px dashed var(--gray-200); }
+.card-meta-item { display: flex; align-items: center; gap: 4px; }
+.card-meta-label { color: var(--gray-400); }
+.card-link { color: var(--navy-600); text-decoration: none; font-weight: 600; }
+.card-link:hover { color: var(--orange-600); text-decoration: underline; }
+
+/* フィルタ */
+.filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; padding: 14px 18px; background: var(--white); border-radius: 10px; border: 1px solid var(--gray-200); align-items: center; }
+.filter-label { font-size: 11px; font-weight: 700; color: var(--gray-500); margin-right: 4px; text-transform: uppercase; letter-spacing: 0.1em; }
+.filter-btn { padding: 5px 12px; border-radius: 16px; font-size: 12px; font-weight: 600; border: 1px solid var(--gray-200); background: var(--white); color: var(--gray-700); cursor: pointer; font-family: inherit; transition: all 0.15s; }
+.filter-btn:hover { border-color: var(--navy-500); }
+.filter-btn.active { background: var(--navy-700); color: var(--white); border-color: var(--navy-700); }
+.search { flex: 1; min-width: 180px; padding: 6px 12px; border: 1px solid var(--gray-200); border-radius: 6px; font-size: 13px; font-family: inherit; outline: none; }
+.search:focus { border-color: var(--navy-500); }
+
+.footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--gray-200); font-size: 11px; color: var(--gray-500); text-align: center; }
+
+.note { background: #fff7ed; border-left: 4px solid var(--orange-500); padding: 12px 16px; border-radius: 4px; margin-bottom: 24px; font-size: 13px; color: var(--gray-700); }
+.note strong { color: var(--orange-700); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ヘッダー -->
+<header class="header">
+  <div class="header-tag">SYSTEMS INVENTORY</div>
+  <h1 class="title">社内システム<span class="title-accent">一覧</span></h1>
+  <p class="subtitle">株式会社With Me / 全社システム俯瞰ダッシュボード</p>
+  <div class="meta">
+    <div class="meta-item"><span class="meta-label">最終更新:</span> <span id="updated">2026-05-02</span></div>
+    <div class="meta-item"><span class="meta-label">総数:</span> <span id="total-count">0</span> システム</div>
+    <div class="meta-item"><span class="meta-label">稼働中:</span> <span id="active-count">0</span> / 設計中: <span id="planning-count">0</span></div>
+  </div>
+</header>
+
+<!-- サマリーKPI -->
+<div class="kpi-grid">
+  <div class="kpi-card featured">
+    <div class="kpi-label">総システム数</div>
+    <div class="kpi-value" id="kpi-total">0</div>
+    <div class="kpi-detail">全カテゴリ合計</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">スタッフ入力系</div>
+    <div class="kpi-value" id="kpi-staff">0</div>
+    <div class="kpi-detail">GAS Webアプリ</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">自動処理系</div>
+    <div class="kpi-value" id="kpi-auto">0</div>
+    <div class="kpi-detail">バッチ・スクリプト</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">公開ダッシュボード</div>
+    <div class="kpi-value" id="kpi-dash">0</div>
+    <div class="kpi-detail">GitHub Pages</div>
+  </div>
+</div>
+
+<div class="note">
+  <strong>📌 メモ:</strong> このページは雅章さんの「社内システム俯瞰用」ダッシュボードです。
+  各システムの詳細は GitHub・Notion・各GASエディタを参照。
+  カテゴリフィルタとキーワード検索で絞り込み可能です。
+</div>
+
+<!-- フィルタ -->
+<div class="filter-bar">
+  <span class="filter-label">カテゴリ:</span>
+  <button class="filter-btn active" data-filter="all">すべて</button>
+  <button class="filter-btn" data-filter="infra">共通インフラ</button>
+  <button class="filter-btn" data-filter="staff">スタッフ入力</button>
+  <button class="filter-btn" data-filter="auto">自動処理</button>
+  <button class="filter-btn" data-filter="etl">ETL</button>
+  <button class="filter-btn" data-filter="report">分析・レポート</button>
+  <button class="filter-btn" data-filter="dashboard">公開ダッシュボード</button>
+  <button class="filter-btn" data-filter="review">口コミ対応</button>
+  <button class="filter-btn" data-filter="landcore">LANDCORE</button>
+  <button class="filter-btn" data-filter="planning">設計中</button>
+  <input type="text" class="search" id="search" placeholder="🔍 キーワード検索（システム名・スキル名・機能）">
+</div>
+
+<!-- システム一覧 -->
+<div id="system-container"></div>
+
+<footer class="footer">
+  Generated 2026-05-02 / 株式会社With Me 内部用 / GitHub: <a href="https://github.com/roar6116-blip/withme-dashboards" style="color:var(--orange-600)">withme-dashboards</a>
+</footer>
+
+</div>
+
+<script>
+const SYSTEMS = [
+  // ===== 共通インフラ =====
+  {
+    cat: 'infra', catLabel: '共通インフラ',
+    name: '【WithMe】マスタDB',
+    skill: 'master-db',
+    desc: '全社内システム共通の参照ハブ。15シート（店舗/スタッフ/LINE_ID/銀行口座/コースマスタ等）を集約し、各GASスクリプトはここを参照することで一元管理を実現。',
+    type: 'Google スプレッドシート',
+    location: '~/.claude/skills/master-db.skill',
+    status: 'active',
+    statusLabel: '稼働中',
+    info: 'スプシ ID: 1ZBA…uZKc'
+  },
+
+  // ===== スタッフ入力系 GAS Webアプリ =====
+  {
+    cat: 'staff', catLabel: 'スタッフ入力',
+    name: 'クロージングCS',
+    skill: 'cs-form',
+    desc: 'カウンセリング記録をスタッフが入力 → 即時LINE通知＋スプシ蓄積。新規CS / 継続提案CS の2種、店舗別レポート月次/週次配信。',
+    type: 'GAS Webアプリ',
+    location: 'withme-salon/systems/closing-cs/',
+    status: 'active', statusLabel: '稼働中',
+  },
+  {
+    cat: 'staff', catLabel: 'スタッフ入力',
+    name: '新規予約管理',
+    skill: 'reservation',
+    desc: 'WithMe 新規予約管理 Webアプリ。マスタDB連携・LINE通知・広告コスト計算を含む。店舗別（SM甲府/TM甲府昭和+KaoKao/TM富士+KaoKao）。',
+    type: 'GAS Webアプリ',
+    location: 'withme-salon/systems/reservation/',
+    status: 'active', statusLabel: '稼働中',
+  },
+  {
+    cat: 'staff', catLabel: 'スタッフ入力',
+    name: 'キャンセル待ち管理',
+    skill: '—',
+    desc: 'HPB のキャンセル枠を待っているお客様のリスト管理 + 空き発生時の自動LINE通知。ICSパース機能搭載。',
+    type: 'GAS Webアプリ',
+    location: 'withme-salon/systems/cancel-waitlist/',
+    status: 'active', statusLabel: '稼働中',
+  },
+  {
+    cat: 'staff', catLabel: 'スタッフ入力',
+    name: 'サロン報告／トラブル・クレーム報告',
+    skill: 'trouble-claim',
+    desc: 'サロン現場の顧客トラブル・クレーム・ヒヤリハット報告。重大度Lv1〜Lv4で自動振分→LINE通知。画像10枚アップ＋日付_店舗_報告者フォルダ自動整理（v8）。',
+    type: 'GAS Webアプリ',
+    location: 'withme-salon/systems/reports/',
+    status: 'active', statusLabel: '稼働中 v8',
+    info: 'サロン報告と同一プロジェクト'
+  },
+  {
+    cat: 'staff', catLabel: 'スタッフ入力',
+    name: '解約管理',
+    skill: 'cancellation-settlement',
+    desc: '中途解約発生時の精算入力・処理進捗管理。Excel清算書 + LINE案内文を自動生成（特商法準拠）。',
+    type: 'GAS Webアプリ + Python',
+    location: '(GAS) + cancellation-settlement.skill',
+    status: 'active', statusLabel: '稼働中',
+  },
+  {
+    cat: 'staff', catLabel: 'スタッフ入力',
+    name: '本社依頼',
+    skill: 'honsha-irai',
+    desc: 'スタッフから本社（経理・人事・代表）への業務依頼を一元管理。重要依頼は管理者LINE即時通知。',
+    type: 'GAS Webアプリ',
+    location: '(GAS) honsha-irai.skill',
+    status: 'active', statusLabel: '稼働中',
+  },
+  {
+    cat: 'staff', catLabel: 'スタッフ入力',
+    name: '発注管理',
+    skill: 'hatchu-kanri',
+    desc: '3店舗の物品発注を一元化。化粧品・施術消耗品・備品・販促品の発注依頼を電子化、本社で承認・到着確認まで一気通貫。閾値超過は管理者LINE通知。',
+    type: 'GAS Webアプリ',
+    location: '(GAS) hatchu-kanri.skill',
+    status: 'active', statusLabel: '稼働中',
+    info: '仕入先は都度手入力（マスタ化なし）'
+  },
+  {
+    cat: 'staff', catLabel: 'スタッフ入力',
+    name: '定期申込管理',
+    skill: 'teiki-process',
+    desc: 'I\'m サロンの定期購入申込書をビメークへ自動送付＋店舗LINE通知＋スプシ更新。商品定期=即時 / 契約定期=8日経過後（CO期間）。',
+    type: 'GAS Webアプリ',
+    location: 'withme-hq/accounting/salon/teiki-moushikomi/',
+    status: 'active', statusLabel: '稼働中 v49',
+    info: '本日 dLeft バグ修正＋削除UI改善'
+  },
+
+  // ===== 自動処理系 =====
+  {
+    cat: 'auto', catLabel: '自動処理',
+    name: '解約清算書生成',
+    skill: 'cancellation-settlement',
+    desc: '特定商取引法に基づく解約精算 → Excel清算書 + LINE案内文を自動生成。ブランド別（SM/TM/KaoKao）・支払方法別（信販/カード一括/現金）対応。',
+    type: 'Python (openpyxl)',
+    location: '~/.claude/skills/cancellation-settlement.skill',
+    status: 'active', statusLabel: '稼働中',
+  },
+  {
+    cat: 'auto', catLabel: '自動処理',
+    name: '役務残自動集計',
+    skill: 'ekimuzan',
+    desc: 'ezexp CSV を Drive にアップロード → 3店舗分のスプレッドシート自動生成 → LINE通知。役務残=未消化施術回数の管理。',
+    type: 'GAS',
+    location: '~/.claude/skills/ekimuzan.skill',
+    status: 'active', statusLabel: '稼働中',
+  },
+  {
+    cat: 'auto', catLabel: '自動処理',
+    name: 'クレジットカード入金管理',
+    skill: 'credit-card-reconciliation',
+    desc: 'SBP収納明細PDF + LifeCard WebDesk スクレイピング → ローカルExcel直接書き込み。GAS/Drive/Gmail依存ゼロの確実版。',
+    type: 'Python',
+    location: '~/.claude/skills/credit-card-reconciliation.skill',
+    status: 'active', statusLabel: '稼働中',
+  },
+  {
+    cat: 'auto', catLabel: '自動処理',
+    name: '自動仕訳ルール生成',
+    skill: '—',
+    desc: '過去仕訳データを分析し、補助科目・部門パターンから自動仕訳ルール候補を生成。手動仕訳作業を削減。',
+    type: 'Python',
+    location: 'withme-hq/accounting/scripts/analyze.py + auto-journal/',
+    status: 'active', statusLabel: '稼働中',
+  },
+  {
+    cat: 'auto', catLabel: '自動処理',
+    name: 'Gmail自動救出 + LINE通知',
+    skill: '—',
+    desc: '迷惑メールから予約・問い合わせ関連を自動救出 + 受信トレイの重要メールをLINEグループ自動通知。3アカウント共通・5分間隔。',
+    type: 'GAS (gmail_smart_rescue.gs)',
+    location: 'GAS Cloud のみ',
+    status: 'active', statusLabel: '稼働中',
+  },
+
+  // ===== 大規模ETL =====
+  {
+    cat: 'etl', catLabel: '大規模ETL',
+    name: 'nikkei_bulk_import',
+    skill: '—',
+    desc: 'Microsoft Graph API で OneDrive 配下の日計表Excelを取得 → SheetJSパース → Google Sheets総合DBへ同期。マスタDB連携の正規化付き。',
+    type: 'Node.js',
+    location: 'C:/Projects/nikkei_bulk_import/',
+    status: 'active', statusLabel: '稼働中',
+  },
+
+  // ===== 分析・レポート系 =====
+  {
+    cat: 'report', catLabel: '分析・レポート',
+    name: '日計表ダッシュボード',
+    skill: 'nikkei-update',
+    desc: '3店舗の日計表ExcelをもとにPython スクリプト（build_dashboard.py / build_analysis_html.py）で売上分析HTML・経営分析レポートを再生成。',
+    type: 'Python + HTML',
+    location: '~/.claude/skills/nikkei-update.skill',
+    status: 'active', statusLabel: '稼働中',
+  },
+  {
+    cat: 'report', catLabel: '分析・レポート',
+    name: 'サロン売上レポート',
+    skill: 'salon-report',
+    desc: '3店舗の日計表データをもとに月次・四半期・年間売上レポートをHTML/Excel/PPTXで生成 → Notion自動記録。',
+    type: 'Python (xlsx/pptx)',
+    location: '~/.claude/skills/salon-report.skill',
+    status: 'active', statusLabel: '稼働中',
+  },
+
+  // ===== 公開ダッシュボード =====
+  {
+    cat: 'dashboard', catLabel: '公開ダッシュボード',
+    name: 'ダッシュボードトップ',
+    skill: '—',
+    desc: 'withme-dashboards の入口ページ。各種ダッシュボードへのナビゲーション。',
+    type: 'HTML (GitHub Pages)',
+    url: 'https://roar6116-blip.github.io/withme-dashboards/',
+    location: 'withme-dashboards/index.html',
+    status: 'active', statusLabel: '公開中',
+  },
+  {
+    cat: 'dashboard', catLabel: '公開ダッシュボード',
+    name: 'モーニングブリーフィング',
+    skill: '—',
+    desc: '朝礼用の各種KPI・通知をまとめた共通ダッシュボード。',
+    type: 'HTML (GitHub Pages)',
+    url: 'https://roar6116-blip.github.io/withme-dashboards/common/morning-briefing.html',
+    location: 'withme-dashboards/common/',
+    status: 'active', statusLabel: '公開中',
+  },
+  {
+    cat: 'dashboard', catLabel: '公開ダッシュボード',
+    name: '店舗評価ダッシュボード',
+    skill: '—',
+    desc: 'HPB + Google口コミの集計（Chart.js）。店舗別・ブランド別・媒体別の評価可視化。',
+    type: 'HTML (GitHub Pages)',
+    url: 'https://roar6116-blip.github.io/withme-dashboards/salon/reviews.html',
+    location: 'withme-dashboards/salon/reviews.html',
+    status: 'active', statusLabel: '公開中',
+  },
+  {
+    cat: 'dashboard', catLabel: '公開ダッシュボード',
+    name: '予約ファネル分析',
+    skill: '—',
+    desc: '2026-04の予約ファネル分析。媒体別・店舗別の予約→来店→成約の歩留まり可視化。',
+    type: 'HTML (GitHub Pages)',
+    url: 'https://roar6116-blip.github.io/withme-dashboards/salon/reservation-funnel-202604.html',
+    location: 'withme-dashboards/salon/reservation-funnel-202604.html',
+    status: 'active', statusLabel: '公開中',
+  },
+  {
+    cat: 'dashboard', catLabel: '公開ダッシュボード',
+    name: 'シフト管理UIモック',
+    skill: '—',
+    desc: 'シフト管理システムの将来UIモックアップ。スプシ→MF勤怠CSV変換の段階2 (GAS Web App)向け。',
+    type: 'HTML (GitHub Pages)',
+    url: 'https://roar6116-blip.github.io/withme-dashboards/salon/shift-mockup/',
+    location: 'withme-dashboards/salon/shift-mockup/',
+    status: 'planning', statusLabel: 'モックアップ',
+  },
+
+  // ===== 口コミ対応系 =====
+  {
+    cat: 'review', catLabel: '口コミ対応',
+    name: 'Google口コミ返信（GBP）',
+    skill: 'google-review-reply',
+    desc: 'GBP（ビジネスプロフィール）の未返信口コミを JSで一括抽出 → 1ターンで全件返信生成 → browser_batchで一括投稿。5〜6倍速化版。',
+    type: 'Claude in Chrome (JS バッチ)',
+    location: 'withme-salon/reviews/google/',
+    status: 'active', statusLabel: '稼働中 v2',
+  },
+  {
+    cat: 'review', catLabel: '口コミ対応',
+    name: 'HPB口コミ返信（ホットペッパービューティー）',
+    skill: 'salon-review-reply',
+    desc: 'HPBの口コミを Playwright で取得 → AsyncAnthropic で並列生成（5並列）→ ★3以下は店舗LINE自動通知。GAS Web Appプロキシ経由。',
+    type: 'Python + Playwright + GAS',
+    location: 'withme-salon/reviews/hpb/',
+    status: 'active', statusLabel: '稼働中',
+  },
+
+  // ===== LANDCORE系 =====
+  {
+    cat: 'landcore', catLabel: 'LANDCORE',
+    name: 'LANDCORE管理リポ',
+    skill: 'lc / lc-marketing',
+    desc: 'LANDCORE株式会社の総合管理。RC事業（RC-IBEX草刈機）・FIELD事業・PARTNERS事業。マーケティング部関連資料を含む。',
+    type: 'リポジトリ',
+    location: 'C:/Projects/landcore/',
+    status: 'active', statusLabel: '稼働中',
+  },
+
+  // ===== 設計フェーズ =====
+  {
+    cat: 'planning', catLabel: '設計中',
+    name: 'シフト管理（GAS化計画）',
+    skill: 'shift',
+    desc: 'スプシ → MF勤怠CSV変換の半システム化。段階1: GASスクリプト → 段階2: GAS Web App でカスタムUI。MF勤怠の書き込み系APIなしのため、CSVが現実的。',
+    type: 'GAS（設計フェーズ）',
+    location: 'withme-salon/systems/shift-management/',
+    status: 'planning', statusLabel: '設計中',
+  },
+];
+
+// ===== レンダリング =====
+const CAT_ORDER = ['infra','staff','auto','etl','report','dashboard','review','landcore','planning'];
+const CAT_LABELS = {
+  'infra': '🗂 共通インフラ',
+  'staff': '📝 スタッフ入力系（GAS Webアプリ）',
+  'auto': '⚙ 自動処理系',
+  'etl': '🚀 大規模ETLパイプライン',
+  'report': '📊 分析・レポート系',
+  'dashboard': '🌐 公開ダッシュボード（GitHub Pages）',
+  'review': '⭐ 口コミ対応系',
+  'landcore': '🏢 LANDCORE系',
+  'planning': '🚧 設計フェーズ'
+};
+
+function statusBadge(status, label) {
+  const cls = status === 'active' ? 'badge-good' : status === 'planning' ? 'badge-warn' : 'badge-info';
+  return `<span class="badge ${cls}">${label}</span>`;
+}
+
+function renderCard(s) {
+  const linkPart = s.url ? `<a href="${s.url}" target="_blank" class="card-link" title="開く">↗ 開く</a>` : '';
+  const infoPart = s.info ? `<div class="card-meta-item"><span class="card-meta-label">memo:</span> ${s.info}</div>` : '';
+  const skillPart = s.skill && s.skill !== '—' ? `<div class="card-skill">/${s.skill}</div>` : '';
+  return `
+    <div class="card" data-cat="${s.cat}" data-search="${(s.name+' '+s.skill+' '+s.desc+' '+s.type).toLowerCase()}">
+      <div class="card-head">
+        <div class="card-title">${s.name}</div>
+        ${statusBadge(s.status, s.statusLabel)}
+      </div>
+      ${skillPart}
+      <div class="card-desc">${s.desc}</div>
+      <div class="card-meta">
+        <div class="card-meta-item"><span class="card-meta-label">type:</span> ${s.type}</div>
+        <div class="card-meta-item"><span class="card-meta-label">loc:</span> ${s.location}</div>
+        ${infoPart}
+        ${linkPart}
+      </div>
+    </div>
+  `;
+}
+
+function render(filterCat='all', searchQ='') {
+  const container = document.getElementById('system-container');
+  const grouped = {};
+  CAT_ORDER.forEach(c => grouped[c] = []);
+  SYSTEMS.forEach(s => grouped[s.cat].push(s));
+
+  let html = '';
+  let secNum = 1;
+  const q = searchQ.trim().toLowerCase();
+
+  CAT_ORDER.forEach(c => {
+    const list = grouped[c];
+    if (!list.length) return;
+    if (filterCat !== 'all' && filterCat !== c) return;
+    const filtered = list.filter(s => !q || (s.name+' '+s.skill+' '+s.desc+' '+s.type).toLowerCase().includes(q));
+    if (!filtered.length) return;
+    html += `
+      <section class="section">
+        <div class="section-header">
+          <span class="section-num">${String(secNum).padStart(2,'0')}</span>
+          <h2 class="section-title">${CAT_LABELS[c]}</h2>
+          <span class="section-count">${filtered.length} 件</span>
+        </div>
+        <div class="cards">${filtered.map(renderCard).join('')}</div>
+      </section>
+    `;
+    secNum++;
+  });
+
+  if (!html) html = '<div class="note">該当するシステムが見つかりません。</div>';
+  container.innerHTML = html;
+}
+
+// ===== KPI =====
+function updateKPI() {
+  document.getElementById('kpi-total').textContent = SYSTEMS.length;
+  document.getElementById('kpi-staff').textContent = SYSTEMS.filter(s => s.cat === 'staff').length;
+  document.getElementById('kpi-auto').textContent  = SYSTEMS.filter(s => s.cat === 'auto').length;
+  document.getElementById('kpi-dash').textContent  = SYSTEMS.filter(s => s.cat === 'dashboard').length;
+  document.getElementById('total-count').textContent = SYSTEMS.length;
+  document.getElementById('active-count').textContent = SYSTEMS.filter(s => s.status === 'active').length;
+  document.getElementById('planning-count').textContent = SYSTEMS.filter(s => s.status === 'planning').length;
+}
+
+// ===== イベント =====
+let currentFilter = 'all';
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    render(currentFilter, document.getElementById('search').value);
+  };
+});
+document.getElementById('search').oninput = (e) => render(currentFilter, e.target.value);
+
+// 初期表示
+updateKPI();
+render();
+</script>
+
+</body>
+</html>
