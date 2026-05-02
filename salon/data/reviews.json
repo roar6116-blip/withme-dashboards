@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-05-02T02:04:43.162Z",
+  "generated_at": "2026-05-02T05:30:54.514Z",
   "data_sources": {
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
@@ -27,7 +27,7 @@
       "google": {
         "label": "Touch Me甲府昭和店【タッチミー】",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJr4DRCWj3G2AR-ZL9_5Qrds0",
-        "review_count": 375,
+        "review_count": 376,
         "rating": 5,
         "new_reviews_this_month": 0,
         "place_id": "ChIJr4DRCWj3G2AR-ZL9_5Qrds0"
@@ -83,7 +83,7 @@
         }
       ],
       "totals": {
-        "review_count": 993,
+        "review_count": 994,
         "weighted_rating": 4.91,
         "blog_count_total": 450,
         "blog_count_this_month": 15,
@@ -359,8 +359,8 @@
       "google": {
         "label": "韓国式小顔矯正コルギ・肌管理専門店 KaoKao富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJD_zlmH8rGmAREUkK6yw7qZ0",
-        "review_count": 59,
-        "rating": 4.9,
+        "review_count": 60,
+        "rating": 5,
         "new_reviews_this_month": 0,
         "place_id": "ChIJD_zlmH8rGmAREUkK6yw7qZ0"
       },
@@ -415,13 +415,13 @@
         }
       ],
       "totals": {
-        "review_count": 169,
-        "weighted_rating": 4.92,
+        "review_count": 170,
+        "weighted_rating": 4.95,
         "blog_count_total": 30,
         "blog_count_this_month": 1,
         "new_reviews_this_month": 6
       },
-      "score": 38,
+      "score": 39,
       "rank": 5
     },
     {
@@ -510,7 +510,7 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2689,
+    "total_reviews": 2691,
     "total_new_this_month": 55,
     "average_rating": 4.86,
     "total_blog_this_month": 48,
@@ -521,7 +521,7 @@
     {
       "level": "info",
       "store_id": "tm_kofu_showa",
-      "message": "TouchMe甲府昭和店 が総合1位（HPB+Google合計 993件・★4.91）"
+      "message": "TouchMe甲府昭和店 が総合1位（HPB+Google合計 994件・★4.91）"
     }
   ]
 }
