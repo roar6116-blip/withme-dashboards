@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-05-03T02:10:14.764Z",
+  "generated_at": "2026-05-03T05:52:09.251Z",
   "data_sources": {
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
@@ -110,7 +110,7 @@
       "google": {
         "label": "Touch Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJrw9otUMrGmARJgKg8v6_kF8",
-        "review_count": 200,
+        "review_count": 201,
         "rating": 4.9,
         "new_reviews_this_month": 0,
         "place_id": "ChIJrw9otUMrGmARJgKg8v6_kF8"
@@ -166,7 +166,7 @@
         }
       ],
       "totals": {
-        "review_count": 789,
+        "review_count": 790,
         "weighted_rating": 4.81,
         "blog_count_total": 370,
         "blog_count_this_month": 12,
@@ -193,7 +193,7 @@
       "google": {
         "label": "Slender Me甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJjy9pyNH3G2ARbUkCUHJGYP0",
-        "review_count": 136,
+        "review_count": 137,
         "rating": 4.9,
         "new_reviews_this_month": 0,
         "place_id": "ChIJjy9pyNH3G2ARbUkCUHJGYP0"
@@ -249,7 +249,7 @@
         }
       ],
       "totals": {
-        "review_count": 448,
+        "review_count": 449,
         "weighted_rating": 4.82,
         "blog_count_total": 430,
         "blog_count_this_month": 14,
@@ -276,7 +276,7 @@
       "google": {
         "label": "小顔矯正コルギ専門店 KaoKao甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJp8kWlv_3G2ARObteUfTXtKM",
-        "review_count": 69,
+        "review_count": 70,
         "rating": 4.9,
         "new_reviews_this_month": 0,
         "place_id": "ChIJp8kWlv_3G2ARObteUfTXtKM"
@@ -332,7 +332,7 @@
         }
       ],
       "totals": {
-        "review_count": 225,
+        "review_count": 226,
         "weighted_rating": 4.86,
         "blog_count_total": 180,
         "blog_count_this_month": 6,
@@ -510,7 +510,7 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2692,
+    "total_reviews": 2695,
     "total_new_this_month": 55,
     "average_rating": 4.86,
     "total_blog_this_month": 48,
