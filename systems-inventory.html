@@ -180,6 +180,7 @@ const SYSTEMS = [
     skill: 'cs-form',
     desc: 'カウンセリング記録をスタッフが入力 → 即時LINE通知＋スプシ蓄積。新規CS / 継続提案CS の2種、店舗別レポート月次/週次配信。',
     type: 'GAS Webアプリ',
+    url: 'https://script.google.com/macros/s/AKfycby9A0CkMMJQCpEM2vrWG5L9HquO2_ZPheHYA4bgQn5uxnG51gzXunvH2etr_KXgoOA/exec',
     location: 'withme-salon/systems/closing-cs/',
     status: 'active', statusLabel: '稼働中',
   },
@@ -191,6 +192,7 @@ const SYSTEMS = [
     type: 'GAS Webアプリ',
     location: 'withme-salon/systems/reservation/',
     status: 'active', statusLabel: '稼働中',
+    info: 'URL未取得（要確認）'
   },
   {
     cat: 'staff', catLabel: 'スタッフ入力',
@@ -200,6 +202,7 @@ const SYSTEMS = [
     type: 'GAS Webアプリ',
     location: 'withme-salon/systems/cancel-waitlist/',
     status: 'active', statusLabel: '稼働中',
+    info: 'URL未取得（要確認）'
   },
   {
     cat: 'staff', catLabel: 'スタッフ入力',
@@ -207,6 +210,7 @@ const SYSTEMS = [
     skill: 'trouble-claim',
     desc: 'サロン現場の顧客トラブル・クレーム・ヒヤリハット報告。重大度Lv1〜Lv4で自動振分→LINE通知。画像10枚アップ＋日付_店舗_報告者フォルダ自動整理（v8）。',
     type: 'GAS Webアプリ',
+    url: 'https://script.google.com/macros/s/AKfycbziR_558CqvFzwN7z7eZvsDh4LGFKM68ppU0LF-nX184g-7bBkGMdZiSRnoDxLFB7e-/exec',
     location: 'withme-salon/systems/reports/',
     status: 'active', statusLabel: '稼働中 v8',
     info: 'サロン報告と同一プロジェクト'
@@ -217,6 +221,7 @@ const SYSTEMS = [
     skill: 'cancellation-settlement',
     desc: '中途解約発生時の精算入力・処理進捗管理。Excel清算書 + LINE案内文を自動生成（特商法準拠）。',
     type: 'GAS Webアプリ + Python',
+    url: 'https://script.google.com/macros/s/AKfycbwJJcespuT6l0_xkb-QIAZO9npDutEzfBh8X9ig1UIoL79VWCTvp16DsHDWJRsD10YC/exec',
     location: '(GAS) + cancellation-settlement.skill',
     status: 'active', statusLabel: '稼働中',
   },
@@ -226,6 +231,7 @@ const SYSTEMS = [
     skill: 'honsha-irai',
     desc: 'スタッフから本社（経理・人事・代表）への業務依頼を一元管理。重要依頼は管理者LINE即時通知。',
     type: 'GAS Webアプリ',
+    url: 'https://script.google.com/macros/s/AKfycbzbH2ZB3CfdYQplZmAOpK6ZWB3Ga_8PYffSqlF_fkZZ_spjpSpxJuKSyL6kc8igoyrF/exec',
     location: '(GAS) honsha-irai.skill',
     status: 'active', statusLabel: '稼働中',
   },
@@ -235,6 +241,7 @@ const SYSTEMS = [
     skill: 'hatchu-kanri',
     desc: '3店舗の物品発注を一元化。化粧品・施術消耗品・備品・販促品の発注依頼を電子化、本社で承認・到着確認まで一気通貫。閾値超過は管理者LINE通知。',
     type: 'GAS Webアプリ',
+    url: 'https://script.google.com/macros/s/AKfycbzLAet0pimrNi3Lhu3vYc4NY73UNjxoat6FFx2m1I6ufXWCFf_YAtGg0Tplm_rOFNH0/exec',
     location: '(GAS) hatchu-kanri.skill',
     status: 'active', statusLabel: '稼働中',
     info: '仕入先は都度手入力（マスタ化なし）'
@@ -243,11 +250,12 @@ const SYSTEMS = [
     cat: 'staff', catLabel: 'スタッフ入力',
     name: '定期申込管理',
     skill: 'teiki-process',
-    desc: 'I\'m サロンの定期購入申込書をビメークへ自動送付＋店舗LINE通知＋スプシ更新。商品定期=即時 / 契約定期=8日経過後（CO期間）。',
+    desc: 'I\'m サロンの定期購入申込書をビメークへ自動送付＋店舗LINE通知＋スプシ更新。商品定期=即時 / 契約定期=8日経過後（CO期間）。スマホ最適化済み（v50）。',
     type: 'GAS Webアプリ',
+    url: 'https://script.google.com/macros/s/AKfycbwcDu8OUNAXdE0NtId6w9f91EAIFw9v-s1Ap9x0Bb7O3rXwcm9WrsP_i94giAc0FIQoQA/exec',
     location: 'withme-hq/accounting/salon/teiki-moushikomi/',
     status: 'active', statusLabel: '稼働中 v49',
-    info: '本日 dLeft バグ修正＋削除UI改善'
+    info: 'dLeft修正＋削除UI改善＋スマホカード型UI'
   },
 
   // ===== 自動処理系 =====
