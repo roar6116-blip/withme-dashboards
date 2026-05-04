@@ -51,7 +51,9 @@
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   }
   .header h1 { font-size: 16px; font-weight: 700; color: var(--primary); }
-  .header .user-tag { font-size: 11px; color: var(--muted); background: var(--bg); padding: 3px 8px; border-radius: 10px; }
+  .user-info { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+  .user-info .user-name { font-size: 12px; color: var(--text); font-weight: 600; }
+  .user-info .user-store { font-size: 10px; color: var(--muted); background: var(--bg); padding: 1px 8px; border-radius: 8px; }
   .view { padding: 16px; }
   .card {
     background: var(--card);
@@ -246,7 +248,10 @@
 
 <div class="header">
   <h1>📅 WithMe シフト</h1>
-  <span class="user-tag">輿石 信子</span>
+  <div class="user-info">
+    <span class="user-name">輿石 信子</span>
+    <span class="user-store">TM甲府昭和店</span>
+  </div>
 </div>
 
 <div class="view">
