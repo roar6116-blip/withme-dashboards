@@ -160,26 +160,34 @@
   .pill { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; }
   .pill-warn { background: var(--c-req); color: var(--c-req-dk); }
 
-  /* パレット */
+  /* パレット — 6ボタンを 3列×2行 のグリッドで統一サイズに */
   .paint-toolbar {
     background: var(--card);
     border: 2px solid var(--border);
     border-radius: 8px;
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 12px;
-    display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
   }
-  .paint-label { font-size: 11px; color: var(--muted); width: 100%; margin-bottom: 4px; }
+  .paint-label { font-size: 11px; color: var(--muted); margin-bottom: 8px; display: block; }
+  .paint-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
   .paint-btn {
-    padding: 8px 12px;
+    height: 44px;
+    padding: 0 8px;
     border: 2px solid transparent;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
-    flex: 1;
-    min-width: 50px;
     text-align: center;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
   }
   .paint-btn.selected { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(37,99,235,0.2); }
   .paint-btn.bg-req  { background: var(--c-req);  color: var(--c-req-dk); }
@@ -304,12 +312,14 @@
       <!-- パレット -->
       <div class="paint-toolbar">
         <span class="paint-label">▼ 種別を選んで → カレンダーをタップ</span>
-        <button class="paint-btn bg-req selected"  data-type="req">希望休</button>
-        <button class="paint-btn bg-paid" data-type="paid">有給</button>
-        <button class="paint-btn bg-am"   data-type="am">AM休</button>
-        <button class="paint-btn bg-pm"   data-type="pm">PM休</button>
-        <button class="paint-btn bg-abs"  data-type="abs">欠勤</button>
-        <button class="paint-btn bg-cancel" data-type="cancel">取消</button>
+        <div class="paint-grid">
+          <button class="paint-btn bg-req selected"  data-type="req">希望休</button>
+          <button class="paint-btn bg-paid" data-type="paid">有給</button>
+          <button class="paint-btn bg-am"   data-type="am">AM半休</button>
+          <button class="paint-btn bg-pm"   data-type="pm">PM半休</button>
+          <button class="paint-btn bg-abs"  data-type="abs">欠勤</button>
+          <button class="paint-btn bg-cancel" data-type="cancel">取消</button>
+        </div>
       </div>
 
       <div class="month-header">
