@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+<meta name="googlebot" content="noindex,nofollow">
+<title>WithMe シフト管理 — スタッフ用</title>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --accent: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --muted: #64748b;
+    --c-work: #d1fae5; --c-work-dk: #065f46;
+    --c-off:  #fed7aa; --c-off-dk:  #9a3412;
+    --c-req:  #fef3c7; --c-req-dk:  #92400e;
+    --c-paid: #fce7f3; --c-paid-dk: #9f1239;
+    --c-am:   #dbeafe; --c-am-dk:   #1e40af;
+    --c-pm:   #ede9fe; --c-pm-dk:   #5b21b6;
+    --c-abs:  #fecaca; --c-abs-dk:  #991b1b;
+    --c-storehol: #f3f4f6; --c-storehol-dk: #9ca3af;
+    --purple-dark: #5b21b6;
+    --blue-dark:   #1e40af;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .header h1 { font-size: 16px; font-weight: 700; color: var(--primary); }
+  .header .user-tag { font-size: 11px; color: var(--muted); background: var(--bg); padding: 3px 8px; border-radius: 10px; }
+  .view { padding: 16px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .card-title { font-size: 17px; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .badge { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: var(--primary); color: white; font-weight: 600; }
+  .card-subtitle { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+  .btn {
+    padding: 12px 16px; border: none; border-radius: 8px;
+    font-size: 15px; font-weight: 600; cursor: pointer; width: 100%;
+  }
+  .btn-primary { background: var(--primary); color: white; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-secondary { background: var(--card); color: var(--text); border: 1px solid var(--border); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* 締切バナー */
+  #deadline-banner {
+    background: linear-gradient(90deg,#fef3c7,#fde68a);
+    border: 1px solid #f59e0b;
+    border-left: 4px solid #f59e0b;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
+    font-size: 12px;
+  }
+  #deadline-banner strong { font-size: 13px; }
+  #locked-banner {
+    display: none;
+    background: #fee2e2;
+    border: 1px solid var(--danger);
+    border-left: 4px solid var(--danger);
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  /* 営業日数バー */
+  .biz-days-bar {
+    background: linear-gradient(90deg, #eff6ff, #f0f9ff);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    font-size: 12px;
+  }
+  .biz-stat { display: flex; flex-direction: column; }
+  .biz-stat .label { color: var(--muted); font-size: 10px; }
+  .biz-stat .value { font-size: 16px; font-weight: 700; color: var(--text); }
+  .biz-stat .value .unit { font-size: 11px; font-weight: 400; color: var(--muted); margin-left: 2px; }
+
+  /* タブ */
+  .tabs { display: flex; gap: 4px; margin-bottom: 14px; border-bottom: 2px solid var(--border); }
+  .tab {
+    padding: 10px 16px; cursor: pointer; background: none; border: none;
+    border-bottom: 3px solid transparent; margin-bottom: -2px;
+    font-size: 14px; font-weight: 600; color: var(--muted); flex: 1;
+  }
+  .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+  /* 月ナビ */
+  .month-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+  .month-nav { background: none; border: none; cursor: pointer; font-size: 22px; color: var(--primary); padding: 4px 12px; }
+
+  /* カレンダー */
+  .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 12px; }
+  .cal-header { text-align: center; font-size: 11px; font-weight: 600; color: var(--muted); padding: 4px 0; }
+  .cal-header.sat { color: var(--primary); }
+  .cal-header.sun { color: var(--danger); }
+  .cal-day {
+    aspect-ratio: 1; border: 1px solid var(--border); border-radius: 6px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 14px; background: var(--card); position: relative;
+  }
+  .cal-day:hover { background: var(--bg); }
+  .cal-day.empty { background: transparent; border: none; cursor: default; }
+  .cal-day.req      { background: var(--c-req);  border-color: var(--c-req-dk);  font-weight: 600; }
+  .cal-day.req-paid { background: var(--c-paid); border-color: var(--c-paid-dk); font-weight: 600; }
+  .cal-day.req-am   { background: var(--c-am);   border-color: var(--c-am-dk);   font-weight: 600; }
+  .cal-day.req-pm   { background: var(--c-pm);   border-color: var(--c-pm-dk);   font-weight: 600; }
+  .cal-day.req-abs  { background: var(--c-abs);  border-color: var(--c-abs-dk);  font-weight: 600; }
+  .cal-day .req-mark { font-size: 10px; line-height: 1; margin-top: 2px; }
+  .cal-day.over { box-shadow: 0 0 0 2px var(--danger); }
+  .cal-day.store-holiday { background: var(--c-storehol); color: var(--c-storehol-dk); cursor: not-allowed; }
+
+  /* クォータバー */
+  .quota-bar {
+    background: var(--bg); border-radius: 8px;
+    padding: 12px; display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; margin-bottom: 12px;
+  }
+  .quota-count { font-weight: 700; font-size: 16px; }
+  .pill { display: inline-block; padding: 2px 10px; border-radius: 10px; font-size: 11px; font-weight: 600; }
+  .pill-warn { background: var(--c-req); color: var(--c-req-dk); }
+
+  /* パレット */
+  .paint-toolbar {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 12px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+  }
+  .paint-label { font-size: 11px; color: var(--muted); width: 100%; margin-bottom: 4px; }
+  .paint-btn {
+    padding: 8px 12px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    flex: 1;
+    min-width: 50px;
+    text-align: center;
+  }
+  .paint-btn.selected { border-color: var(--primary); box-shadow: 0 0 0 2px rgba(37,99,235,0.2); }
+  .paint-btn.bg-req  { background: var(--c-req);  color: var(--c-req-dk); }
+  .paint-btn.bg-paid { background: var(--c-paid); color: var(--c-paid-dk); }
+  .paint-btn.bg-am   { background: var(--c-am);   color: var(--c-am-dk); }
+  .paint-btn.bg-pm   { background: var(--c-pm);   color: var(--c-pm-dk); }
+  .paint-btn.bg-abs  { background: var(--c-abs);  color: var(--c-abs-dk); }
+  .paint-btn.bg-cancel { background: var(--bg); color: var(--muted); }
+
+  /* シフト一覧（確定シフトタブ） */
+  .shift-day {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px; border: 1px solid var(--border); border-radius: 6px;
+    margin-bottom: 6px; background: var(--card); font-size: 13px; position: relative;
+  }
+  .shift-day .date { font-weight: 600; min-width: 72px; font-size: 13px; }
+  .shift-day .pattern { color: var(--muted); font-size: 11px; }
+  .shift-day.work { background: var(--c-work); border-color: var(--c-work-dk); }
+  .shift-day.off  { background: var(--c-off);  border-color: var(--c-off-dk); }
+  .shift-day.paid { background: var(--c-paid); border-color: var(--c-paid-dk); }
+  .shift-day .event-tag {
+    position: absolute; right: 8px; top: 4px; font-size: 10px;
+    padding: 1px 6px; border-radius: 8px; font-weight: 700;
+  }
+  .shift-day .event-tag.training { background: var(--purple-dark); color: white; }
+  .shift-day .event-tag.mtg      { background: var(--blue-dark);   color: white; }
+
+  /* 店舗別タブ（全社閲覧用） */
+  .store-tabs { display: flex; gap: 4px; margin-bottom: 12px; overflow-x: auto; }
+  .store-tab {
+    padding: 8px 12px; background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600;
+    white-space: nowrap;
+  }
+  .store-tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+  /* 備考 */
+  textarea {
+    width: 100%; padding: 10px; border: 1px solid var(--border);
+    border-radius: 6px; font-family: inherit; font-size: 14px;
+    resize: vertical; line-height: 1.5;
+  }
+
+  .hint { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+
+  .mockup-banner {
+    background: linear-gradient(90deg, #fbbf24, #f59e0b);
+    color: white; text-align: center; padding: 6px;
+    font-size: 11px; font-weight: 600;
+  }
+
+  /* ロック切替（デモ用・実装時は削除） */
+  .demo-lock-toggle {
+    position: fixed; bottom: 12px; right: 12px; z-index: 200;
+    padding: 8px 12px; border: 1px solid var(--border);
+    background: var(--card); border-radius: 20px;
+    font-size: 11px; cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .demo-lock-toggle.locked { background: #fee2e2; color: #991b1b; border-color: #ef4444; }
+</style>
+</head>
+<body>
+
+<div class="mockup-banner">📐 これはモックアップです — 実際のデータは保存されません</div>
+
+<div class="header">
+  <h1>📅 WithMe シフト</h1>
+  <span class="user-tag">輿石 信子</span>
+</div>
+
+<div class="view">
+  <!-- 締切カウントダウンバナー -->
+  <div id="deadline-banner">
+    <span style="font-size:20px">⏰</span>
+    <div style="flex:1">
+      <strong>7月分シフト希望休 受付中</strong><br>
+      <span style="color:var(--muted)">締切：5/20（水）終日まで／<strong style="color:#92400e">残り 16日</strong></span>
+    </div>
+  </div>
+
+  <!-- ロックバナー（締切後・初期非表示） -->
+  <div id="locked-banner">
+    <div style="font-size:18px;margin-bottom:4px">🔒 受付終了</div>
+    <div style="font-size:13px">7月分シフトの希望休受付は<strong>5月20日</strong>で締め切りました。</div>
+    <div style="font-size:11px;color:var(--muted);margin-top:6px">追加・変更が必要な場合は、店長までLINEでご連絡ください。</div>
+  </div>
+
+  <!-- 営業日数バー -->
+  <div class="biz-days-bar">
+    <div class="biz-stat"><span class="label">2026年7月</span><span class="value">31<span class="unit">日</span></span></div>
+    <div class="biz-stat"><span class="label">店舗営業日</span><span class="value" id="staff-biz-days">27<span class="unit">日</span></span></div>
+    <div class="biz-stat"><span class="label">出勤予定</span><span class="value" id="staff-work-days">26<span class="unit">日</span></span></div>
+  </div>
+
+  <!-- タブ：希望休投稿 / 確定シフト -->
+  <div class="tabs">
+    <button class="tab active" id="tab-request">希望休投稿</button>
+    <button class="tab" id="tab-view">確定シフト</button>
+  </div>
+
+  <!-- 希望休投稿タブ -->
+  <div id="pane-request">
+    <div class="card" id="request-card">
+      <div class="card-title">2026年7月 希望休<span class="badge" style="background:var(--accent)">翌々月分</span></div>
+      <div class="card-subtitle">締切：5月20日 終日まで（5月21日 00:00 にロック）</div>
+
+      <div class="quota-bar">
+        <div>
+          <div style="font-size:10px;color:var(--muted)">自由枠（希望休のみ）</div>
+          <div class="quota-count"><span id="quota-used">1</span> / 2 日</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:10px;color:var(--muted)">承認枠（超過分）</div>
+          <div class="quota-count"><span id="quota-extra">0</span> 日 <span class="pill pill-warn" id="approval-needed" style="display:none">店長承認</span></div>
+        </div>
+      </div>
+
+      <!-- パレット -->
+      <div class="paint-toolbar">
+        <span class="paint-label">▼ 種別を選んで → カレンダーをタップ</span>
+        <button class="paint-btn bg-req selected"  data-type="req">希望休</button>
+        <button class="paint-btn bg-paid" data-type="paid">有給</button>
+        <button class="paint-btn bg-am"   data-type="am">AM休</button>
+        <button class="paint-btn bg-pm"   data-type="pm">PM休</button>
+        <button class="paint-btn bg-abs"  data-type="abs">欠勤</button>
+        <button class="paint-btn bg-cancel" data-type="cancel">取消</button>
+      </div>
+
+      <div class="month-header">
+        <button class="month-nav">‹</button>
+        <strong>2026年 7月</strong>
+        <button class="month-nav">›</button>
+      </div>
+
+      <div class="calendar-grid" id="staff-cal"></div>
+
+      <div class="hint">📌 「希望休」は月2日まで自由・3日目以降は店長承認</div>
+      <div class="hint">📌 「有給/AM休/PM休/欠勤」は枠外（事前に店長へ相談推奨）</div>
+      <div class="hint">📌 グレー＝店舗休業日（火曜定休）</div>
+
+      <div style="margin-top:16px">
+        <label style="font-size:13px;font-weight:600;display:block;margin-bottom:6px">備考（自由入力）</label>
+        <textarea id="staff-remarks" rows="3" placeholder="例：6/22のPM半休は通院のためです。"></textarea>
+        <div class="hint">店長への申し送り事項があれば記入してください。空欄でもOK。</div>
+      </div>
+
+      <div style="margin-top:16px">
+        <button class="btn btn-primary" id="staff-submit">送信する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 確定シフトタブ -->
+  <div id="pane-view" style="display:none">
+    <!-- 店舗別タブ（自分 + 全店閲覧可） -->
+    <div class="store-tabs" id="store-tabs">
+      <div class="store-tab active">自分のシフト</div>
+      <div class="store-tab">TM甲府昭和</div>
+      <div class="store-tab">TM富士</div>
+      <div class="store-tab">SM甲府</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">2026年6月 <span class="badge">確定済</span></div>
+      <div class="card-subtitle">輿石 信子（TM甲府昭和店）</div>
+
+      <div id="my-shifts"></div>
+
+      <div style="margin-top:14px;display:flex;gap:8px">
+        <button class="btn btn-secondary" style="flex:1;padding:10px">📅 カレンダー追加</button>
+        <button class="btn btn-secondary" style="flex:1;padding:10px">🔄 変更申請</button>
+      </div>
+      <div class="hint" style="margin-top:8px">変更申請は店長の承認が必要です（自己変更不可）</div>
+    </div>
+  </div>
+</div>
+
+<!-- デモ用：締切ロック切替（実装時は削除） -->
+<button class="demo-lock-toggle" id="demo-lock">🔓 締切前モード</button>
+
+<script>
+  'use strict';
+
+  function el(tag, attrs, ...children) {
+    const node = document.createElement(tag);
+    if (attrs) {
+      for (const [k, v] of Object.entries(attrs)) {
+        if (k === 'class') node.className = v;
+        else if (k === 'dataset') Object.assign(node.dataset, v);
+        else if (k.startsWith('on')) node.addEventListener(k.slice(2), v);
+        else if (k === 'style') node.style.cssText = v;
+        else node.setAttribute(k, v);
+      }
+    }
+    for (const c of children) {
+      if (c == null) continue;
+      node.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+    }
+    return node;
+  }
+
+  // 7月2026
+  const MONTH_DAYS = 31;
+  const FIRST_DOW = 3;  // 7/1/2026 = Wed
+  const TUESDAY = 2;
+  const days = ['日', '月', '火', '水', '木', '金', '土'];
+
+  // 火曜定休
+  const baseHolidays = new Set();
+  for (let d = 1; d <= MONTH_DAYS; d++) {
+    if ((FIRST_DOW + d - 1) % 7 === TUESDAY) baseHolidays.add(d);
+  }
+
+  const STAFF_TYPES = {
+    req:  { mark: '休', label: '希望休' },
+    paid: { mark: '有', label: '有給希望' },
+    am:   { mark: 'AM', label: 'AM半休' },
+    pm:   { mark: 'PM', label: 'PM半休' },
+    abs:  { mark: '欠', label: '欠勤' },
+  };
+
+  const paintState = { type: 'req' };
+
+  // パレット
+  document.querySelector('.paint-toolbar').addEventListener('click', (e) => {
+    const btn = e.target.closest('.paint-btn');
+    if (!btn) return;
+    document.querySelectorAll('.paint-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    paintState.type = btn.dataset.type;
+  });
+
+  // カレンダー描画
+  const cal = document.getElementById('staff-cal');
+  function renderCal() {
+    while (cal.firstChild) cal.removeChild(cal.firstChild);
+    days.forEach((d, i) => {
+      const cls = 'cal-header' + (i === 0 ? ' sun' : i === 6 ? ' sat' : '');
+      cal.appendChild(el('div', { class: cls }, d));
+    });
+    for (let i = 0; i < FIRST_DOW; i++) cal.appendChild(el('div', { class: 'cal-day empty' }));
+    for (let d = 1; d <= MONTH_DAYS; d++) {
+      const isHol = baseHolidays.has(d);
+      const reqMark = el('span', { class: 'req-mark' }, '');
+      const cls = 'cal-day' + (isHol ? ' store-holiday' : '');
+      const cell = el('div', { class: cls, dataset: { day: String(d) } }, String(d), reqMark);
+      if (!isHol) cell.addEventListener('click', () => applyPaint(cell, reqMark));
+      cal.appendChild(cell);
+    }
+    updateBizDays();
+  }
+
+  function applyPaint(cell, mark) {
+    const type = paintState.type;
+    cell.classList.remove('req', 'req-paid', 'req-am', 'req-pm', 'req-abs');
+    mark.textContent = '';
+    if (type !== 'cancel') {
+      const cls = type === 'req' ? 'req' : 'req-' + type;
+      cell.classList.add(cls);
+      mark.textContent = STAFF_TYPES[type].mark;
+    }
+    updateQuota();
+    updateBizDays();
+  }
+
+  function updateQuota() {
+    const reqOnly = document.querySelectorAll('.cal-day.req').length;
+    const free = Math.min(reqOnly, 2);
+    const extra = Math.max(0, reqOnly - 2);
+    document.getElementById('quota-used').textContent = String(free);
+    document.getElementById('quota-extra').textContent = String(extra);
+    document.getElementById('approval-needed').style.display = extra > 0 ? 'inline-block' : 'none';
+    document.querySelectorAll('.cal-day').forEach(c => c.classList.remove('over'));
+    Array.from(document.querySelectorAll('.cal-day.req')).slice(2).forEach(c => c.classList.add('over'));
+  }
+
+  function updateBizDays() {
+    const bizDays = MONTH_DAYS - baseHolidays.size;
+    document.getElementById('staff-biz-days').firstChild.data = String(bizDays);
+    const reqCount = document.querySelectorAll('.cal-day.req, .cal-day.req-paid, .cal-day.req-am, .cal-day.req-pm, .cal-day.req-abs').length;
+    document.getElementById('staff-work-days').firstChild.data = String(Math.max(0, bizDays - reqCount));
+  }
+
+  // 確定シフト一覧
+  const myShifts = [
+    ['6/1 (月)', '10:00–19:00', 'パート勤務', 'work'],
+    ['6/2 (火)', '休日',         '店舗休業日',   'off'],
+    ['6/3 (水)', '10:00–19:00', 'パート勤務', 'work'],
+    ['6/4 (木)', '10:00–19:00', 'パート勤務', 'work', ['training','研修']],
+    ['6/5 (金)', '10:00–19:00', 'パート勤務', 'work'],
+    ['6/6 (土)', '10:00–19:00', 'パート勤務', 'work'],
+    ['6/7 (日)', '休日',         '所定休日',   'off'],
+    ['6/8 (月)', '10:00–19:00', 'パート勤務', 'work', ['mtg','MTG']],
+    ['6/9 (火)', '休',           '有給休暇',   'paid'],
+    ['6/10 (水)', '10:00–19:00', 'パート勤務', 'work'],
+  ];
+  const myShiftsBox = document.getElementById('my-shifts');
+  myShifts.forEach(item => {
+    const [d, t, p, cls, ev] = item;
+    const row = el('div', { class: 'shift-day ' + cls },
+      el('span', { class: 'date' }, d),
+      el('span', null, t),
+      el('span', { class: 'pattern' }, p),
+    );
+    if (ev) row.appendChild(el('span', { class: 'event-tag ' + ev[0] }, ev[1]));
+    myShiftsBox.appendChild(row);
+  });
+
+  // タブ切替
+  document.getElementById('tab-request').addEventListener('click', (e) => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('pane-request').style.display = 'block';
+    document.getElementById('pane-view').style.display = 'none';
+  });
+  document.getElementById('tab-view').addEventListener('click', (e) => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+    document.getElementById('pane-request').style.display = 'none';
+    document.getElementById('pane-view').style.display = 'block';
+  });
+
+  document.getElementById('store-tabs').addEventListener('click', (e) => {
+    if (!e.target.classList.contains('store-tab')) return;
+    document.querySelectorAll('.store-tab').forEach(t => t.classList.remove('active'));
+    e.target.classList.add('active');
+  });
+
+  document.getElementById('staff-submit').addEventListener('click', () => {
+    alert('（モックアップ）希望休を送信しました。\n承認枠の分は店長にLINE通知されます。');
+  });
+
+  // デモ用：ロック切替
+  let isLocked = false;
+  document.getElementById('demo-lock').addEventListener('click', (e) => {
+    isLocked = !isLocked;
+    e.currentTarget.textContent = isLocked ? '🔒 締切後モード' : '🔓 締切前モード';
+    e.currentTarget.classList.toggle('locked', isLocked);
+    document.getElementById('deadline-banner').style.display = isLocked ? 'none' : 'flex';
+    document.getElementById('locked-banner').style.display = isLocked ? 'block' : 'none';
+    const card = document.getElementById('request-card');
+    card.style.opacity = isLocked ? '0.55' : '1';
+    card.style.pointerEvents = isLocked ? 'none' : 'auto';
+    const submit = document.getElementById('staff-submit');
+    submit.disabled = isLocked;
+    submit.textContent = isLocked ? '受付終了（管理者連絡）' : '送信する';
+  });
+
+  renderCal();
+</script>
+
+</body>
+</html>
