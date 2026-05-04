@@ -370,6 +370,83 @@
   }
   .log-row { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
   .log-row:last-child { border-bottom: none; }
+
+  /* ─── モバイル最適化（スタッフ画面が主用途） ─── */
+  @media (max-width: 600px) {
+    .role-switcher {
+      flex-wrap: wrap;
+      gap: 4px;
+      padding: 8px 10px;
+      align-items: center;
+    }
+    .role-switcher h1 {
+      font-size: 13px;
+      flex: 1 1 auto;
+      margin-right: 0;
+      white-space: nowrap;
+    }
+    .role-switcher .role-tag {
+      font-size: 10px;
+      padding: 2px 6px;
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+    /* URL分離ラベルとパイプはモバイルで非表示（情報密度を下げる） */
+    .url-group-label, .role-divider { display: none !important; }
+    /* ロール切替ボタン群を1行にコンパクト化 */
+    .role-switcher .role-btn {
+      padding: 5px 8px;
+      font-size: 11px;
+      flex: 0 1 auto;
+      white-space: nowrap;
+    }
+    #lock-toggle {
+      margin-left: auto;
+    }
+
+    /* バナー・カード余白を縮小 */
+    .view { padding: 12px !important; }
+    .card { padding: 14px; }
+    .card-title { font-size: 16px; }
+
+    /* 営業日数バーを2列グリッドに */
+    .biz-days-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 10px 12px;
+    }
+    .biz-stat .value { font-size: 15px; }
+    .biz-stat .label { font-size: 10px; }
+
+    /* 締切バナー・ロックバナー */
+    #deadline-banner, #locked-banner {
+      padding: 10px 12px !important;
+      font-size: 12px;
+    }
+    #deadline-banner strong { font-size: 13px; }
+
+    /* タブをコンパクトに */
+    .tab { padding: 8px 12px; font-size: 13px; }
+
+    /* カレンダーセル：日付をしっかり読めるサイズに */
+    .cal-day { font-size: 14px; }
+    .cal-day .req-mark { font-size: 11px; }
+
+    /* パレットボタン */
+    .paint-btn { padding: 6px 10px; font-size: 12px; }
+    .paint-btn .key { font-size: 9px; }
+
+    /* シフト確定一覧の各行 */
+    .shift-day { padding: 10px; font-size: 12px; }
+    .shift-day .date { min-width: 64px; font-size: 12px; }
+
+    /* 備考欄 */
+    #staff-remarks { font-size: 14px; }  /* iOSの拡大ズーム防止 */
+
+    /* 送信ボタン */
+    #staff-submit { padding: 14px; font-size: 15px; }
+  }
 </style>
 </head>
 <body>
@@ -381,18 +458,18 @@
   <span class="role-tag" id="user-tag">輿石 信子（スタッフ）</span>
 
   <!-- スタッフ用URL のグループ -->
-  <span style="font-size:10px;color:var(--muted);margin-right:-4px">📱 スタッフ用URL:</span>
+  <span class="url-group-label" style="font-size:10px;color:var(--muted);margin-right:-4px">📱 スタッフ用URL:</span>
   <button class="role-btn active" id="role-staff">スタッフ画面</button>
 
-  <span style="margin:0 4px;color:var(--border)">|</span>
+  <span class="role-divider" style="margin:0 4px;color:var(--border)">|</span>
 
   <!-- 管理用URL のグループ -->
-  <span style="font-size:10px;color:var(--muted);margin-right:-4px">🖥 管理用URL:</span>
+  <span class="url-group-label" style="font-size:10px;color:var(--muted);margin-right:-4px">🖥 管理用URL:</span>
   <button class="role-btn" id="role-manager">店長画面</button>
   <button class="role-btn" id="role-admin">管理者画面</button>
 
   <!-- 締切ロック シミュレーション -->
-  <span style="margin:0 4px;color:var(--border)">|</span>
+  <span class="role-divider" style="margin:0 4px;color:var(--border)">|</span>
   <button class="role-btn" id="lock-toggle" style="font-size:11px">🔓 締切前</button>
 </div>
 
