@@ -61,6 +61,44 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
 .section-title { font-size: 20px; font-weight: 800; color: var(--navy-900); letter-spacing: -0.01em; }
 .section-desc { font-size: 12px; color: var(--gray-500); margin-left: auto; font-weight:500; }
 
+/* ===== 期間別集計セクション ===== */
+.period-controls { display:flex; gap:24px; flex-wrap:wrap; margin-bottom:20px; align-items:center; }
+.period-control-group { display:flex; align-items:center; gap:8px; }
+.period-control-label { font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:var(--gray-500); }
+.period-tabs { display:inline-flex; background: var(--gray-100); border-radius:10px; padding:4px; gap:2px; }
+.period-tab { padding:8px 14px; border:none; background:transparent; font-size:13px; font-weight:700; color:var(--gray-600); cursor:pointer; border-radius:7px; transition: all 0.15s ease; font-family:inherit; }
+.period-tab:hover { color:var(--navy-900); }
+.period-tab.active { background: var(--white); color:var(--orange-600); box-shadow: 0 2px 6px rgba(15,36,68,0.08); }
+.mode-tabs { display:inline-flex; background: var(--navy-50); border-radius:10px; padding:4px; gap:2px; }
+.mode-tab { padding:8px 14px; border:none; background:transparent; font-size:13px; font-weight:700; color:var(--navy-600); cursor:pointer; border-radius:7px; transition: all 0.15s ease; font-family:inherit; }
+.mode-tab.active { background: var(--navy-700); color:var(--white); }
+
+.period-table-wrap { background:var(--white); border:1px solid var(--gray-200); border-radius:12px; overflow:hidden; }
+.period-table { width:100%; border-collapse:collapse; font-size:13px; }
+.period-table th { background:var(--navy-50); padding:14px 16px; text-align:left; font-size:10px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:var(--navy-700); border-bottom:2px solid var(--navy-100); }
+.period-table th.num { text-align:right; }
+.period-table td { padding:16px; border-bottom:1px solid var(--gray-100); vertical-align:middle; }
+.period-table tbody tr:last-child td { border-bottom:none; }
+.period-table tbody tr:hover { background: var(--navy-50); }
+.period-table .target-name { font-weight:800; color:var(--navy-900); display:flex; align-items:center; gap:8px; }
+.period-table .target-rank { display:inline-flex; width:24px; height:24px; align-items:center; justify-content:center; font-size:11px; font-weight:800; font-family:'JetBrains Mono',monospace; background:var(--gray-100); color:var(--gray-600); border-radius:50%; }
+.period-table .target-rank.gold { background: linear-gradient(135deg,#fbbf24,#d97706); color:var(--white); }
+.period-table .target-rank.silver { background: var(--gray-400); color:var(--white); }
+.period-table .target-rank.bronze { background: #c2865b; color:var(--white); }
+.period-table .delta-cell { font-family:'JetBrains Mono',monospace; font-weight:700; text-align:right; }
+.period-table .delta-cell.review { color: var(--good); }
+.period-table .delta-cell.blog { color: var(--orange-600); }
+.period-table .delta-cell.zero { color: var(--gray-400); font-weight:500; }
+.period-table .total-cell { text-align:right; font-family:'JetBrains Mono',monospace; font-weight:800; color:var(--navy-900); font-size:14px; }
+.period-table .bar-cell { width:40%; padding-right:20px; }
+.period-bar-stack { display:flex; height:18px; border-radius:4px; overflow:hidden; background:var(--gray-100); }
+.period-bar-stack .review-fill { background: linear-gradient(90deg,#10b981,#059669); }
+.period-bar-stack .blog-fill { background: linear-gradient(90deg,#fb923c,#ea580c); }
+.period-legend { display:flex; gap:18px; font-size:11px; color:var(--gray-600); margin-top:14px; }
+.period-legend .swatch { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:5px; vertical-align:middle; }
+.period-legend .swatch.review { background: var(--good); }
+.period-legend .swatch.blog { background: var(--orange-500); }
+
 /* ===== 比較テーブル ===== */
 .compare-table-wrap { background:var(--white); border:1px solid var(--gray-200); border-radius:12px; overflow-x:auto; }
 .compare-table { width:100%; border-collapse:collapse; font-size:13px; min-width: 900px; }
@@ -243,7 +281,7 @@ body.modal-open { overflow: hidden; }
 <div class="container">
   <header class="header">
     <span class="header-tag">SALON REVIEW DASHBOARD</span>
-    <h1 class="title">店舗評価<span class="title-accent">ダッシュボード</span></h1>
+    <h1 class="title">店舗別口コミ評価<span class="title-accent">ダッシュボード</span></h1>
     <p class="subtitle">6ブランド店舗別 - HPB・Google口コミ／HPBブログ投稿の集計とランキング</p>
     <div class="meta">
       <div class="meta-item"><span class="live-dot"></span><span class="meta-label">LIVE</span><span id="meta-updated">--</span></div>
@@ -264,6 +302,55 @@ body.modal-open { overflow: hidden; }
   <section class="section">
     <div class="section-header">
       <span class="section-num">02</span>
+      <h2 class="section-title">期間別 増加分析</h2>
+      <span class="section-desc">指定期間内に増えた口コミ・ブログ件数</span>
+    </div>
+    <div class="period-controls">
+      <div class="period-control-group">
+        <span class="period-control-label">期間</span>
+        <div class="period-tabs" id="period-tabs">
+          <button class="period-tab" data-period="p7">1週間</button>
+          <button class="period-tab active" data-period="p30">1ヶ月</button>
+          <button class="period-tab" data-period="p60">2ヶ月</button>
+          <button class="period-tab" data-period="p90">3ヶ月</button>
+          <button class="period-tab" data-period="p180">6ヶ月</button>
+          <button class="period-tab" data-period="p365">1年</button>
+        </div>
+      </div>
+      <div class="period-control-group">
+        <span class="period-control-label">集計</span>
+        <div class="mode-tabs" id="mode-tabs">
+          <button class="mode-tab active" data-mode="store">店舗別</button>
+          <button class="mode-tab" data-mode="brand">ブランド別</button>
+        </div>
+      </div>
+    </div>
+    <div class="period-table-wrap">
+      <table class="period-table" id="period-table">
+        <thead>
+          <tr>
+            <th>店舗 / ブランド</th>
+            <th class="num">口コミ増加</th>
+            <th class="num">ブログ投稿</th>
+            <th>内訳バー</th>
+            <th class="num">合計</th>
+          </tr>
+        </thead>
+        <tbody id="period-tbody">
+          <tr><td colspan="5" class="loading">データ読み込み中...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="period-legend">
+      <div><span class="swatch review"></span>口コミ件数</div>
+      <div><span class="swatch blog"></span>ブログ投稿数</div>
+      <div style="margin-left:auto;color:var(--gray-500);">※ HPB のクチコミ・ブログのみ集計（Google分は含まず）</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
       <h2 class="section-title">店舗比較ランキング</h2>
       <span class="section-desc">広告露出単位の総合評価</span>
     </div>
@@ -291,7 +378,7 @@ body.modal-open { overflow: hidden; }
 
   <section class="section">
     <div class="section-header">
-      <span class="section-num">03</span>
+      <span class="section-num">04</span>
       <h2 class="section-title">店舗別詳細カード</h2>
       <span class="section-desc">クリックで HPB / Google ページに遷移</span>
     </div>
@@ -300,7 +387,7 @@ body.modal-open { overflow: hidden; }
 
   <section class="section">
     <div class="section-header">
-      <span class="section-num">04</span>
+      <span class="section-num">05</span>
       <h2 class="section-title">店舗別 比較グラフ</h2>
       <span class="section-desc">現時点のスナップショット</span>
     </div>
@@ -330,7 +417,7 @@ body.modal-open { overflow: hidden; }
 
   <section class="section">
     <div class="section-header">
-      <span class="section-num">05</span>
+      <span class="section-num">06</span>
       <h2 class="section-title">アラート・トピック</h2>
       <span class="section-desc">注目すべきイベント</span>
     </div>
@@ -828,11 +915,115 @@ function renderCharts(latest) {
   });
 }
 
+// ===== 期間別集計セクション =====
+const PERIOD_LABELS = { p7:'1週間', p30:'1ヶ月', p60:'2ヶ月', p90:'3ヶ月', p180:'6ヶ月', p365:'1年' };
+let currentPeriod = 'p30';
+let currentMode = 'store';
+let cachedLatest = null;
+
+function renderPeriodTable() {
+  if (!cachedLatest) return;
+  const tbody = document.getElementById('period-tbody');
+  clearChildren(tbody);
+
+  const items = currentMode === 'store' ? buildStoreItems() : buildBrandItems();
+  // 合計でソート
+  items.sort((a,b) => (b.reviews + b.blogs) - (a.reviews + a.blogs));
+
+  // 最大値（バー幅の正規化用）
+  const maxTotal = Math.max(1, ...items.map(i => i.reviews + i.blogs));
+
+  items.forEach((item, idx) => {
+    const tr = el('tr');
+    // 名前 + 順位
+    const nameTd = el('td');
+    const nameSpan = el('span', { cls: 'target-name' });
+    let rankCls = '';
+    if (idx === 0) rankCls = 'gold';
+    else if (idx === 1) rankCls = 'silver';
+    else if (idx === 2) rankCls = 'bronze';
+    nameSpan.appendChild(el('span', { cls: 'target-rank ' + rankCls, text: String(idx + 1) }));
+    nameSpan.appendChild(document.createTextNode(item.name));
+    if (item.brand && currentMode === 'store') {
+      nameSpan.appendChild(el('span', { cls: 'brand-tag ' + item.brand.toLowerCase(), text: item.brand }));
+    }
+    nameTd.appendChild(nameSpan);
+    tr.appendChild(nameTd);
+
+    // 口コミ
+    tr.appendChild(el('td', { cls: 'delta-cell ' + (item.reviews === 0 ? 'zero' : 'review'), text: item.reviews > 0 ? '+' + item.reviews + '件' : '0件' }));
+    // ブログ
+    tr.appendChild(el('td', { cls: 'delta-cell ' + (item.blogs === 0 ? 'zero' : 'blog'), text: item.blogs > 0 ? '+' + item.blogs + '本' : '0本' }));
+    // バー
+    const barTd = el('td', { cls: 'bar-cell' });
+    const stack = el('div', { cls: 'period-bar-stack' });
+    const total = item.reviews + item.blogs;
+    if (total > 0) {
+      const reviewPct = (item.reviews / maxTotal) * 100;
+      const blogPct = (item.blogs / maxTotal) * 100;
+      stack.appendChild(el('div', { cls: 'review-fill', style: { width: reviewPct + '%' } }));
+      stack.appendChild(el('div', { cls: 'blog-fill', style: { width: blogPct + '%' } }));
+    }
+    barTd.appendChild(stack);
+    tr.appendChild(barTd);
+    // 合計
+    tr.appendChild(el('td', { cls: 'total-cell', text: total > 0 ? '+' + total : '0' }));
+    tbody.appendChild(tr);
+  });
+}
+
+function buildStoreItems() {
+  return cachedLatest.stores.map(s => {
+    const ps = s.period_summary?.[currentPeriod] || { reviews: 0, blogs: 0 };
+    return {
+      name: s.store_name,
+      brand: s.brand,
+      reviews: ps.reviews || 0,
+      blogs: ps.blogs || 0
+    };
+  });
+}
+
+function buildBrandItems() {
+  const brands = {};
+  for (const s of cachedLatest.stores) {
+    const ps = s.period_summary?.[currentPeriod] || { reviews: 0, blogs: 0 };
+    if (!brands[s.brand]) brands[s.brand] = { name: s.brand, brand: s.brand, reviews: 0, blogs: 0 };
+    brands[s.brand].reviews += ps.reviews || 0;
+    brands[s.brand].blogs += ps.blogs || 0;
+  }
+  return Object.values(brands);
+}
+
+function setupPeriodControls() {
+  const periodTabs = document.getElementById('period-tabs');
+  periodTabs.addEventListener('click', (e) => {
+    const btn = e.target.closest('.period-tab');
+    if (!btn) return;
+    periodTabs.querySelectorAll('.period-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentPeriod = btn.dataset.period;
+    renderPeriodTable();
+  });
+  const modeTabs = document.getElementById('mode-tabs');
+  modeTabs.addEventListener('click', (e) => {
+    const btn = e.target.closest('.mode-tab');
+    if (!btn) return;
+    modeTabs.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMode = btn.dataset.mode;
+    renderPeriodTable();
+  });
+}
+
 (async () => {
   try {
     const latest = await loadData();
+    cachedLatest = latest;
     renderMeta(latest);
     renderKPI(latest);
+    setupPeriodControls();
+    renderPeriodTable();
     renderCompareTable(latest);
     renderStores(latest);
     renderAlerts(latest);
