@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-05-09T23:40:26.067Z",
+  "generated_at": "2026-05-10T02:13:32.041Z",
   "data_sources": {
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
@@ -319,7 +319,7 @@
       "google": {
         "label": "韓国式小顔矯正コルギ・肌管理専門店 KaoKao富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJD_zlmH8rGmAREUkK6yw7qZ0",
-        "review_count": 61,
+        "review_count": 62,
         "rating": 5,
         "new_reviews_this_month": 0,
         "place_id": "ChIJD_zlmH8rGmAREUkK6yw7qZ0"
@@ -379,13 +379,13 @@
         }
       ],
       "totals": {
-        "review_count": 171,
-        "weighted_rating": 4.95,
+        "review_count": 172,
+        "weighted_rating": 4.96,
         "blog_count_total": 30,
         "blog_count_this_month": 1,
         "new_reviews_this_month": 6
       },
-      "score": 39,
+      "score": 40,
       "rank": 5
     },
     {
@@ -425,7 +425,7 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2705,
+    "total_reviews": 2706,
     "total_new_this_month": 55,
     "average_rating": 4.86,
     "total_blog_this_month": 48,
