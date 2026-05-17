@@ -89,7 +89,11 @@ function main() {
       area: meta.area,
       hpb,
       google,
-      monthly_trend: prevStore?.monthly_trend || []
+      monthly_trend: prevStore?.monthly_trend || [],
+      // 期間別集計データ・月別データを引き継ぐ（HPB再取得バッチで上書きされる）
+      period_summary: prevStore?.period_summary || {},
+      monthly_reviews: prevStore?.monthly_reviews || {},
+      monthly_blogs: prevStore?.monthly_blogs || {}
     };
   });
 

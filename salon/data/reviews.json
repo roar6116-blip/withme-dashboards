@@ -6,7 +6,9 @@
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
     "blog": "manual input (placeholder values)",
-    "monthly_trend": "HPBクチコミ4ページ分(計120件) から月別集計 (2026-05-01取得)"
+    "monthly_trend": "HPBクチコミ4ページから月別集計 (2026-05-17時点)",
+    "period_summary": "HPB公式ページから取得 (2026-05-17時点)",
+    "monthly_blogs": "HPBブログ各ページの投稿日付集計 (2026-05-17時点)"
   },
   "stores": [
     {
@@ -20,8 +22,8 @@
         "review_count": 618,
         "rating": 4.86,
         "blog_count_total": 450,
-        "blog_count_this_month": 15,
-        "new_reviews_this_month": 21,
+        "blog_count_this_month": 1,
+        "new_reviews_this_month": 10,
         "available": true
       },
       "google": {
@@ -33,10 +35,6 @@
         "place_id": "ChIJr4DRCWj3G2AR-ZL9_5Qrds0"
       },
       "monthly_trend": [
-        {
-          "month": "2025-09",
-          "count": 8
-        },
         {
           "month": "2025-10",
           "count": 17
@@ -67,18 +65,69 @@
         },
         {
           "month": "2026-05",
-          "count": 2
+          "count": 10
         }
       ],
       "totals": {
         "review_count": 998,
         "weighted_rating": 4.91,
         "blog_count_total": 450,
-        "blog_count_this_month": 15,
-        "new_reviews_this_month": 21
+        "blog_count_this_month": 1,
+        "new_reviews_this_month": 10
       },
       "score": 96,
-      "rank": 1
+      "rank": 1,
+      "period_summary": {
+        "p7": {
+          "reviews": 2,
+          "blogs": 0
+        },
+        "p30": {
+          "reviews": 20,
+          "blogs": 4
+        },
+        "p60": {
+          "reviews": 36,
+          "blogs": 11
+        },
+        "p90": {
+          "reviews": 55,
+          "blogs": 16
+        },
+        "p180": {
+          "reviews": 97,
+          "blogs": 40
+        },
+        "p365": {
+          "reviews": 120,
+          "blogs": 96
+        }
+      },
+      "monthly_reviews": {
+        "2026-05": 10,
+        "2026-04": 21,
+        "2026-03": 17,
+        "2026-02": 16,
+        "2026-01": 19,
+        "2025-12": 9,
+        "2025-11": 11,
+        "2025-10": 17
+      },
+      "monthly_blogs": {
+        "2026-05": 1,
+        "2026-04": 9,
+        "2026-03": 6,
+        "2026-02": 1,
+        "2026-01": 8,
+        "2025-12": 12,
+        "2025-11": 10,
+        "2025-10": 6,
+        "2025-09": 5,
+        "2025-08": 9,
+        "2025-07": 12,
+        "2025-06": 10,
+        "2025-05": 11
+      }
     },
     {
       "store_id": "tm_fuji",
@@ -91,8 +140,8 @@
         "review_count": 589,
         "rating": 4.78,
         "blog_count_total": 370,
-        "blog_count_this_month": 12,
-        "new_reviews_this_month": 1,
+        "blog_count_this_month": 15,
+        "new_reviews_this_month": 11,
         "available": true
       },
       "google": {
@@ -109,12 +158,8 @@
           "count": 1
         },
         {
-          "month": "2025-11",
-          "count": 3
-        },
-        {
           "month": "2025-12",
-          "count": 32
+          "count": 28
         },
         {
           "month": "2026-01",
@@ -134,18 +179,67 @@
         },
         {
           "month": "2026-05",
-          "count": 4
+          "count": 11
         }
       ],
       "totals": {
         "review_count": 794,
         "weighted_rating": 4.81,
         "blog_count_total": 370,
-        "blog_count_this_month": 12,
-        "new_reviews_this_month": 1
+        "blog_count_this_month": 15,
+        "new_reviews_this_month": 11
       },
       "score": 79,
-      "rank": 2
+      "rank": 2,
+      "period_summary": {
+        "p7": {
+          "reviews": 5,
+          "blogs": 7
+        },
+        "p30": {
+          "reviews": 20,
+          "blogs": 19
+        },
+        "p60": {
+          "reviews": 42,
+          "blogs": 24
+        },
+        "p90": {
+          "reviews": 63,
+          "blogs": 30
+        },
+        "p180": {
+          "reviews": 119,
+          "blogs": 55
+        },
+        "p365": {
+          "reviews": 119,
+          "blogs": 100
+        }
+      },
+      "monthly_reviews": {
+        "2026-05": 11,
+        "2026-04": 22,
+        "2026-03": 24,
+        "2026-02": 18,
+        "2026-01": 16,
+        "2025-12": 28,
+        "2025-02": 1
+      },
+      "monthly_blogs": {
+        "2026-05": 15,
+        "2026-04": 9,
+        "2026-03": 6,
+        "2026-02": 3,
+        "2026-01": 8,
+        "2025-12": 11,
+        "2025-11": 10,
+        "2025-10": 8,
+        "2025-09": 6,
+        "2025-08": 9,
+        "2025-07": 12,
+        "2025-06": 3
+      }
     },
     {
       "store_id": "sm_kofu",
@@ -158,8 +252,8 @@
         "review_count": 312,
         "rating": 4.79,
         "blog_count_total": 430,
-        "blog_count_this_month": 14,
-        "new_reviews_this_month": 11,
+        "blog_count_this_month": 1,
+        "new_reviews_this_month": 4,
         "available": true
       },
       "google": {
@@ -173,7 +267,7 @@
       "monthly_trend": [
         {
           "month": "2025-10",
-          "count": 18
+          "count": 14
         },
         {
           "month": "2025-11",
@@ -198,17 +292,75 @@
         {
           "month": "2026-04",
           "count": 11
+        },
+        {
+          "month": "2026-05",
+          "count": 4
         }
       ],
       "totals": {
         "review_count": 452,
         "weighted_rating": 4.82,
         "blog_count_total": 430,
-        "blog_count_this_month": 14,
-        "new_reviews_this_month": 11
+        "blog_count_this_month": 1,
+        "new_reviews_this_month": 4
       },
       "score": 60,
-      "rank": 3
+      "rank": 3,
+      "period_summary": {
+        "p7": {
+          "reviews": 4,
+          "blogs": 0
+        },
+        "p30": {
+          "reviews": 8,
+          "blogs": 3
+        },
+        "p60": {
+          "reviews": 30,
+          "blogs": 4
+        },
+        "p90": {
+          "reviews": 35,
+          "blogs": 16
+        },
+        "p180": {
+          "reviews": 99,
+          "blogs": 38
+        },
+        "p365": {
+          "reviews": 120,
+          "blogs": 78
+        }
+      },
+      "monthly_reviews": {
+        "2026-05": 4,
+        "2026-04": 11,
+        "2026-03": 18,
+        "2026-02": 14,
+        "2026-01": 13,
+        "2025-12": 31,
+        "2025-11": 15,
+        "2025-10": 14
+      },
+      "monthly_blogs": {
+        "2026-05": 1,
+        "2026-04": 2,
+        "2026-03": 11,
+        "2026-02": 5,
+        "2026-01": 6,
+        "2025-12": 9,
+        "2025-11": 12,
+        "2025-10": 6,
+        "2025-09": 4,
+        "2025-08": 6,
+        "2025-07": 7,
+        "2025-06": 6,
+        "2025-05": 7,
+        "2025-04": 6,
+        "2025-03": 8,
+        "2025-02": 4
+      }
     },
     {
       "store_id": "kk_kofu",
@@ -221,8 +373,8 @@
         "review_count": 156,
         "rating": 4.84,
         "blog_count_total": 180,
-        "blog_count_this_month": 6,
-        "new_reviews_this_month": 16,
+        "blog_count_this_month": 1,
+        "new_reviews_this_month": 3,
         "available": true
       },
       "google": {
@@ -235,12 +387,8 @@
       },
       "monthly_trend": [
         {
-          "month": "2025-03",
-          "count": 1
-        },
-        {
           "month": "2025-04",
-          "count": 11
+          "count": 9
         },
         {
           "month": "2025-05",
@@ -288,18 +436,72 @@
         },
         {
           "month": "2026-05",
-          "count": 1
+          "count": 3
         }
       ],
       "totals": {
         "review_count": 236,
         "weighted_rating": 4.86,
         "blog_count_total": 180,
-        "blog_count_this_month": 6,
-        "new_reviews_this_month": 16
+        "blog_count_this_month": 1,
+        "new_reviews_this_month": 3
       },
       "score": 44,
-      "rank": 4
+      "rank": 4,
+      "period_summary": {
+        "p7": {
+          "reviews": 1,
+          "blogs": 0
+        },
+        "p30": {
+          "reviews": 9,
+          "blogs": 4
+        },
+        "p60": {
+          "reviews": 27,
+          "blogs": 7
+        },
+        "p90": {
+          "reviews": 35,
+          "blogs": 13
+        },
+        "p180": {
+          "reviews": 60,
+          "blogs": 48
+        },
+        "p365": {
+          "reviews": 107,
+          "blogs": 100
+        }
+      },
+      "monthly_reviews": {
+        "2026-05": 3,
+        "2026-04": 16,
+        "2026-03": 12,
+        "2026-02": 6,
+        "2026-01": 12,
+        "2025-12": 8,
+        "2025-11": 6,
+        "2025-10": 21,
+        "2025-09": 10,
+        "2025-08": 5,
+        "2025-07": 4,
+        "2025-05": 8,
+        "2025-04": 9
+      },
+      "monthly_blogs": {
+        "2026-05": 1,
+        "2026-04": 6,
+        "2026-03": 5,
+        "2026-02": 1,
+        "2026-01": 9,
+        "2025-12": 19,
+        "2025-11": 18,
+        "2025-10": 11,
+        "2025-09": 13,
+        "2025-08": 15,
+        "2025-07": 2
+      }
     },
     {
       "store_id": "kk_fuji",
@@ -312,8 +514,8 @@
         "review_count": 110,
         "rating": 4.93,
         "blog_count_total": 30,
-        "blog_count_this_month": 1,
-        "new_reviews_this_month": 6,
+        "blog_count_this_month": 20,
+        "new_reviews_this_month": 9,
         "available": true
       },
       "google": {
@@ -371,22 +573,70 @@
         },
         {
           "month": "2026-04",
-          "count": 6
+          "count": 7
         },
         {
           "month": "2026-05",
-          "count": 2
+          "count": 9
         }
       ],
       "totals": {
         "review_count": 175,
         "weighted_rating": 4.96,
         "blog_count_total": 30,
-        "blog_count_this_month": 1,
-        "new_reviews_this_month": 6
+        "blog_count_this_month": 20,
+        "new_reviews_this_month": 9
       },
       "score": 40,
-      "rank": 5
+      "rank": 5,
+      "period_summary": {
+        "p7": {
+          "reviews": 4,
+          "blogs": 6
+        },
+        "p30": {
+          "reviews": 12,
+          "blogs": 24
+        },
+        "p60": {
+          "reviews": 23,
+          "blogs": 33
+        },
+        "p90": {
+          "reviews": 30,
+          "blogs": 58
+        },
+        "p180": {
+          "reviews": 61,
+          "blogs": 70
+        },
+        "p365": {
+          "reviews": 95,
+          "blogs": 76
+        }
+      },
+      "monthly_reviews": {
+        "2026-05": 9,
+        "2026-04": 7,
+        "2026-03": 14,
+        "2026-01": 2,
+        "2025-12": 16,
+        "2025-11": 15,
+        "2025-10": 14,
+        "2025-09": 3,
+        "2025-08": 6,
+        "2025-07": 6,
+        "2025-06": 1,
+        "2025-05": 21,
+        "2025-04": 6
+      },
+      "monthly_blogs": {
+        "2026-05": 20,
+        "2026-04": 6,
+        "2026-03": 26,
+        "2026-02": 18,
+        "2025-06": 6
+      }
     },
     {
       "store_id": "sm_fuji",
@@ -421,14 +671,42 @@
         "new_reviews_this_month": 0
       },
       "score": 31,
-      "rank": 6
+      "rank": 6,
+      "period_summary": {
+        "p7": {
+          "reviews": 0,
+          "blogs": 0
+        },
+        "p30": {
+          "reviews": 0,
+          "blogs": 0
+        },
+        "p60": {
+          "reviews": 0,
+          "blogs": 0
+        },
+        "p90": {
+          "reviews": 0,
+          "blogs": 0
+        },
+        "p180": {
+          "reviews": 0,
+          "blogs": 0
+        },
+        "p365": {
+          "reviews": 0,
+          "blogs": 0
+        }
+      },
+      "monthly_reviews": {},
+      "monthly_blogs": {}
     }
   ],
   "company_totals": {
     "total_reviews": 2721,
-    "total_new_this_month": 55,
+    "total_new_this_month": 37,
     "average_rating": 4.86,
-    "total_blog_this_month": 48,
+    "total_blog_this_month": 38,
     "total_blog_all": 1460,
     "store_count": 6
   },
