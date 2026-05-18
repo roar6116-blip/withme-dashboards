@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-05-18T03:42:32.045Z",
+  "generated_at": "2026-05-18T06:50:13.175Z",
   "data_sources": {
-    "google": "inherited from previous",
+    "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
     "blog": "manual input (placeholder values)",
     "monthly_trend": "HPBクチコミ4ページから月別集計 (2026-05-17時点)"
@@ -29,7 +29,8 @@
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJr4DRCWj3G2AR-ZL9_5Qrds0",
         "review_count": 380,
         "rating": 5,
-        "new_reviews_this_month": 0
+        "new_reviews_this_month": 0,
+        "place_id": "ChIJr4DRCWj3G2AR-ZL9_5Qrds0"
       },
       "monthly_trend": [
         {
@@ -142,11 +143,12 @@
         "available": true
       },
       "google": {
-        "label": "Touch Me富士店【タッチミー】",
+        "label": "Touch Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJrw9otUMrGmARJgKg8v6_kF8",
         "review_count": 205,
         "rating": 4.9,
-        "new_reviews_this_month": 0
+        "new_reviews_this_month": 0,
+        "place_id": "ChIJrw9otUMrGmARJgKg8v6_kF8"
       },
       "monthly_trend": [
         {
@@ -255,9 +257,10 @@
       "google": {
         "label": "Slender Me甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJjy9pyNH3G2ARbUkCUHJGYP0",
-        "review_count": 140,
+        "review_count": 141,
         "rating": 4.9,
-        "new_reviews_this_month": 0
+        "new_reviews_this_month": 0,
+        "place_id": "ChIJjy9pyNH3G2ARbUkCUHJGYP0"
       },
       "monthly_trend": [
         {
@@ -348,7 +351,7 @@
         "2025-02": 4
       },
       "totals": {
-        "review_count": 452,
+        "review_count": 453,
         "weighted_rating": 4.82,
         "blog_count_total": 430,
         "blog_count_this_month": 1,
@@ -373,11 +376,12 @@
         "available": true
       },
       "google": {
-        "label": "KaoKao甲府本店",
+        "label": "小顔矯正コルギ専門店 KaoKao甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJp8kWlv_3G2ARObteUfTXtKM",
         "review_count": 80,
         "rating": 4.9,
-        "new_reviews_this_month": 0
+        "new_reviews_this_month": 0,
+        "place_id": "ChIJp8kWlv_3G2ARObteUfTXtKM"
       },
       "monthly_trend": [
         {
@@ -513,11 +517,12 @@
         "available": true
       },
       "google": {
-        "label": "KaoKao富士店",
+        "label": "韓国式小顔矯正コルギ・肌管理専門店 KaoKao富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJD_zlmH8rGmAREUkK6yw7qZ0",
         "review_count": 65,
         "rating": 5,
-        "new_reviews_this_month": 0
+        "new_reviews_this_month": 0,
+        "place_id": "ChIJD_zlmH8rGmAREUkK6yw7qZ0"
       },
       "monthly_trend": [
         {
@@ -648,11 +653,12 @@
         "note": "HPB広告ページなし。TouchMe富士店併設で運営"
       },
       "google": {
-        "label": "Slender Me富士店",
+        "label": "痩身ダイエット専門店 Slender Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJX2b9B2QrGmAR6bSYAib6Q0w",
         "review_count": 66,
         "rating": 4.9,
-        "new_reviews_this_month": 0
+        "new_reviews_this_month": 0,
+        "place_id": "ChIJX2b9B2QrGmAR6bSYAib6Q0w"
       },
       "monthly_trend": [],
       "period_summary": {
@@ -695,7 +701,7 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2721,
+    "total_reviews": 2722,
     "total_new_this_month": 40,
     "average_rating": 4.86,
     "total_blog_this_month": 38,
