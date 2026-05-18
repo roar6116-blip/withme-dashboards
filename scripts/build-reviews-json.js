@@ -38,24 +38,31 @@ function calcScore(store, allMaxCount) {
 function main() {
   const googleCache = readCache('google-reviews.json');
   const hpbCache = readCache('hpb-data.json');
+  const hpbTrendsCache = readCache('hpb-trends.json'); // 週次 fetch-hpb-trends.js 由来
   const existing = readExisting();
+
+  const currentMonth = new Date().toISOString().slice(0, 7); // YYYY-MM
 
   const stores = STORES.map(meta => {
     const prevStore = existing?.stores.find(s => s.store_id === meta.store_id);
     const gFromCache = googleCache?.[meta.store_id];
     const hFromCache = hpbCache?.[meta.store_id];
+    const trendsForStore = hpbTrendsCache?.stores?.[meta.store_id];
 
     // HPB
     const hpbAvailable = meta.hpb?.available !== false && !!meta.hpb?.url;
     const prevHpb = prevStore?.hpb || {};
+    // 今月の新着件数・ブログ件数を trends から自動算出（あれば優先）
+    const newReviewsFromTrends = trendsForStore?.monthly_reviews?.[currentMonth];
+    const blogThisMonthFromTrends = trendsForStore?.monthly_blogs?.[currentMonth];
     const hpb = hpbAvailable ? {
       salon_name: meta.hpb.salon_name,
       url: meta.hpb.url,
       review_count: hFromCache?.review_count ?? prevHpb.review_count ?? 0,
       rating: hFromCache?.rating ?? prevHpb.rating ?? 0,
       blog_count_total: hFromCache?.blog_count_total ?? prevHpb.blog_count_total ?? 0,
-      blog_count_this_month: hFromCache?.blog_count_this_month ?? prevHpb.blog_count_this_month ?? 0,
-      new_reviews_this_month: hFromCache?.new_reviews_this_month ?? prevHpb.new_reviews_this_month ?? 0,
+      blog_count_this_month: blogThisMonthFromTrends ?? hFromCache?.blog_count_this_month ?? prevHpb.blog_count_this_month ?? 0,
+      new_reviews_this_month: newReviewsFromTrends ?? hFromCache?.new_reviews_this_month ?? prevHpb.new_reviews_this_month ?? 0,
       available: true
     } : {
       salon_name: null,
@@ -82,6 +89,16 @@ function main() {
     };
     if (gFromCache?.place_id) google.place_id = gFromCache.place_id;
 
+    // 期間別集計データ: hpb-trends.json があれば優先、なければ前回値を引き継ぐ
+    const trends = hpbTrendsCache?.stores?.[meta.store_id];
+    const monthlyReviews = trends?.monthly_reviews || prevStore?.monthly_reviews || {};
+    const monthlyBlogs = trends?.monthly_blogs || prevStore?.monthly_blogs || {};
+    const periodSummary = trends?.period_summary || prevStore?.period_summary || {};
+    // monthly_trend は monthly_reviews から派生
+    const monthlyTrend = Object.entries(monthlyReviews)
+      .map(([month, count]) => ({ month, count }))
+      .sort((a, b) => a.month.localeCompare(b.month));
+
     return {
       store_id: meta.store_id,
       store_name: meta.store_name,
@@ -89,11 +106,10 @@ function main() {
       area: meta.area,
       hpb,
       google,
-      monthly_trend: prevStore?.monthly_trend || [],
-      // 期間別集計データ・月別データを引き継ぐ（HPB再取得バッチで上書きされる）
-      period_summary: prevStore?.period_summary || {},
-      monthly_reviews: prevStore?.monthly_reviews || {},
-      monthly_blogs: prevStore?.monthly_blogs || {}
+      monthly_trend: monthlyTrend.length > 0 ? monthlyTrend : (prevStore?.monthly_trend || []),
+      period_summary: periodSummary,
+      monthly_reviews: monthlyReviews,
+      monthly_blogs: monthlyBlogs
     };
   });
 

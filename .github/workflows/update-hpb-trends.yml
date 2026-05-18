@@ -1,0 +1,48 @@
+name: Update HPB Trends (Weekly)
+
+# 毎週月曜 JST 10:00 (= UTC 01:00) に実行 + 手動トリガーも可能
+on:
+  schedule:
+    - cron: '0 1 * * 1'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: scripts
+        run: |
+          if [ -f package.json ]; then npm install --no-audit --no-fund; fi
+
+      - name: Fetch HPB review/blog post dates (5 stores)
+        run: node scripts/fetch-hpb-trends.js
+
+      - name: Rebuild reviews.json with new trends
+        run: node scripts/build-reviews-json.js
+
+      - name: Append history snapshot
+        run: node scripts/append-history.js
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add salon/data/reviews.json salon/data/reviews-history.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "auto(hpb-trends): weekly HPB trend update ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git pull --rebase origin main || true
+            git push
+          fi
