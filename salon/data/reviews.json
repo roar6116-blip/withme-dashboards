@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-06-20T19:13:58.034Z",
+  "generated_at": "2026-06-20T21:08:08.560Z",
   "data_sources": {
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
