@@ -250,7 +250,7 @@
           "google_count": 380,
           "google_rating": 5,
           "blog_total": 450,
-          "blog_new": 3,
+          "blog_new": 9,
           "score": 96,
           "rank": 1
         },
@@ -260,7 +260,7 @@
           "google_count": 210,
           "google_rating": 4.9,
           "blog_total": 370,
-          "blog_new": 7,
+          "blog_new": 12,
           "score": 80,
           "rank": 2
         },
@@ -270,7 +270,7 @@
           "google_count": 146,
           "google_rating": 4.9,
           "blog_total": 430,
-          "blog_new": 6,
+          "blog_new": 12,
           "score": 61,
           "rank": 3
         },
@@ -280,7 +280,7 @@
           "google_count": 89,
           "google_rating": 4.9,
           "blog_total": 180,
-          "blog_new": 3,
+          "blog_new": 6,
           "score": 44,
           "rank": 4
         },
@@ -290,7 +290,7 @@
           "google_count": 69,
           "google_rating": 5,
           "blog_total": 30,
-          "blog_new": 4,
+          "blog_new": 7,
           "score": 40,
           "rank": 5
         },
