@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-06-29T05:21:26.216Z",
+  "generated_at": "2026-06-29T05:25:30.727Z",
   "data_sources": {
-    "google": "inherited from previous",
+    "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
     "blog": "manual input (placeholder values)",
     "monthly_trend": "HPBクチコミ4ページから月別集計 (2026-05-17時点)"
