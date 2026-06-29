@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-06-29T00:13:37.549Z",
+  "generated_at": "2026-06-29T05:21:26.216Z",
   "data_sources": {
-    "google": "Places API Text Search (auto, hourly)",
+    "google": "inherited from previous",
     "hpb": "manual input (sample values)",
     "blog": "manual input (placeholder values)",
     "monthly_trend": "HPBクチコミ4ページから月別集計 (2026-05-17時点)"
@@ -20,8 +20,8 @@
         "review_count": 618,
         "rating": 4.86,
         "blog_count_total": 450,
-        "blog_count_this_month": 9,
-        "new_reviews_this_month": 16,
+        "blog_count_this_month": 10,
+        "new_reviews_this_month": 25,
         "available": true
       },
       "google": {
@@ -38,7 +38,7 @@
         },
         {
           "month": "2025-11",
-          "count": 10
+          "count": 1
         },
         {
           "month": "2025-12",
@@ -66,29 +66,29 @@
         },
         {
           "month": "2026-06",
-          "count": 16
+          "count": 25
         }
       ],
       "period_summary": {
         "p7": {
-          "reviews": 3,
-          "blogs": 5
+          "reviews": 6,
+          "blogs": 1
         },
         "p30": {
-          "reviews": 18,
+          "reviews": 25,
           "blogs": 10
         },
         "p60": {
-          "reviews": 32,
-          "blogs": 16
+          "reviews": 36,
+          "blogs": 15
         },
         "p90": {
-          "reviews": 51,
-          "blogs": 23
+          "reviews": 57,
+          "blogs": 24
         },
         "p180": {
-          "reviews": 101,
-          "blogs": 41
+          "reviews": 109,
+          "blogs": 39
         },
         "p365": {
           "reviews": 120,
@@ -97,17 +97,17 @@
       },
       "monthly_reviews": {
         "2025-10": 1,
-        "2026-06": 16,
+        "2026-06": 25,
         "2026-05": 11,
         "2026-04": 21,
         "2026-03": 17,
         "2026-02": 16,
         "2026-01": 19,
         "2025-12": 9,
-        "2025-11": 10
+        "2025-11": 1
       },
       "monthly_blogs": {
-        "2026-06": 9,
+        "2026-06": 10,
         "2026-05": 5,
         "2026-04": 9,
         "2026-03": 6,
@@ -119,14 +119,14 @@
         "2025-09": 5,
         "2025-08": 9,
         "2025-07": 12,
-        "2025-06": 8
+        "2025-06": 7
       },
       "totals": {
         "review_count": 999,
         "weighted_rating": 4.91,
         "blog_count_total": 450,
-        "blog_count_this_month": 9,
-        "new_reviews_this_month": 16
+        "blog_count_this_month": 10,
+        "new_reviews_this_month": 25
       },
       "score": 96,
       "rank": 1
@@ -142,8 +142,8 @@
         "review_count": 589,
         "rating": 4.78,
         "blog_count_total": 370,
-        "blog_count_this_month": 12,
-        "new_reviews_this_month": 22,
+        "blog_count_this_month": 18,
+        "new_reviews_this_month": 30,
         "available": true
       },
       "google": {
@@ -160,7 +160,7 @@
         },
         {
           "month": "2026-01",
-          "count": 12
+          "count": 4
         },
         {
           "month": "2026-02",
@@ -180,29 +180,29 @@
         },
         {
           "month": "2026-06",
-          "count": 22
+          "count": 30
         }
       ],
       "period_summary": {
         "p7": {
-          "reviews": 5,
-          "blogs": 4
+          "reviews": 7,
+          "blogs": 5
         },
         "p30": {
-          "reviews": 27,
-          "blogs": 15
+          "reviews": 31,
+          "blogs": 18
         },
         "p60": {
-          "reviews": 46,
-          "blogs": 38
+          "reviews": 51,
+          "blogs": 42
         },
         "p90": {
-          "reviews": 67,
-          "blogs": 45
+          "reviews": 73,
+          "blogs": 51
         },
         "p180": {
           "reviews": 119,
-          "blogs": 63
+          "blogs": 68
         },
         "p365": {
           "reviews": 119,
@@ -211,15 +211,15 @@
       },
       "monthly_reviews": {
         "2025-02": 1,
-        "2026-06": 22,
+        "2026-06": 30,
         "2026-05": 21,
         "2026-04": 22,
         "2026-03": 24,
         "2026-02": 18,
-        "2026-01": 12
+        "2026-01": 4
       },
       "monthly_blogs": {
-        "2026-06": 12,
+        "2026-06": 18,
         "2026-05": 24,
         "2026-04": 9,
         "2026-03": 6,
@@ -228,15 +228,14 @@
         "2025-12": 11,
         "2025-11": 10,
         "2025-10": 8,
-        "2025-09": 6,
-        "2025-08": 3
+        "2025-09": 3
       },
       "totals": {
         "review_count": 800,
         "weighted_rating": 4.81,
         "blog_count_total": 370,
-        "blog_count_this_month": 12,
-        "new_reviews_this_month": 22
+        "blog_count_this_month": 18,
+        "new_reviews_this_month": 30
       },
       "score": 80,
       "rank": 2
@@ -252,8 +251,8 @@
         "review_count": 312,
         "rating": 4.79,
         "blog_count_total": 430,
-        "blog_count_this_month": 12,
-        "new_reviews_this_month": 11,
+        "blog_count_this_month": 18,
+        "new_reviews_this_month": 12,
         "available": true
       },
       "google": {
@@ -266,7 +265,7 @@
       "monthly_trend": [
         {
           "month": "2025-11",
-          "count": 13
+          "count": 12
         },
         {
           "month": "2025-12",
@@ -294,47 +293,47 @@
         },
         {
           "month": "2026-06",
-          "count": 11
+          "count": 12
         }
       ],
       "period_summary": {
         "p7": {
-          "reviews": 2,
+          "reviews": 1,
           "blogs": 6
         },
         "p30": {
           "reviews": 14,
-          "blogs": 17
+          "blogs": 19
         },
         "p60": {
-          "reviews": 23,
-          "blogs": 22
+          "reviews": 21,
+          "blogs": 27
         },
         "p90": {
-          "reviews": 43,
-          "blogs": 24
+          "reviews": 32,
+          "blogs": 29
         },
         "p180": {
-          "reviews": 80,
-          "blogs": 45
+          "reviews": 77,
+          "blogs": 51
         },
         "p365": {
           "reviews": 120,
-          "blogs": 91
+          "blogs": 95
         }
       },
       "monthly_reviews": {
         "2026-02": 14,
-        "2026-06": 11,
+        "2026-06": 12,
         "2026-05": 9,
         "2026-04": 11,
         "2026-03": 18,
         "2026-01": 13,
         "2025-12": 31,
-        "2025-11": 13
+        "2025-11": 12
       },
       "monthly_blogs": {
-        "2026-06": 12,
+        "2026-06": 18,
         "2026-05": 9,
         "2026-04": 2,
         "2026-03": 11,
@@ -346,15 +345,14 @@
         "2025-09": 4,
         "2025-08": 6,
         "2025-07": 7,
-        "2025-06": 6,
-        "2025-05": 5
+        "2025-06": 5
       },
       "totals": {
         "review_count": 460,
         "weighted_rating": 4.83,
         "blog_count_total": 430,
-        "blog_count_this_month": 12,
-        "new_reviews_this_month": 11
+        "blog_count_this_month": 18,
+        "new_reviews_this_month": 12
       },
       "score": 61,
       "rank": 3
@@ -370,8 +368,8 @@
         "review_count": 156,
         "rating": 4.84,
         "blog_count_total": 180,
-        "blog_count_this_month": 6,
-        "new_reviews_this_month": 10,
+        "blog_count_this_month": 7,
+        "new_reviews_this_month": 12,
         "available": true
       },
       "google": {
@@ -383,12 +381,8 @@
       },
       "monthly_trend": [
         {
-          "month": "2025-05",
-          "count": 1
-        },
-        {
           "month": "2025-07",
-          "count": 4
+          "count": 3
         },
         {
           "month": "2025-08",
@@ -432,38 +426,38 @@
         },
         {
           "month": "2026-06",
-          "count": 10
+          "count": 12
         }
       ],
       "period_summary": {
         "p7": {
-          "reviews": 4,
-          "blogs": 2
+          "reviews": 1,
+          "blogs": 1
         },
         "p30": {
-          "reviews": 13,
+          "reviews": 12,
           "blogs": 7
         },
         "p60": {
           "reviews": 21,
-          "blogs": 11
+          "blogs": 10
         },
         "p90": {
-          "reviews": 38,
-          "blogs": 15
+          "reviews": 37,
+          "blogs": 16
         },
         "p180": {
-          "reviews": 66,
-          "blogs": 35
+          "reviews": 67,
+          "blogs": 31
         },
         "p365": {
-          "reviews": 119,
+          "reviews": 120,
           "blogs": 100
         }
       },
       "monthly_reviews": {
         "2026-04": 16,
-        "2026-06": 10,
+        "2026-06": 12,
         "2026-05": 9,
         "2026-03": 12,
         "2026-02": 6,
@@ -473,11 +467,10 @@
         "2025-10": 21,
         "2025-09": 10,
         "2025-08": 5,
-        "2025-07": 4,
-        "2025-05": 1
+        "2025-07": 3
       },
       "monthly_blogs": {
-        "2026-06": 6,
+        "2026-06": 7,
         "2026-05": 3,
         "2026-04": 6,
         "2026-03": 5,
@@ -487,14 +480,14 @@
         "2025-11": 18,
         "2025-10": 11,
         "2025-09": 13,
-        "2025-08": 9
+        "2025-08": 8
       },
       "totals": {
         "review_count": 245,
         "weighted_rating": 4.86,
         "blog_count_total": 180,
-        "blog_count_this_month": 6,
-        "new_reviews_this_month": 10
+        "blog_count_this_month": 7,
+        "new_reviews_this_month": 12
       },
       "score": 44,
       "rank": 4
@@ -510,8 +503,8 @@
         "review_count": 110,
         "rating": 4.93,
         "blog_count_total": 30,
-        "blog_count_this_month": 7,
-        "new_reviews_this_month": 5,
+        "blog_count_this_month": 13,
+        "new_reviews_this_month": 7,
         "available": true
       },
       "google": {
@@ -528,7 +521,7 @@
         },
         {
           "month": "2025-05",
-          "count": 15
+          "count": 13
         },
         {
           "month": "2025-06",
@@ -576,38 +569,38 @@
         },
         {
           "month": "2026-06",
-          "count": 5
+          "count": 7
         }
       ],
       "period_summary": {
         "p7": {
-          "reviews": 3,
-          "blogs": 3
+          "reviews": 2,
+          "blogs": 5
         },
         "p30": {
           "reviews": 7,
-          "blogs": 9
+          "blogs": 13
         },
         "p60": {
-          "reviews": 21,
-          "blogs": 40
+          "reviews": 22,
+          "blogs": 43
         },
         "p90": {
-          "reviews": 30,
-          "blogs": 46
+          "reviews": 29,
+          "blogs": 49
         },
         "p180": {
-          "reviews": 44,
-          "blogs": 68
+          "reviews": 45,
+          "blogs": 92
         },
         "p365": {
-          "reviews": 103,
-          "blogs": 68
+          "reviews": 105,
+          "blogs": 92
         }
       },
       "monthly_reviews": {
         "2025-04": 1,
-        "2026-06": 5,
+        "2026-06": 7,
         "2026-05": 15,
         "2026-04": 7,
         "2026-03": 14,
@@ -619,22 +612,22 @@
         "2025-08": 6,
         "2025-07": 6,
         "2025-06": 1,
-        "2025-05": 15
+        "2025-05": 13
       },
       "monthly_blogs": {
-        "2026-06": 7,
+        "2026-06": 13,
         "2026-05": 30,
         "2026-04": 6,
-        "2026-03": 16,
-        "2026-02": 9,
+        "2026-03": 31,
+        "2026-02": 12,
         "2025-06": 4
       },
       "totals": {
         "review_count": 179,
         "weighted_rating": 4.96,
         "blog_count_total": 30,
-        "blog_count_this_month": 7,
-        "new_reviews_this_month": 5
+        "blog_count_this_month": 13,
+        "new_reviews_this_month": 7
       },
       "score": 40,
       "rank": 5
@@ -704,9 +697,9 @@
   ],
   "company_totals": {
     "total_reviews": 2749,
-    "total_new_this_month": 64,
+    "total_new_this_month": 86,
     "average_rating": 4.87,
-    "total_blog_this_month": 46,
+    "total_blog_this_month": 66,
     "total_blog_all": 1460,
     "store_count": 6
   },
