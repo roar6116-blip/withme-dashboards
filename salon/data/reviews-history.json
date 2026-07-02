@@ -312,7 +312,7 @@
         "tm_kofu_showa": {
           "hpb_count": 618,
           "hpb_rating": 4.86,
-          "google_count": 381,
+          "google_count": 384,
           "google_rating": 5,
           "blog_total": 450,
           "blog_new": 10,
@@ -322,7 +322,7 @@
         "tm_fuji": {
           "hpb_count": 589,
           "hpb_rating": 4.78,
-          "google_count": 211,
+          "google_count": 210,
           "google_rating": 4.9,
           "blog_total": 370,
           "blog_new": 18,
@@ -332,17 +332,17 @@
         "sm_kofu": {
           "hpb_count": 312,
           "hpb_rating": 4.79,
-          "google_count": 148,
+          "google_count": 140,
           "google_rating": 4.9,
           "blog_total": 430,
           "blog_new": 18,
-          "score": 61,
+          "score": 60,
           "rank": 3
         },
         "kk_kofu": {
           "hpb_count": 156,
           "hpb_rating": 4.84,
-          "google_count": 89,
+          "google_count": 93,
           "google_rating": 4.9,
           "blog_total": 180,
           "blog_new": 7,
