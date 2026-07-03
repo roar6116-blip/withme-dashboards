@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-07-03T03:24:36.341Z",
+  "generated_at": "2026-07-03T06:55:17.539Z",
   "data_sources": {
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
@@ -150,7 +150,7 @@
       "google": {
         "label": "Touch Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJrw9otUMrGmARJgKg8v6_kF8",
-        "review_count": 210,
+        "review_count": 209,
         "rating": 4.9,
         "new_reviews_this_month": 0,
         "place_id": "ChIJrw9otUMrGmARJgKg8v6_kF8"
@@ -233,13 +233,13 @@
         "2025-09": 3
       },
       "totals": {
-        "review_count": 799,
+        "review_count": 798,
         "weighted_rating": 4.81,
         "blog_count_total": 370,
         "blog_count_this_month": 18,
         "new_reviews_this_month": 30
       },
-      "score": 80,
+      "score": 79,
       "rank": 2
     },
     {
@@ -378,7 +378,7 @@
       "google": {
         "label": "小顔矯正コルギ専門店 KaoKao甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJp8kWlv_3G2ARObteUfTXtKM",
-        "review_count": 93,
+        "review_count": 94,
         "rating": 4.9,
         "new_reviews_this_month": 0,
         "place_id": "ChIJp8kWlv_3G2ARObteUfTXtKM"
@@ -487,7 +487,7 @@
         "2025-08": 8
       },
       "totals": {
-        "review_count": 249,
+        "review_count": 250,
         "weighted_rating": 4.86,
         "blog_count_total": 180,
         "blog_count_this_month": 7,
