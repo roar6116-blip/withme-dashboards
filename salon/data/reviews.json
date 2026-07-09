@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-07-08T22:10:12.443Z",
+  "generated_at": "2026-07-09T00:02:55.329Z",
   "data_sources": {
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
@@ -256,7 +256,7 @@
       "google": {
         "label": "Slender Me甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJjy9pyNH3G2ARbUkCUHJGYP0",
-        "review_count": 141,
+        "review_count": 142,
         "rating": 4.9,
         "new_reviews_this_month": 0,
         "place_id": "ChIJjy9pyNH3G2ARbUkCUHJGYP0"
@@ -352,7 +352,7 @@
         "2025-07": 6
       },
       "totals": {
-        "review_count": 453,
+        "review_count": 454,
         "weighted_rating": 4.82,
         "blog_count_total": 430,
         "blog_count_this_month": 5,
@@ -705,7 +705,7 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2751,
+    "total_reviews": 2752,
     "total_new_this_month": 23,
     "average_rating": 4.86,
     "total_blog_this_month": 17,
