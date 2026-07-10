@@ -322,11 +322,11 @@
         "tm_fuji": {
           "hpb_count": 589,
           "hpb_rating": 4.78,
-          "google_count": 210,
+          "google_count": 211,
           "google_rating": 4.9,
           "blog_total": 370,
           "blog_new": 3,
-          "score": 79,
+          "score": 80,
           "rank": 2
         },
         "sm_kofu": {
@@ -342,11 +342,11 @@
         "kk_kofu": {
           "hpb_count": 156,
           "hpb_rating": 4.84,
-          "google_count": 96,
+          "google_count": 98,
           "google_rating": 4.9,
           "blog_total": 180,
           "blog_new": 3,
-          "score": 44,
+          "score": 45,
           "rank": 4
         },
         "kk_fuji": {
