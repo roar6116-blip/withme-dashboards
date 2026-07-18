@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-07-18T12:57:57.546Z",
+  "generated_at": "2026-07-18T14:19:52.819Z",
   "data_sources": {
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
@@ -656,7 +656,7 @@
       "google": {
         "label": "痩身ダイエット専門店 Slender Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJX2b9B2QrGmAR6bSYAib6Q0w",
-        "review_count": 66,
+        "review_count": 65,
         "rating": 4.9,
         "new_reviews_this_month": 0,
         "place_id": "ChIJX2b9B2QrGmAR6bSYAib6Q0w"
@@ -691,7 +691,7 @@
       "monthly_reviews": {},
       "monthly_blogs": {},
       "totals": {
-        "review_count": 66,
+        "review_count": 65,
         "weighted_rating": 4.9,
         "blog_count_total": 0,
         "blog_count_this_month": 0,
@@ -702,7 +702,7 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2761,
+    "total_reviews": 2760,
     "total_new_this_month": 46,
     "average_rating": 4.86,
     "total_blog_this_month": 49,
