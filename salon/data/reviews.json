@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-07-22T11:00:54.632Z",
+  "generated_at": "2026-07-22T13:26:10.894Z",
   "data_sources": {
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
@@ -140,7 +140,7 @@
       "google": {
         "label": "Touch Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJrw9otUMrGmARJgKg8v6_kF8",
-        "review_count": 213,
+        "review_count": 212,
         "rating": 4.9,
         "new_reviews_this_month": 0,
         "place_id": "ChIJrw9otUMrGmARJgKg8v6_kF8"
@@ -222,7 +222,7 @@
         "2025-11": 6
       },
       "totals": {
-        "review_count": 802,
+        "review_count": 801,
         "weighted_rating": 4.81,
         "blog_count_total": 370,
         "blog_count_this_month": 15,
@@ -249,7 +249,7 @@
       "google": {
         "label": "Slender Me甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJjy9pyNH3G2ARbUkCUHJGYP0",
-        "review_count": 141,
+        "review_count": 140,
         "rating": 4.9,
         "new_reviews_this_month": 0,
         "place_id": "ChIJjy9pyNH3G2ARbUkCUHJGYP0"
@@ -343,7 +343,7 @@
         "2025-09": 4
       },
       "totals": {
-        "review_count": 453,
+        "review_count": 452,
         "weighted_rating": 4.82,
         "blog_count_total": 430,
         "blog_count_this_month": 17,
@@ -695,7 +695,7 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2762,
+    "total_reviews": 2760,
     "total_new_this_month": 71,
     "average_rating": 4.86,
     "total_blog_this_month": 76,
