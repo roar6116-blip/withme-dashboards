@@ -342,17 +342,17 @@
         "kk_kofu": {
           "hpb_count": 156,
           "hpb_rating": 4.84,
-          "google_count": 99,
-          "google_rating": 4.9,
+          "google_count": 100,
+          "google_rating": 5,
           "blog_total": 180,
           "blog_new": 12,
-          "score": 45,
+          "score": 46,
           "rank": 4
         },
         "kk_fuji": {
           "hpb_count": 110,
           "hpb_rating": 4.93,
-          "google_count": 70,
+          "google_count": 71,
           "google_rating": 5,
           "blog_total": 30,
           "blog_new": 17,
