@@ -1,0 +1,53 @@
+name: Update Reservation Funnel
+
+# 毎朝 JST 07:00 (= UTC 22:00) に実行 + 手動トリガーも可能
+on:
+  schedule:
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: scripts
+        run: |
+          if [ -f package.json ]; then npm install --no-audit --no-fund; fi
+
+      - name: Verify parsing logic
+        run: |
+          node scripts/funnel-config.test.mjs
+          node scripts/funnel-parse.test.mjs
+
+      # 集計に失敗した場合はスクリプトが exit 1 するため、
+      # salon/data/funnel.json は前日の内容のまま維持される
+      - name: Aggregate reservation funnel
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+          RESERVATION_FOLDER_CURRENT: ${{ secrets.RESERVATION_FOLDER_CURRENT }}
+          RESERVATION_FOLDER_PREV: ${{ secrets.RESERVATION_FOLDER_PREV }}
+        run: node scripts/fetch-reservation-funnel.js
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add salon/data/funnel.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "auto(funnel): update reservation funnel ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git pull --rebase origin main || true
+            git push
+          fi

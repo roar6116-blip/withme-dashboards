@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>With Me 3店舗 予約ファネル 分析レポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root {
+  --navy-900: #0a1628;
+  --navy-800: #0f2444;
+  --navy-700: #1a3666;
+  --navy-600: #2a4d8f;
+  --navy-500: #3d6bb3;
+  --navy-100: #e8eef7;
+  --navy-50: #f4f7fc;
+  --orange-700: #c2410c;
+  --orange-600: #ea580c;
+  --orange-500: #f97316;
+  --orange-400: #fb923c;
+  --orange-100: #ffedd5;
+  --orange-50: #fff7ed;
+  --white: #ffffff;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+  --good: #059669;
+  --good-bg: #d1fae5;
+  --warn: #d97706;
+  --warn-bg: #fef3c7;
+  --bad: #dc2626;
+  --bad-bg: #fee2e2;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-900);
+  line-height: 1.6;
+  font-feature-settings: "palt";
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 1280px; margin: 0 auto; padding: 48px 32px; }
+@media (max-width: 768px) { .container { padding: 24px 16px; } }
+
+/* ヘッダー */
+.header {
+  background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  color: var(--white); padding: 48px 48px 56px; border-radius: 12px;
+  margin-bottom: 40px; position: relative; overflow: hidden;
+}
+.header::before {
+  content: ''; position: absolute; top: 0; right: 0; width: 400px; height: 100%;
+  background: radial-gradient(circle at top right, rgba(249, 115, 22, 0.15), transparent 60%);
+}
+.header-tag {
+  display: inline-block; background: var(--orange-500); color: var(--white);
+  padding: 6px 14px; border-radius: 4px; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; margin-bottom: 20px; text-transform: uppercase;
+}
+.title {
+  font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -0.02em;
+  line-height: 1.2; margin-bottom: 12px; position: relative; z-index: 1;
+}
+.title-accent { color: var(--orange-400); }
+.subtitle { font-size: 15px; color: var(--navy-100); font-weight: 400; margin-bottom: 24px; position: relative; z-index: 1; }
+.meta { display: flex; gap: 24px; flex-wrap: wrap; font-size: 13px; color: var(--navy-100); position: relative; z-index: 1; font-family: 'JetBrains Mono', monospace; }
+.meta-item { display: flex; align-items: center; gap: 8px; }
+.meta-label { color: var(--orange-400); font-weight: 600; }
+
+/* KPIカード */
+.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 48px; }
+@media (max-width: 768px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
+.kpi-card {
+  background: var(--white); border-radius: 8px; padding: 24px;
+  border: 1px solid var(--gray-200); transition: all 0.2s ease;
+}
+.kpi-card:hover { border-color: var(--navy-600); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(15, 36, 68, 0.08); }
+.kpi-card.featured { background: linear-gradient(135deg, var(--orange-600), var(--orange-500)); color: var(--white); border: none; }
+.kpi-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 8px; }
+.kpi-card.featured .kpi-label { color: rgba(255, 255, 255, 0.85); }
+.kpi-value { font-size: 36px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--navy-900); margin-bottom: 4px; }
+.kpi-card.featured .kpi-value { color: var(--white); }
+.kpi-unit { font-size: 16px; font-weight: 600; color: var(--gray-500); margin-left: 4px; }
+.kpi-card.featured .kpi-unit { color: rgba(255, 255, 255, 0.85); }
+.kpi-detail { font-size: 12px; color: var(--gray-500); margin-top: 8px; }
+.kpi-card.featured .kpi-detail { color: rgba(255, 255, 255, 0.85); }
+
+/* セクション */
+.section { margin-bottom: 56px; }
+.section-header {
+  display: flex; align-items: baseline; gap: 16px; margin-bottom: 24px;
+  padding-bottom: 16px; border-bottom: 2px solid var(--navy-900);
+}
+.section-number { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700; color: var(--orange-600); letter-spacing: 0.05em; }
+.section-title { font-size: 24px; font-weight: 700; color: var(--navy-900); letter-spacing: -0.01em; flex: 1; }
+.section-desc { font-size: 13px; color: var(--gray-500); font-weight: 400; }
+
+/* 目標バー */
+.target-strip {
+  background: var(--navy-900); color: var(--white); border-radius: 8px;
+  padding: 20px 28px; margin-bottom: 48px; display: flex; align-items: center;
+  gap: 24px; flex-wrap: wrap;
+}
+.target-strip-label { font-size: 11px; letter-spacing: 0.15em; font-weight: 700; color: var(--orange-400); text-transform: uppercase; }
+.target-formula { display: flex; align-items: center; gap: 12px; flex: 1; flex-wrap: wrap; }
+.target-pill {
+  display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(249, 115, 22, 0.3); padding: 8px 16px; border-radius: 6px;
+}
+.target-pill-label { font-size: 11px; color: var(--navy-100); font-weight: 500; }
+.target-pill-value { font-size: 18px; font-weight: 700; color: var(--orange-400); font-family: 'JetBrains Mono', monospace; }
+.target-op { font-size: 18px; font-weight: 600; color: var(--gray-400); }
+
+/* ファネル */
+.funnel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 1024px) { .funnel-grid { grid-template-columns: 1fr; } }
+.store-card { background: var(--white); border-radius: 8px; border: 1px solid var(--gray-200); overflow: hidden; transition: all 0.2s ease; }
+.store-card:hover { border-color: var(--navy-600); box-shadow: 0 8px 24px rgba(15, 36, 68, 0.08); }
+.store-card-head { background: var(--navy-900); color: var(--white); padding: 20px 24px; position: relative; }
+.store-card-head::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--orange-500); }
+.store-name-en { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: var(--orange-400); letter-spacing: 0.1em; margin-bottom: 4px; text-transform: uppercase; }
+.store-name { font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.01em; }
+.store-menu-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.store-menu-tag { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 500; color: var(--navy-100); }
+.store-card-body { padding: 24px; }
+.funnel-step { display: grid; grid-template-columns: 56px 1fr 60px; align-items: center; gap: 12px; margin-bottom: 12px; }
+.funnel-step-label { font-size: 11px; color: var(--gray-500); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+.funnel-bar-container { background: var(--gray-100); height: 28px; border-radius: 4px; position: relative; overflow: hidden; }
+.funnel-bar { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 10px; color: var(--white); font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; transition: width 0.6s ease; }
+.funnel-bar.b1 { background: var(--navy-500); }
+.funnel-bar.b2 { background: var(--navy-700); }
+.funnel-bar.b3 { background: var(--navy-900); }
+.funnel-step-value { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 700; color: var(--navy-900); text-align: right; }
+.rate-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--gray-200); }
+.rate-cell { text-align: center; padding: 12px 8px; background: var(--gray-50); border-radius: 6px; }
+.rate-cell-label { font-size: 10px; color: var(--gray-500); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+.rate-cell-value { font-size: 22px; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.02em; line-height: 1; }
+.rate-cell-value.good { color: var(--good); }
+.rate-cell-value.warn { color: var(--warn); }
+.rate-cell-value.bad { color: var(--bad); }
+.rate-cell-vs { font-size: 10px; font-family: 'JetBrains Mono', monospace; font-weight: 600; margin-top: 4px; }
+.rate-cell-vs.up { color: var(--good); }
+.rate-cell-vs.down { color: var(--bad); }
+.rate-cell-vs.flat { color: var(--gray-500); }
+
+/* テーブル */
+.compare-table { width: 100%; background: var(--white); border-radius: 8px; overflow: hidden; border: 1px solid var(--gray-200); border-collapse: collapse; }
+.compare-table thead { background: var(--navy-900); }
+.compare-table th { padding: 14px 16px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--orange-400); text-transform: uppercase; }
+.compare-table th:not(:first-child), .compare-table td:not(:first-child) { text-align: center; }
+.compare-table td { padding: 14px 16px; border-bottom: 1px solid var(--gray-200); font-size: 14px; }
+.compare-table tbody tr:last-child td { border-bottom: none; }
+.compare-table tbody tr:hover { background: var(--orange-50); }
+.cell-store-block { display: flex; flex-direction: column; gap: 2px; }
+.cell-store-name { font-weight: 700; font-size: 14px; color: var(--navy-900); }
+.cell-store-en { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gray-500); letter-spacing: 0.1em; font-weight: 500; text-transform: uppercase; }
+.cell-num { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; color: var(--navy-900); }
+.delta { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-family: 'JetBrains Mono', monospace; font-weight: 700; margin-left: 8px; }
+.delta.up { background: var(--good-bg); color: var(--good); }
+.delta.down { background: var(--bad-bg); color: var(--bad); }
+.delta.flat { background: var(--gray-100); color: var(--gray-600); }
+
+/* 達成度 */
+.achievement-card { background: var(--white); border-radius: 8px; border: 1px solid var(--gray-200); padding: 28px 32px; }
+.achievement-row { display: grid; grid-template-columns: 200px 1fr 80px; align-items: center; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--gray-100); }
+.achievement-row:last-child { border-bottom: none; }
+.achievement-store { display: flex; flex-direction: column; gap: 2px; }
+.achievement-store-name { font-weight: 700; font-size: 14px; color: var(--navy-900); }
+.achievement-store-year { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gray-500); font-weight: 500; }
+.achievement-bar-track { position: relative; height: 24px; background: var(--gray-100); border-radius: 4px; overflow: visible; }
+.achievement-bar-fill { position: absolute; top: 0; left: 0; height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+.achievement-bar-fill.good { background: linear-gradient(90deg, var(--navy-700), var(--navy-500)); }
+.achievement-bar-fill.warn { background: linear-gradient(90deg, var(--orange-600), var(--orange-400)); }
+.achievement-bar-fill.bad { background: linear-gradient(90deg, var(--bad), #ef4444); }
+.achievement-target-line { position: absolute; top: -8px; bottom: -8px; width: 2px; background: var(--navy-900); }
+.achievement-target-line::before { content: 'Target 64%'; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--navy-900); font-weight: 700; white-space: nowrap; background: var(--white); padding: 0 4px; }
+.achievement-value { text-align: right; font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 800; }
+.achievement-value.good { color: var(--good); }
+.achievement-value.warn { color: var(--orange-600); }
+.achievement-value.bad { color: var(--bad); }
+
+/* 診断 */
+.diagnosis-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 1024px) { .diagnosis-grid { grid-template-columns: 1fr; } }
+.diag-card { background: var(--white); border-radius: 8px; padding: 24px; border: 1px solid var(--gray-200); border-top: 4px solid; }
+.diag-card.healthy { border-top-color: var(--good); }
+.diag-card.warning { border-top-color: var(--orange-500); }
+.diag-card.critical { border-top-color: var(--bad); }
+.diag-status { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+.diag-card.healthy .diag-status { background: var(--good-bg); color: var(--good); }
+.diag-card.warning .diag-status { background: var(--orange-100); color: var(--orange-700); }
+.diag-card.critical .diag-status { background: var(--bad-bg); color: var(--bad); }
+.diag-store { font-size: 18px; font-weight: 700; color: var(--navy-900); margin-bottom: 8px; }
+.diag-pattern { font-size: 13px; color: var(--gray-700); background: var(--gray-50); padding: 12px; border-radius: 6px; margin-bottom: 16px; font-weight: 500; border-left: 3px solid var(--navy-700); }
+.diag-issue-list { list-style: none; }
+.diag-issue-list li { font-size: 13px; padding: 6px 0; display: flex; gap: 10px; color: var(--gray-700); line-height: 1.6; }
+.diag-issue-list li::before { content: ''; width: 4px; height: 4px; background: var(--orange-500); border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
+
+/* ヒートマップ */
+.heatmap-section { margin-bottom: 32px; }
+.heatmap-year-label { display: inline-block; background: var(--navy-900); color: var(--white); padding: 6px 14px; border-radius: 4px; font-size: 12px; font-weight: 700; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em; margin-bottom: 12px; }
+.heatmap-table { width: 100%; border-collapse: separate; border-spacing: 4px; }
+.heatmap-table th { font-size: 11px; letter-spacing: 0.08em; color: var(--gray-500); font-weight: 700; text-transform: uppercase; padding: 8px; text-align: center; }
+.heatmap-table th:first-child { text-align: left; padding-left: 16px; }
+.heatmap-table td { padding: 14px 8px; text-align: center; background: var(--white); border: 1px solid var(--gray-200); border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; }
+.heatmap-table td:first-child { text-align: left; background: var(--navy-900); color: var(--white); font-family: 'Inter', 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 600; padding: 14px 16px; border: none; }
+.heatmap-table td.h-good { background: #dcfce7; color: var(--good); border-color: #86efac; }
+.heatmap-table td.h-mid { background: var(--orange-100); color: var(--orange-700); border-color: var(--orange-400); }
+.heatmap-table td.h-bad { background: var(--bad-bg); color: var(--bad); border-color: #fca5a5; }
+.heatmap-table td.h-na { background: var(--gray-100); color: var(--gray-400); border-color: var(--gray-200); }
+
+/* インサイト */
+.insight-block { background: linear-gradient(135deg, var(--navy-900), var(--navy-700)); color: var(--white); padding: 36px 40px; border-radius: 8px; margin: 48px 0; position: relative; overflow: hidden; }
+.insight-block::before { content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 100%; background: radial-gradient(circle at right, rgba(249, 115, 22, 0.2), transparent 70%); }
+.insight-block::after { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--orange-500); }
+.insight-label { display: inline-block; background: var(--orange-500); color: var(--white); padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.insight-title { font-size: 22px; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.01em; position: relative; z-index: 1; }
+.insight-text { font-size: 14px; line-height: 1.8; color: var(--navy-100); position: relative; z-index: 1; }
+.insight-text strong { color: var(--orange-400); font-weight: 700; }
+
+/* アクション */
+.action-table { width: 100%; background: var(--white); border-radius: 8px; overflow: hidden; border: 1px solid var(--gray-200); border-collapse: collapse; }
+.action-table thead { background: var(--navy-900); }
+.action-table th { padding: 14px 16px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--orange-400); text-transform: uppercase; }
+.action-table td { padding: 16px; border-bottom: 1px solid var(--gray-200); font-size: 13px; vertical-align: top; line-height: 1.6; }
+.action-table tbody tr:last-child td { border-bottom: none; }
+.action-table tbody tr.highlight { background: var(--orange-50); }
+.priority-badge { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
+.priority-badge.benchmark { background: var(--good-bg); color: var(--good); }
+.priority-badge.critical { background: var(--bad-bg); color: var(--bad); }
+.priority-badge.common { background: var(--orange-100); color: var(--orange-700); }
+.expected-effect { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: var(--navy-700); }
+
+/* フッター */
+.footer { margin-top: 64px; padding-top: 32px; border-top: 2px solid var(--navy-900); text-align: center; }
+.footer-brand { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 700; letter-spacing: 0.2em; color: var(--navy-900); margin-bottom: 8px; }
+.footer-info { font-size: 12px; color: var(--gray-500); font-family: 'JetBrains Mono', monospace; }
+
+@media (max-width: 768px) {
+  .header { padding: 32px 24px; }
+  .achievement-row { grid-template-columns: 1fr; gap: 12px; }
+  .heatmap-table { font-size: 12px; }
+  .heatmap-table td { padding: 10px 4px; font-size: 14px; }
+  .funnel-step { grid-template-columns: 50px 1fr 50px; }
+}
+
+@keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.section { animation: slideUp 0.5s ease backwards; }
+.section:nth-child(2) { animation-delay: 0.05s; }
+.section:nth-child(3) { animation-delay: 0.1s; }
+.section:nth-child(4) { animation-delay: 0.15s; }
+
+@media print { body { background: white; } .section { page-break-inside: avoid; animation: none; } }
+
+/* ---- 自動更新版で追加 ---- */
+.status-banner {
+  border-radius: 8px; padding: 14px 20px; margin-bottom: 24px;
+  font-size: 13px; font-weight: 600; line-height: 1.6;
+}
+.status-banner.warn { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--orange-400); }
+.status-banner.error { background: var(--bad-bg); color: var(--bad); border: 1px solid #fca5a5; }
+
+.period-switch {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  background: var(--white); border: 1px solid var(--gray-200); border-radius: 8px;
+  padding: 14px 20px; margin-bottom: 40px;
+}
+.period-switch-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gray-500); margin-right: 4px;
+}
+.period-btn {
+  font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+  padding: 8px 20px; border-radius: 6px; border: 1px solid var(--gray-300);
+  background: var(--white); color: var(--gray-600); transition: all 0.15s ease;
+}
+.period-btn:hover { border-color: var(--navy-600); color: var(--navy-900); }
+.period-btn.is-active { background: var(--navy-900); border-color: var(--navy-900); color: var(--white); }
+.period-switch-note {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gray-500);
+  margin-left: auto;
+}
+
+.compare-table tbody tr.is-current { background: var(--navy-50); }
+.compare-table tbody tr.is-current .cell-store-name { color: var(--navy-700); }
+.good-text { color: var(--good); }
+.warn-text { color: var(--warn); }
+.bad-text { color: var(--bad); }
+.na-text { color: var(--gray-400); }
+
+.heatmap-table td .h-sub {
+  display: block; font-size: 10px; font-weight: 600; opacity: 0.75; margin-top: 2px;
+}
+.heatmap-table td.is-thin { opacity: 0.5; }
+.heatmap-note { font-size: 12px; color: var(--gray-500); margin-top: 12px; line-height: 1.7; }
+
+/* 幅の狭い画面では表だけを横スクロールさせ、ページ全体は横スクロールさせない */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-scroll > table { min-width: 640px; }
+.table-scroll > .heatmap-table { min-width: 520px; }
+
+#report[hidden], #notes-section[hidden], .period-switch[hidden] { display: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="header">
+  <div class="header-tag">With Me Group / Analytics Report</div>
+  <h1 class="title">3店舗 <span class="title-accent">Reservation Funnel</span> 分析レポート</h1>
+  <p class="subtitle">予約 → 確定 → 来店の歩留まり 全店比較（毎朝自動更新）</p>
+  <div class="meta">
+    <span class="meta-item"><span class="meta-label">対象</span> <span id="meta-period">読み込み中…</span></span>
+    <span class="meta-item"><span class="meta-label">更新</span> <span id="meta-updated">—</span></span>
+    <span class="meta-item"><span class="meta-label">Source</span> 各店舗 新規予約管理シート</span>
+  </div>
+</header>
+
+<div id="status" class="status-banner" hidden></div>
+
+<div class="period-switch" id="period-switch" hidden>
+  <span class="period-switch-label">表示期間</span>
+  <button type="button" class="period-btn is-active" data-period="month">当月</button>
+  <button type="button" class="period-btn" data-period="ytd">今年累計</button>
+  <span class="period-switch-note" id="period-note"></span>
+</div>
+
+<main id="report" hidden>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">全社サマリー</h2>
+      <span class="section-desc">3店舗合算</span>
+    </div>
+    <div class="kpi-grid" id="kpi-grid"></div>
+    <div class="target-strip">
+      <span class="target-strip-label">弊社目標 KPI</span>
+      <div class="target-formula">
+        <div class="target-pill"><span class="target-pill-label">確定率</span><span class="target-pill-value" id="t-confirmed">80%</span></div>
+        <span class="target-op">×</span>
+        <div class="target-pill"><span class="target-pill-label">来店率</span><span class="target-pill-value" id="t-visit">80%</span></div>
+        <span class="target-op">=</span>
+        <div class="target-pill"><span class="target-pill-label">予約 → 来店</span><span class="target-pill-value" id="t-btv">64%</span></div>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="compare-table" id="period-table">
+        <thead><tr><th>期間</th><th>予約発生</th><th>確定</th><th>来店</th><th>確定率</th><th>来店率</th><th>予約→来店率</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">店舗別 予約ファネル</h2>
+      <span class="section-desc" id="store-desc"></span>
+    </div>
+    <div class="funnel-grid" id="store-grid"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2 class="section-title">媒体別 予約ファネル</h2>
+      <span class="section-desc">予約発生数の多い順</span>
+    </div>
+    <div class="table-scroll">
+      <table class="compare-table" id="media-table">
+        <thead><tr><th>媒体</th><th>予約発生</th><th>確定</th><th>来店</th><th>確定率</th><th>来店率</th><th>予約→来店率</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2 class="section-title">目標達成度</h2>
+      <span class="section-desc">予約 → 来店率 / 目標 64%</span>
+    </div>
+    <div class="achievement-card" id="achievement"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <h2 class="section-title">メニュー別 予約 → 来店率 ヒートマップ</h2>
+      <span class="section-desc">店舗 × メニュー</span>
+    </div>
+    <div class="heatmap-section table-scroll">
+      <table class="heatmap-table" id="heatmap">
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="heatmap-note">※ 各セルは 予約→来店率（括弧内は 来店数 / 予約発生数）。母数が 5 件未満のセルは参考値として淡く表示しています。</p>
+  </section>
+
+  <section class="section" id="notes-section" hidden>
+    <div class="section-header">
+      <span class="section-number">06</span>
+      <h2 class="section-title">所感・最優先アクション</h2>
+      <span class="section-desc" id="notes-updated"></span>
+    </div>
+    <div id="notes-body"></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-brand">WITH ME</div>
+  <div class="footer-info" id="footer-info">株式会社With Me / Source: 各店舗 新規予約管理シート</div>
+</footer>
+
+</div>
+
+<script>
+const TARGET_FALLBACK = { confirmedRate: 80, visitRate: 80, bookingToVisitRate: 64 };
+let DATA = null;
+let NOTES = null;
+let period = 'month';
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const num = (n) => (n ?? 0).toLocaleString('ja-JP');
+const rate = (v) => (v == null ? '—' : v.toFixed(1) + '%');
+
+/** 目標に対する達成度で good / warn / bad を返す */
+function grade(value, target) {
+  if (value == null) return 'na';
+  if (value >= target) return 'good';
+  if (value >= target * 0.85) return 'warn';
+  return 'bad';
+}
+
+/** 前年同期比のデルタ表示 */
+function deltaChip(current, previous) {
+  if (current == null || previous == null) return '';
+  const d = Math.round((current - previous) * 10) / 10;
+  const cls = d > 0.05 ? 'up' : d < -0.05 ? 'down' : 'flat';
+  const sign = d > 0 ? '+' : '';
+  return `<span class="delta ${cls}">${sign}${d.toFixed(1)}pt</span>`;
+}
+
+function funnelBars(f) {
+  const max = Math.max(f.count, 1);
+  const w = (v) => Math.max((v / max) * 100, v > 0 ? 8 : 0);
+  return `
+    <div class="funnel-step">
+      <span class="funnel-step-label">予約</span>
+      <div class="funnel-bar-container"><div class="funnel-bar b1" style="width:${w(f.count)}%"></div></div>
+      <span class="funnel-step-value">${num(f.count)}</span>
+    </div>
+    <div class="funnel-step">
+      <span class="funnel-step-label">確定</span>
+      <div class="funnel-bar-container"><div class="funnel-bar b2" style="width:${w(f.confirmed)}%"></div></div>
+      <span class="funnel-step-value">${num(f.confirmed)}</span>
+    </div>
+    <div class="funnel-step">
+      <span class="funnel-step-label">来店</span>
+      <div class="funnel-bar-container"><div class="funnel-bar b3" style="width:${w(f.visit)}%"></div></div>
+      <span class="funnel-step-value">${num(f.visit)}</span>
+    </div>`;
+}
+
+function rateRow(f, prev, target) {
+  const cells = [
+    ['確定率', f.confirmedRate, prev?.confirmedRate, target.confirmedRate],
+    ['来店率', f.visitRate, prev?.visitRate, target.visitRate],
+    ['予約→来店', f.bookingToVisitRate, prev?.bookingToVisitRate, target.bookingToVisitRate],
+  ];
+  return `<div class="rate-row">${cells.map(([label, v, p, t]) => {
+    const g = grade(v, t);
+    let vs = '';
+    if (v != null && p != null) {
+      const d = Math.round((v - p) * 10) / 10;
+      const cls = d > 0.05 ? 'up' : d < -0.05 ? 'down' : 'flat';
+      vs = `<div class="rate-cell-vs ${cls}">${d > 0 ? '+' : ''}${d.toFixed(1)}pt</div>`;
+    }
+    return `<div class="rate-cell">
+      <div class="rate-cell-label">${label}</div>
+      <div class="rate-cell-value ${g}">${rate(v)}</div>
+      ${vs}
+    </div>`;
+  }).join('')}</div>`;
+}
+
+function render() {
+  const d = DATA;
+  const target = d.target || TARGET_FALLBACK;
+  const comparePeriod = (d.compare || { month: 'prevMonth', ytd: 'prevYtd' })[period];
+  const p = d.periods[period];
+  const pPrev = d.periods[comparePeriod];
+
+  $('meta-period').textContent = p.label;
+  $('meta-updated').textContent = new Date(d.generatedAt).toLocaleString('ja-JP', {
+    year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+  });
+  $('period-note').textContent = `${p.label} ／ 比較対象: ${pPrev.label}`;
+  $('store-desc').textContent = p.label;
+  $('t-confirmed').textContent = target.confirmedRate + '%';
+  $('t-visit').textContent = target.visitRate + '%';
+  $('t-btv').textContent = target.bookingToVisitRate + '%';
+
+  // 01 KPI
+  const t = d.total[period];
+  const tPrev = d.total[comparePeriod];
+  $('kpi-grid').innerHTML = `
+    <div class="kpi-card">
+      <div class="kpi-label">予約発生</div>
+      <div class="kpi-value">${num(t.count)}<span class="kpi-unit">件</span></div>
+      <div class="kpi-detail">前年同期 ${num(tPrev.count)}件</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">確定</div>
+      <div class="kpi-value">${num(t.confirmed)}<span class="kpi-unit">件</span></div>
+      <div class="kpi-detail">確定率 ${rate(t.confirmedRate)} ${deltaChip(t.confirmedRate, tPrev.confirmedRate)}</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">来店</div>
+      <div class="kpi-value">${num(t.visit)}<span class="kpi-unit">件</span></div>
+      <div class="kpi-detail">来店率 ${rate(t.visitRate)} ${deltaChip(t.visitRate, tPrev.visitRate)}</div>
+    </div>
+    <div class="kpi-card featured">
+      <div class="kpi-label">予約 → 来店率</div>
+      <div class="kpi-value">${t.bookingToVisitRate == null ? '—' : t.bookingToVisitRate.toFixed(1)}<span class="kpi-unit">%</span></div>
+      <div class="kpi-detail">目標 ${target.bookingToVisitRate}% / 前年 ${rate(tPrev.bookingToVisitRate)}</div>
+    </div>`;
+
+  // 01 期間比較テーブル
+  const periodRows = ['month', 'ytd', 'prevMonth', 'prevYtd'];
+  $('period-table').querySelector('tbody').innerHTML = periodRows.map((key) => {
+    const f = d.total[key];
+    const isCurrent = key === period;
+    return `<tr${isCurrent ? ' class="is-current"' : ''}>
+      <td><span class="cell-store-name">${esc(d.periods[key].label)}</span></td>
+      <td><span class="cell-num">${num(f.count)}</span></td>
+      <td><span class="cell-num">${num(f.confirmed)}</span></td>
+      <td><span class="cell-num">${num(f.visit)}</span></td>
+      <td>${rate(f.confirmedRate)}</td>
+      <td>${rate(f.visitRate)}</td>
+      <td><strong class="${grade(f.bookingToVisitRate, target.bookingToVisitRate)}-text">${rate(f.bookingToVisitRate)}</strong></td>
+    </tr>`;
+  }).join('');
+
+  // 02 店舗別ファネル
+  $('store-grid').innerHTML = d.stores.map((s) => `
+    <div class="store-card">
+      <div class="store-card-head">
+        <div class="store-name-en">${esc(s.nameEn)}</div>
+        <h3 class="store-name">${esc(s.name)}</h3>
+      </div>
+      <div class="store-card-body">
+        ${funnelBars(s[period])}
+        ${rateRow(s[period], s[comparePeriod], target)}
+      </div>
+    </div>`).join('');
+
+  // 03 媒体別
+  const mediaRows = d.media
+    .filter((m) => m[period].count > 0 || m[comparePeriod].count > 0)
+    .sort((a, b) => b[period].count - a[period].count);
+  $('media-table').querySelector('tbody').innerHTML = mediaRows.length === 0
+    ? '<tr><td colspan="7">この期間のデータがありません</td></tr>'
+    : mediaRows.map((m) => {
+        const f = m[period];
+        const prev = m[comparePeriod];
+        return `<tr>
+          <td><span class="cell-store-name">${esc(m.name)}</span></td>
+          <td><span class="cell-num">${num(f.count)}</span></td>
+          <td><span class="cell-num">${num(f.confirmed)}</span></td>
+          <td><span class="cell-num">${num(f.visit)}</span></td>
+          <td>${rate(f.confirmedRate)}</td>
+          <td>${rate(f.visitRate)}</td>
+          <td><strong class="${grade(f.bookingToVisitRate, target.bookingToVisitRate)}-text">${rate(f.bookingToVisitRate)}</strong>${deltaChip(f.bookingToVisitRate, prev.bookingToVisitRate)}</td>
+        </tr>`;
+      }).join('');
+
+  // 04 目標達成度
+  const maxScale = 100;
+  $('achievement').innerHTML = d.stores.map((s) => {
+    const f = s[period];
+    const v = f.bookingToVisitRate;
+    const g = grade(v, target.bookingToVisitRate);
+    return `<div class="achievement-row">
+      <div class="achievement-store">
+        <span class="achievement-store-name">${esc(s.name)}</span>
+        <span class="achievement-store-year">来店 ${num(f.visit)} / 予約 ${num(f.count)}</span>
+      </div>
+      <div class="achievement-bar-track">
+        <div class="achievement-bar-fill ${g === 'na' ? 'bad' : g}" style="width:${v == null ? 0 : Math.min(v, maxScale)}%"></div>
+        <div class="achievement-target-line" style="left:${target.bookingToVisitRate}%"></div>
+      </div>
+      <div class="achievement-value ${g === 'na' ? 'bad' : g}">${rate(v)}</div>
+    </div>`;
+  }).join('');
+
+  // 05 ヒートマップ
+  const menus = d.heatmap.menus;
+  $('heatmap').querySelector('thead').innerHTML =
+    `<tr><th>店舗 / メニュー</th>${menus.map((m) => `<th>${esc(m)}</th>`).join('')}<th>合計</th></tr>`;
+  $('heatmap').querySelector('tbody').innerHTML = d.heatmap.stores.map((s) => {
+    const cell = (f) => {
+      if (!f || f.count === 0) return '<td class="h-na">—</td>';
+      const g = grade(f.bookingToVisitRate, target.bookingToVisitRate);
+      const cls = g === 'good' ? 'h-good' : g === 'warn' ? 'h-mid' : 'h-bad';
+      const thin = f.count < 5 ? ' is-thin' : '';
+      return `<td class="${cls}${thin}">${rate(f.bookingToVisitRate)}<span class="h-sub">${f.visit}/${f.count}</span></td>`;
+    };
+    return `<tr>
+      <td>${esc(s.name)}</td>
+      ${menus.map((m) => cell(s.menus[m][period])).join('')}
+      ${cell(s.total[period])}
+    </tr>`;
+  }).join('');
+
+  // 06 所感（cron では更新されない手動枠）
+  if (NOTES && (NOTES.insight || (NOTES.actions && NOTES.actions.length))) {
+    $('notes-section').hidden = false;
+    $('notes-updated').textContent = NOTES.updatedAt ? `最終更新 ${NOTES.updatedAt}` : '';
+    const insight = NOTES.insight
+      ? `<div class="insight-block">
+           <span class="insight-label">Insight</span>
+           <h3 class="insight-title">${esc(NOTES.insightTitle || '全店共通の構造')}</h3>
+           <p class="insight-text">${esc(NOTES.insight).replace(/\n/g, '<br>')}</p>
+         </div>` : '';
+    const actions = (NOTES.actions && NOTES.actions.length)
+      ? `<div class="table-scroll"><table class="action-table">
+           <thead><tr><th style="width:200px;">店舗</th><th>アクション</th><th style="width:200px;">期待効果</th></tr></thead>
+           <tbody>${NOTES.actions.map((a) => `<tr>
+             <td><span class="cell-store-name">${esc(a.store)}</span></td>
+             <td>${esc(a.action)}</td>
+             <td><span class="expected-effect">${esc(a.effect || '')}</span></td>
+           </tr>`).join('')}</tbody>
+         </table></div>` : '';
+    $('notes-body').innerHTML = insight + actions;
+  }
+
+  // フッター
+  const srcCount = (d.sources?.current?.length || 0) + (d.sources?.prev?.length || 0);
+  $('footer-info').textContent =
+    `株式会社With Me / 集計対象 ${d.asOf} まで / 参照シート ${srcCount}件 / Source: 各店舗 新規予約管理シート`;
+
+  if (d.warnings && d.warnings.length) {
+    showStatus('warn', `一部のシートを読み取れませんでした：${d.warnings.join(' / ')}`);
+  }
+}
+
+function showStatus(kind, message) {
+  const el = $('status');
+  el.hidden = false;
+  el.className = `status-banner ${kind}`;
+  el.textContent = message;
+}
+
+function bindPeriodSwitch() {
+  $('period-switch').hidden = false;
+  document.querySelectorAll('.period-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.period-btn').forEach((b) => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      period = btn.dataset.period;
+      render();
+    });
+  });
+}
+
+async function boot() {
+  const bust = '?t=' + Math.floor(Date.now() / 60000);
+  try {
+    DATA = await fetch('./data/funnel.json' + bust).then((r) => {
+      if (!r.ok) throw new Error('funnel.json ' + r.status);
+      return r.json();
+    });
+  } catch (e) {
+    showStatus('error',
+      'データがまだ生成されていません（' + e.message + '）。'
+      + '初回は GitHub Actions の «Update Reservation Funnel» を手動実行すると生成されます。'
+      + '毎朝 7:00 の自動更新後は自動的に表示されます。');
+    return;
+  }
+  try {
+    NOTES = await fetch('./data/funnel-notes.json' + bust).then((r) => (r.ok ? r.json() : null));
+  } catch { NOTES = null; }
+
+  $('report').hidden = false;
+  bindPeriodSwitch();
+  render();
+
+  // データが古い（3日以上更新されていない）場合は警告する
+  const ageDays = (Date.now() - new Date(DATA.generatedAt)) / 86400000;
+  if (ageDays > 3) {
+    showStatus('warn', `データが ${Math.floor(ageDays)} 日更新されていません。自動更新が停止している可能性があります。`);
+  }
+}
+
+boot();
+</script>
+</body>
+</html>

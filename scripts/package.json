@@ -7,8 +7,10 @@
   "scripts": {
     "fetch:google": "node fetch-google-reviews.js",
     "fetch:hpb": "node fetch-hpb-data.js",
+    "fetch:funnel": "node fetch-reservation-funnel.js",
     "build": "node build-reviews-json.js",
-    "history": "node append-history.js"
+    "history": "node append-history.js",
+    "test": "node funnel-config.test.mjs && node funnel-parse.test.mjs"
   },
   "dependencies": {
     "googleapis": "^144.0.0"
