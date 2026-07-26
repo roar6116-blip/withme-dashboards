@@ -306,6 +306,18 @@ body {
 }
 .heatmap-table td.is-thin { opacity: 0.5; }
 .heatmap-note { font-size: 12px; color: var(--gray-500); margin-top: 12px; line-height: 1.7; }
+.lag-note {
+  background: var(--navy-50); border-left: 3px solid var(--navy-600); border-radius: 6px;
+  padding: 14px 18px; margin: -24px 0 40px; font-size: 13px; line-height: 1.7; color: var(--gray-700);
+}
+.lag-note strong { color: var(--navy-900); font-weight: 700; }
+.lag-note[hidden] { display: none; }
+
+/* 極端に狭い端末ではKPIカードを1列に落とす（2列だと数値が枠からはみ出す） */
+@media (max-width: 360px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+  .period-switch-note { margin-left: 0; }
+}
 
 /* 幅の狭い画面では表だけを横スクロールさせ、ページ全体は横スクロールさせない */
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
@@ -337,6 +349,13 @@ body {
   <button type="button" class="period-btn" data-period="ytd">今年累計</button>
   <span class="period-switch-note" id="period-note"></span>
 </div>
+
+<p class="lag-note" id="lag-note" hidden>
+  当月は「予約が発生した日」を基準に集計しています。今月予約された方の来店はこれから先の日付にも入るため、
+  <strong>月の途中では来店率・予約→来店率が実力より低く出ます</strong>（前年同月はすでに来店が出そろっているので、
+  この2つの前年比は月末までマイナスに振れるのが正常です）。<br>
+  月の途中で判断に使えるのは<strong>予約発生数と確定率</strong>。来店率で実力を見るときは「今年累計」に切り替えてください。
+</p>
 
 <main id="report" hidden>
 
@@ -514,6 +533,8 @@ function render() {
     year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
   });
   $('period-note').textContent = `${p.label} ／ 比較対象: ${pPrev.label}`;
+  // 当月は来店がまだ先の日付に入るため、来店率が過小に出る。その旨を明示する
+  $('lag-note').hidden = period !== 'month';
   $('store-desc').textContent = p.label;
   $('t-confirmed').textContent = target.confirmedRate + '%';
   $('t-visit').textContent = target.visitRate + '%';

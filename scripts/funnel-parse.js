@@ -25,7 +25,8 @@ export function parseCellDate(value, fallbackYear) {
 }
 
 const HEADER_ALIASES = {
-  date: ['予約通知日', '通知日'],
+  // 2026年のシートは「予約通知日」、2025年のシートは「予約日通知」で語順が違う
+  date: ['予約通知日', '予約日通知', '通知日'],
   media: ['予約媒体', '媒体'],
   confirmed: ['予約確定', 'ステータス'],
   visit: ['来店状況', '来店'],

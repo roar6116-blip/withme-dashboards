@@ -71,10 +71,17 @@ export function classifyFile(title) {
   return { store, menu, brand };
 }
 
-/** 月別タブかどうか（全角・半角の月表記ゆれを吸収） */
+/**
+ * 月別タブかどうか。
+ * 実際のタブ名は「1月」〜「12月」（他に「集計」「後追い」がある）。
+ * 全角数字や末尾のサフィックス（"１月_新規予約管理表" 等）も許容しておく。
+ */
 export function isMonthlyTab(sheetTitle) {
   const normalized = String(sheetTitle).replace(/[０-９]/g, (c) =>
     String.fromCharCode(c.charCodeAt(0) - 0xfee0)
   );
-  return /^\s*(\d{1,2})\s*月/.test(normalized) && normalized.includes('新規予約');
+  const m = normalized.match(/^\s*(\d{1,2})\s*月/);
+  if (!m) return false;
+  const month = Number(m[1]);
+  return month >= 1 && month <= 12;
 }

@@ -52,16 +52,23 @@ check('無関係ファイルは null', () => {
 });
 
 console.log('isMonthlyTab');
-check('全角の月別タブを認識', () => {
+check('実際のタブ名（1月〜12月）を認識', () => {
+  for (let m = 1; m <= 12; m++) assert.equal(isMonthlyTab(`${m}月`), true);
+});
+check('全角・サフィックス付きも許容', () => {
+  assert.equal(isMonthlyTab('１月'), true);
+  assert.equal(isMonthlyTab('１２月'), true);
   assert.equal(isMonthlyTab('１月_新規予約管理表'), true);
-  assert.equal(isMonthlyTab('１２月_新規予約管理表'), true);
 });
-check('半角の月別タブも認識', () => {
-  assert.equal(isMonthlyTab('7月_新規予約管理表'), true);
-});
-check('集計タブ・後追いリストは除外', () => {
+check('集計タブ・後追いタブは除外', () => {
+  assert.equal(isMonthlyTab('集計'), false);
+  assert.equal(isMonthlyTab('後追い'), false);
   assert.equal(isMonthlyTab('後追いリスト'), false);
   assert.equal(isMonthlyTab('年間集計'), false);
+});
+check('13月のような不正な月は除外', () => {
+  assert.equal(isMonthlyTab('13月'), false);
+  assert.equal(isMonthlyTab('0月'), false);
 });
 
 console.log(`\n${passed} passed`);

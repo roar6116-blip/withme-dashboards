@@ -62,6 +62,23 @@ check('余白列があってもヘッダー行を特定できる', () => {
 check('ヘッダーが無いタブは null', () => {
   assert.equal(findHeader([['', '項目', 'HPB'], ['', '予約確定率', '83%']]), null);
 });
+check('2025年の語順違い「予約日通知」も拾う', () => {
+  const rows2025 = [
+    ['', '１月_新規予約管理表'],
+    [],
+    ['', 'NO', '予約日通知', '予約媒体', '顧客名', '電話番号', '予約日', '年齢',
+     '予約確定', '来店状況', '契約状況', '契約金額', '備考'],
+    ['', '1', '2025/01/06', 'HPB', '渡邉汐莉', '09054900927', '2025/01/10', '40',
+     '確定', '来店', '契約', '¥335,500', '口コミOK'],
+  ];
+  const h = findHeader(rows2025);
+  assert.equal(h.rowIndex, 2);
+  assert.equal(h.map.date, 2);
+  const rows = extractRows(rows2025, 2025);
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].date, '2025-01-06');
+  assert.equal(rows[0].isContract, true);
+});
 
 console.log('extractRows');
 const rows = extractRows(JAN_TAB, 2026);
