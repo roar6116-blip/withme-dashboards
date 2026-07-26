@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-26T21:03:03.750Z",
+  "generatedAt": "2026-07-26T21:19:23.947Z",
   "asOf": "2026-07-26",
   "target": {
     "confirmedRate": 80,
@@ -253,7 +253,141 @@
         "visitRate": 83.4,
         "bookingToVisitRate": 76.2,
         "contractRate": 38.8
-      }
+      },
+      "stores": [
+        {
+          "code": "sm-kofu",
+          "name": "SlenderMe甲府店",
+          "month": {
+            "count": 20,
+            "confirmed": 14,
+            "visit": 7,
+            "contract": 2,
+            "confirmedRate": 70,
+            "visitRate": 50,
+            "bookingToVisitRate": 35,
+            "contractRate": 28.6
+          },
+          "ytd": {
+            "count": 129,
+            "confirmed": 107,
+            "visit": 96,
+            "contract": 37,
+            "confirmedRate": 82.9,
+            "visitRate": 89.7,
+            "bookingToVisitRate": 74.4,
+            "contractRate": 38.5
+          },
+          "prevMonth": {
+            "count": 19,
+            "confirmed": 16,
+            "visit": 15,
+            "contract": 4,
+            "confirmedRate": 84.2,
+            "visitRate": 93.8,
+            "bookingToVisitRate": 78.9,
+            "contractRate": 26.7
+          },
+          "prevYtd": {
+            "count": 128,
+            "confirmed": 114,
+            "visit": 111,
+            "contract": 43,
+            "confirmedRate": 89.1,
+            "visitRate": 97.4,
+            "bookingToVisitRate": 86.7,
+            "contractRate": 38.7
+          }
+        },
+        {
+          "code": "tm-kofu",
+          "name": "TouchMe甲府昭和店",
+          "month": {
+            "count": 11,
+            "confirmed": 8,
+            "visit": 3,
+            "contract": 2,
+            "confirmedRate": 72.7,
+            "visitRate": 37.5,
+            "bookingToVisitRate": 27.3,
+            "contractRate": 66.7
+          },
+          "ytd": {
+            "count": 151,
+            "confirmed": 97,
+            "visit": 87,
+            "contract": 36,
+            "confirmedRate": 64.2,
+            "visitRate": 89.7,
+            "bookingToVisitRate": 57.6,
+            "contractRate": 41.4
+          },
+          "prevMonth": {
+            "count": 19,
+            "confirmed": 17,
+            "visit": 13,
+            "contract": 6,
+            "confirmedRate": 89.5,
+            "visitRate": 76.5,
+            "bookingToVisitRate": 68.4,
+            "contractRate": 46.2
+          },
+          "prevYtd": {
+            "count": 165,
+            "confirmed": 147,
+            "visit": 120,
+            "contract": 49,
+            "confirmedRate": 89.1,
+            "visitRate": 81.6,
+            "bookingToVisitRate": 72.7,
+            "contractRate": 40.8
+          }
+        },
+        {
+          "code": "tm-fuji",
+          "name": "TouchMe富士店",
+          "month": {
+            "count": 13,
+            "confirmed": 11,
+            "visit": 6,
+            "contract": 2,
+            "confirmedRate": 84.6,
+            "visitRate": 54.5,
+            "bookingToVisitRate": 46.2,
+            "contractRate": 33.3
+          },
+          "ytd": {
+            "count": 145,
+            "confirmed": 126,
+            "visit": 98,
+            "contract": 41,
+            "confirmedRate": 86.9,
+            "visitRate": 77.8,
+            "bookingToVisitRate": 67.6,
+            "contractRate": 41.8
+          },
+          "prevMonth": {
+            "count": 25,
+            "confirmed": 23,
+            "visit": 19,
+            "contract": 10,
+            "confirmedRate": 92,
+            "visitRate": 82.6,
+            "bookingToVisitRate": 76,
+            "contractRate": 52.6
+          },
+          "prevYtd": {
+            "count": 177,
+            "confirmed": 168,
+            "visit": 127,
+            "contract": 47,
+            "confirmedRate": 94.9,
+            "visitRate": 75.6,
+            "bookingToVisitRate": 71.8,
+            "contractRate": 37
+          }
+        }
+      ]
     },
     {
       "name": "インスタ広告",
@@ -296,7 +430,141 @@
         "visitRate": 89,
         "bookingToVisitRate": 64.8,
         "contractRate": 33.3
-      }
+      },
+      "stores": [
+        {
+          "code": "sm-kofu",
+          "name": "SlenderMe甲府店",
+          "month": {
+            "count": 18,
+            "confirmed": 7,
+            "visit": 5,
+            "contract": 2,
+            "confirmedRate": 38.9,
+            "visitRate": 71.4,
+            "bookingToVisitRate": 27.8,
+            "contractRate": 40
+          },
+          "ytd": {
+            "count": 88,
+            "confirmed": 55,
+            "visit": 50,
+            "contract": 13,
+            "confirmedRate": 62.5,
+            "visitRate": 90.9,
+            "bookingToVisitRate": 56.8,
+            "contractRate": 26
+          },
+          "prevMonth": {
+            "count": 17,
+            "confirmed": 12,
+            "visit": 11,
+            "contract": 3,
+            "confirmedRate": 70.6,
+            "visitRate": 91.7,
+            "bookingToVisitRate": 64.7,
+            "contractRate": 27.3
+          },
+          "prevYtd": {
+            "count": 108,
+            "confirmed": 85,
+            "visit": 76,
+            "contract": 28,
+            "confirmedRate": 78.7,
+            "visitRate": 89.4,
+            "bookingToVisitRate": 70.4,
+            "contractRate": 36.8
+          }
+        },
+        {
+          "code": "tm-kofu",
+          "name": "TouchMe甲府昭和店",
+          "month": {
+            "count": 20,
+            "confirmed": 12,
+            "visit": 2,
+            "contract": 0,
+            "confirmedRate": 60,
+            "visitRate": 16.7,
+            "bookingToVisitRate": 10,
+            "contractRate": 0
+          },
+          "ytd": {
+            "count": 152,
+            "confirmed": 77,
+            "visit": 55,
+            "contract": 17,
+            "confirmedRate": 50.7,
+            "visitRate": 71.4,
+            "bookingToVisitRate": 36.2,
+            "contractRate": 30.9
+          },
+          "prevMonth": {
+            "count": 2,
+            "confirmed": 1,
+            "visit": 1,
+            "contract": 1,
+            "confirmedRate": 50,
+            "visitRate": 100,
+            "bookingToVisitRate": 50,
+            "contractRate": 100
+          },
+          "prevYtd": {
+            "count": 18,
+            "confirmed": 15,
+            "visit": 12,
+            "contract": 11,
+            "confirmedRate": 83.3,
+            "visitRate": 80,
+            "bookingToVisitRate": 66.7,
+            "contractRate": 91.7
+          }
+        },
+        {
+          "code": "tm-fuji",
+          "name": "TouchMe富士店",
+          "month": {
+            "count": 22,
+            "confirmed": 12,
+            "visit": 6,
+            "contract": 2,
+            "confirmedRate": 54.5,
+            "visitRate": 50,
+            "bookingToVisitRate": 27.3,
+            "contractRate": 33.3
+          },
+          "ytd": {
+            "count": 178,
+            "confirmed": 107,
+            "visit": 83,
+            "contract": 30,
+            "confirmedRate": 60.1,
+            "visitRate": 77.6,
+            "bookingToVisitRate": 46.6,
+            "contractRate": 36.1
+          },
+          "prevMonth": {
+            "count": 12,
+            "confirmed": 9,
+            "visit": 9,
+            "contract": 1,
+            "confirmedRate": 75,
+            "visitRate": 100,
+            "bookingToVisitRate": 75,
+            "contractRate": 11.1
+          },
+          "prevYtd": {
+            "count": 110,
+            "confirmed": 72,
+            "visit": 65,
+            "contract": 12,
+            "confirmedRate": 65.5,
+            "visitRate": 90.3,
+            "bookingToVisitRate": 59.1,
+            "contractRate": 18.5
+          }
+        }
+      ]
     },
     {
       "name": "Google",
@@ -339,7 +607,141 @@
         "visitRate": 85.7,
         "bookingToVisitRate": 62.1,
         "contractRate": 55.6
-      }
+      },
+      "stores": [
+        {
+          "code": "sm-kofu",
+          "name": "SlenderMe甲府店",
+          "month": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 1,
+            "confirmed": 1,
+            "visit": 1,
+            "contract": 0,
+            "confirmedRate": 100,
+            "visitRate": 100,
+            "bookingToVisitRate": 100,
+            "contractRate": 0
+          },
+          "prevMonth": {
+            "count": 1,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": 0,
+            "visitRate": null,
+            "bookingToVisitRate": 0,
+            "contractRate": null
+          },
+          "prevYtd": {
+            "count": 4,
+            "confirmed": 1,
+            "visit": 1,
+            "contract": 0,
+            "confirmedRate": 25,
+            "visitRate": 100,
+            "bookingToVisitRate": 25,
+            "contractRate": 0
+          }
+        },
+        {
+          "code": "tm-kofu",
+          "name": "TouchMe甲府昭和店",
+          "month": {
+            "count": 3,
+            "confirmed": 3,
+            "visit": 1,
+            "contract": 1,
+            "confirmedRate": 100,
+            "visitRate": 33.3,
+            "bookingToVisitRate": 33.3,
+            "contractRate": 100
+          },
+          "ytd": {
+            "count": 11,
+            "confirmed": 9,
+            "visit": 6,
+            "contract": 5,
+            "confirmedRate": 81.8,
+            "visitRate": 66.7,
+            "bookingToVisitRate": 54.5,
+            "contractRate": 83.3
+          },
+          "prevMonth": {
+            "count": 2,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": 0,
+            "visitRate": null,
+            "bookingToVisitRate": 0,
+            "contractRate": null
+          },
+          "prevYtd": {
+            "count": 10,
+            "confirmed": 6,
+            "visit": 6,
+            "contract": 2,
+            "confirmedRate": 60,
+            "visitRate": 100,
+            "bookingToVisitRate": 60,
+            "contractRate": 33.3
+          }
+        },
+        {
+          "code": "tm-fuji",
+          "name": "TouchMe富士店",
+          "month": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 12,
+            "confirmed": 9,
+            "visit": 9,
+            "contract": 2,
+            "confirmedRate": 75,
+            "visitRate": 100,
+            "bookingToVisitRate": 75,
+            "contractRate": 22.2
+          },
+          "prevMonth": {
+            "count": 2,
+            "confirmed": 2,
+            "visit": 2,
+            "contract": 1,
+            "confirmedRate": 100,
+            "visitRate": 100,
+            "bookingToVisitRate": 100,
+            "contractRate": 50
+          },
+          "prevYtd": {
+            "count": 15,
+            "confirmed": 14,
+            "visit": 11,
+            "contract": 8,
+            "confirmedRate": 93.3,
+            "visitRate": 78.6,
+            "bookingToVisitRate": 73.3,
+            "contractRate": 72.7
+          }
+        }
+      ]
     },
     {
       "name": "アフィリエイト",
@@ -382,7 +784,141 @@
         "visitRate": 75.1,
         "bookingToVisitRate": 45.7,
         "contractRate": 51.4
-      }
+      },
+      "stores": [
+        {
+          "code": "sm-kofu",
+          "name": "SlenderMe甲府店",
+          "month": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 27,
+            "confirmed": 18,
+            "visit": 17,
+            "contract": 9,
+            "confirmedRate": 66.7,
+            "visitRate": 94.4,
+            "bookingToVisitRate": 63,
+            "contractRate": 52.9
+          },
+          "prevMonth": {
+            "count": 2,
+            "confirmed": 1,
+            "visit": 1,
+            "contract": 1,
+            "confirmedRate": 50,
+            "visitRate": 100,
+            "bookingToVisitRate": 50,
+            "contractRate": 100
+          },
+          "prevYtd": {
+            "count": 25,
+            "confirmed": 18,
+            "visit": 17,
+            "contract": 7,
+            "confirmedRate": 72,
+            "visitRate": 94.4,
+            "bookingToVisitRate": 68,
+            "contractRate": 41.2
+          }
+        },
+        {
+          "code": "tm-kofu",
+          "name": "TouchMe甲府昭和店",
+          "month": {
+            "count": 18,
+            "confirmed": 10,
+            "visit": 5,
+            "contract": 3,
+            "confirmedRate": 55.6,
+            "visitRate": 50,
+            "bookingToVisitRate": 27.8,
+            "contractRate": 60
+          },
+          "ytd": {
+            "count": 134,
+            "confirmed": 69,
+            "visit": 54,
+            "contract": 29,
+            "confirmedRate": 51.5,
+            "visitRate": 78.3,
+            "bookingToVisitRate": 40.3,
+            "contractRate": 53.7
+          },
+          "prevMonth": {
+            "count": 13,
+            "confirmed": 5,
+            "visit": 5,
+            "contract": 3,
+            "confirmedRate": 38.5,
+            "visitRate": 100,
+            "bookingToVisitRate": 38.5,
+            "contractRate": 60
+          },
+          "prevYtd": {
+            "count": 108,
+            "confirmed": 69,
+            "visit": 52,
+            "contract": 27,
+            "confirmedRate": 63.9,
+            "visitRate": 75.4,
+            "bookingToVisitRate": 48.1,
+            "contractRate": 51.9
+          }
+        },
+        {
+          "code": "tm-fuji",
+          "name": "TouchMe富士店",
+          "month": {
+            "count": 17,
+            "confirmed": 7,
+            "visit": 1,
+            "contract": 1,
+            "confirmedRate": 41.2,
+            "visitRate": 14.3,
+            "bookingToVisitRate": 5.9,
+            "contractRate": 100
+          },
+          "ytd": {
+            "count": 112,
+            "confirmed": 67,
+            "visit": 44,
+            "contract": 20,
+            "confirmedRate": 59.8,
+            "visitRate": 65.7,
+            "bookingToVisitRate": 39.3,
+            "contractRate": 45.5
+          },
+          "prevMonth": {
+            "count": 17,
+            "confirmed": 9,
+            "visit": 7,
+            "contract": 3,
+            "confirmedRate": 52.9,
+            "visitRate": 77.8,
+            "bookingToVisitRate": 41.2,
+            "contractRate": 42.9
+          },
+          "prevYtd": {
+            "count": 178,
+            "confirmed": 102,
+            "visit": 73,
+            "contract": 39,
+            "confirmedRate": 57.3,
+            "visitRate": 71.6,
+            "bookingToVisitRate": 41,
+            "contractRate": 53.4
+          }
+        }
+      ]
     },
     {
       "name": "友達紹介",
@@ -425,7 +961,141 @@
         "visitRate": 95.8,
         "bookingToVisitRate": 92,
         "contractRate": 65.2
-      }
+      },
+      "stores": [
+        {
+          "code": "sm-kofu",
+          "name": "SlenderMe甲府店",
+          "month": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 1,
+            "confirmed": 1,
+            "visit": 1,
+            "contract": 0,
+            "confirmedRate": 100,
+            "visitRate": 100,
+            "bookingToVisitRate": 100,
+            "contractRate": 0
+          },
+          "prevMonth": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "prevYtd": {
+            "count": 3,
+            "confirmed": 3,
+            "visit": 3,
+            "contract": 2,
+            "confirmedRate": 100,
+            "visitRate": 100,
+            "bookingToVisitRate": 100,
+            "contractRate": 66.7
+          }
+        },
+        {
+          "code": "tm-kofu",
+          "name": "TouchMe甲府昭和店",
+          "month": {
+            "count": 1,
+            "confirmed": 1,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": 100,
+            "visitRate": 0,
+            "bookingToVisitRate": 0,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 11,
+            "confirmed": 10,
+            "visit": 7,
+            "contract": 7,
+            "confirmedRate": 90.9,
+            "visitRate": 70,
+            "bookingToVisitRate": 63.6,
+            "contractRate": 100
+          },
+          "prevMonth": {
+            "count": 3,
+            "confirmed": 3,
+            "visit": 2,
+            "contract": 1,
+            "confirmedRate": 100,
+            "visitRate": 66.7,
+            "bookingToVisitRate": 66.7,
+            "contractRate": 50
+          },
+          "prevYtd": {
+            "count": 16,
+            "confirmed": 15,
+            "visit": 14,
+            "contract": 10,
+            "confirmedRate": 93.8,
+            "visitRate": 93.3,
+            "bookingToVisitRate": 87.5,
+            "contractRate": 71.4
+          }
+        },
+        {
+          "code": "tm-fuji",
+          "name": "TouchMe富士店",
+          "month": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 8,
+            "confirmed": 8,
+            "visit": 7,
+            "contract": 4,
+            "confirmedRate": 100,
+            "visitRate": 87.5,
+            "bookingToVisitRate": 87.5,
+            "contractRate": 57.1
+          },
+          "prevMonth": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "prevYtd": {
+            "count": 6,
+            "confirmed": 6,
+            "visit": 6,
+            "contract": 3,
+            "confirmedRate": 100,
+            "visitRate": 100,
+            "bookingToVisitRate": 100,
+            "contractRate": 50
+          }
+        }
+      ]
     },
     {
       "name": "事業所内紹介",
@@ -468,7 +1138,141 @@
         "visitRate": 81.8,
         "bookingToVisitRate": 81.8,
         "contractRate": 61.1
-      }
+      },
+      "stores": [
+        {
+          "code": "sm-kofu",
+          "name": "SlenderMe甲府店",
+          "month": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "prevMonth": {
+            "count": 1,
+            "confirmed": 1,
+            "visit": 1,
+            "contract": 1,
+            "confirmedRate": 100,
+            "visitRate": 100,
+            "bookingToVisitRate": 100,
+            "contractRate": 100
+          },
+          "prevYtd": {
+            "count": 3,
+            "confirmed": 3,
+            "visit": 3,
+            "contract": 2,
+            "confirmedRate": 100,
+            "visitRate": 100,
+            "bookingToVisitRate": 100,
+            "contractRate": 66.7
+          }
+        },
+        {
+          "code": "tm-kofu",
+          "name": "TouchMe甲府昭和店",
+          "month": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "prevMonth": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "prevYtd": {
+            "count": 3,
+            "confirmed": 3,
+            "visit": 3,
+            "contract": 2,
+            "confirmedRate": 100,
+            "visitRate": 100,
+            "bookingToVisitRate": 100,
+            "contractRate": 66.7
+          }
+        },
+        {
+          "code": "tm-fuji",
+          "name": "TouchMe富士店",
+          "month": {
+            "count": 3,
+            "confirmed": 3,
+            "visit": 2,
+            "contract": 2,
+            "confirmedRate": 100,
+            "visitRate": 66.7,
+            "bookingToVisitRate": 66.7,
+            "contractRate": 100
+          },
+          "ytd": {
+            "count": 24,
+            "confirmed": 21,
+            "visit": 17,
+            "contract": 10,
+            "confirmedRate": 87.5,
+            "visitRate": 81,
+            "bookingToVisitRate": 70.8,
+            "contractRate": 58.8
+          },
+          "prevMonth": {
+            "count": 9,
+            "confirmed": 9,
+            "visit": 6,
+            "contract": 2,
+            "confirmedRate": 100,
+            "visitRate": 66.7,
+            "bookingToVisitRate": 66.7,
+            "contractRate": 33.3
+          },
+          "prevYtd": {
+            "count": 16,
+            "confirmed": 16,
+            "visit": 12,
+            "contract": 7,
+            "confirmedRate": 100,
+            "visitRate": 75,
+            "bookingToVisitRate": 75,
+            "contractRate": 58.3
+          }
+        }
+      ]
     },
     {
       "name": "ネット検索",
@@ -511,7 +1315,141 @@
         "visitRate": 83.3,
         "bookingToVisitRate": 83.3,
         "contractRate": 20
-      }
+      },
+      "stores": [
+        {
+          "code": "sm-kofu",
+          "name": "SlenderMe甲府店",
+          "month": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 2,
+            "confirmed": 1,
+            "visit": 1,
+            "contract": 1,
+            "confirmedRate": 50,
+            "visitRate": 100,
+            "bookingToVisitRate": 50,
+            "contractRate": 100
+          },
+          "prevMonth": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "prevYtd": {
+            "count": 2,
+            "confirmed": 2,
+            "visit": 1,
+            "contract": 0,
+            "confirmedRate": 100,
+            "visitRate": 50,
+            "bookingToVisitRate": 50,
+            "contractRate": 0
+          }
+        },
+        {
+          "code": "tm-kofu",
+          "name": "TouchMe甲府昭和店",
+          "month": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 3,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": 0,
+            "visitRate": null,
+            "bookingToVisitRate": 0,
+            "contractRate": null
+          },
+          "prevMonth": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "prevYtd": {
+            "count": 2,
+            "confirmed": 2,
+            "visit": 2,
+            "contract": 1,
+            "confirmedRate": 100,
+            "visitRate": 100,
+            "bookingToVisitRate": 100,
+            "contractRate": 50
+          }
+        },
+        {
+          "code": "tm-fuji",
+          "name": "TouchMe富士店",
+          "month": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "prevMonth": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "prevYtd": {
+            "count": 2,
+            "confirmed": 2,
+            "visit": 2,
+            "contract": 0,
+            "confirmedRate": 100,
+            "visitRate": 100,
+            "bookingToVisitRate": 100,
+            "contractRate": 0
+          }
+        }
+      ]
     },
     {
       "name": "その他",
@@ -554,7 +1492,141 @@
         "visitRate": 100,
         "bookingToVisitRate": 79.2,
         "contractRate": 47.4
-      }
+      },
+      "stores": [
+        {
+          "code": "sm-kofu",
+          "name": "SlenderMe甲府店",
+          "month": {
+            "count": 1,
+            "confirmed": 1,
+            "visit": 1,
+            "contract": 1,
+            "confirmedRate": 100,
+            "visitRate": 100,
+            "bookingToVisitRate": 100,
+            "contractRate": 100
+          },
+          "ytd": {
+            "count": 10,
+            "confirmed": 10,
+            "visit": 9,
+            "contract": 4,
+            "confirmedRate": 100,
+            "visitRate": 90,
+            "bookingToVisitRate": 90,
+            "contractRate": 44.4
+          },
+          "prevMonth": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "prevYtd": {
+            "count": 7,
+            "confirmed": 6,
+            "visit": 6,
+            "contract": 0,
+            "confirmedRate": 85.7,
+            "visitRate": 100,
+            "bookingToVisitRate": 85.7,
+            "contractRate": 0
+          }
+        },
+        {
+          "code": "tm-kofu",
+          "name": "TouchMe甲府昭和店",
+          "month": {
+            "count": 1,
+            "confirmed": 1,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": 100,
+            "visitRate": 0,
+            "bookingToVisitRate": 0,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 10,
+            "confirmed": 4,
+            "visit": 2,
+            "contract": 0,
+            "confirmedRate": 40,
+            "visitRate": 50,
+            "bookingToVisitRate": 20,
+            "contractRate": 0
+          },
+          "prevMonth": {
+            "count": 3,
+            "confirmed": 2,
+            "visit": 2,
+            "contract": 2,
+            "confirmedRate": 66.7,
+            "visitRate": 100,
+            "bookingToVisitRate": 66.7,
+            "contractRate": 100
+          },
+          "prevYtd": {
+            "count": 12,
+            "confirmed": 9,
+            "visit": 9,
+            "contract": 6,
+            "confirmedRate": 75,
+            "visitRate": 100,
+            "bookingToVisitRate": 75,
+            "contractRate": 66.7
+          }
+        },
+        {
+          "code": "tm-fuji",
+          "name": "TouchMe富士店",
+          "month": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "ytd": {
+            "count": 5,
+            "confirmed": 5,
+            "visit": 4,
+            "contract": 2,
+            "confirmedRate": 100,
+            "visitRate": 80,
+            "bookingToVisitRate": 80,
+            "contractRate": 50
+          },
+          "prevMonth": {
+            "count": 0,
+            "confirmed": 0,
+            "visit": 0,
+            "contract": 0,
+            "confirmedRate": null,
+            "visitRate": null,
+            "bookingToVisitRate": null,
+            "contractRate": null
+          },
+          "prevYtd": {
+            "count": 5,
+            "confirmed": 4,
+            "visit": 4,
+            "contract": 3,
+            "confirmedRate": 80,
+            "visitRate": 100,
+            "bookingToVisitRate": 80,
+            "contractRate": 75
+          }
+        }
+      ]
     }
   ],
   "heatmap": {

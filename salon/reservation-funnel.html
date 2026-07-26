@@ -313,6 +313,31 @@ body {
 .lag-note strong { color: var(--navy-900); font-weight: 700; }
 .lag-note[hidden] { display: none; }
 
+/* 媒体別テーブル：行クリックで店舗別内訳を開く */
+.media-row { cursor: pointer; }
+.media-row:focus-visible { outline: 2px solid var(--navy-600); outline-offset: -2px; }
+.media-row.is-open { background: var(--navy-50); }
+.media-row.is-open .cell-store-name { color: var(--navy-700); }
+.row-toggle {
+  display: inline-block; width: 0; height: 0; margin-right: 10px; vertical-align: middle;
+  border-left: 5px solid var(--gray-400); border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent; transition: transform 0.15s ease;
+}
+.media-row.is-open .row-toggle { transform: rotate(90deg); border-left-color: var(--orange-600); }
+.media-detail-row { background: var(--gray-50); }
+.media-detail-row:hover { background: var(--gray-100); }
+.media-detail-row td { font-size: 13px; padding-top: 10px; padding-bottom: 10px; }
+.media-detail-row .cell-num { font-size: 14px; color: var(--gray-700); }
+.media-detail-row[hidden] { display: none; }
+.detail-store {
+  font-size: 13px; font-weight: 600; color: var(--gray-600); padding-left: 26px;
+  position: relative; display: inline-block;
+}
+.detail-store::before {
+  content: ''; position: absolute; left: 10px; top: 50%; width: 8px; height: 1px;
+  background: var(--gray-300);
+}
+
 /* 極端に狭い端末ではKPIカードを1列に落とす（2列だと数値が枠からはみ出す） */
 @media (max-width: 360px) {
   .kpi-grid { grid-template-columns: 1fr; }
@@ -397,11 +422,11 @@ body {
     <div class="section-header">
       <span class="section-number">03</span>
       <h2 class="section-title">媒体別 予約ファネル</h2>
-      <span class="section-desc">予約発生数の多い順</span>
+      <span class="section-desc">予約発生数の多い順 / 行をクリックで店舗別内訳</span>
     </div>
     <div class="table-scroll">
       <table class="compare-table" id="media-table">
-        <thead><tr><th>媒体</th><th>予約発生</th><th>確定</th><th>来店</th><th>確定率</th><th>来店率</th><th>予約→来店率</th></tr></thead>
+        <thead><tr><th>媒体 / 店舗</th><th>予約発生</th><th>確定</th><th>来店</th><th>確定率</th><th>来店率</th><th>予約→来店率</th></tr></thead>
         <tbody></tbody>
       </table>
     </div>
@@ -454,6 +479,8 @@ const TARGET_FALLBACK = { confirmedRate: 80, visitRate: 80, bookingToVisitRate: 
 let DATA = null;
 let NOTES = null;
 let period = 'month';
+// 展開中の媒体名。期間を切り替えても開閉状態を保つ
+const openMedia = new Set();
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) =>
@@ -594,17 +621,20 @@ function render() {
       </div>
     </div>`).join('');
 
-  // 03 媒体別
+  // 03 媒体別（行クリックで店舗別内訳を展開）
   const mediaRows = d.media
     .filter((m) => m[period].count > 0 || m[comparePeriod].count > 0)
     .sort((a, b) => b[period].count - a[period].count);
   $('media-table').querySelector('tbody').innerHTML = mediaRows.length === 0
     ? '<tr><td colspan="7">この期間のデータがありません</td></tr>'
-    : mediaRows.map((m) => {
+    : mediaRows.map((m, i) => {
         const f = m[period];
         const prev = m[comparePeriod];
-        return `<tr>
-          <td><span class="cell-store-name">${esc(m.name)}</span></td>
+        const key = 'media-' + i;
+        const expanded = openMedia.has(m.name);
+
+        const head = `<tr class="media-row${expanded ? ' is-open' : ''}" data-media="${esc(m.name)}" data-key="${key}" tabindex="0" role="button" aria-expanded="${expanded}">
+          <td><span class="row-toggle" aria-hidden="true"></span><span class="cell-store-name">${esc(m.name)}</span></td>
           <td><span class="cell-num">${num(f.count)}</span></td>
           <td><span class="cell-num">${num(f.confirmed)}</span></td>
           <td><span class="cell-num">${num(f.visit)}</span></td>
@@ -612,7 +642,26 @@ function render() {
           <td>${rate(f.visitRate)}</td>
           <td><strong class="${grade(f.bookingToVisitRate, target.bookingToVisitRate)}-text">${rate(f.bookingToVisitRate)}</strong>${deltaChip(f.bookingToVisitRate, prev.bookingToVisitRate)}</td>
         </tr>`;
+
+        const detail = (m.stores || []).map((s) => {
+          const sf = s[period];
+          const sPrev = s[comparePeriod];
+          // その媒体をまったく使っていない店舗は行ごと省く
+          if (sf.count === 0 && sPrev.count === 0) return '';
+          return `<tr class="media-detail-row" data-parent="${key}"${expanded ? '' : ' hidden'}>
+            <td><span class="detail-store">${esc(s.name)}</span></td>
+            <td><span class="cell-num">${num(sf.count)}</span></td>
+            <td><span class="cell-num">${num(sf.confirmed)}</span></td>
+            <td><span class="cell-num">${num(sf.visit)}</span></td>
+            <td>${rate(sf.confirmedRate)}</td>
+            <td>${rate(sf.visitRate)}</td>
+            <td><strong class="${grade(sf.bookingToVisitRate, target.bookingToVisitRate)}-text">${rate(sf.bookingToVisitRate)}</strong>${deltaChip(sf.bookingToVisitRate, sPrev.bookingToVisitRate)}</td>
+          </tr>`;
+        }).join('');
+
+        return head + detail;
       }).join('');
+  bindMediaRows();
 
   // 04 目標達成度
   const maxScale = 100;
@@ -682,6 +731,27 @@ function render() {
   if (d.warnings && d.warnings.length) {
     showStatus('warn', `一部のシートを読み取れませんでした：${d.warnings.join(' / ')}`);
   }
+}
+
+/** 媒体行の開閉。期間を切り替えても開いた状態を保つため媒体名で覚えておく */
+function toggleMedia(row) {
+  const name = row.dataset.media;
+  const key = row.dataset.key;
+  const willOpen = !openMedia.has(name);
+  if (willOpen) openMedia.add(name); else openMedia.delete(name);
+  row.classList.toggle('is-open', willOpen);
+  row.setAttribute('aria-expanded', String(willOpen));
+  document.querySelectorAll(`.media-detail-row[data-parent="${key}"]`)
+    .forEach((tr) => { tr.hidden = !willOpen; });
+}
+
+function bindMediaRows() {
+  document.querySelectorAll('#media-table .media-row').forEach((row) => {
+    row.addEventListener('click', () => toggleMedia(row));
+    row.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMedia(row); }
+    });
+  });
 }
 
 function showStatus(kind, message) {

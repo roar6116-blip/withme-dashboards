@@ -191,12 +191,14 @@ async function main() {
   const total = {};
   const byStore = {};
   const byMedia = {};
+  const byMediaStore = {}; // 媒体 × 店舗のクロス（媒体別テーブルの展開用）
   const byStoreMenu = {};
 
   for (const key of periodKeys) {
     total[key] = newBucket();
     byStore[key] = {};
     byMedia[key] = {};
+    byMediaStore[key] = {};
     byStoreMenu[key] = {};
     for (const s of STORES) {
       byStore[key][s.code] = newBucket();
@@ -212,6 +214,11 @@ async function main() {
       if (byStore[key][r.store]) bump(byStore[key][r.store], r);
       if (!byMedia[key][r.media]) byMedia[key][r.media] = newBucket();
       bump(byMedia[key][r.media], r);
+      if (!byMediaStore[key][r.media]) {
+        byMediaStore[key][r.media] = Object.fromEntries(STORES.map((s) => [s.code, newBucket()]));
+      }
+      const mediaStoreBucket = byMediaStore[key][r.media][r.store];
+      if (mediaStoreBucket) bump(mediaStoreBucket, r);
       const menuBucket = byStoreMenu[key][r.store]?.[r.menu];
       if (menuBucket) bump(menuBucket, r);
     }
@@ -245,6 +252,12 @@ async function main() {
     media: mediaNames.map((name) => ({
       name,
       ...perPeriod((k) => byMedia[k][name] || newBucket()),
+      // 媒体行を展開したときに出す店舗別の内訳
+      stores: STORES.map((s) => ({
+        code: s.code,
+        name: s.name,
+        ...perPeriod((k) => byMediaStore[k][name]?.[s.code] || newBucket()),
+      })),
     })),
     heatmap: {
       menus: MENUS,
