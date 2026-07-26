@@ -112,6 +112,13 @@ node build-reviews-json.js
 
 スプシID（URL中の `/d/{ここ}/edit`）を GitHub Secrets `REVIEW_MASTER_SHEET_ID` に登録。
 
+> **⚠️ この手順（2-1「店舗評価マスタ」スプシの手動入力）は現在使っていません（2026-07-27 確認）。**
+> HPBの口コミ件数・評価・ブログ数は `scripts/fetch-hpb-trends.js`（週次スクレイピング）が
+> 自動取得しており、`reviews.json` の `hpb` は `available: true` で正常に埋まっています。
+> そのため `REVIEW_MASTER_SHEET_ID` は未設定のままで問題なく、
+> `fetch-hpb-data.js` が「Skipping」ログを出しますが**無害**です。
+> 手動入力での上書き運用に戻したい場合のみ、この節に従ってセットアップしてください。
+
 ### 2-2. Service Account 作成（スプシ読取用）
 
 1. Cloud Console: https://console.cloud.google.com/iam-admin/serviceaccounts?project=withme-gbp-api
