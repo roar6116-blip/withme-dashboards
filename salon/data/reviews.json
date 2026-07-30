@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-07-30T04:52:20.283Z",
+  "generated_at": "2026-07-30T07:30:06.425Z",
   "data_sources": {
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
@@ -362,7 +362,7 @@
       "google": {
         "label": "小顔矯正コルギ専門店 KaoKao甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJp8kWlv_3G2ARObteUfTXtKM",
-        "review_count": 101,
+        "review_count": 100,
         "rating": 5,
         "new_reviews_this_month": 0,
         "place_id": "ChIJp8kWlv_3G2ARObteUfTXtKM"
@@ -461,7 +461,7 @@
         "2025-09": 2
       },
       "totals": {
-        "review_count": 257,
+        "review_count": 256,
         "weighted_rating": 4.9,
         "blog_count_total": 180,
         "blog_count_this_month": 18,
@@ -682,7 +682,7 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2757,
+    "total_reviews": 2756,
     "total_new_this_month": 102,
     "average_rating": 4.87,
     "total_blog_this_month": 106,
