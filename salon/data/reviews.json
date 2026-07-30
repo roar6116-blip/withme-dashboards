@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-07-30T17:17:57.531Z",
+  "generated_at": "2026-07-30T19:13:33.479Z",
   "data_sources": {
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
@@ -27,7 +27,7 @@
       "google": {
         "label": "Touch Me甲府昭和店【タッチミー】",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJr4DRCWj3G2AR-ZL9_5Qrds0",
-        "review_count": 387,
+        "review_count": 386,
         "rating": 5,
         "new_reviews_this_month": 0,
         "place_id": "ChIJr4DRCWj3G2AR-ZL9_5Qrds0"
@@ -112,7 +112,7 @@
         "2025-08": 6
       },
       "totals": {
-        "review_count": 1005,
+        "review_count": 1004,
         "weighted_rating": 4.91,
         "blog_count_total": 450,
         "blog_count_this_month": 21,
@@ -682,7 +682,7 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2756,
+    "total_reviews": 2755,
     "total_new_this_month": 102,
     "average_rating": 4.87,
     "total_blog_this_month": 106,
@@ -693,7 +693,7 @@
     {
       "level": "info",
       "store_id": "tm_kofu_showa",
-      "message": "TouchMe甲府昭和店 が総合1位（HPB+Google合計 1005件・★4.91）"
+      "message": "TouchMe甲府昭和店 が総合1位（HPB+Google合計 1004件・★4.91）"
     }
   ]
 }
