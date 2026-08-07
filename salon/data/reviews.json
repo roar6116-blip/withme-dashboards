@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-08-06T13:46:27.806Z",
+  "generated_at": "2026-08-07T00:36:39.742Z",
   "data_sources": {
     "google": "Places API Text Search (auto, hourly)",
     "hpb": "manual input (sample values)",
@@ -27,8 +27,8 @@
       "google": {
         "label": "Touch Me甲府昭和店【タッチミー】",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJr4DRCWj3G2AR-ZL9_5Qrds0",
-        "review_count": 387,
-        "rating": 5,
+        "review_count": 0,
+        "rating": 0,
         "new_reviews_this_month": 0,
         "place_id": "ChIJr4DRCWj3G2AR-ZL9_5Qrds0"
       },
@@ -113,14 +113,14 @@
         "2025-08": 2
       },
       "totals": {
-        "review_count": 1005,
-        "weighted_rating": 4.91,
+        "review_count": 618,
+        "weighted_rating": 4.86,
         "blog_count_total": 450,
         "blog_count_this_month": 1,
         "new_reviews_this_month": 5
       },
-      "score": 96,
-      "rank": 1
+      "score": 81,
+      "rank": 2
     },
     {
       "store_id": "tm_fuji",
@@ -228,8 +228,8 @@
         "blog_count_this_month": 2,
         "new_reviews_this_month": 3
       },
-      "score": 80,
-      "rank": 2
+      "score": 92,
+      "rank": 1
     },
     {
       "store_id": "sm_kofu",
@@ -344,7 +344,7 @@
         "blog_count_this_month": 2,
         "new_reviews_this_month": 11
       },
-      "score": 60,
+      "score": 67,
       "rank": 3
     },
     {
@@ -475,7 +475,7 @@
         "blog_count_this_month": 1,
         "new_reviews_this_month": 1
       },
-      "score": 46,
+      "score": 50,
       "rank": 4
     },
     {
@@ -628,7 +628,7 @@
         "blog_count_this_month": 2,
         "new_reviews_this_month": 2
       },
-      "score": 40,
+      "score": 43,
       "rank": 5
     },
     {
@@ -691,14 +691,14 @@
         "blog_count_this_month": 0,
         "new_reviews_this_month": 0
       },
-      "score": 31,
+      "score": 32,
       "rank": 6
     }
   ],
   "company_totals": {
-    "total_reviews": 2757,
+    "total_reviews": 2370,
     "total_new_this_month": 22,
-    "average_rating": 4.87,
+    "average_rating": 4.85,
     "total_blog_this_month": 8,
     "total_blog_all": 1460,
     "store_count": 6
@@ -706,8 +706,8 @@
   "alerts": [
     {
       "level": "info",
-      "store_id": "tm_kofu_showa",
-      "message": "TouchMe甲府昭和店 が総合1位（HPB+Google合計 1005件・★4.91）"
+      "store_id": "tm_fuji",
+      "message": "TouchMe富士店 が総合1位（HPB+Google合計 801件・★4.81）"
     }
   ]
 }
