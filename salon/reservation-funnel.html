@@ -294,6 +294,39 @@ body {
   margin-left: auto;
 }
 
+/* 期間指定 */
+.range-picker {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  background: var(--navy-50); border: 1px solid var(--navy-100); border-radius: 8px;
+  padding: 14px 20px; margin: -28px 0 16px;
+}
+.range-picker[hidden] { display: none; }
+.range-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gray-500);
+}
+.range-input {
+  font-family: inherit; font-size: 13px; padding: 7px 10px;
+  border: 1px solid var(--gray-300); border-radius: 6px; background: var(--white);
+  color: var(--gray-900);
+}
+.range-input:focus { outline: 2px solid var(--navy-500); outline-offset: -1px; }
+.range-sep { color: var(--gray-400); font-size: 13px; }
+.range-apply {
+  font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;
+  padding: 8px 18px; border-radius: 6px; border: 1px solid var(--navy-900);
+  background: var(--navy-900); color: var(--white); transition: opacity 0.15s ease;
+}
+.range-apply:hover { opacity: 0.85; }
+.range-hint {
+  font-size: 11px; color: var(--gray-500); flex-basis: 100%; line-height: 1.6;
+}
+
+.period-note-line {
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gray-500);
+  margin: -28px 0 40px; padding-left: 2px;
+}
+
 .compare-table tbody tr.is-current { background: var(--navy-50); }
 .compare-table tbody tr.is-current .cell-store-name { color: var(--navy-700); }
 .good-text { color: var(--good); }
@@ -370,10 +403,25 @@ body {
 
 <div class="period-switch" id="period-switch" hidden>
   <span class="period-switch-label">表示期間</span>
-  <button type="button" class="period-btn is-active" data-period="month">当月</button>
-  <button type="button" class="period-btn" data-period="ytd">今年累計</button>
-  <span class="period-switch-note" id="period-note"></span>
+  <button type="button" class="period-btn is-active" data-preset="month">当月</button>
+  <button type="button" class="period-btn" data-preset="m3">直近3ヶ月</button>
+  <button type="button" class="period-btn" data-preset="m6">直近6ヶ月</button>
+  <button type="button" class="period-btn" data-preset="m12">直近12ヶ月</button>
+  <button type="button" class="period-btn" data-preset="ytd">今年累計</button>
+  <button type="button" class="period-btn" data-preset="custom">期間指定</button>
 </div>
+
+<div class="range-picker" id="range-picker" hidden>
+  <label class="range-label" for="range-from">開始</label>
+  <input type="date" id="range-from" class="range-input">
+  <span class="range-sep">〜</span>
+  <label class="range-label" for="range-to">終了</label>
+  <input type="date" id="range-to" class="range-input">
+  <button type="button" class="range-apply" id="range-apply">この期間で表示</button>
+  <span class="range-hint" id="range-hint"></span>
+</div>
+
+<p class="period-note-line" id="period-note"></p>
 
 <p class="lag-note" id="lag-note" hidden>
   当月は「予約が発生した日」を基準に、<strong>本日入力ぶんまで</strong>集計しています。今月予約された方の来店はこれから先の日付にも入るため、
@@ -478,9 +526,123 @@ body {
 const TARGET_FALLBACK = { confirmedRate: 80, visitRate: 80, bookingToVisitRate: 64 };
 let DATA = null;
 let NOTES = null;
-let period = 'month';
+let preset = 'month';
+let range = null;        // { from, to, label } 表示中の期間
+let customRange = null;  // 期間指定で選ばれた範囲
 // 展開中の媒体名。期間を切り替えても開閉状態を保つ
 const openMedia = new Set();
+
+// ---------------------------------------------------------------- 期間の組み立て
+
+const ymd = (y, m, d) =>
+  `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+const parseYmd = (s) => { const [y, m, d] = s.split('-').map(Number); return { y, m, d }; };
+const jp = (s) => { const p = parseYmd(s); return `${p.y}/${p.m}/${p.d}`; };
+
+/** asOf から N ヶ月前の1日を返す（当月を含めて N ヶ月ぶん） */
+function monthsBackStart(asOf, months) {
+  const p = parseYmd(asOf);
+  let y = p.y;
+  let m = p.m - (months - 1);
+  while (m <= 0) { m += 12; y -= 1; }
+  return ymd(y, m, 1);
+}
+
+/** 同じ範囲を1年前にずらす（前年同期の比較用） */
+function shiftYear(dateStr, delta) {
+  const p = parseYmd(dateStr);
+  const y = p.y + delta;
+  // 2/29 が存在しない年に落ちる場合は 2/28 に丸める
+  const last = new Date(Date.UTC(y, p.m, 0)).getUTCDate();
+  return ymd(y, p.m, Math.min(p.d, last));
+}
+
+function buildRange(key) {
+  const asOf = DATA.asOf;
+  const p = parseYmd(asOf);
+  switch (key) {
+    case 'month':
+      return { from: ymd(p.y, p.m, 1), to: asOf, label: `${p.y}年${p.m}月（1日〜${p.d}日）` };
+    case 'm3':
+    case 'm6':
+    case 'm12': {
+      const n = Number(key.slice(1));
+      const from = monthsBackStart(asOf, n);
+      return { from, to: asOf, label: `直近${n}ヶ月（${jp(from)}〜${jp(asOf)}）` };
+    }
+    case 'ytd':
+      return { from: ymd(p.y, 1, 1), to: asOf, label: `${p.y}年 累計（1/1〜${p.m}/${p.d}）` };
+    case 'custom':
+      return customRange
+        ? { ...customRange, label: `期間指定（${jp(customRange.from)}〜${jp(customRange.to)}）` }
+        : buildRange('month');
+    default:
+      return buildRange('month');
+  }
+}
+
+// ---------------------------------------------------------------- ファクトテーブル集計
+
+/**
+ * facts.rows を期間で絞り込み、指定した軸で合算する。
+ * pick は行から集計キーを返す関数。null を返した行は無視する。
+ */
+function aggregate(from, to, pick) {
+  const f = DATA.facts;
+  const map = new Map();
+  for (const r of f.rows) {
+    const date = r[0];
+    if (date < from || date > to) continue;
+    const key = pick(r);
+    if (key == null) continue;
+    let b = map.get(key);
+    if (!b) { b = { count: 0, confirmed: 0, visit: 0, contract: 0 }; map.set(key, b); }
+    b.count += r[4]; b.confirmed += r[5]; b.visit += r[6]; b.contract += r[7];
+  }
+  return map;
+}
+
+const ALL = '__all__';
+// 複合キーの区切り。集計側と参照側でズレると全て取り違えるので定数で共有する
+const SEP = '::';
+const keyOf = (a, b) => a + SEP + b;
+
+function finalizeBucket(b) {
+  const empty = { count: 0, confirmed: 0, visit: 0, contract: 0 };
+  const x = b || empty;
+  const pct = (n, d) => (d ? Math.round((n / d) * 1000) / 10 : null);
+  return {
+    count: x.count, confirmed: x.confirmed, visit: x.visit, contract: x.contract,
+    confirmedRate: pct(x.confirmed, x.count),
+    visitRate: pct(x.visit, x.confirmed),
+    bookingToVisitRate: pct(x.visit, x.count),
+    contractRate: pct(x.contract, x.visit),
+  };
+}
+
+/** 表示中の期間と、その1年前の同じ範囲の両方を集計して返す */
+function computeView(r) {
+  const prev = { from: shiftYear(r.from, -1), to: shiftYear(r.to, -1) };
+  const f = DATA.facts;
+
+  const build = (from, to) => ({
+    total: aggregate(from, to, () => ALL),
+    store: aggregate(from, to, (row) => f.stores[row[1]]?.code ?? null),
+    media: aggregate(from, to, (row) => f.media[row[3]] ?? null),
+    mediaStore: aggregate(from, to, (row) => {
+      const s = f.stores[row[1]]?.code;
+      const m = f.media[row[3]];
+      return s && m ? keyOf(m, s) : null;
+    }),
+    storeMenu: aggregate(from, to, (row) => {
+      const s = f.stores[row[1]]?.code;
+      const mn = f.menus[row[2]];
+      return s && mn ? keyOf(s, mn) : null;
+    }),
+  });
+
+  return { cur: build(r.from, r.to), prev: build(prev.from, prev.to), prevRange: prev };
+}
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) =>
@@ -498,7 +660,7 @@ function grade(value, target) {
 
 /** 前年同期比のデルタ表示 */
 function deltaChip(current, previous) {
-  if (current == null || previous == null) return '';
+  if (current == null || previous == null) return '';  // 前年比較が成立しない期間では出さない
   const d = Math.round((current - previous) * 10) / 10;
   const cls = d > 0.05 ? 'up' : d < -0.05 ? 'down' : 'flat';
   const sign = d > 0 ? '+' : '';
@@ -550,112 +712,148 @@ function rateRow(f, prev, target) {
 
 function render() {
   const d = DATA;
+  const f = d.facts;
   const target = d.target || TARGET_FALLBACK;
-  const comparePeriod = (d.compare || { month: 'prevMonth', ytd: 'prevYtd' })[period];
-  const p = d.periods[period];
-  const pPrev = d.periods[comparePeriod];
 
-  $('meta-period').textContent = p.label;
+  range = buildRange(preset);
+  const view = computeView(range);
+
+  // 比較対象が保有データの開始日より前に及ぶ場合、前年比は母数が欠けるので使わない。
+  // （2025年より前のデータを持っていないため、直近12ヶ月や長い期間指定で起きる）
+  const coverFrom = f.coverage?.from || f.dataRange.from;
+  const prevIncomplete = !!(coverFrom && view.prevRange.from < coverFrom);
+  const prevLabel = prevIncomplete
+    ? `前年同期（${jp(view.prevRange.from)}〜${jp(view.prevRange.to)}）※データ範囲外を含むため比較なし`
+    : `前年同期（${jp(view.prevRange.from)}〜${jp(view.prevRange.to)}）`;
+
+  const cur = (map, key) => finalizeBucket(map.get(key));
+  // 前年比較が成立しないときは null を返し、増減pt を一切表示しない
+  const pv = (map, key) => (prevIncomplete ? null : finalizeBucket(map.get(key)));
+
+  $('meta-period').textContent = range.label;
   $('meta-updated').textContent = new Date(d.generatedAt).toLocaleString('ja-JP', {
     year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
   });
-  $('period-note').textContent = `${p.label} ／ 比較対象: ${pPrev.label}`;
+  $('period-note').textContent = `${range.label} ／ 比較対象: ${prevLabel}`;
   // 当月は来店がまだ先の日付に入るため、来店率が過小に出る。その旨を明示する
-  $('lag-note').hidden = period !== 'month';
-  $('store-desc').textContent = p.label;
+  $('lag-note').hidden = !(preset === 'month' || range.to === d.asOf);
+  $('store-desc').textContent = range.label;
   $('t-confirmed').textContent = target.confirmedRate + '%';
   $('t-visit').textContent = target.visitRate + '%';
   $('t-btv').textContent = target.bookingToVisitRate + '%';
 
   // 01 KPI
-  const t = d.total[period];
-  const tPrev = d.total[comparePeriod];
+  const t = cur(view.cur.total, ALL);
+  const tPrev = pv(view.prev.total, ALL);
   $('kpi-grid').innerHTML = `
     <div class="kpi-card">
       <div class="kpi-label">予約発生</div>
       <div class="kpi-value">${num(t.count)}<span class="kpi-unit">件</span></div>
-      <div class="kpi-detail">前年同期 ${num(tPrev.count)}件</div>
+      <div class="kpi-detail">${tPrev ? `前年同期 ${num(tPrev.count)}件` : '前年比較なし'}</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">確定</div>
       <div class="kpi-value">${num(t.confirmed)}<span class="kpi-unit">件</span></div>
-      <div class="kpi-detail">確定率 ${rate(t.confirmedRate)} ${deltaChip(t.confirmedRate, tPrev.confirmedRate)}</div>
+      <div class="kpi-detail">確定率 ${rate(t.confirmedRate)} ${deltaChip(t.confirmedRate, tPrev?.confirmedRate)}</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">来店</div>
       <div class="kpi-value">${num(t.visit)}<span class="kpi-unit">件</span></div>
-      <div class="kpi-detail">来店率 ${rate(t.visitRate)} ${deltaChip(t.visitRate, tPrev.visitRate)}</div>
+      <div class="kpi-detail">来店率 ${rate(t.visitRate)} ${deltaChip(t.visitRate, tPrev?.visitRate)}</div>
     </div>
     <div class="kpi-card featured">
       <div class="kpi-label">予約 → 来店率</div>
       <div class="kpi-value">${t.bookingToVisitRate == null ? '—' : t.bookingToVisitRate.toFixed(1)}<span class="kpi-unit">%</span></div>
-      <div class="kpi-detail">目標 ${target.bookingToVisitRate}% / 前年 ${rate(tPrev.bookingToVisitRate)}</div>
+      <div class="kpi-detail">目標 ${target.bookingToVisitRate}%${tPrev ? ` / 前年 ${rate(tPrev.bookingToVisitRate)}` : ''}</div>
     </div>`;
 
-  // 01 期間比較テーブル
-  const periodRows = ['month', 'ytd', 'prevMonth', 'prevYtd'];
-  $('period-table').querySelector('tbody').innerHTML = periodRows.map((key) => {
-    const f = d.total[key];
-    const isCurrent = key === period;
-    return `<tr${isCurrent ? ' class="is-current"' : ''}>
-      <td><span class="cell-store-name">${esc(d.periods[key].label)}</span></td>
-      <td><span class="cell-num">${num(f.count)}</span></td>
-      <td><span class="cell-num">${num(f.confirmed)}</span></td>
-      <td><span class="cell-num">${num(f.visit)}</span></td>
-      <td>${rate(f.confirmedRate)}</td>
-      <td>${rate(f.visitRate)}</td>
-      <td><strong class="${grade(f.bookingToVisitRate, target.bookingToVisitRate)}-text">${rate(f.bookingToVisitRate)}</strong></td>
-    </tr>`;
-  }).join('');
+  // 01 期間別サマリー（全ホライズンを一覧できるようにする）
+  const summaryRows = [
+    ['month', '当月'],
+    ['m3', '直近3ヶ月'],
+    ['m6', '直近6ヶ月'],
+    ['m12', '直近12ヶ月'],
+    ['ytd', '今年累計'],
+  ].map(([key, name]) => {
+    const r = buildRange(key);
+    const b = finalizeBucket(aggregate(r.from, r.to, () => ALL).get(ALL));
+    return { key, name, r, b, active: key === preset };
+  });
+  if (preset === 'custom') {
+    summaryRows.push({ key: 'custom', name: '期間指定', r: range, b: t, active: true });
+  }
+  if (!prevIncomplete) {
+    summaryRows.push({ key: '__prev', name: prevLabel, r: view.prevRange, b: tPrev, active: false });
+  }
+
+  $('period-table').querySelector('tbody').innerHTML = summaryRows.map((row) => `
+    <tr${row.active ? ' class="is-current"' : ''}>
+      <td>
+        <span class="cell-store-name">${esc(row.name)}</span>
+        <span class="cell-store-en">${jp(row.r.from)} 〜 ${jp(row.r.to)}</span>
+      </td>
+      <td><span class="cell-num">${num(row.b.count)}</span></td>
+      <td><span class="cell-num">${num(row.b.confirmed)}</span></td>
+      <td><span class="cell-num">${num(row.b.visit)}</span></td>
+      <td>${rate(row.b.confirmedRate)}</td>
+      <td>${rate(row.b.visitRate)}</td>
+      <td><strong class="${grade(row.b.bookingToVisitRate, target.bookingToVisitRate)}-text">${rate(row.b.bookingToVisitRate)}</strong></td>
+    </tr>`).join('');
 
   // 02 店舗別ファネル
-  $('store-grid').innerHTML = d.stores.map((s) => `
-    <div class="store-card">
-      <div class="store-card-head">
-        <div class="store-name-en">${esc(s.nameEn)}</div>
-        <h3 class="store-name">${esc(s.name)}</h3>
-      </div>
-      <div class="store-card-body">
-        ${funnelBars(s[period])}
-        ${rateRow(s[period], s[comparePeriod], target)}
-      </div>
-    </div>`).join('');
+  $('store-grid').innerHTML = f.stores.map((s) => {
+    const b = cur(view.cur.store, s.code);
+    const p = pv(view.prev.store, s.code);
+    return `
+      <div class="store-card">
+        <div class="store-card-head">
+          <div class="store-name-en">${esc(s.nameEn || '')}</div>
+          <h3 class="store-name">${esc(s.name)}</h3>
+        </div>
+        <div class="store-card-body">
+          ${funnelBars(b)}
+          ${rateRow(b, p, target)}
+        </div>
+      </div>`;
+  }).join('');
 
   // 03 媒体別（行クリックで店舗別内訳を展開）
-  const mediaRows = d.media
-    .filter((m) => m[period].count > 0 || m[comparePeriod].count > 0)
-    .sort((a, b) => b[period].count - a[period].count);
+  const mediaRows = f.media
+    .map((name) => ({
+      name,
+      b: cur(view.cur.media, name),
+      p: pv(view.prev.media, name),
+    }))
+    .filter((m) => m.b.count > 0 || (m.p?.count ?? 0) > 0)
+    .sort((a, b) => b.b.count - a.b.count);
+
   $('media-table').querySelector('tbody').innerHTML = mediaRows.length === 0
     ? '<tr><td colspan="7">この期間のデータがありません</td></tr>'
     : mediaRows.map((m, i) => {
-        const f = m[period];
-        const prev = m[comparePeriod];
         const key = 'media-' + i;
         const expanded = openMedia.has(m.name);
-
         const head = `<tr class="media-row${expanded ? ' is-open' : ''}" data-media="${esc(m.name)}" data-key="${key}" tabindex="0" role="button" aria-expanded="${expanded}">
           <td><span class="row-toggle" aria-hidden="true"></span><span class="cell-store-name">${esc(m.name)}</span></td>
-          <td><span class="cell-num">${num(f.count)}</span></td>
-          <td><span class="cell-num">${num(f.confirmed)}</span></td>
-          <td><span class="cell-num">${num(f.visit)}</span></td>
-          <td>${rate(f.confirmedRate)}</td>
-          <td>${rate(f.visitRate)}</td>
-          <td><strong class="${grade(f.bookingToVisitRate, target.bookingToVisitRate)}-text">${rate(f.bookingToVisitRate)}</strong>${deltaChip(f.bookingToVisitRate, prev.bookingToVisitRate)}</td>
+          <td><span class="cell-num">${num(m.b.count)}</span></td>
+          <td><span class="cell-num">${num(m.b.confirmed)}</span></td>
+          <td><span class="cell-num">${num(m.b.visit)}</span></td>
+          <td>${rate(m.b.confirmedRate)}</td>
+          <td>${rate(m.b.visitRate)}</td>
+          <td><strong class="${grade(m.b.bookingToVisitRate, target.bookingToVisitRate)}-text">${rate(m.b.bookingToVisitRate)}</strong>${deltaChip(m.b.bookingToVisitRate, m.p?.bookingToVisitRate)}</td>
         </tr>`;
 
-        const detail = (m.stores || []).map((s) => {
-          const sf = s[period];
-          const sPrev = s[comparePeriod];
-          // その媒体をまったく使っていない店舗は行ごと省く
-          if (sf.count === 0 && sPrev.count === 0) return '';
+        const detail = f.stores.map((s) => {
+          const sb = cur(view.cur.mediaStore, keyOf(m.name, s.code));
+          const sp = pv(view.prev.mediaStore, keyOf(m.name, s.code));
+          if (sb.count === 0 && (sp?.count ?? 0) === 0) return '';
           return `<tr class="media-detail-row" data-parent="${key}"${expanded ? '' : ' hidden'}>
             <td><span class="detail-store">${esc(s.name)}</span></td>
-            <td><span class="cell-num">${num(sf.count)}</span></td>
-            <td><span class="cell-num">${num(sf.confirmed)}</span></td>
-            <td><span class="cell-num">${num(sf.visit)}</span></td>
-            <td>${rate(sf.confirmedRate)}</td>
-            <td>${rate(sf.visitRate)}</td>
-            <td><strong class="${grade(sf.bookingToVisitRate, target.bookingToVisitRate)}-text">${rate(sf.bookingToVisitRate)}</strong>${deltaChip(sf.bookingToVisitRate, sPrev.bookingToVisitRate)}</td>
+            <td><span class="cell-num">${num(sb.count)}</span></td>
+            <td><span class="cell-num">${num(sb.confirmed)}</span></td>
+            <td><span class="cell-num">${num(sb.visit)}</span></td>
+            <td>${rate(sb.confirmedRate)}</td>
+            <td>${rate(sb.visitRate)}</td>
+            <td><strong class="${grade(sb.bookingToVisitRate, target.bookingToVisitRate)}-text">${rate(sb.bookingToVisitRate)}</strong>${deltaChip(sb.bookingToVisitRate, sp?.bookingToVisitRate)}</td>
           </tr>`;
         }).join('');
 
@@ -664,18 +862,17 @@ function render() {
   bindMediaRows();
 
   // 04 目標達成度
-  const maxScale = 100;
-  $('achievement').innerHTML = d.stores.map((s) => {
-    const f = s[period];
-    const v = f.bookingToVisitRate;
+  $('achievement').innerHTML = f.stores.map((s) => {
+    const b = cur(view.cur.store, s.code);
+    const v = b.bookingToVisitRate;
     const g = grade(v, target.bookingToVisitRate);
     return `<div class="achievement-row">
       <div class="achievement-store">
         <span class="achievement-store-name">${esc(s.name)}</span>
-        <span class="achievement-store-year">来店 ${num(f.visit)} / 予約 ${num(f.count)}</span>
+        <span class="achievement-store-year">来店 ${num(b.visit)} / 予約 ${num(b.count)}</span>
       </div>
       <div class="achievement-bar-track">
-        <div class="achievement-bar-fill ${g === 'na' ? 'bad' : g}" style="width:${v == null ? 0 : Math.min(v, maxScale)}%"></div>
+        <div class="achievement-bar-fill ${g === 'na' ? 'bad' : g}" style="width:${v == null ? 0 : Math.min(v, 100)}%"></div>
         <div class="achievement-target-line" style="left:${target.bookingToVisitRate}%"></div>
       </div>
       <div class="achievement-value ${g === 'na' ? 'bad' : g}">${rate(v)}</div>
@@ -683,21 +880,20 @@ function render() {
   }).join('');
 
   // 05 ヒートマップ
-  const menus = d.heatmap.menus;
   $('heatmap').querySelector('thead').innerHTML =
-    `<tr><th>店舗 / メニュー</th>${menus.map((m) => `<th>${esc(m)}</th>`).join('')}<th>合計</th></tr>`;
-  $('heatmap').querySelector('tbody').innerHTML = d.heatmap.stores.map((s) => {
-    const cell = (f) => {
-      if (!f || f.count === 0) return '<td class="h-na">—</td>';
-      const g = grade(f.bookingToVisitRate, target.bookingToVisitRate);
+    `<tr><th>店舗 / メニュー</th>${f.menus.map((m) => `<th>${esc(m)}</th>`).join('')}<th>合計</th></tr>`;
+  $('heatmap').querySelector('tbody').innerHTML = f.stores.map((s) => {
+    const cell = (b) => {
+      if (!b || b.count === 0) return '<td class="h-na">—</td>';
+      const g = grade(b.bookingToVisitRate, target.bookingToVisitRate);
       const cls = g === 'good' ? 'h-good' : g === 'warn' ? 'h-mid' : 'h-bad';
-      const thin = f.count < 5 ? ' is-thin' : '';
-      return `<td class="${cls}${thin}">${rate(f.bookingToVisitRate)}<span class="h-sub">${f.visit}/${f.count}</span></td>`;
+      const thin = b.count < 5 ? ' is-thin' : '';
+      return `<td class="${cls}${thin}">${rate(b.bookingToVisitRate)}<span class="h-sub">${b.visit}/${b.count}</span></td>`;
     };
     return `<tr>
       <td>${esc(s.name)}</td>
-      ${menus.map((m) => cell(s.menus[m][period])).join('')}
-      ${cell(s.total[period])}
+      ${f.menus.map((mn) => cell(cur(view.cur.storeMenu, keyOf(s.code, mn)))).join('')}
+      ${cell(cur(view.cur.store, s.code))}
     </tr>`;
   }).join('');
 
@@ -731,7 +927,7 @@ function render() {
     + ` / 前年比較は旧シート ${d.sources?.prev?.length || 0}件`;
 
   if (d.warnings && d.warnings.length) {
-    showStatus('warn', `一部のシートを読み取れませんでした：${d.warnings.join(' / ')}`);
+    showStatus('warn', `一部のデータを読み取れませんでした：${d.warnings.join(' / ')}`);
   }
 }
 
@@ -765,14 +961,49 @@ function showStatus(kind, message) {
 
 function bindPeriodSwitch() {
   $('period-switch').hidden = false;
+
   document.querySelectorAll('.period-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.period-btn').forEach((b) => b.classList.remove('is-active'));
       btn.classList.add('is-active');
-      period = btn.dataset.period;
+      preset = btn.dataset.preset;
+      $('range-picker').hidden = preset !== 'custom';
       render();
     });
   });
+
+  // 期間指定。データのある範囲だけ選べるようにしておく
+  const dr = DATA.facts.coverage || DATA.facts.dataRange;
+  const from = $('range-from');
+  const to = $('range-to');
+  [from, to].forEach((el) => {
+    if (dr.from) el.min = dr.from;
+    if (dr.to) el.max = dr.to;
+  });
+  const initial = buildRange('month');
+  from.value = initial.from;
+  to.value = initial.to;
+  $('range-hint').textContent =
+    `選択できる範囲: ${jp(dr.from)} 〜 ${jp(dr.to)}（前年比較は1年前に同じ長さでずらして算出）`;
+
+  const apply = () => {
+    if (!from.value || !to.value) {
+      $('range-hint').textContent = '開始日と終了日の両方を指定してください。';
+      return;
+    }
+    if (from.value > to.value) {
+      $('range-hint').textContent = '開始日が終了日より後になっています。';
+      return;
+    }
+    customRange = { from: from.value, to: to.value };
+    $('range-hint').textContent =
+      `選択できる範囲: ${jp(dr.from)} 〜 ${jp(dr.to)}（前年比較は1年前に同じ長さでずらして算出）`;
+    render();
+  };
+  $('range-apply').addEventListener('click', apply);
+  [from, to].forEach((el) => el.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); apply(); }
+  }));
 }
 
 async function boot() {

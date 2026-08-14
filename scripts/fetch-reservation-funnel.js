@@ -257,8 +257,10 @@ async function main() {
     }
   }
 
-  // 媒体は「今年累計の予約発生数」が多い順。表示順リストにあるものを優先して並べる
-  const mediaNames = [...new Set(Object.keys(byMedia.ytd).concat(Object.keys(byMedia.month)))];
+  // 媒体は「今年累計の予約発生数」が多い順。表示順リストにあるものを優先して並べる。
+  // 期間バケットではなく全レコードから拾う。画面側は直近12ヶ月など任意期間を集計するため、
+  // どの期間にも属さないレコード（例: 前年9〜12月）の媒体を落とすとファクトテーブルが欠ける。
+  const mediaNames = [...new Set(records.map((r) => r.media))];
   mediaNames.sort((a, b) => {
     const ia = MEDIA_ORDER.indexOf(a);
     const ib = MEDIA_ORDER.indexOf(b);
@@ -269,12 +271,58 @@ async function main() {
   const perPeriod = (pick) =>
     Object.fromEntries(periodKeys.map((k) => [k, finalize(pick(k))]));
 
+  // --- 日次ファクトテーブル ---
+  // 画面側で任意の期間（直近3/6/12ヶ月・期間指定）を集計できるよう、
+  // 日付 × 店舗 × メニュー × 媒体 の粒度で件数だけを出力する。
+  // 個人を特定しうる列は一切含めない（件数のみ）。
+  const factMap = new Map();
+  for (const r of records) {
+    const key = `${r.date}|${r.store}|${r.menu}|${r.media}`;
+    let b = factMap.get(key);
+    if (!b) { b = newBucket(); factMap.set(key, b); }
+    bump(b, r);
+  }
+
+  const storeCodes = STORES.map((s) => s.code);
+  const factMenus = [...new Set(records.map((r) => r.menu))].sort(
+    (a, b) => (MENUS.indexOf(a) < 0 ? 99 : MENUS.indexOf(a)) - (MENUS.indexOf(b) < 0 ? 99 : MENUS.indexOf(b))
+  );
+  const factRows = [...factMap.entries()]
+    .map(([key, b]) => {
+      const [date, store, menu, media] = key.split('|');
+      return [
+        date,
+        storeCodes.indexOf(store),
+        factMenus.indexOf(menu),
+        mediaNames.indexOf(media),
+        b.count, b.confirmed, b.visit, b.contract,
+      ];
+    })
+    .filter((row) => row[1] >= 0 && row[2] >= 0 && row[3] >= 0)
+    .sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0));
+
+  const allDates = factRows.map((r) => r[0]);
+
   const output = {
     generatedAt: new Date().toISOString(),
     asOf,
     target: TARGET,
     periods,
     compare: COMPARE,
+    // 画面側が任意期間を集計するためのファクトテーブル
+    facts: {
+      columns: ['date', 'storeIdx', 'menuIdx', 'mediaIdx', 'count', 'confirmed', 'visit', 'contract'],
+      stores: STORES.map((s) => ({ code: s.code, name: s.name, nameEn: s.nameEn })),
+      menus: factMenus,
+      media: mediaNames,
+      // 実際に予約が入っている最初/最後の日
+      dataRange: { from: allDates[0] || null, to: allDates[allDates.length - 1] || null },
+      // 読みに行っている範囲。前年比較が成立するかの判定はこちらを使う
+      // （dataRange.from は「最初に予約が入った日」なので、1/1に予約が無いだけで
+      //   前年同期比較が不能と誤判定されてしまう）
+      coverage: { from: ymd(year - 1, 1, 1), to: asOf },
+      rows: factRows,
+    },
     total: perPeriod((k) => total[k]),
     stores: STORES.map((s) => ({
       code: s.code,
