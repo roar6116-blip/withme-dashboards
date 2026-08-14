@@ -3,7 +3,11 @@
 // 月別タブの並び（左に余白列、右に集計ブロックが同居）を再現している。
 // 実行: node scripts/funnel-parse.test.mjs
 import assert from 'node:assert/strict';
-import { parseCellDate, findHeader, extractRows, newBucket, bump, finalize, pct } from './funnel-parse.js';
+import {
+  parseCellDate, findHeader, extractRows, extractDbRows, judgeStatus,
+  newBucket, bump, finalize, pct,
+} from './funnel-parse.js';
+import { resolveStore } from './funnel-config.js';
 
 let passed = 0;
 function check(label, fn) {
@@ -123,6 +127,101 @@ check('ファネルの率が既存GAS定義と一致する', () => {
 check('母数0のとき率は null', () => {
   assert.equal(pct(0, 0), null);
   assert.equal(finalize(newBucket()).confirmedRate, null);
+});
+
+console.log('judgeStatus');
+check('「未来店」を来店として数えない（新DBで導入された値）', () => {
+  const s = judgeStatus('確定', '未来店', '');
+  assert.equal(s.isVisit, false);
+  assert.equal(s.isConfirmed, true);   // 確定はしている
+  assert.equal(s.isContract, false);
+});
+check('「来店」は来店として数える', () => {
+  assert.equal(judgeStatus('確定', '来店', 'なし').isVisit, true);
+});
+check('旧シートの「なし」も来店ではない', () => {
+  assert.equal(judgeStatus('キャンセル', 'なし', '').isVisit, false);
+});
+check('契約は来店・確定を含意する', () => {
+  const s = judgeStatus('', '', '契約');
+  assert.ok(s.isContract && s.isVisit && s.isConfirmed);
+});
+check('運用メモ（SMS/Gmail/終了/不在）でも来店済なら確定', () => {
+  for (const memo of ['SMS', 'Gmail', '終了', '不在（2回）', 'メール']) {
+    const s = judgeStatus(memo, '来店', 'なし');
+    assert.equal(s.isConfirmed, true, memo);
+    assert.equal(s.isVisit, true, memo);
+  }
+});
+check('キャンセル・後追いは未確定', () => {
+  assert.equal(judgeStatus('キャンセル', '', '').isConfirmed, false);
+  assert.equal(judgeStatus('後追い', '', '').isConfirmed, false);
+});
+
+// 実DB「予約明細」タブの列並びを再現したフィクスチャ
+const DB_HEADER = ['予約ID', '予約通知日', '店舗', 'メニュー', '予約媒体', '顧客名', '氏名カナ',
+  '電話番号', 'メールアドレス', '年齢', '担当スタッフ', '体験料金', '希望日時1', '希望日時2',
+  '希望日時3', '来店予定日', '予約確定', '来店状況', '契約状況', '契約金額', '後追い状況',
+  '実来店日', '契約日', '最終連絡日', '後追い期限', '備考', '登録日時', '更新日時', '更新者', '削除フラグ'];
+const dbRow = (id, date, store, menu, media, confirmed, visit, contract, deleted = '') => {
+  const r = new Array(DB_HEADER.length).fill('');
+  r[0] = id; r[1] = date; r[2] = store; r[3] = menu; r[4] = media;
+  r[5] = '山田花子'; r[7] = '09012345678';
+  r[16] = confirmed; r[17] = visit; r[18] = contract; r[19] = '¥123,400';
+  r[29] = deleted;
+  return r;
+};
+
+const DB_TAB = [
+  DB_HEADER,
+  dbRow('R2026-00001', '2026/01/01', 'TouchMe富士店', 'フェイシャル', 'HPB', '確定', '来店', '契約'),
+  dbRow('R2026-00002', '2026/01/04', 'SlenderMe甲府店', '痩身', 'ネット検索', '確定', '来店', 'なし'),
+  dbRow('R2026-00003', '2026/01/04', 'TouchMe富士店', 'フェイシャル', 'インスタ広告', '後追い', '', ''),
+  dbRow('R2026-00004', '2026/01/05', 'TouchMe甲府昭和店', '脱毛', 'HPB', '確定', '未来店', ''),
+  dbRow('R2026-00005', '2026/01/06', 'TouchMe甲府昭和店', '脱毛', '', 'キャンセル', '', ''),
+  dbRow('R2026-00006', '2026/01/07', '閉店した店', '痩身', 'HPB', '確定', '来店', '契約'),
+  dbRow('R2026-00007', '2026/01/08', 'TouchMe富士店', '痩身', 'HPB', '確定', '来店', '契約', '1'),
+  new Array(DB_HEADER.length).fill(''), // 空行
+];
+
+console.log('extractDbRows');
+const db = extractDbRows(DB_TAB, resolveStore);
+check('有効行のみ抽出（削除フラグ・空行・未知店舗を除外）', () => {
+  assert.equal(db.rows.length, 5);
+  assert.equal(db.skipped, 2);
+});
+check('未知の店舗名を報告する', () => {
+  assert.deepEqual(db.unknownStores, ['閉店した店']);
+});
+check('店舗名を店舗コードに解決する', () => {
+  assert.deepEqual(db.rows.map((r) => r.store),
+    ['tm-fuji', 'sm-kofu', 'tm-fuji', 'tm-kofu', 'tm-kofu']);
+});
+check('顧客名・電話番号・契約金額を持ち出さない', () => {
+  assert.deepEqual(Object.keys(db.rows[0]).sort(),
+    ['date', 'isConfirmed', 'isContract', 'isVisit', 'media', 'menu', 'store']);
+});
+check('媒体が空なら「その他」に寄せる', () => {
+  assert.equal(db.rows[4].media, 'その他');
+});
+check('未来店の行は来店に数えない', () => {
+  const r = db.rows[3];
+  assert.equal(r.isConfirmed, true);
+  assert.equal(r.isVisit, false);
+});
+check('ファネル集計が期待どおり', () => {
+  const b = newBucket();
+  db.rows.forEach((r) => bump(b, r));
+  const f = finalize(b);
+  // 予約5 / 確定3(来店2+未来店1) / 来店2 / 契約1
+  assert.equal(f.count, 5);
+  assert.equal(f.confirmed, 3);
+  assert.equal(f.visit, 2);
+  assert.equal(f.contract, 1);
+});
+check('必須列が欠けていたら例外を投げる', () => {
+  const broken = [['予約ID', '顧客名'], ['R1', '山田']];
+  assert.throws(() => extractDbRows(broken, resolveStore), /必要な列がありません/);
 });
 
 console.log(`\n${passed} passed`);

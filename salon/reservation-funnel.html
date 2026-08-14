@@ -358,7 +358,7 @@ body {
 <header class="header">
   <div class="header-tag">With Me Group / Analytics Report</div>
   <h1 class="title">3店舗 <span class="title-accent">Reservation Funnel</span> 分析レポート</h1>
-  <p class="subtitle">予約 → 確定 → 来店の歩留まり 全店比較（毎朝自動更新）</p>
+  <p class="subtitle">予約 → 確定 → 来店の歩留まり 全店比較（新規予約管理DBから毎時自動更新）</p>
   <div class="meta">
     <span class="meta-item"><span class="meta-label">対象</span> <span id="meta-period">読み込み中…</span></span>
     <span class="meta-item"><span class="meta-label">更新</span> <span id="meta-updated">—</span></span>
@@ -376,7 +376,7 @@ body {
 </div>
 
 <p class="lag-note" id="lag-note" hidden>
-  当月は「予約が発生した日」を基準に集計しています。今月予約された方の来店はこれから先の日付にも入るため、
+  当月は「予約が発生した日」を基準に、<strong>本日入力ぶんまで</strong>集計しています。今月予約された方の来店はこれから先の日付にも入るため、
   <strong>月の途中では来店率・予約→来店率が実力より低く出ます</strong>（前年同月はすでに来店が出そろっているので、
   この2つの前年比は月末までマイナスに振れるのが正常です）。<br>
   月の途中で判断に使えるのは<strong>予約発生数と確定率</strong>。来店率で実力を見るときは「今年累計」に切り替えてください。
@@ -724,9 +724,11 @@ function render() {
   }
 
   // フッター
-  const srcCount = (d.sources?.current?.length || 0) + (d.sources?.prev?.length || 0);
+  const dbRows = d.sources?.current?.[0]?.rows;
   $('footer-info').textContent =
-    `株式会社With Me / 集計対象 ${d.asOf} まで / 参照シート ${srcCount}件 / Source: 各店舗 新規予約管理シート`;
+    `株式会社With Me / 集計対象 ${d.asOf} まで`
+    + (dbRows ? ` / 新規予約管理DB ${dbRows.toLocaleString('ja-JP')}件` : '')
+    + ` / 前年比較は旧シート ${d.sources?.prev?.length || 0}件`;
 
   if (d.warnings && d.warnings.length) {
     showStatus('warn', `一部のシートを読み取れませんでした：${d.warnings.join(' / ')}`);
@@ -796,9 +798,10 @@ async function boot() {
   render();
 
   // データが古い（3日以上更新されていない）場合は警告する
-  const ageDays = (Date.now() - new Date(DATA.generatedAt)) / 86400000;
-  if (ageDays > 3) {
-    showStatus('warn', `データが ${Math.floor(ageDays)} 日更新されていません。自動更新が停止している可能性があります。`);
+  // 毎時更新なので、半日以上止まっていれば異常とみなす
+  const ageHours = (Date.now() - new Date(DATA.generatedAt)) / 3600000;
+  if (ageHours > 12) {
+    showStatus('warn', `データが ${Math.floor(ageHours)} 時間更新されていません。自動更新が停止している可能性があります。`);
   }
 }
 

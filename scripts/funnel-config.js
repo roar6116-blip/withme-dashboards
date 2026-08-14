@@ -12,6 +12,23 @@ export const STORES = [
 // メニュー（ヒートマップの列）
 export const MENUS = ['痩身', '脱毛', 'フェイシャル'];
 
+/**
+ * 新DB「予約明細」タブの店舗名 → 店舗コード。
+ * DB側で既に物理店舗単位（KaoKaoはTouchMeに同居）へ寄せられているため、
+ * 表記ゆれの吸収だけを行う。
+ */
+export function resolveStore(storeName) {
+  const s = String(storeName ?? '').trim();
+  if (!s) return null;
+  const hit = STORES.find((x) => x.name === s);
+  if (hit) return hit.code;
+
+  // 表記ゆれ用のフォールバック（空白・全角半角・「店」有無）
+  const norm = s.replace(/\s|　/g, '').toLowerCase();
+  const fallback = STORES.find((x) => norm.startsWith(x.name.replace(/店$/, '').toLowerCase()));
+  return fallback ? fallback.code : null;
+}
+
 // 媒体の表示順。ここに無い媒体は「その他」に寄せずそのまま末尾に並べる
 export const MEDIA_ORDER = [
   'HPB',

@@ -1,12 +1,15 @@
-// 新規予約管理シート（店舗×メニュー別スプレッドシート）から予約ファネルを集計し
-// salon/data/funnel.json を生成する。
+// 新規予約管理データから予約ファネルを集計し salon/data/funnel.json を生成する。
+//
+// データ源は2系統ある:
+//   当年（2026年以降） … 【WithMe】新規予約管理DB の「予約明細」タブ（単一シートの正規化テーブル）
+//   前年（2025年）     … 旧方式の店舗×メニュー別スプレッドシート群（前年同期比較のためだけに読む）
 //
 // 出力するのは集計済みの件数と率のみ。顧客名・電話番号・契約金額は一切書き出さない。
 //
 // 必要な環境変数:
 //   GOOGLE_SERVICE_ACCOUNT_JSON  サービスアカウント鍵（JSON文字列）
-//   RESERVATION_FOLDER_CURRENT   当年の新規予約管理シートが入った Drive フォルダID
-//   RESERVATION_FOLDER_PREV      前年の新規予約管理シートが入った Drive フォルダID
+//   RESERVATION_DB_ID            新規予約管理DBのスプレッドシートID
+//   RESERVATION_FOLDER_PREV      前年（2025年）の旧シートが入った Drive フォルダID
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -18,8 +21,18 @@ import {
   TARGET,
   classifyFile,
   isMonthlyTab,
+  resolveStore,
 } from './funnel-config.js';
-import { ymd, extractRows, newBucket, bump, finalize } from './funnel-parse.js';
+import {
+  ymd,
+  extractRows,
+  extractDbRows,
+  newBucket,
+  bump,
+  finalize,
+} from './funnel-parse.js';
+
+const DB_SHEET_NAME = '予約明細';
 
 // リポジトリルートからでも scripts/ からでも同じ場所に書き出せるよう、
 // このファイルの位置を基準に解決する
@@ -58,6 +71,24 @@ async function listSpreadsheetsRecursive(drive, folderId, acc = []) {
   return acc;
 }
 
+/** 新DBの「予約明細」タブを丸ごと読み、明細行に変換する */
+async function readReservationDb(sheetsApi, dbId) {
+  const res = await sheetsApi.spreadsheets.values.get({
+    spreadsheetId: dbId,
+    range: `'${DB_SHEET_NAME}'!A:AD`,
+    majorDimension: 'ROWS',
+  });
+  const values = res.data.values || [];
+  if (values.length <= 1) throw new Error(`${DB_SHEET_NAME} タブにデータがありません`);
+
+  const { rows, unknownStores, skipped } = extractDbRows(values, resolveStore);
+  if (unknownStores.length) {
+    warnings.push(`新DB: 未知の店舗名を除外しました（${unknownStores.join(' / ')}）`);
+  }
+  console.log(`[funnel] 新規予約管理DB: ${rows.length} rows（除外 ${skipped}）`);
+  return rows;
+}
+
 /** 1スプレッドシートの全月別タブから明細行を読み出す */
 async function readSpreadsheet(sheetsApi, fileId, fileName, year) {
   const meta = await sheetsApi.spreadsheets.get({
@@ -91,7 +122,7 @@ async function readSpreadsheet(sheetsApi, fileId, fileName, year) {
 async function main() {
   const required = [
     'GOOGLE_SERVICE_ACCOUNT_JSON',
-    'RESERVATION_FOLDER_CURRENT',
+    'RESERVATION_DB_ID',
     'RESERVATION_FOLDER_PREV',
   ];
   const missing = required.filter((k) => !process.env[k]);
@@ -110,14 +141,10 @@ async function main() {
   const drive = google.drive({ version: 'v3', auth });
   const sheetsApi = google.sheets({ version: 'v4', auth });
 
-  // 「昨日まで」を集計対象にする（当日は入力途中のため）
-  const today = todayJst();
-  const [ty, tm, td] = today.split('-').map(Number);
-  const asOfDate = new Date(Date.UTC(ty, tm - 1, td - 1));
-  const year = asOfDate.getUTCFullYear();
-  const month = asOfDate.getUTCMonth() + 1;
-  const day = asOfDate.getUTCDate();
-  const asOf = ymd(year, month, day);
+  // 本日（JST）までを集計対象にする。
+  // DBは随時更新されるため当日分も含めて出す（入力途中の当日分が混ざる前提）。
+  const asOf = todayJst();
+  const [year, month, day] = asOf.split('-').map(Number);
 
   const periods = {
     month: {
@@ -147,38 +174,44 @@ async function main() {
 
   const inPeriod = (date, p) => date >= p.from && date <= p.to;
 
-  // --- ファイル探索 ---
-  const files = [];
-  for (const [folderKey, envKey, fileYear] of [
-    ['current', 'RESERVATION_FOLDER_CURRENT', year],
-    ['prev', 'RESERVATION_FOLDER_PREV', year - 1],
-  ]) {
-    const found = await listSpreadsheetsRecursive(drive, process.env[envKey]);
-    for (const f of found) {
-      const cls = classifyFile(f.name);
-      if (!cls) continue;
-      files.push({ ...f, ...cls, folderKey, fileYear });
-    }
-  }
-
-  if (files.length === 0) {
-    console.error('[funnel] 対象スプレッドシートが1件も見つかりませんでした');
-    process.exit(1);
-  }
-
-  // --- 読み込み ---
   const records = [];
   const sources = { current: [], prev: [] };
-  for (const f of files) {
+
+  // --- 当年: 新規予約管理DB（単一シート） ---
+  // ここが落ちたら集計自体が成立しないので、警告ではなく異常終了させて前回のJSONを残す
+  const dbRows = await readReservationDb(sheetsApi, process.env.RESERVATION_DB_ID);
+  records.push(...dbRows);
+  sources.current.push({ name: '【WithMe】新規予約管理DB / 予約明細', rows: dbRows.length });
+
+  // --- 前年: 旧方式の店舗×メニュー別シート（前年同期比較のためだけに読む） ---
+  const prevFiles = [];
+  for (const f of await listSpreadsheetsRecursive(drive, process.env.RESERVATION_FOLDER_PREV)) {
+    const cls = classifyFile(f.name);
+    if (cls) prevFiles.push({ ...f, ...cls });
+  }
+  if (prevFiles.length === 0) {
+    warnings.push('前年（旧シート）が1件も見つかりませんでした。前年比較は空になります');
+  }
+  const prevYearPrefix = `${year - 1}-`;
+  let prevOutOfRange = 0;
+  for (const f of prevFiles) {
     try {
-      const rows = await readSpreadsheet(sheetsApi, f.id, f.name, f.fileYear);
+      const all = await readSpreadsheet(sheetsApi, f.id, f.name, year - 1);
+      // 旧シートには当年日付の行が紛れていることがある。当年は新DBが正なので、
+      // 前年ファイルからは前年の行だけを採用して二重計上を防ぐ
+      const rows = all.filter((r) => r.date.startsWith(prevYearPrefix));
+      prevOutOfRange += all.length - rows.length;
       for (const r of rows) records.push({ ...r, store: f.store, menu: f.menu });
-      sources[f.folderKey].push({ name: f.name, store: f.store, menu: f.menu, rows: rows.length });
+      sources.prev.push({ name: f.name, store: f.store, menu: f.menu, rows: rows.length });
       console.log(`[funnel] ${f.name}: ${rows.length} rows`);
     } catch (e) {
       warnings.push(`${f.name}: 読み込み失敗 (${e.message})`);
       console.error(`[funnel] ${f.name} 読み込み失敗:`, e.message);
     }
+  }
+
+  if (prevOutOfRange > 0) {
+    console.log(`[funnel] 前年ファイル内の${year}年日付の行 ${prevOutOfRange}件を除外（当年は新DBが正）`);
   }
 
   if (records.length === 0) {

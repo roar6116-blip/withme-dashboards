@@ -1,9 +1,10 @@
 name: Update Reservation Funnel
 
-# 毎朝 JST 07:00 (= UTC 22:00) に実行 + 手動トリガーも可能
+# 毎時0分に実行（新規予約管理DBは随時更新されるため、なるべく最新を出す）
+# + 手動トリガーも可能。GitHub の schedule は数分〜十数分遅れることがある
 on:
   schedule:
-    - cron: '0 22 * * *'
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -35,7 +36,7 @@ jobs:
       - name: Aggregate reservation funnel
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
-          RESERVATION_FOLDER_CURRENT: ${{ secrets.RESERVATION_FOLDER_CURRENT }}
+          RESERVATION_DB_ID: ${{ secrets.RESERVATION_DB_ID }}
           RESERVATION_FOLDER_PREV: ${{ secrets.RESERVATION_FOLDER_PREV }}
         run: node scripts/fetch-reservation-funnel.js
 
