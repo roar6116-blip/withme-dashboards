@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-16T23:12:44.383Z",
+  "generatedAt": "2026-08-17T00:47:57.411Z",
   "asOf": "2026-08-17",
   "target": {
     "confirmedRate": 80,
@@ -25664,26 +25664,36 @@
         0,
         0,
         0
+      ],
+      [
+        "2026-08-16",
+        1,
+        1,
+        4,
+        1,
+        0,
+        0,
+        0
       ]
     ]
   },
   "total": {
     "month": {
-      "count": 82,
+      "count": 83,
       "confirmed": 52,
       "visit": 15,
       "contract": 9,
-      "confirmedRate": 63.4,
+      "confirmedRate": 62.7,
       "visitRate": 28.8,
-      "bookingToVisitRate": 18.3,
+      "bookingToVisitRate": 18.1,
       "contractRate": 60
     },
     "ytd": {
-      "count": 1330,
+      "count": 1331,
       "confirmed": 872,
       "visit": 716,
       "contract": 296,
-      "confirmedRate": 65.6,
+      "confirmedRate": 65.5,
       "visitRate": 82.1,
       "bookingToVisitRate": 53.8,
       "contractRate": 41.3
@@ -25760,23 +25770,23 @@
       "name": "TouchMe甲府昭和店",
       "nameEn": "Touch Me · Kofu Showa",
       "month": {
-        "count": 31,
+        "count": 32,
         "confirmed": 16,
         "visit": 1,
         "contract": 1,
-        "confirmedRate": 51.6,
+        "confirmedRate": 50,
         "visitRate": 6.3,
-        "bookingToVisitRate": 3.2,
+        "bookingToVisitRate": 3.1,
         "contractRate": 100
       },
       "ytd": {
-        "count": 513,
+        "count": 514,
         "confirmed": 281,
         "visit": 241,
         "contract": 104,
-        "confirmedRate": 54.8,
+        "confirmedRate": 54.7,
         "visitRate": 85.8,
-        "bookingToVisitRate": 47,
+        "bookingToVisitRate": 46.9,
         "contractRate": 43.2
       },
       "prevMonth": {
@@ -26558,23 +26568,23 @@
     {
       "name": "友達紹介",
       "month": {
-        "count": 1,
+        "count": 2,
         "confirmed": 1,
         "visit": 1,
         "contract": 1,
-        "confirmedRate": 100,
+        "confirmedRate": 50,
         "visitRate": 100,
-        "bookingToVisitRate": 100,
+        "bookingToVisitRate": 50,
         "contractRate": 100
       },
       "ytd": {
-        "count": 29,
+        "count": 30,
         "confirmed": 28,
         "visit": 23,
         "contract": 17,
-        "confirmedRate": 96.6,
+        "confirmedRate": 93.3,
         "visitRate": 82.1,
-        "bookingToVisitRate": 79.3,
+        "bookingToVisitRate": 76.7,
         "contractRate": 73.9
       },
       "prevMonth": {
@@ -26646,23 +26656,23 @@
           "code": "tm-kofu",
           "name": "TouchMe甲府昭和店",
           "month": {
-            "count": 0,
+            "count": 1,
             "confirmed": 0,
             "visit": 0,
             "contract": 0,
-            "confirmedRate": null,
+            "confirmedRate": 0,
             "visitRate": null,
-            "bookingToVisitRate": null,
+            "bookingToVisitRate": 0,
             "contractRate": null
           },
           "ytd": {
-            "count": 12,
+            "count": 13,
             "confirmed": 11,
             "visit": 10,
             "contract": 8,
-            "confirmedRate": 91.7,
+            "confirmedRate": 84.6,
             "visitRate": 90.9,
-            "bookingToVisitRate": 83.3,
+            "bookingToVisitRate": 76.9,
             "contractRate": 80
           },
           "prevMonth": {
@@ -27670,23 +27680,23 @@
           },
           "脱毛": {
             "month": {
-              "count": 16,
+              "count": 17,
               "confirmed": 7,
               "visit": 1,
               "contract": 1,
-              "confirmedRate": 43.8,
+              "confirmedRate": 41.2,
               "visitRate": 14.3,
-              "bookingToVisitRate": 6.3,
+              "bookingToVisitRate": 5.9,
               "contractRate": 100
             },
             "ytd": {
-              "count": 246,
+              "count": 247,
               "confirmed": 140,
               "visit": 119,
               "contract": 66,
-              "confirmedRate": 56.9,
+              "confirmedRate": 56.7,
               "visitRate": 85,
-              "bookingToVisitRate": 48.4,
+              "bookingToVisitRate": 48.2,
               "contractRate": 55.5
             },
             "prevMonth": {
@@ -27755,23 +27765,23 @@
         },
         "total": {
           "month": {
-            "count": 31,
+            "count": 32,
             "confirmed": 16,
             "visit": 1,
             "contract": 1,
-            "confirmedRate": 51.6,
+            "confirmedRate": 50,
             "visitRate": 6.3,
-            "bookingToVisitRate": 3.2,
+            "bookingToVisitRate": 3.1,
             "contractRate": 100
           },
           "ytd": {
-            "count": 513,
+            "count": 514,
             "confirmed": 281,
             "visit": 241,
             "contract": 104,
-            "confirmedRate": 54.8,
+            "confirmedRate": 54.7,
             "visitRate": 85.8,
-            "bookingToVisitRate": 47,
+            "bookingToVisitRate": 46.9,
             "contractRate": 43.2
           },
           "prevMonth": {
@@ -27976,7 +27986,7 @@
     "current": [
       {
         "name": "【WithMe】新規予約管理DB / 予約明細",
-        "rows": 1330
+        "rows": 1331
       }
     ],
     "prev": [
