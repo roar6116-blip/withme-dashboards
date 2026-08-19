@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T03:39:46.658Z",
+  "generatedAt": "2026-08-19T04:29:28.525Z",
   "asOf": "2026-08-19",
   "target": {
     "confirmedRate": 80,
@@ -25754,28 +25754,38 @@
         0,
         0,
         0
+      ],
+      [
+        "2026-08-19",
+        0,
+        0,
+        0,
+        2,
+        2,
+        0,
+        0
       ]
     ]
   },
   "total": {
     "month": {
-      "count": 92,
-      "confirmed": 56,
+      "count": 94,
+      "confirmed": 58,
       "visit": 17,
       "contract": 11,
-      "confirmedRate": 60.9,
-      "visitRate": 30.4,
-      "bookingToVisitRate": 18.5,
+      "confirmedRate": 61.7,
+      "visitRate": 29.3,
+      "bookingToVisitRate": 18.1,
       "contractRate": 64.7
     },
     "ytd": {
-      "count": 1340,
-      "confirmed": 875,
+      "count": 1342,
+      "confirmed": 877,
       "visit": 719,
       "contract": 298,
-      "confirmedRate": 65.3,
-      "visitRate": 82.2,
-      "bookingToVisitRate": 53.7,
+      "confirmedRate": 65.4,
+      "visitRate": 82,
+      "bookingToVisitRate": 53.6,
       "contractRate": 41.4
     },
     "prevMonth": {
@@ -25805,23 +25815,23 @@
       "name": "SlenderMe甲府店",
       "nameEn": "Slender Me · Kofu",
       "month": {
-        "count": 33,
-        "confirmed": 19,
+        "count": 35,
+        "confirmed": 21,
         "visit": 6,
         "contract": 5,
-        "confirmedRate": 57.6,
-        "visitRate": 31.6,
-        "bookingToVisitRate": 18.2,
+        "confirmedRate": 60,
+        "visitRate": 28.6,
+        "bookingToVisitRate": 17.1,
         "contractRate": 83.3
       },
       "ytd": {
-        "count": 301,
-        "confirmed": 216,
+        "count": 303,
+        "confirmed": 218,
         "visit": 188,
         "contract": 73,
-        "confirmedRate": 71.8,
-        "visitRate": 87,
-        "bookingToVisitRate": 62.5,
+        "confirmedRate": 71.9,
+        "visitRate": 86.2,
+        "bookingToVisitRate": 62,
         "contractRate": 38.8
       },
       "prevMonth": {
@@ -25940,23 +25950,23 @@
     {
       "name": "HPB",
       "month": {
-        "count": 30,
-        "confirmed": 23,
+        "count": 32,
+        "confirmed": 25,
         "visit": 8,
         "contract": 6,
-        "confirmedRate": 76.7,
-        "visitRate": 34.8,
-        "bookingToVisitRate": 26.7,
+        "confirmedRate": 78.1,
+        "visitRate": 32,
+        "bookingToVisitRate": 25,
         "contractRate": 75
       },
       "ytd": {
-        "count": 466,
-        "confirmed": 360,
+        "count": 468,
+        "confirmed": 362,
         "visit": 306,
         "contract": 125,
-        "confirmedRate": 77.3,
-        "visitRate": 85,
-        "bookingToVisitRate": 65.7,
+        "confirmedRate": 77.4,
+        "visitRate": 84.5,
+        "bookingToVisitRate": 65.4,
         "contractRate": 40.8
       },
       "prevMonth": {
@@ -25984,23 +25994,23 @@
           "code": "sm-kofu",
           "name": "SlenderMe甲府店",
           "month": {
-            "count": 9,
-            "confirmed": 8,
+            "count": 11,
+            "confirmed": 10,
             "visit": 4,
             "contract": 4,
-            "confirmedRate": 88.9,
-            "visitRate": 50,
-            "bookingToVisitRate": 44.4,
+            "confirmedRate": 90.9,
+            "visitRate": 40,
+            "bookingToVisitRate": 36.4,
             "contractRate": 100
           },
           "ytd": {
-            "count": 142,
-            "confirmed": 117,
+            "count": 144,
+            "confirmed": 119,
             "visit": 106,
             "contract": 45,
-            "confirmedRate": 82.4,
-            "visitRate": 90.6,
-            "bookingToVisitRate": 74.6,
+            "confirmedRate": 82.6,
+            "visitRate": 89.1,
+            "bookingToVisitRate": 73.6,
             "contractRate": 42.5
           },
           "prevMonth": {
@@ -27544,23 +27554,23 @@
         "menus": {
           "痩身": {
             "month": {
-              "count": 33,
-              "confirmed": 19,
+              "count": 35,
+              "confirmed": 21,
               "visit": 6,
               "contract": 5,
-              "confirmedRate": 57.6,
-              "visitRate": 31.6,
-              "bookingToVisitRate": 18.2,
+              "confirmedRate": 60,
+              "visitRate": 28.6,
+              "bookingToVisitRate": 17.1,
               "contractRate": 83.3
             },
             "ytd": {
-              "count": 301,
-              "confirmed": 216,
+              "count": 303,
+              "confirmed": 218,
               "visit": 188,
               "contract": 73,
-              "confirmedRate": 71.8,
-              "visitRate": 87,
-              "bookingToVisitRate": 62.5,
+              "confirmedRate": 71.9,
+              "visitRate": 86.2,
+              "bookingToVisitRate": 62,
               "contractRate": 38.8
             },
             "prevMonth": {
@@ -27671,23 +27681,23 @@
         },
         "total": {
           "month": {
-            "count": 33,
-            "confirmed": 19,
+            "count": 35,
+            "confirmed": 21,
             "visit": 6,
             "contract": 5,
-            "confirmedRate": 57.6,
-            "visitRate": 31.6,
-            "bookingToVisitRate": 18.2,
+            "confirmedRate": 60,
+            "visitRate": 28.6,
+            "bookingToVisitRate": 17.1,
             "contractRate": 83.3
           },
           "ytd": {
-            "count": 301,
-            "confirmed": 216,
+            "count": 303,
+            "confirmed": 218,
             "visit": 188,
             "contract": 73,
-            "confirmedRate": 71.8,
-            "visitRate": 87,
-            "bookingToVisitRate": 62.5,
+            "confirmedRate": 71.9,
+            "visitRate": 86.2,
+            "bookingToVisitRate": 62,
             "contractRate": 38.8
           },
           "prevMonth": {
@@ -28066,7 +28076,7 @@
     "current": [
       {
         "name": "【WithMe】新規予約管理DB / 予約明細",
-        "rows": 1340
+        "rows": 1342
       }
     ],
     "prev": [
