@@ -1,9 +1,10 @@
-name: Update HPB Trends (Weekly)
+name: Update HPB Trends (Daily)
 
-# 毎週月曜 JST 10:00 (= UTC 01:00) に実行 + 手動トリガーも可能
+# 毎日 JST 10:00 (= UTC 01:00) に実行 + 手動トリガーも可能
+# 以前は毎週月曜のみ (cron: '0 1 * * 1') → 毎日に変更 (2026-08-14)
 on:
   schedule:
-    - cron: '0 1 * * 1'
+    - cron: '0 1 * * *'
   workflow_dispatch:
 
 jobs:

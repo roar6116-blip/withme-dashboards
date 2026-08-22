@@ -1,6 +1,14 @@
 # 店舗別口コミ評価ダッシュボード セットアップ手順
 
-このダッシュボードは **GitHub Actions で1時間ごとに自動更新**されます。
+このダッシュボードは **GitHub Actions で自動更新**されます。
+稼働中の cron は3本:
+
+| ワークフロー | スケジュール | 対象 |
+|---|---|---|
+| `update-reviews.yml` | 毎時0分 (UTC) | Google 件数・評価（Places API） |
+| `update-hpb-trends.yml` | **毎日 JST 10:00** (UTC 01:00) | HPB クチコミ／ブログ 期間別・月別集計 |
+| `update-reservation-funnel.yml` | 毎時0分 (UTC) | 予約ファネル分析データ |
+
 データ取得は次の優先順で動作します:
 
 1. **GBP API**（承認済みの場合）— 口コミ件数・評価・本文を直接取得
