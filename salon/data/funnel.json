@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-23T14:15:44.895Z",
-  "asOf": "2026-08-23",
+  "generatedAt": "2026-08-23T15:14:52.961Z",
+  "asOf": "2026-08-24",
   "target": {
     "confirmedRate": 80,
     "visitRate": 80,
@@ -8,24 +8,24 @@
   },
   "periods": {
     "month": {
-      "label": "2026年8月（1日〜23日）",
+      "label": "2026年8月（1日〜24日）",
       "from": "2026-08-01",
-      "to": "2026-08-23"
+      "to": "2026-08-24"
     },
     "ytd": {
-      "label": "2026年 累計（1/1〜8/23）",
+      "label": "2026年 累計（1/1〜8/24）",
       "from": "2026-01-01",
-      "to": "2026-08-23"
+      "to": "2026-08-24"
     },
     "prevMonth": {
-      "label": "2025年8月（1日〜23日）",
+      "label": "2025年8月（1日〜24日）",
       "from": "2025-08-01",
-      "to": "2025-08-23"
+      "to": "2025-08-24"
     },
     "prevYtd": {
-      "label": "2025年 同期（1/1〜8/23）",
+      "label": "2025年 同期（1/1〜8/24）",
       "from": "2025-01-01",
-      "to": "2025-08-23"
+      "to": "2025-08-24"
     }
   },
   "compare": {
@@ -82,7 +82,7 @@
     },
     "coverage": {
       "from": "2025-01-01",
-      "to": "2026-08-23"
+      "to": "2026-08-24"
     },
     "rows": [
       [
@@ -25959,24 +25959,24 @@
       "contractRate": 41.4
     },
     "prevMonth": {
-      "count": 123,
-      "confirmed": 96,
-      "visit": 78,
-      "contract": 26,
-      "confirmedRate": 78,
-      "visitRate": 81.3,
-      "bookingToVisitRate": 63.4,
-      "contractRate": 33.3
+      "count": 137,
+      "confirmed": 110,
+      "visit": 89,
+      "contract": 30,
+      "confirmedRate": 80.3,
+      "visitRate": 80.9,
+      "bookingToVisitRate": 65,
+      "contractRate": 33.7
     },
     "prevYtd": {
-      "count": 1269,
-      "confirmed": 996,
-      "visit": 830,
-      "contract": 341,
-      "confirmedRate": 78.5,
+      "count": 1283,
+      "confirmed": 1010,
+      "visit": 841,
+      "contract": 345,
+      "confirmedRate": 78.7,
       "visitRate": 83.3,
-      "bookingToVisitRate": 65.4,
-      "contractRate": 41.1
+      "bookingToVisitRate": 65.5,
+      "contractRate": 41
     }
   },
   "stores": [
@@ -26005,24 +26005,24 @@
         "contractRate": 38.6
       },
       "prevMonth": {
-        "count": 35,
-        "confirmed": 28,
-        "visit": 26,
-        "contract": 12,
-        "confirmedRate": 80,
-        "visitRate": 92.9,
-        "bookingToVisitRate": 74.3,
-        "contractRate": 46.2
+        "count": 37,
+        "confirmed": 30,
+        "visit": 28,
+        "contract": 13,
+        "confirmedRate": 81.1,
+        "visitRate": 93.3,
+        "bookingToVisitRate": 75.7,
+        "contractRate": 46.4
       },
       "prevYtd": {
-        "count": 323,
-        "confirmed": 267,
-        "visit": 250,
-        "contract": 96,
-        "confirmedRate": 82.7,
-        "visitRate": 93.6,
-        "bookingToVisitRate": 77.4,
-        "contractRate": 38.4
+        "count": 325,
+        "confirmed": 269,
+        "visit": 252,
+        "contract": 97,
+        "confirmedRate": 82.8,
+        "visitRate": 93.7,
+        "bookingToVisitRate": 77.5,
+        "contractRate": 38.5
       }
     },
     {
@@ -26050,24 +26050,24 @@
         "contractRate": 43.3
       },
       "prevMonth": {
-        "count": 42,
-        "confirmed": 29,
-        "visit": 21,
-        "contract": 3,
-        "confirmedRate": 69,
-        "visitRate": 72.4,
-        "bookingToVisitRate": 50,
-        "contractRate": 14.3
+        "count": 47,
+        "confirmed": 34,
+        "visit": 24,
+        "contract": 4,
+        "confirmedRate": 72.3,
+        "visitRate": 70.6,
+        "bookingToVisitRate": 51.1,
+        "contractRate": 16.7
       },
       "prevYtd": {
-        "count": 379,
-        "confirmed": 297,
-        "visit": 240,
-        "contract": 111,
-        "confirmedRate": 78.4,
-        "visitRate": 80.8,
+        "count": 384,
+        "confirmed": 302,
+        "visit": 243,
+        "contract": 112,
+        "confirmedRate": 78.6,
+        "visitRate": 80.5,
         "bookingToVisitRate": 63.3,
-        "contractRate": 46.3
+        "contractRate": 46.1
       }
     },
     {
@@ -26095,24 +26095,24 @@
         "contractRate": 41.6
       },
       "prevMonth": {
-        "count": 46,
-        "confirmed": 39,
-        "visit": 31,
-        "contract": 11,
-        "confirmedRate": 84.8,
-        "visitRate": 79.5,
-        "bookingToVisitRate": 67.4,
-        "contractRate": 35.5
+        "count": 53,
+        "confirmed": 46,
+        "visit": 37,
+        "contract": 13,
+        "confirmedRate": 86.8,
+        "visitRate": 80.4,
+        "bookingToVisitRate": 69.8,
+        "contractRate": 35.1
       },
       "prevYtd": {
-        "count": 567,
-        "confirmed": 432,
-        "visit": 340,
-        "contract": 134,
-        "confirmedRate": 76.2,
-        "visitRate": 78.7,
-        "bookingToVisitRate": 60,
-        "contractRate": 39.4
+        "count": 574,
+        "confirmed": 439,
+        "visit": 346,
+        "contract": 136,
+        "confirmedRate": 76.5,
+        "visitRate": 78.8,
+        "bookingToVisitRate": 60.3,
+        "contractRate": 39.3
       }
     }
   ],
@@ -26140,24 +26140,24 @@
         "contractRate": 41.6
       },
       "prevMonth": {
-        "count": 54,
-        "confirmed": 45,
-        "visit": 33,
-        "contract": 13,
-        "confirmedRate": 83.3,
-        "visitRate": 73.3,
-        "bookingToVisitRate": 61.1,
-        "contractRate": 39.4
+        "count": 58,
+        "confirmed": 49,
+        "visit": 35,
+        "contract": 14,
+        "confirmedRate": 84.5,
+        "visitRate": 71.4,
+        "bookingToVisitRate": 60.3,
+        "contractRate": 40
       },
       "prevYtd": {
-        "count": 537,
-        "confirmed": 486,
-        "visit": 401,
-        "contract": 156,
-        "confirmedRate": 90.5,
-        "visitRate": 82.5,
-        "bookingToVisitRate": 74.7,
-        "contractRate": 38.9
+        "count": 541,
+        "confirmed": 490,
+        "visit": 403,
+        "contract": 157,
+        "confirmedRate": 90.6,
+        "visitRate": 82.2,
+        "bookingToVisitRate": 74.5,
+        "contractRate": 39
       },
       "stores": [
         {
@@ -26228,24 +26228,24 @@
             "contractRate": 40.6
           },
           "prevMonth": {
-            "count": 22,
-            "confirmed": 17,
-            "visit": 10,
-            "contract": 3,
-            "confirmedRate": 77.3,
-            "visitRate": 58.8,
-            "bookingToVisitRate": 45.5,
-            "contractRate": 30
+            "count": 25,
+            "confirmed": 20,
+            "visit": 12,
+            "contract": 4,
+            "confirmedRate": 80,
+            "visitRate": 60,
+            "bookingToVisitRate": 48,
+            "contractRate": 33.3
           },
           "prevYtd": {
-            "count": 190,
-            "confirmed": 166,
-            "visit": 131,
-            "contract": 52,
-            "confirmedRate": 87.4,
-            "visitRate": 78.9,
+            "count": 193,
+            "confirmed": 169,
+            "visit": 133,
+            "contract": 53,
+            "confirmedRate": 87.6,
+            "visitRate": 78.7,
             "bookingToVisitRate": 68.9,
-            "contractRate": 39.7
+            "contractRate": 39.8
           }
         },
         {
@@ -26272,23 +26272,23 @@
             "contractRate": 41.6
           },
           "prevMonth": {
-            "count": 14,
-            "confirmed": 14,
+            "count": 15,
+            "confirmed": 15,
             "visit": 9,
             "contract": 3,
             "confirmedRate": 100,
-            "visitRate": 64.3,
-            "bookingToVisitRate": 64.3,
+            "visitRate": 60,
+            "bookingToVisitRate": 60,
             "contractRate": 33.3
           },
           "prevYtd": {
-            "count": 195,
-            "confirmed": 186,
+            "count": 196,
+            "confirmed": 187,
             "visit": 140,
             "contract": 52,
             "confirmedRate": 95.4,
-            "visitRate": 75.3,
-            "bookingToVisitRate": 71.8,
+            "visitRate": 74.9,
+            "bookingToVisitRate": 71.4,
             "contractRate": 37.1
           }
         }
@@ -26317,24 +26317,24 @@
         "contractRate": 30.8
       },
       "prevMonth": {
-        "count": 41,
-        "confirmed": 29,
-        "visit": 24,
-        "contract": 5,
-        "confirmedRate": 70.7,
-        "visitRate": 82.8,
-        "bookingToVisitRate": 58.5,
-        "contractRate": 20.8
+        "count": 51,
+        "confirmed": 39,
+        "visit": 33,
+        "contract": 8,
+        "confirmedRate": 76.5,
+        "visitRate": 84.6,
+        "bookingToVisitRate": 64.7,
+        "contractRate": 24.2
       },
       "prevYtd": {
-        "count": 281,
-        "confirmed": 203,
-        "visit": 179,
-        "contract": 56,
-        "confirmedRate": 72.2,
-        "visitRate": 88.2,
-        "bookingToVisitRate": 63.7,
-        "contractRate": 31.3
+        "count": 291,
+        "confirmed": 213,
+        "visit": 188,
+        "contract": 59,
+        "confirmedRate": 73.2,
+        "visitRate": 88.3,
+        "bookingToVisitRate": 64.6,
+        "contractRate": 31.4
       },
       "stores": [
         {
@@ -26361,24 +26361,24 @@
             "contractRate": 26
           },
           "prevMonth": {
-            "count": 12,
-            "confirmed": 9,
-            "visit": 7,
-            "contract": 2,
-            "confirmedRate": 75,
-            "visitRate": 77.8,
-            "bookingToVisitRate": 58.3,
-            "contractRate": 28.6
+            "count": 14,
+            "confirmed": 11,
+            "visit": 9,
+            "contract": 3,
+            "confirmedRate": 78.6,
+            "visitRate": 81.8,
+            "bookingToVisitRate": 64.3,
+            "contractRate": 33.3
           },
           "prevYtd": {
-            "count": 122,
-            "confirmed": 95,
-            "visit": 84,
-            "contract": 30,
-            "confirmedRate": 77.9,
-            "visitRate": 88.4,
-            "bookingToVisitRate": 68.9,
-            "contractRate": 35.7
+            "count": 124,
+            "confirmed": 97,
+            "visit": 86,
+            "contract": 31,
+            "confirmedRate": 78.2,
+            "visitRate": 88.7,
+            "bookingToVisitRate": 69.4,
+            "contractRate": 36
           }
         },
         {
@@ -26405,24 +26405,24 @@
             "contractRate": 29.9
           },
           "prevMonth": {
-            "count": 11,
-            "confirmed": 6,
-            "visit": 5,
+            "count": 13,
+            "confirmed": 8,
+            "visit": 6,
             "contract": 0,
-            "confirmedRate": 54.5,
-            "visitRate": 83.3,
-            "bookingToVisitRate": 45.5,
+            "confirmedRate": 61.5,
+            "visitRate": 75,
+            "bookingToVisitRate": 46.2,
             "contractRate": 0
           },
           "prevYtd": {
-            "count": 29,
-            "confirmed": 21,
-            "visit": 17,
+            "count": 31,
+            "confirmed": 23,
+            "visit": 18,
             "contract": 11,
-            "confirmedRate": 72.4,
-            "visitRate": 81,
-            "bookingToVisitRate": 58.6,
-            "contractRate": 64.7
+            "confirmedRate": 74.2,
+            "visitRate": 78.3,
+            "bookingToVisitRate": 58.1,
+            "contractRate": 61.1
           }
         },
         {
@@ -26449,24 +26449,24 @@
             "contractRate": 34
           },
           "prevMonth": {
-            "count": 18,
-            "confirmed": 14,
-            "visit": 12,
-            "contract": 3,
-            "confirmedRate": 77.8,
-            "visitRate": 85.7,
-            "bookingToVisitRate": 66.7,
-            "contractRate": 25
+            "count": 24,
+            "confirmed": 20,
+            "visit": 18,
+            "contract": 5,
+            "confirmedRate": 83.3,
+            "visitRate": 90,
+            "bookingToVisitRate": 75,
+            "contractRate": 27.8
           },
           "prevYtd": {
-            "count": 130,
-            "confirmed": 87,
-            "visit": 78,
-            "contract": 15,
-            "confirmedRate": 66.9,
-            "visitRate": 89.7,
-            "bookingToVisitRate": 60,
-            "contractRate": 19.2
+            "count": 136,
+            "confirmed": 93,
+            "visit": 84,
+            "contract": 17,
+            "confirmedRate": 68.4,
+            "visitRate": 90.3,
+            "bookingToVisitRate": 61.8,
+            "contractRate": 20.2
           }
         }
       ]
@@ -27744,24 +27744,24 @@
               "contractRate": 38.6
             },
             "prevMonth": {
-              "count": 35,
-              "confirmed": 28,
-              "visit": 26,
-              "contract": 12,
-              "confirmedRate": 80,
-              "visitRate": 92.9,
-              "bookingToVisitRate": 74.3,
-              "contractRate": 46.2
+              "count": 37,
+              "confirmed": 30,
+              "visit": 28,
+              "contract": 13,
+              "confirmedRate": 81.1,
+              "visitRate": 93.3,
+              "bookingToVisitRate": 75.7,
+              "contractRate": 46.4
             },
             "prevYtd": {
-              "count": 323,
-              "confirmed": 267,
-              "visit": 250,
-              "contract": 96,
-              "confirmedRate": 82.7,
-              "visitRate": 93.6,
-              "bookingToVisitRate": 77.4,
-              "contractRate": 38.4
+              "count": 325,
+              "confirmed": 269,
+              "visit": 252,
+              "contract": 97,
+              "confirmedRate": 82.8,
+              "visitRate": 93.7,
+              "bookingToVisitRate": 77.5,
+              "contractRate": 38.5
             }
           },
           "脱毛": {
@@ -27871,24 +27871,24 @@
             "contractRate": 38.6
           },
           "prevMonth": {
-            "count": 35,
-            "confirmed": 28,
-            "visit": 26,
-            "contract": 12,
-            "confirmedRate": 80,
-            "visitRate": 92.9,
-            "bookingToVisitRate": 74.3,
-            "contractRate": 46.2
+            "count": 37,
+            "confirmed": 30,
+            "visit": 28,
+            "contract": 13,
+            "confirmedRate": 81.1,
+            "visitRate": 93.3,
+            "bookingToVisitRate": 75.7,
+            "contractRate": 46.4
           },
           "prevYtd": {
-            "count": 323,
-            "confirmed": 267,
-            "visit": 250,
-            "contract": 96,
-            "confirmedRate": 82.7,
-            "visitRate": 93.6,
-            "bookingToVisitRate": 77.4,
-            "contractRate": 38.4
+            "count": 325,
+            "confirmed": 269,
+            "visit": 252,
+            "contract": 97,
+            "confirmedRate": 82.8,
+            "visitRate": 93.7,
+            "bookingToVisitRate": 77.5,
+            "contractRate": 38.5
           }
         }
       },
@@ -27960,24 +27960,24 @@
               "contractRate": 55.5
             },
             "prevMonth": {
-              "count": 22,
-              "confirmed": 16,
-              "visit": 11,
-              "contract": 3,
-              "confirmedRate": 72.7,
-              "visitRate": 68.8,
+              "count": 24,
+              "confirmed": 18,
+              "visit": 12,
+              "contract": 4,
+              "confirmedRate": 75,
+              "visitRate": 66.7,
               "bookingToVisitRate": 50,
-              "contractRate": 27.3
+              "contractRate": 33.3
             },
             "prevYtd": {
-              "count": 276,
-              "confirmed": 209,
-              "visit": 169,
-              "contract": 95,
-              "confirmedRate": 75.7,
-              "visitRate": 80.9,
+              "count": 278,
+              "confirmed": 211,
+              "visit": 170,
+              "contract": 96,
+              "confirmedRate": 75.9,
+              "visitRate": 80.6,
               "bookingToVisitRate": 61.2,
-              "contractRate": 56.2
+              "contractRate": 56.5
             }
           },
           "フェイシャル": {
@@ -28002,24 +28002,24 @@
               "contractRate": 31.7
             },
             "prevMonth": {
-              "count": 20,
-              "confirmed": 13,
-              "visit": 10,
+              "count": 23,
+              "confirmed": 16,
+              "visit": 12,
               "contract": 0,
-              "confirmedRate": 65,
-              "visitRate": 76.9,
-              "bookingToVisitRate": 50,
+              "confirmedRate": 69.6,
+              "visitRate": 75,
+              "bookingToVisitRate": 52.2,
               "contractRate": 0
             },
             "prevYtd": {
-              "count": 103,
-              "confirmed": 88,
-              "visit": 71,
+              "count": 106,
+              "confirmed": 91,
+              "visit": 73,
               "contract": 16,
-              "confirmedRate": 85.4,
-              "visitRate": 80.7,
+              "confirmedRate": 85.8,
+              "visitRate": 80.2,
               "bookingToVisitRate": 68.9,
-              "contractRate": 22.5
+              "contractRate": 21.9
             }
           }
         },
@@ -28045,24 +28045,24 @@
             "contractRate": 43.3
           },
           "prevMonth": {
-            "count": 42,
-            "confirmed": 29,
-            "visit": 21,
-            "contract": 3,
-            "confirmedRate": 69,
-            "visitRate": 72.4,
-            "bookingToVisitRate": 50,
-            "contractRate": 14.3
+            "count": 47,
+            "confirmed": 34,
+            "visit": 24,
+            "contract": 4,
+            "confirmedRate": 72.3,
+            "visitRate": 70.6,
+            "bookingToVisitRate": 51.1,
+            "contractRate": 16.7
           },
           "prevYtd": {
-            "count": 379,
-            "confirmed": 297,
-            "visit": 240,
-            "contract": 111,
-            "confirmedRate": 78.4,
-            "visitRate": 80.8,
+            "count": 384,
+            "confirmed": 302,
+            "visit": 243,
+            "contract": 112,
+            "confirmedRate": 78.6,
+            "visitRate": 80.5,
             "bookingToVisitRate": 63.3,
-            "contractRate": 46.3
+            "contractRate": 46.1
           }
         }
       },
@@ -28092,24 +28092,24 @@
               "contractRate": 45.6
             },
             "prevMonth": {
-              "count": 19,
-              "confirmed": 15,
-              "visit": 13,
-              "contract": 4,
-              "confirmedRate": 78.9,
-              "visitRate": 86.7,
-              "bookingToVisitRate": 68.4,
-              "contractRate": 30.8
+              "count": 21,
+              "confirmed": 17,
+              "visit": 14,
+              "contract": 5,
+              "confirmedRate": 81,
+              "visitRate": 82.4,
+              "bookingToVisitRate": 66.7,
+              "contractRate": 35.7
             },
             "prevYtd": {
-              "count": 210,
-              "confirmed": 154,
-              "visit": 142,
-              "contract": 41,
-              "confirmedRate": 73.3,
-              "visitRate": 92.2,
-              "bookingToVisitRate": 67.6,
-              "contractRate": 28.9
+              "count": 212,
+              "confirmed": 156,
+              "visit": 143,
+              "contract": 42,
+              "confirmedRate": 73.6,
+              "visitRate": 91.7,
+              "bookingToVisitRate": 67.5,
+              "contractRate": 29.4
             }
           },
           "脱毛": {
@@ -28176,24 +28176,24 @@
               "contractRate": 41.8
             },
             "prevMonth": {
-              "count": 14,
-              "confirmed": 14,
-              "visit": 11,
-              "contract": 3,
+              "count": 19,
+              "confirmed": 19,
+              "visit": 16,
+              "contract": 4,
               "confirmedRate": 100,
-              "visitRate": 78.6,
-              "bookingToVisitRate": 78.6,
-              "contractRate": 27.3
+              "visitRate": 84.2,
+              "bookingToVisitRate": 84.2,
+              "contractRate": 25
             },
             "prevYtd": {
-              "count": 41,
-              "confirmed": 41,
-              "visit": 34,
-              "contract": 11,
+              "count": 46,
+              "confirmed": 46,
+              "visit": 39,
+              "contract": 12,
               "confirmedRate": 100,
-              "visitRate": 82.9,
-              "bookingToVisitRate": 82.9,
-              "contractRate": 32.4
+              "visitRate": 84.8,
+              "bookingToVisitRate": 84.8,
+              "contractRate": 30.8
             }
           }
         },
@@ -28219,24 +28219,24 @@
             "contractRate": 41.6
           },
           "prevMonth": {
-            "count": 46,
-            "confirmed": 39,
-            "visit": 31,
-            "contract": 11,
-            "confirmedRate": 84.8,
-            "visitRate": 79.5,
-            "bookingToVisitRate": 67.4,
-            "contractRate": 35.5
+            "count": 53,
+            "confirmed": 46,
+            "visit": 37,
+            "contract": 13,
+            "confirmedRate": 86.8,
+            "visitRate": 80.4,
+            "bookingToVisitRate": 69.8,
+            "contractRate": 35.1
           },
           "prevYtd": {
-            "count": 567,
-            "confirmed": 432,
-            "visit": 340,
-            "contract": 134,
-            "confirmedRate": 76.2,
-            "visitRate": 78.7,
-            "bookingToVisitRate": 60,
-            "contractRate": 39.4
+            "count": 574,
+            "confirmed": 439,
+            "visit": 346,
+            "contract": 136,
+            "confirmedRate": 76.5,
+            "visitRate": 78.8,
+            "bookingToVisitRate": 60.3,
+            "contractRate": 39.3
           }
         }
       }
