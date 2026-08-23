@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-23T05:21:34.154Z",
+  "generatedAt": "2026-08-23T06:27:09.153Z",
   "asOf": "2026-08-23",
   "target": {
     "confirmedRate": 80,
@@ -25890,8 +25890,18 @@
         0,
         0,
         3,
+        2,
+        1,
+        0,
+        0
+      ],
+      [
+        "2026-08-23",
+        0,
+        0,
         1,
         1,
+        0,
         0,
         0
       ]
@@ -25899,21 +25909,21 @@
   },
   "total": {
     "month": {
-      "count": 110,
+      "count": 112,
       "confirmed": 73,
       "visit": 24,
       "contract": 14,
-      "confirmedRate": 66.4,
+      "confirmedRate": 65.2,
       "visitRate": 32.9,
-      "bookingToVisitRate": 21.8,
+      "bookingToVisitRate": 21.4,
       "contractRate": 58.3
     },
     "ytd": {
-      "count": 1358,
+      "count": 1360,
       "confirmed": 892,
       "visit": 742,
       "contract": 306,
-      "confirmedRate": 65.7,
+      "confirmedRate": 65.6,
       "visitRate": 83.2,
       "bookingToVisitRate": 54.6,
       "contractRate": 41.2
@@ -25945,23 +25955,23 @@
       "name": "SlenderMe甲府店",
       "nameEn": "Slender Me · Kofu",
       "month": {
-        "count": 39,
+        "count": 41,
         "confirmed": 24,
         "visit": 7,
         "contract": 5,
-        "confirmedRate": 61.5,
+        "confirmedRate": 58.5,
         "visitRate": 29.2,
-        "bookingToVisitRate": 17.9,
+        "bookingToVisitRate": 17.1,
         "contractRate": 71.4
       },
       "ytd": {
-        "count": 307,
+        "count": 309,
         "confirmed": 221,
         "visit": 189,
         "contract": 73,
-        "confirmedRate": 72,
+        "confirmedRate": 71.5,
         "visitRate": 85.5,
-        "bookingToVisitRate": 61.6,
+        "bookingToVisitRate": 61.2,
         "contractRate": 38.6
       },
       "prevMonth": {
@@ -26257,23 +26267,23 @@
     {
       "name": "インスタ広告",
       "month": {
-        "count": 39,
+        "count": 40,
         "confirmed": 22,
         "visit": 4,
         "contract": 1,
-        "confirmedRate": 56.4,
+        "confirmedRate": 55,
         "visitRate": 18.2,
-        "bookingToVisitRate": 10.3,
+        "bookingToVisitRate": 10,
         "contractRate": 25
       },
       "ytd": {
-        "count": 464,
+        "count": 465,
         "confirmed": 260,
         "visit": 211,
         "contract": 64,
-        "confirmedRate": 56,
+        "confirmedRate": 55.9,
         "visitRate": 81.2,
-        "bookingToVisitRate": 45.5,
+        "bookingToVisitRate": 45.4,
         "contractRate": 30.3
       },
       "prevMonth": {
@@ -26301,23 +26311,23 @@
           "code": "sm-kofu",
           "name": "SlenderMe甲府店",
           "month": {
-            "count": 10,
+            "count": 11,
             "confirmed": 5,
             "visit": 0,
             "contract": 0,
-            "confirmedRate": 50,
+            "confirmedRate": 45.5,
             "visitRate": 0,
             "bookingToVisitRate": 0,
             "contractRate": null
           },
           "ytd": {
-            "count": 101,
+            "count": 102,
             "confirmed": 61,
             "visit": 50,
             "contract": 13,
-            "confirmedRate": 60.4,
+            "confirmedRate": 59.8,
             "visitRate": 82,
-            "bookingToVisitRate": 49.5,
+            "bookingToVisitRate": 49,
             "contractRate": 26
           },
           "prevMonth": {
@@ -26611,23 +26621,23 @@
     {
       "name": "アフィリエイト",
       "month": {
-        "count": 23,
+        "count": 24,
         "confirmed": 10,
         "visit": 6,
         "contract": 2,
-        "confirmedRate": 43.5,
+        "confirmedRate": 41.7,
         "visitRate": 60,
-        "bookingToVisitRate": 26.1,
+        "bookingToVisitRate": 25,
         "contractRate": 33.3
       },
       "ytd": {
-        "count": 301,
+        "count": 302,
         "confirmed": 165,
         "visit": 134,
         "contract": 64,
-        "confirmedRate": 54.8,
+        "confirmedRate": 54.6,
         "visitRate": 81.2,
-        "bookingToVisitRate": 44.5,
+        "bookingToVisitRate": 44.4,
         "contractRate": 47.8
       },
       "prevMonth": {
@@ -26655,23 +26665,23 @@
           "code": "sm-kofu",
           "name": "SlenderMe甲府店",
           "month": {
-            "count": 14,
+            "count": 15,
             "confirmed": 4,
             "visit": 2,
             "contract": 0,
-            "confirmedRate": 28.6,
+            "confirmedRate": 26.7,
             "visitRate": 50,
-            "bookingToVisitRate": 14.3,
+            "bookingToVisitRate": 13.3,
             "contractRate": 0
           },
           "ytd": {
-            "count": 42,
+            "count": 43,
             "confirmed": 22,
             "visit": 19,
             "contract": 9,
-            "confirmedRate": 52.4,
+            "confirmedRate": 51.2,
             "visitRate": 86.4,
-            "bookingToVisitRate": 45.2,
+            "bookingToVisitRate": 44.2,
             "contractRate": 47.4
           },
           "prevMonth": {
@@ -27684,23 +27694,23 @@
         "menus": {
           "痩身": {
             "month": {
-              "count": 39,
+              "count": 41,
               "confirmed": 24,
               "visit": 7,
               "contract": 5,
-              "confirmedRate": 61.5,
+              "confirmedRate": 58.5,
               "visitRate": 29.2,
-              "bookingToVisitRate": 17.9,
+              "bookingToVisitRate": 17.1,
               "contractRate": 71.4
             },
             "ytd": {
-              "count": 307,
+              "count": 309,
               "confirmed": 221,
               "visit": 189,
               "contract": 73,
-              "confirmedRate": 72,
+              "confirmedRate": 71.5,
               "visitRate": 85.5,
-              "bookingToVisitRate": 61.6,
+              "bookingToVisitRate": 61.2,
               "contractRate": 38.6
             },
             "prevMonth": {
@@ -27811,23 +27821,23 @@
         },
         "total": {
           "month": {
-            "count": 39,
+            "count": 41,
             "confirmed": 24,
             "visit": 7,
             "contract": 5,
-            "confirmedRate": 61.5,
+            "confirmedRate": 58.5,
             "visitRate": 29.2,
-            "bookingToVisitRate": 17.9,
+            "bookingToVisitRate": 17.1,
             "contractRate": 71.4
           },
           "ytd": {
-            "count": 307,
+            "count": 309,
             "confirmed": 221,
             "visit": 189,
             "contract": 73,
-            "confirmedRate": 72,
+            "confirmedRate": 71.5,
             "visitRate": 85.5,
-            "bookingToVisitRate": 61.6,
+            "bookingToVisitRate": 61.2,
             "contractRate": 38.6
           },
           "prevMonth": {
@@ -28206,7 +28216,7 @@
     "current": [
       {
         "name": "【WithMe】新規予約管理DB / 予約明細",
-        "rows": 1358
+        "rows": 1360
       }
     ],
     "prev": [
