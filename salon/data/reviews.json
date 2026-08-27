@@ -1,9 +1,9 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-08-27T02:28:59.607Z",
+  "generated_at": "2026-08-27T10:45:31.700Z",
   "data_sources": {
-    "google": "Places API Text Search (auto, hourly)",
+    "google": "inherited from previous",
     "hpb": "manual input (sample values)",
     "blog": "manual input (placeholder values)",
     "monthly_trend": "HPBクチコミ4ページから月別集計 (2026-05-17時点)"
@@ -20,8 +20,8 @@
         "review_count": 618,
         "rating": 4.86,
         "blog_count_total": 450,
-        "blog_count_this_month": 17,
-        "new_reviews_this_month": 45,
+        "blog_count_this_month": 19,
+        "new_reviews_this_month": 47,
         "available": true
       },
       "google": {
@@ -29,8 +29,7 @@
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJr4DRCWj3G2AR-ZL9_5Qrds0",
         "review_count": 393,
         "rating": 5,
-        "new_reviews_this_month": 0,
-        "place_id": "ChIJr4DRCWj3G2AR-ZL9_5Qrds0"
+        "new_reviews_this_month": 0
       },
       "monthly_trend": [
         {
@@ -38,12 +37,8 @@
           "count": 1
         },
         {
-          "month": "2026-05",
-          "count": 1
-        },
-        {
           "month": "2026-06",
-          "count": 28
+          "count": 27
         },
         {
           "month": "2026-07",
@@ -51,29 +46,29 @@
         },
         {
           "month": "2026-08",
-          "count": 45
+          "count": 47
         }
       ],
       "period_summary": {
         "p7": {
-          "reviews": 12,
-          "blogs": 6
+          "reviews": 13,
+          "blogs": 7
         },
         "p30": {
-          "reviews": 50,
-          "blogs": 20
+          "reviews": 52,
+          "blogs": 22
         },
         "p60": {
-          "reviews": 92,
-          "blogs": 43
+          "reviews": 94,
+          "blogs": 44
         },
         "p90": {
-          "reviews": 118,
-          "blogs": 52
+          "reviews": 119,
+          "blogs": 54
         },
         "p180": {
           "reviews": 119,
-          "blogs": 72
+          "blogs": 74
         },
         "p365": {
           "reviews": 120,
@@ -82,13 +77,12 @@
       },
       "monthly_reviews": {
         "2025-10": 1,
-        "2026-08": 45,
+        "2026-08": 47,
         "2026-07": 45,
-        "2026-06": 28,
-        "2026-05": 1
+        "2026-06": 27
       },
       "monthly_blogs": {
-        "2026-08": 17,
+        "2026-08": 19,
         "2026-07": 24,
         "2026-06": 11,
         "2026-05": 5,
@@ -97,14 +91,14 @@
         "2026-02": 1,
         "2026-01": 8,
         "2025-12": 12,
-        "2025-11": 7
+        "2025-11": 5
       },
       "totals": {
         "review_count": 1011,
         "weighted_rating": 4.91,
         "blog_count_total": 450,
-        "blog_count_this_month": 17,
-        "new_reviews_this_month": 45
+        "blog_count_this_month": 19,
+        "new_reviews_this_month": 47
       },
       "score": 96,
       "rank": 1
@@ -120,25 +114,20 @@
         "review_count": 589,
         "rating": 4.78,
         "blog_count_total": 370,
-        "blog_count_this_month": 18,
-        "new_reviews_this_month": 19,
+        "blog_count_this_month": 20,
+        "new_reviews_this_month": 20,
         "available": true
       },
       "google": {
-        "label": "Touch Me富士店",
+        "label": "Touch Me富士店【タッチミー】",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJrw9otUMrGmARJgKg8v6_kF8",
         "review_count": 213,
         "rating": 4.9,
-        "new_reviews_this_month": 0,
-        "place_id": "ChIJrw9otUMrGmARJgKg8v6_kF8"
+        "new_reviews_this_month": 0
       },
       "monthly_trend": [
         {
           "month": "2025-02",
-          "count": 1
-        },
-        {
-          "month": "2026-03",
           "count": 1
         },
         {
@@ -159,25 +148,25 @@
         },
         {
           "month": "2026-08",
-          "count": 19
+          "count": 20
         }
       ],
       "period_summary": {
         "p7": {
-          "reviews": 3,
-          "blogs": 5
+          "reviews": 4,
+          "blogs": 6
         },
         "p30": {
-          "reviews": 21,
-          "blogs": 21
+          "reviews": 22,
+          "blogs": 23
         },
         "p60": {
-          "reviews": 47,
-          "blogs": 43
+          "reviews": 48,
+          "blogs": 45
         },
         "p90": {
-          "reviews": 77,
-          "blogs": 61
+          "reviews": 78,
+          "blogs": 63
         },
         "p180": {
           "reviews": 119,
@@ -190,27 +179,26 @@
       },
       "monthly_reviews": {
         "2025-02": 1,
-        "2026-08": 19,
+        "2026-08": 20,
         "2026-07": 27,
         "2026-06": 30,
         "2026-05": 20,
-        "2026-04": 22,
-        "2026-03": 1
+        "2026-04": 22
       },
       "monthly_blogs": {
-        "2026-08": 18,
+        "2026-08": 20,
         "2026-07": 25,
         "2026-06": 18,
         "2026-05": 24,
         "2026-04": 9,
-        "2026-03": 6
+        "2026-03": 4
       },
       "totals": {
         "review_count": 802,
         "weighted_rating": 4.81,
         "blog_count_total": 370,
-        "blog_count_this_month": 18,
-        "new_reviews_this_month": 19
+        "blog_count_this_month": 20,
+        "new_reviews_this_month": 20
       },
       "score": 79,
       "rank": 2
@@ -226,7 +214,7 @@
         "review_count": 312,
         "rating": 4.79,
         "blog_count_total": 430,
-        "blog_count_this_month": 15,
+        "blog_count_this_month": 16,
         "new_reviews_this_month": 10,
         "available": true
       },
@@ -235,8 +223,7 @@
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJjy9pyNH3G2ARbUkCUHJGYP0",
         "review_count": 144,
         "rating": 4.9,
-        "new_reviews_this_month": 0,
-        "place_id": "ChIJjy9pyNH3G2ARbUkCUHJGYP0"
+        "new_reviews_this_month": 0
       },
       "monthly_trend": [
         {
@@ -282,20 +269,20 @@
           "blogs": 4
         },
         "p30": {
-          "reviews": 15,
-          "blogs": 16
+          "reviews": 14,
+          "blogs": 17
         },
         "p60": {
-          "reviews": 28,
-          "blogs": 39
+          "reviews": 27,
+          "blogs": 40
         },
         "p90": {
           "reviews": 41,
-          "blogs": 59
+          "blogs": 60
         },
         "p180": {
-          "reviews": 78,
-          "blogs": 79
+          "reviews": 77,
+          "blogs": 80
         },
         "p365": {
           "reviews": 120,
@@ -314,7 +301,7 @@
         "2025-12": 16
       },
       "monthly_blogs": {
-        "2026-08": 15,
+        "2026-08": 16,
         "2026-07": 23,
         "2026-06": 19,
         "2026-05": 9,
@@ -322,14 +309,13 @@
         "2026-03": 11,
         "2026-02": 5,
         "2026-01": 6,
-        "2025-12": 9,
-        "2025-11": 1
+        "2025-12": 9
       },
       "totals": {
         "review_count": 456,
         "weighted_rating": 4.82,
         "blog_count_total": 430,
-        "blog_count_this_month": 15,
+        "blog_count_this_month": 16,
         "new_reviews_this_month": 10
       },
       "score": 60,
@@ -346,22 +332,21 @@
         "review_count": 156,
         "rating": 4.84,
         "blog_count_total": 180,
-        "blog_count_this_month": 15,
-        "new_reviews_this_month": 25,
+        "blog_count_this_month": 17,
+        "new_reviews_this_month": 27,
         "available": true
       },
       "google": {
-        "label": "小顔矯正コルギ専門店 KaoKao甲府本店",
+        "label": "KaoKao甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJp8kWlv_3G2ARObteUfTXtKM",
         "review_count": 100,
         "rating": 5,
-        "new_reviews_this_month": 0,
-        "place_id": "ChIJp8kWlv_3G2ARObteUfTXtKM"
+        "new_reviews_this_month": 0
       },
       "monthly_trend": [
         {
           "month": "2026-01",
-          "count": 9
+          "count": 7
         },
         {
           "month": "2026-02",
@@ -389,29 +374,29 @@
         },
         {
           "month": "2026-08",
-          "count": 25
+          "count": 27
         }
       ],
       "period_summary": {
         "p7": {
           "reviews": 13,
-          "blogs": 4
+          "blogs": 5
         },
         "p30": {
-          "reviews": 28,
-          "blogs": 18
+          "reviews": 30,
+          "blogs": 20
         },
         "p60": {
-          "reviews": 56,
-          "blogs": 38
+          "reviews": 58,
+          "blogs": 39
         },
         "p90": {
-          "reviews": 69,
-          "blogs": 44
+          "reviews": 71,
+          "blogs": 46
         },
         "p180": {
-          "reviews": 106,
-          "blogs": 58
+          "reviews": 107,
+          "blogs": 60
         },
         "p365": {
           "reviews": 120,
@@ -420,16 +405,16 @@
       },
       "monthly_reviews": {
         "2026-07": 30,
-        "2026-08": 25,
+        "2026-08": 27,
         "2026-06": 13,
         "2026-05": 9,
         "2026-04": 16,
         "2026-03": 12,
         "2026-02": 6,
-        "2026-01": 9
+        "2026-01": 7
       },
       "monthly_blogs": {
-        "2026-08": 15,
+        "2026-08": 17,
         "2026-07": 21,
         "2026-06": 8,
         "2026-05": 3,
@@ -438,14 +423,14 @@
         "2026-02": 1,
         "2026-01": 9,
         "2025-12": 19,
-        "2025-11": 13
+        "2025-11": 11
       },
       "totals": {
         "review_count": 256,
         "weighted_rating": 4.9,
         "blog_count_total": 180,
-        "blog_count_this_month": 15,
-        "new_reviews_this_month": 25
+        "blog_count_this_month": 17,
+        "new_reviews_this_month": 27
       },
       "score": 46,
       "rank": 4
@@ -461,17 +446,16 @@
         "review_count": 110,
         "rating": 4.93,
         "blog_count_total": 30,
-        "blog_count_this_month": 18,
+        "blog_count_this_month": 20,
         "new_reviews_this_month": 8,
         "available": true
       },
       "google": {
-        "label": "韓国式小顔矯正コルギ・肌管理専門店 KaoKao富士店",
+        "label": "KaoKao富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJD_zlmH8rGmAREUkK6yw7qZ0",
         "review_count": 77,
         "rating": 5,
-        "new_reviews_this_month": 0,
-        "place_id": "ChIJD_zlmH8rGmAREUkK6yw7qZ0"
+        "new_reviews_this_month": 0
       },
       "monthly_trend": [
         {
@@ -542,19 +526,19 @@
       "period_summary": {
         "p7": {
           "reviews": 3,
-          "blogs": 5
+          "blogs": 6
         },
         "p30": {
           "reviews": 9,
-          "blogs": 22
+          "blogs": 24
         },
         "p60": {
-          "reviews": 12,
-          "blogs": 46
+          "reviews": 11,
+          "blogs": 48
         },
         "p90": {
-          "reviews": 19,
-          "blogs": 59
+          "reviews": 18,
+          "blogs": 61
         },
         "p180": {
           "reviews": 54,
@@ -584,18 +568,18 @@
         "2025-05": 2
       },
       "monthly_blogs": {
-        "2026-08": 18,
+        "2026-08": 20,
         "2026-07": 28,
         "2026-06": 13,
         "2026-05": 30,
         "2026-04": 6,
-        "2026-03": 5
+        "2026-03": 3
       },
       "totals": {
         "review_count": 187,
         "weighted_rating": 4.96,
         "blog_count_total": 30,
-        "blog_count_this_month": 18,
+        "blog_count_this_month": 20,
         "new_reviews_this_month": 8
       },
       "score": 40,
@@ -618,12 +602,11 @@
         "note": "HPB広告ページなし。TouchMe富士店併設で運営"
       },
       "google": {
-        "label": "痩身ダイエット専門店 Slender Me富士店",
+        "label": "Slender Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJX2b9B2QrGmAR6bSYAib6Q0w",
         "review_count": 62,
         "rating": 4.9,
-        "new_reviews_this_month": 0,
-        "place_id": "ChIJX2b9B2QrGmAR6bSYAib6Q0w"
+        "new_reviews_this_month": 0
       },
       "monthly_trend": [],
       "period_summary": {
@@ -667,9 +650,9 @@
   ],
   "company_totals": {
     "total_reviews": 2774,
-    "total_new_this_month": 107,
+    "total_new_this_month": 112,
     "average_rating": 4.87,
-    "total_blog_this_month": 83,
+    "total_blog_this_month": 92,
     "total_blog_all": 1460,
     "store_count": 6
   },
