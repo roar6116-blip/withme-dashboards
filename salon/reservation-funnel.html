@@ -329,8 +329,68 @@ body {
 
 .period-note-line {
   font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gray-500);
-  margin: -28px 0 40px; padding-left: 2px;
+  margin: -28px 0 16px; padding-left: 2px;
 }
+
+/* 店舗フィルタ */
+.store-filter {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0 0 24px;
+}
+.store-filter[hidden] { display: none; }
+.store-filter-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gray-500);
+}
+.store-filter-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.store-chip {
+  font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer;
+  padding: 6px 16px; border-radius: 999px; border: 1px solid var(--gray-300);
+  background: var(--white); color: var(--gray-600); transition: all 0.15s ease;
+}
+.store-chip:hover { border-color: var(--navy-600); color: var(--navy-900); }
+.store-chip.is-active { background: var(--orange-500); border-color: var(--orange-500); color: var(--white); }
+
+/* 選択中の自店を先頭表示・強調する（02/04/05共通） */
+.store-card.is-my-store { border: 2px solid var(--orange-500); box-shadow: 0 4px 16px rgba(249, 115, 22, 0.15); }
+.my-store-badge {
+  display: inline-block; font-size: 10px; font-weight: 700; color: var(--white);
+  background: var(--orange-500); border-radius: 4px; padding: 2px 8px; margin-left: 8px;
+  letter-spacing: 0.05em; vertical-align: middle;
+}
+.achievement-row.is-my-store { background: var(--orange-50); margin: 0 -16px; padding: 20px 16px; border-radius: 8px; }
+.heatmap-table tr.is-my-store td:first-child { background: var(--orange-600); }
+
+/* ボトルネックの自動ラベル */
+.bottleneck-tag {
+  display: inline-block; font-size: 11px; font-weight: 700; border-radius: 4px;
+  padding: 3px 10px; letter-spacing: 0.02em; margin-left: 8px; vertical-align: middle;
+}
+.bottleneck-tag.confirmed { background: var(--bad-bg); color: var(--bad); }
+.bottleneck-tag.visit { background: var(--warn-bg); color: var(--warn); }
+.bottleneck-tag.ok { background: var(--good-bg); color: var(--good); }
+.store-card-body .bottleneck-tag { margin-top: 14px; margin-left: 0; display: block; width: fit-content; }
+
+/* セクション内の補助テーブル見出し（03の媒体×メニューなど） */
+.subsection-title {
+  font-size: 15px; font-weight: 700; color: var(--navy-900); margin: 32px 0 12px;
+  padding-top: 20px; border-top: 1px dashed var(--gray-200);
+}
+.subsection-note { font-size: 12px; font-weight: 400; color: var(--gray-500); margin-left: 10px; }
+
+/* 06 自動ハイライト */
+.auto-highlights { background: var(--white); border: 1px solid var(--gray-200); border-radius: 8px; padding: 20px 24px; margin-bottom: 20px; }
+.auto-highlights-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 14px; }
+.auto-highlights-list { list-style: none; }
+.auto-highlight-item {
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  padding: 10px 0; border-bottom: 1px solid var(--gray-100);
+}
+.auto-highlight-item:last-child { border-bottom: none; }
+.ahi-label { font-weight: 700; font-size: 14px; color: var(--navy-900); min-width: 160px; }
+.ahi-delta { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 800; }
+.ahi-delta.down { color: var(--bad); }
+.ahi-delta.up { color: var(--good); }
+.ahi-note { font-size: 12px; color: var(--gray-500); }
 
 .compare-table tbody tr.is-current { background: var(--navy-50); }
 .compare-table tbody tr.is-current .cell-store-name { color: var(--navy-700); }
@@ -460,6 +520,11 @@ body {
 
 <p class="period-note-line" id="period-note"></p>
 
+<div class="store-filter" id="store-filter" hidden>
+  <span class="store-filter-label">表示店舗（02・04・05に反映）</span>
+  <div class="store-filter-chips" id="store-filter-chips"></div>
+</div>
+
 <p class="lag-note" id="lag-note" hidden>
   当月は「予約が発生した日」を基準に、<strong>本日入力ぶんまで</strong>集計しています。今月予約された方の来店はこれから先の日付にも入るため、
   <strong>月の途中では来店率・予約→来店率が実力より低く出ます</strong>（前年同月はすでに来店が出そろっているので、
@@ -512,6 +577,13 @@ body {
     <div class="table-scroll">
       <table class="compare-table" id="media-table">
         <thead><tr><th>媒体 / 店舗</th><th>予約発生</th><th>確定</th><th>来店</th><th>確定率</th><th>来店率</th><th>予約→来店率</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <h3 class="subsection-title">媒体 × メニュー<span class="subsection-note">予約 → 来店率</span></h3>
+    <div class="table-scroll">
+      <table class="heatmap-table" id="media-menu-heatmap">
+        <thead></thead>
         <tbody></tbody>
       </table>
     </div>
@@ -569,6 +641,8 @@ let range = null;        // { from, to, label } 表示中の期間
 let customRange = null;  // 期間指定で選ばれた範囲
 // 展開中の媒体名。期間を切り替えても開閉状態を保つ
 const openMedia = new Set();
+// 選択中の自店（店舗コード）。02/04/05を先頭表示・強調する。URLの ?store= と同期する
+let storeFilter = null;
 
 // ---------------------------------------------------------------- 期間の組み立て
 
@@ -679,6 +753,11 @@ function computeView(r) {
       const mn = f.menus[row[2]];
       return s && mn ? keyOf(s, mn) : null;
     }),
+    mediaMenu: aggregate(from, to, (row) => {
+      const m = f.media[row[3]];
+      const mn = f.menus[row[2]];
+      return m && mn ? keyOf(m, mn) : null;
+    }),
   });
 
   return { cur: build(r.from, r.to), prev: build(prev.from, prev.to), prevRange: prev };
@@ -691,11 +770,31 @@ const num = (n) => (n ?? 0).toLocaleString('ja-JP');
 const rate = (v) => (v == null ? '—' : v.toFixed(1) + '%');
 
 /** 目標に対する達成度で good / warn / bad を返す */
+/** storeFilter が指定されていれば、その店舗を先頭に並べ替える（02/04/05共通） */
+function orderStores(stores) {
+  if (!storeFilter) return stores;
+  const idx = stores.findIndex((s) => s.code === storeFilter);
+  if (idx <= 0) return stores;
+  const copy = stores.slice();
+  const [picked] = copy.splice(idx, 1);
+  copy.unshift(picked);
+  return copy;
+}
+
 function grade(value, target) {
   if (value == null) return 'na';
   if (value >= target) return 'good';
   if (value >= target * 0.85) return 'warn';
   return 'bad';
+}
+
+/** ヒートマップの1マス分のHTML（05店舗×メニュー・媒体×メニュー共通） */
+function heatCell(b, target) {
+  if (!b || b.count === 0) return '<td class="h-na">—</td>';
+  const g = grade(b.bookingToVisitRate, target.bookingToVisitRate);
+  const cls = g === 'good' ? 'h-good' : g === 'warn' ? 'h-mid' : 'h-bad';
+  const thin = b.count < LOW_N ? ' is-thin' : '';
+  return `<td class="${cls}${thin}">${rate(b.bookingToVisitRate)}<span class="h-sub">${b.visit}/${b.count}</span></td>`;
 }
 
 /** 前年同期比のデルタ表示 */
@@ -705,6 +804,35 @@ function deltaChip(current, previous) {
   const cls = d > 0.05 ? 'up' : d < -0.05 ? 'down' : 'flat';
   const sign = d > 0 ? '+' : '';
   return `<span class="delta ${cls}">${sign}${d.toFixed(1)}pt</span>`;
+}
+
+/**
+ * 確定率・来店率のどちらが目標未達の主因かを判定する。
+ * 目標との差(pt)が大きい方を「ボトルネック」とする。両方目標達成なら ok。
+ * 確定0件で来店率が計算不能(null)の場合は、確定率そのものが問題として扱う。
+ */
+function bottleneckInfo(b, target) {
+  if (b.confirmedRate == null) return null;
+  if (b.visitRate == null) {
+    return { kind: 'confirmed', gap: Math.max(0, target.confirmedRate - b.confirmedRate) };
+  }
+  const gapConfirmed = target.confirmedRate - b.confirmedRate;
+  const gapVisit = target.visitRate - b.visitRate;
+  if (gapConfirmed <= 0 && gapVisit <= 0) return { kind: 'ok' };
+  return gapConfirmed >= gapVisit
+    ? { kind: 'confirmed', gap: gapConfirmed }
+    : { kind: 'visit', gap: gapVisit };
+}
+
+/** compact: 表の行などに収める短いバッジ。false: カードに収める説明文つきバッジ */
+function bottleneckBadge(info, compact) {
+  if (!info) return '';
+  if (info.kind === 'ok') {
+    return compact ? '' : '<span class="bottleneck-tag ok">目標達成</span>';
+  }
+  const label = info.kind === 'confirmed' ? '確定率' : '来店率';
+  const text = compact ? `${label}↓` : `ボトルネック：${label}（目標まで -${info.gap.toFixed(1)}pt）`;
+  return `<span class="bottleneck-tag ${info.kind}" title="${esc(text)}">${esc(text)}</span>`;
 }
 
 function funnelBars(f) {
@@ -840,19 +968,21 @@ function render() {
       <td><strong class="${grade(row.b.bookingToVisitRate, target.bookingToVisitRate)}-text">${rate(row.b.bookingToVisitRate)}</strong></td>
     </tr>`).join('');
 
-  // 02 店舗別ファネル
-  $('store-grid').innerHTML = f.stores.map((s) => {
+  // 02 店舗別ファネル（店舗フィルタが選ばれていれば先頭表示・強調）
+  $('store-grid').innerHTML = orderStores(f.stores).map((s) => {
     const b = cur(view.cur.store, s.code);
     const p = pv(view.prev.store, s.code);
+    const mine = s.code === storeFilter;
     return `
-      <div class="store-card">
+      <div class="store-card${mine ? ' is-my-store' : ''}">
         <div class="store-card-head">
           <div class="store-name-en">${esc(s.nameEn || '')}</div>
-          <h3 class="store-name">${esc(s.name)}</h3>
+          <h3 class="store-name">${esc(s.name)}${mine ? '<span class="my-store-badge">選択中</span>' : ''}</h3>
         </div>
         <div class="store-card-body">
           ${funnelBars(b)}
           ${rateRow(b, p, target)}
+          ${bottleneckBadge(bottleneckInfo(b, target), false)}
         </div>
       </div>`;
   }).join('');
@@ -874,8 +1004,9 @@ function render() {
         const expanded = openMedia.has(m.name);
         const lowN = m.b.count < LOW_N;
         const lowBadge = lowN ? '<span class="low-n-badge" title="件数が少なく参考値です">参考値</span>' : '';
+        const bnBadge = lowN ? '' : bottleneckBadge(bottleneckInfo(m.b, target), true);
         const head = `<tr class="media-row${expanded ? ' is-open' : ''}${lowN ? ' is-low-n' : ''}" data-media="${esc(m.name)}" data-key="${key}" tabindex="0" role="button" aria-expanded="${expanded}">
-          <td><span class="row-toggle" aria-hidden="true"></span><span class="cell-store-name">${esc(m.name)}</span>${lowBadge}</td>
+          <td><span class="row-toggle" aria-hidden="true"></span><span class="cell-store-name">${esc(m.name)}</span>${lowBadge}${bnBadge}</td>
           <td><span class="cell-num">${num(m.b.count)}</span></td>
           <td><span class="cell-num">${num(m.b.confirmed)}</span></td>
           <td><span class="cell-num">${num(m.b.visit)}</span></td>
@@ -906,13 +1037,14 @@ function render() {
   bindMediaRows();
 
   // 04 目標達成度
-  $('achievement').innerHTML = f.stores.map((s) => {
+  $('achievement').innerHTML = orderStores(f.stores).map((s) => {
     const b = cur(view.cur.store, s.code);
     const v = b.bookingToVisitRate;
     const g = grade(v, target.bookingToVisitRate);
-    return `<div class="achievement-row">
+    const mine = s.code === storeFilter;
+    return `<div class="achievement-row${mine ? ' is-my-store' : ''}">
       <div class="achievement-store">
-        <span class="achievement-store-name">${esc(s.name)}</span>
+        <span class="achievement-store-name">${esc(s.name)}${mine ? '<span class="my-store-badge">選択中</span>' : ''}</span>
         <span class="achievement-store-year">来店 ${num(b.visit)} / 予約 ${num(b.count)}</span>
       </div>
       <div class="achievement-bar-track">
@@ -923,35 +1055,78 @@ function render() {
     </div>`;
   }).join('');
 
-  // 05 ヒートマップ
+  // 05 ヒートマップ（店舗×メニュー）
   $('heatmap').querySelector('thead').innerHTML =
     `<tr><th>店舗 / メニュー</th>${f.menus.map((m) => `<th>${esc(m)}</th>`).join('')}<th>合計</th></tr>`;
-  $('heatmap').querySelector('tbody').innerHTML = f.stores.map((s) => {
-    const cell = (b) => {
-      if (!b || b.count === 0) return '<td class="h-na">—</td>';
-      const g = grade(b.bookingToVisitRate, target.bookingToVisitRate);
-      const cls = g === 'good' ? 'h-good' : g === 'warn' ? 'h-mid' : 'h-bad';
-      const thin = b.count < LOW_N ? ' is-thin' : '';
-      return `<td class="${cls}${thin}">${rate(b.bookingToVisitRate)}<span class="h-sub">${b.visit}/${b.count}</span></td>`;
-    };
-    return `<tr>
-      <td>${esc(s.name)}</td>
-      ${f.menus.map((mn) => cell(cur(view.cur.storeMenu, keyOf(s.code, mn)))).join('')}
-      ${cell(cur(view.cur.store, s.code))}
+  $('heatmap').querySelector('tbody').innerHTML = orderStores(f.stores).map((s) => {
+    const mine = s.code === storeFilter;
+    return `<tr${mine ? ' class="is-my-store"' : ''}>
+      <td>${esc(s.name)}${mine ? '<span class="my-store-badge">選択中</span>' : ''}</td>
+      ${f.menus.map((mn) => heatCell(cur(view.cur.storeMenu, keyOf(s.code, mn)), target)).join('')}
+      ${heatCell(cur(view.cur.store, s.code), target)}
     </tr>`;
   }).join('');
 
-  // 06 所感（cron では更新されない手動枠）
-  if (NOTES && (NOTES.insight || (NOTES.actions && NOTES.actions.length))) {
+  // 03b 媒体×メニュー ヒートマップ
+  const mediaMenuRows = f.media
+    .map((name) => ({ name, total: cur(view.cur.media, name) }))
+    .filter((r) => r.total.count > 0)
+    .sort((a, b) => b.total.count - a.total.count);
+  $('media-menu-heatmap').querySelector('thead').innerHTML =
+    `<tr><th>媒体 / メニュー</th>${f.menus.map((m) => `<th>${esc(m)}</th>`).join('')}<th>合計</th></tr>`;
+  $('media-menu-heatmap').querySelector('tbody').innerHTML = mediaMenuRows.length === 0
+    ? '<tr><td colspan="' + (f.menus.length + 2) + '">この期間のデータがありません</td></tr>'
+    : mediaMenuRows.map((r) => `<tr>
+        <td>${esc(r.name)}</td>
+        ${f.menus.map((mn) => heatCell(cur(view.cur.mediaMenu, keyOf(r.name, mn)), target)).join('')}
+        ${heatCell(r.total, target)}
+      </tr>`).join('');
+
+  // 06 所感・自動ハイライト
+  // 自動ハイライト：前年同期比で予約→来店率が最も悪化した店舗・媒体を機械的に抽出する。
+  // 手書きの所感（funnel-notes.json）と違い、毎回の集計で必ず最新化されるため放置されない。
+  // 前年比較が成立しない期間（直近12ヶ月など）では算出しない
+  const autoHighlights = (() => {
+    if (prevIncomplete) return [];
+    const movers = [];
+    const add = (label, c, p) => {
+      if (c.count < LOW_N || !p || p.bookingToVisitRate == null || c.bookingToVisitRate == null) return;
+      movers.push({ label, delta: c.bookingToVisitRate - p.bookingToVisitRate, b: c });
+    };
+    f.stores.forEach((s) => add(s.name, cur(view.cur.store, s.code), pv(view.prev.store, s.code)));
+    f.media.forEach((name) => add(name, cur(view.cur.media, name), pv(view.prev.media, name)));
+    movers.sort((a, b) => a.delta - b.delta);
+    return movers.slice(0, 3);
+  })();
+
+  const hasManualNotes = !!(NOTES && (NOTES.insight || (NOTES.actions && NOTES.actions.length)));
+  if (autoHighlights.length || hasManualNotes) {
     $('notes-section').hidden = false;
-    $('notes-updated').textContent = NOTES.updatedAt ? `最終更新 ${NOTES.updatedAt}` : '';
-    const insight = NOTES.insight
+    $('notes-updated').textContent = hasManualNotes && NOTES.updatedAt ? `最終更新 ${NOTES.updatedAt}` : '';
+
+    const highlightsHtml = autoHighlights.length
+      ? `<div class="auto-highlights">
+           <div class="auto-highlights-label">自動ハイライト（${esc(range.label)}・前年同期比で下位${autoHighlights.length}件）</div>
+           <ul class="auto-highlights-list">${autoHighlights.map((h) => {
+             const sign = h.delta > 0 ? '+' : '';
+             const cls = h.delta < 0 ? 'down' : 'up';
+             const bn = bottleneckInfo(h.b, target);
+             const bnText = bn && bn.kind !== 'ok' ? `${bn.kind === 'confirmed' ? '確定率' : '来店率'}がボトルネック` : '';
+             return `<li class="auto-highlight-item">
+               <span class="ahi-label">${esc(h.label)}</span>
+               <span class="ahi-delta ${cls}">${sign}${h.delta.toFixed(1)}pt</span>
+               <span class="ahi-note">予約→来店率 前年同期比${bnText ? ' ／ ' + esc(bnText) : ''}</span>
+             </li>`;
+           }).join('')}</ul>
+         </div>` : '';
+
+    const insight = hasManualNotes && NOTES.insight
       ? `<div class="insight-block">
            <span class="insight-label">Insight</span>
            <h3 class="insight-title">${esc(NOTES.insightTitle || '全店共通の構造')}</h3>
            <p class="insight-text">${esc(NOTES.insight).replace(/\n/g, '<br>')}</p>
          </div>` : '';
-    const actions = (NOTES.actions && NOTES.actions.length)
+    const actions = hasManualNotes && NOTES.actions && NOTES.actions.length
       ? `<div class="table-scroll"><table class="action-table">
            <thead><tr><th style="width:200px;">店舗</th><th>アクション</th><th style="width:200px;">期待効果</th></tr></thead>
            <tbody>${NOTES.actions.map((a) => `<tr>
@@ -960,7 +1135,10 @@ function render() {
              <td><span class="expected-effect">${esc(a.effect || '')}</span></td>
            </tr>`).join('')}</tbody>
          </table></div>` : '';
-    $('notes-body').innerHTML = insight + actions;
+    $('notes-body').innerHTML = highlightsHtml + insight + actions;
+  } else {
+    $('notes-section').hidden = true;
+    $('notes-body').innerHTML = ''; // 非表示中も前回描画の内容が残らないようにする
   }
 
   // フッター
@@ -1001,6 +1179,42 @@ function showStatus(kind, message) {
   el.hidden = false;
   el.className = `status-banner ${kind}`;
   el.textContent = message;
+}
+
+/**
+ * 店舗フィルタ（自店を先頭表示・強調）を初期化する。
+ * URLの ?store=<code> があれば復元し、選択はURLに反映する（他店長に共有できるように）。
+ */
+function bindStoreFilter() {
+  const stores = DATA.facts.stores;
+  const requested = new URLSearchParams(location.search).get('store');
+  if (requested && stores.some((s) => s.code === requested)) storeFilter = requested;
+
+  const wrap = $('store-filter');
+  const chips = $('store-filter-chips');
+  wrap.hidden = false;
+
+  const setFilter = (code) => {
+    storeFilter = code;
+    const url = new URL(location.href);
+    if (code) url.searchParams.set('store', code); else url.searchParams.delete('store');
+    history.replaceState(null, '', url);
+    renderChips();
+    render();
+  };
+
+  const renderChips = () => {
+    const all = `<button type="button" class="store-chip${!storeFilter ? ' is-active' : ''}" data-store="">全店</button>`;
+    const rest = stores.map((s) =>
+      `<button type="button" class="store-chip${storeFilter === s.code ? ' is-active' : ''}" data-store="${esc(s.code)}">${esc(s.name)}</button>`
+    ).join('');
+    chips.innerHTML = all + rest;
+    chips.querySelectorAll('.store-chip').forEach((btn) => {
+      btn.addEventListener('click', () => setFilter(btn.dataset.store || null));
+    });
+  };
+
+  renderChips();
 }
 
 function bindPeriodSwitch() {
@@ -1061,7 +1275,7 @@ async function boot() {
     showStatus('error',
       'データがまだ生成されていません（' + e.message + '）。'
       + '初回は GitHub Actions の «Update Reservation Funnel» を手動実行すると生成されます。'
-      + '毎朝 7:00 の自動更新後は自動的に表示されます。');
+      + '毎時0分の自動更新後は自動的に表示されます。');
     return;
   }
   try {
@@ -1070,6 +1284,7 @@ async function boot() {
 
   $('report').hidden = false;
   bindPeriodSwitch();
+  bindStoreFilter();
   render();
 
   // データが古い（3日以上更新されていない）場合は警告する
