@@ -255,6 +255,11 @@ body {
   .heatmap-table { font-size: 12px; }
   .heatmap-table td { padding: 10px 4px; font-size: 14px; }
   .funnel-step { grid-template-columns: 50px 1fr 50px; }
+  /* セクション見出しが番号・タイトル・説明の3要素で幅を奪い合い、
+     タイトルが数px まで潰れて縦に一文字ずつ折り返す不具合を防ぐ。
+     狭い画面では横並びをやめ、上から番号→タイトル→説明の順に積む */
+  .section-header { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .section-title { flex: none; width: 100%; }
 }
 
 @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
@@ -362,6 +367,14 @@ body {
 .media-detail-row td { font-size: 13px; padding-top: 10px; padding-bottom: 10px; }
 .media-detail-row .cell-num { font-size: 14px; color: var(--gray-700); }
 .media-detail-row[hidden] { display: none; }
+
+/* 件数が少ない行（母数不足で率が暴れやすい）を淡く表示し、参考値バッジを添える */
+.media-row.is-low-n, .media-detail-row.is-low-n { opacity: 0.6; }
+.low-n-badge {
+  display: inline-block; font-size: 10px; font-weight: 700; color: var(--gray-500);
+  background: var(--gray-100); border-radius: 4px; padding: 1px 6px; margin-left: 8px;
+  letter-spacing: 0.02em; vertical-align: middle;
+}
 .detail-store {
   font-size: 13px; font-weight: 600; color: var(--gray-600); padding-left: 26px;
   position: relative; display: inline-block;
@@ -378,9 +391,33 @@ body {
 }
 
 /* 幅の狭い画面では表だけを横スクロールさせ、ページ全体は横スクロールさせない */
-.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; position: relative; }
 .table-scroll > table { min-width: 640px; }
 .table-scroll > .heatmap-table { min-width: 520px; }
+
+/* 横スクロール中も先頭列（期間・媒体名など行の見出し）が見えるように固定する。
+   行の状態（hover / is-current）ごとに背景色を明示し、スクロールしてきた
+   他列のテキストが下に透けないようにする */
+.table-scroll td:first-child,
+.table-scroll th:first-child {
+  position: sticky; left: 0; z-index: 1;
+}
+.table-scroll thead th:first-child { z-index: 2; background: var(--navy-900); }
+.compare-table td:first-child { background: var(--white); }
+.compare-table tbody tr:hover td:first-child { background: var(--orange-50); }
+.compare-table tbody tr.is-current td:first-child { background: var(--navy-50); }
+.media-row.is-open td:first-child { background: var(--navy-50); }
+.media-detail-row td:first-child { background: var(--gray-50); }
+.media-detail-row:hover td:first-child { background: var(--gray-100); }
+.heatmap-table td:first-child { background: var(--navy-900); }
+
+@media (max-width: 768px) {
+  /* 横スクロールできることに気づきやすくする */
+  .table-scroll::before {
+    content: '→ 横にスクロールできます';
+    display: block; font-size: 11px; color: var(--gray-500); margin-bottom: 6px;
+  }
+}
 
 #report[hidden], #notes-section[hidden], .period-switch[hidden] { display: none; }
 </style>
@@ -403,8 +440,8 @@ body {
 
 <div class="period-switch" id="period-switch" hidden>
   <span class="period-switch-label">表示期間</span>
-  <button type="button" class="period-btn is-active" data-preset="month">当月</button>
-  <button type="button" class="period-btn" data-preset="m3">直近3ヶ月</button>
+  <button type="button" class="period-btn" data-preset="month">当月</button>
+  <button type="button" class="period-btn is-active" data-preset="m3">直近3ヶ月</button>
   <button type="button" class="period-btn" data-preset="m6">直近6ヶ月</button>
   <button type="button" class="period-btn" data-preset="m12">直近12ヶ月</button>
   <button type="button" class="period-btn" data-preset="ytd">今年累計</button>
@@ -526,7 +563,8 @@ body {
 const TARGET_FALLBACK = { confirmedRate: 80, visitRate: 80, bookingToVisitRate: 64 };
 let DATA = null;
 let NOTES = null;
-let preset = 'month';
+// 当月は母数が少なく確定率・来店率が大きく振れるため、初期表示は直近3ヶ月にする
+let preset = 'm3';
 let range = null;        // { from, to, label } 表示中の期間
 let customRange = null;  // 期間指定で選ばれた範囲
 // 展開中の媒体名。期間を切り替えても開閉状態を保つ
@@ -606,6 +644,8 @@ const ALL = '__all__';
 // 複合キーの区切り。集計側と参照側でズレると全て取り違えるので定数で共有する
 const SEP = '::';
 const keyOf = (a, b) => a + SEP + b;
+// この件数を下回るセル・行は誤読を防ぐため参考値として淡く表示する
+const LOW_N = 5;
 
 function finalizeBucket(b) {
   const empty = { count: 0, confirmed: 0, visit: 0, contract: 0 };
@@ -832,8 +872,10 @@ function render() {
     : mediaRows.map((m, i) => {
         const key = 'media-' + i;
         const expanded = openMedia.has(m.name);
-        const head = `<tr class="media-row${expanded ? ' is-open' : ''}" data-media="${esc(m.name)}" data-key="${key}" tabindex="0" role="button" aria-expanded="${expanded}">
-          <td><span class="row-toggle" aria-hidden="true"></span><span class="cell-store-name">${esc(m.name)}</span></td>
+        const lowN = m.b.count < LOW_N;
+        const lowBadge = lowN ? '<span class="low-n-badge" title="件数が少なく参考値です">参考値</span>' : '';
+        const head = `<tr class="media-row${expanded ? ' is-open' : ''}${lowN ? ' is-low-n' : ''}" data-media="${esc(m.name)}" data-key="${key}" tabindex="0" role="button" aria-expanded="${expanded}">
+          <td><span class="row-toggle" aria-hidden="true"></span><span class="cell-store-name">${esc(m.name)}</span>${lowBadge}</td>
           <td><span class="cell-num">${num(m.b.count)}</span></td>
           <td><span class="cell-num">${num(m.b.confirmed)}</span></td>
           <td><span class="cell-num">${num(m.b.visit)}</span></td>
@@ -846,8 +888,10 @@ function render() {
           const sb = cur(view.cur.mediaStore, keyOf(m.name, s.code));
           const sp = pv(view.prev.mediaStore, keyOf(m.name, s.code));
           if (sb.count === 0 && (sp?.count ?? 0) === 0) return '';
-          return `<tr class="media-detail-row" data-parent="${key}"${expanded ? '' : ' hidden'}>
-            <td><span class="detail-store">${esc(s.name)}</span></td>
+          const sLowN = sb.count < LOW_N;
+          const sLowBadge = sLowN ? '<span class="low-n-badge" title="件数が少なく参考値です">参考値</span>' : '';
+          return `<tr class="media-detail-row${sLowN ? ' is-low-n' : ''}" data-parent="${key}"${expanded ? '' : ' hidden'}>
+            <td><span class="detail-store">${esc(s.name)}</span>${sLowBadge}</td>
             <td><span class="cell-num">${num(sb.count)}</span></td>
             <td><span class="cell-num">${num(sb.confirmed)}</span></td>
             <td><span class="cell-num">${num(sb.visit)}</span></td>
@@ -887,7 +931,7 @@ function render() {
       if (!b || b.count === 0) return '<td class="h-na">—</td>';
       const g = grade(b.bookingToVisitRate, target.bookingToVisitRate);
       const cls = g === 'good' ? 'h-good' : g === 'warn' ? 'h-mid' : 'h-bad';
-      const thin = b.count < 5 ? ' is-thin' : '';
+      const thin = b.count < LOW_N ? ' is-thin' : '';
       return `<td class="${cls}${thin}">${rate(b.bookingToVisitRate)}<span class="h-sub">${b.visit}/${b.count}</span></td>`;
     };
     return `<tr>
