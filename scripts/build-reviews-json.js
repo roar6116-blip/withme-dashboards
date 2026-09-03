@@ -52,17 +52,24 @@ function main() {
     // HPB
     const hpbAvailable = meta.hpb?.available !== false && !!meta.hpb?.url;
     const prevHpb = prevStore?.hpb || {};
-    // 今月の新着件数・ブログ件数を trends から自動算出（あれば優先）
+    // 今月（暦月）の新着件数・ブログ件数を trends の月別集計から算出（あれば優先）
     const newReviewsFromTrends = trendsForStore?.monthly_reviews?.[currentMonth];
     const blogThisMonthFromTrends = trendsForStore?.monthly_blogs?.[currentMonth];
+    // 直近30日（ローリング）の新着件数・ブログ件数。比較表など「今月」表示の主軸はこちらに統一
+    const new30dReviews = trendsForStore?.period_summary?.p30?.reviews;
+    const new30dBlogs = trendsForStore?.period_summary?.p30?.blogs;
     const hpb = hpbAvailable ? {
       salon_name: meta.hpb.salon_name,
       url: meta.hpb.url,
-      review_count: hFromCache?.review_count ?? prevHpb.review_count ?? 0,
-      rating: hFromCache?.rating ?? prevHpb.rating ?? 0,
-      blog_count_total: hFromCache?.blog_count_total ?? prevHpb.blog_count_total ?? 0,
+      // 累計件数・評価・ブログ累計は fetch-hpb-trends.js が毎日 HPB 公式ページの
+      // 構造化データ(JSON-LD)から取得する。取得失敗時のみ前回値を維持。
+      review_count: trendsForStore?.review_count ?? hFromCache?.review_count ?? prevHpb.review_count ?? 0,
+      rating: trendsForStore?.rating ?? hFromCache?.rating ?? prevHpb.rating ?? 0,
+      blog_count_total: trendsForStore?.blog_count_total ?? hFromCache?.blog_count_total ?? prevHpb.blog_count_total ?? 0,
       blog_count_this_month: blogThisMonthFromTrends ?? hFromCache?.blog_count_this_month ?? prevHpb.blog_count_this_month ?? 0,
       new_reviews_this_month: newReviewsFromTrends ?? hFromCache?.new_reviews_this_month ?? prevHpb.new_reviews_this_month ?? 0,
+      new_reviews_30d: new30dReviews ?? prevHpb.new_reviews_30d ?? 0,
+      new_blogs_30d: new30dBlogs ?? prevHpb.new_blogs_30d ?? 0,
       available: true
     } : {
       salon_name: null,
@@ -72,6 +79,8 @@ function main() {
       blog_count_total: 0,
       blog_count_this_month: 0,
       new_reviews_this_month: 0,
+      new_reviews_30d: 0,
+      new_blogs_30d: 0,
       available: false,
       note: meta.hpb?.note || 'HPB広告ページなし'
     };
@@ -125,7 +134,12 @@ function main() {
       weighted_rating: calcWeightedRating(items),
       blog_count_total: s.hpb.available ? s.hpb.blog_count_total : 0,
       blog_count_this_month: s.hpb.available ? s.hpb.blog_count_this_month : 0,
-      new_reviews_this_month: (s.hpb.available ? s.hpb.new_reviews_this_month : 0) + s.google.new_reviews_this_month
+      // 「今月」＝暦月（月初からの日数分のみ）。月初は必然的に少なく出るため
+      // 比較表など「一覧性」が求められる箇所では new_reviews_30d を主軸に使う
+      new_reviews_this_month: (s.hpb.available ? s.hpb.new_reviews_this_month : 0) + s.google.new_reviews_this_month,
+      // 直近30日ローリング。HPBは投稿日ベースの正確な30日集計、Googleは月次スナップショットの近似値
+      new_reviews_30d: (s.hpb.available ? s.hpb.new_reviews_30d : 0) + s.google.new_reviews_this_month,
+      new_blogs_30d: s.hpb.available ? s.hpb.new_blogs_30d : 0
     };
   }
 
@@ -142,6 +156,8 @@ function main() {
   const company_totals = {
     total_reviews: totalReviews,
     total_new_this_month: stores.reduce((a, s) => a + s.totals.new_reviews_this_month, 0),
+    total_new_30d: stores.reduce((a, s) => a + s.totals.new_reviews_30d, 0),
+    total_blogs_30d: stores.reduce((a, s) => a + s.totals.new_blogs_30d, 0),
     average_rating: Number(
       (stores.reduce((a, s) => a + s.totals.weighted_rating * s.totals.review_count, 0) / Math.max(1, totalReviews)).toFixed(2)
     ),
@@ -166,10 +182,10 @@ function main() {
     schema_note: '6ブランド店舗単位の集計（広告露出単位）',
     generated_at: new Date().toISOString(),
     data_sources: {
-      google: googleCache ? 'Places API Text Search (auto, hourly)' : 'inherited from previous',
-      hpb: hpbCache ? 'Spreadsheet (auto)' : 'manual input (sample values)',
-      blog: 'manual input (placeholder values)',
-      monthly_trend: existing?.data_sources?.monthly_trend || 'inherited'
+      google: googleCache ? 'Places API Text Search（毎時自動取得、実際の反映は数時間おき）' : '前回値を継承（今回の自動取得は失敗）',
+      hpb: hpbTrendsCache ? `HPB公式ページ自動取得（毎日）／最終取得: ${hpbTrendsCache.fetched_at?.slice(0,16).replace('T',' ')} UTC` : '前回値を継承（今回の自動取得は失敗）',
+      blog: hpbTrendsCache ? 'HPBブログ一覧ページから自動集計（毎日）' : '前回値を継承',
+      note: 'GBP公式API(Google Business Profile API)は2026-05に申請したが却下。Places APIで代替運用中のため件数・評価のみ取得可能（口コミ本文・返信状況は取得不可）'
     },
     stores,
     company_totals,

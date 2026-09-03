@@ -19,7 +19,7 @@
   --gray-300: #cbd5e1; --gray-400: #94a3b8; --gray-500: #64748b; --gray-600: #475569;
   --gray-700: #334155; --gray-800: #1e293b; --gray-900: #0f172a;
   --good: #059669; --warn: #d97706; --bad: #dc2626; --gold: #eab308;
-  --hpb-color: #ea580c; --google-color: #3b82f6;
+  --hpb-color: #7c3aed; --google-color: #3b82f6;
   --touchme: #3b82f6; --slenderme: #f97316; --kaokao: #ec4899;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -73,7 +73,8 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
 .mode-tab { padding:8px 14px; border:none; background:transparent; font-size:13px; font-weight:700; color:var(--navy-600); cursor:pointer; border-radius:7px; transition: all 0.15s ease; font-family:inherit; }
 .mode-tab.active { background: var(--navy-700); color:var(--white); }
 
-.period-table-wrap { background:var(--white); border:1px solid var(--gray-200); border-radius:12px; overflow:hidden; }
+.period-table-wrap { background:var(--white); border:1px solid var(--gray-200); border-radius:12px; overflow-x:auto; }
+.period-table { min-width: 640px; }
 .period-table { width:100%; border-collapse:collapse; font-size:13px; }
 .period-table th { background:var(--navy-50); padding:14px 16px; text-align:left; font-size:10px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:var(--navy-700); border-bottom:2px solid var(--navy-100); }
 .period-table th.num { text-align:right; }
@@ -167,7 +168,7 @@ body { font-family: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,sans
   padding: 4px 10px; border-radius: 6px; font-size:11px; font-weight:600;
   text-decoration:none; transition: all 0.15s ease; border:1px solid transparent;
 }
-.url-link.hpb { background: rgba(234,88,12,0.08); color: var(--hpb-color); border-color: rgba(234,88,12,0.2); }
+.url-link.hpb { background: rgba(124,58,237,0.08); color: var(--hpb-color); border-color: rgba(124,58,237,0.2); }
 .url-link.hpb:hover { background: var(--hpb-color); color:var(--white); }
 .url-link.google { background: rgba(59,130,246,0.08); color: var(--google-color); border-color: rgba(59,130,246,0.2); }
 .url-link.google:hover { background: var(--google-color); color:var(--white); }
@@ -284,9 +285,9 @@ body.modal-open { overflow: hidden; }
     <h1 class="title">店舗別口コミ評価<span class="title-accent">ダッシュボード</span></h1>
     <p class="subtitle">6ブランド店舗別 - HPB・Google口コミ／HPBブログ投稿の集計とランキング</p>
     <div class="meta">
-      <div class="meta-item"><span class="live-dot"></span><span class="meta-label">LIVE</span><span id="meta-updated">--</span></div>
-      <div class="meta-item"><span class="meta-label">SOURCE</span><span>Google Maps + HPB</span></div>
-      <div class="meta-item"><span class="meta-label">CYCLE</span><span>毎時自動更新</span></div>
+      <div class="meta-item"><span class="live-dot"></span><span class="meta-label">最終更新</span><span id="meta-updated">--</span></div>
+      <div class="meta-item"><span class="meta-label">SOURCE</span><span>Places API（Google）+ HPB公式ページ</span></div>
+      <div class="meta-item"><span class="meta-label">CYCLE</span><span id="meta-cycle">Google:数時間毎／HPB:毎日</span></div>
     </div>
   </header>
 
@@ -309,12 +310,12 @@ body.modal-open { overflow: hidden; }
       <div class="period-control-group">
         <span class="period-control-label">期間</span>
         <div class="period-tabs" id="period-tabs">
-          <button class="period-tab" data-period="p7">1週間</button>
-          <button class="period-tab active" data-period="p30">1ヶ月</button>
-          <button class="period-tab" data-period="p60">2ヶ月</button>
-          <button class="period-tab" data-period="p90">3ヶ月</button>
-          <button class="period-tab" data-period="p180">6ヶ月</button>
-          <button class="period-tab" data-period="p365">1年</button>
+          <button class="period-tab" data-period="p7">直近7日</button>
+          <button class="period-tab active" data-period="p30">直近30日</button>
+          <button class="period-tab" data-period="p60">直近60日</button>
+          <button class="period-tab" data-period="p90">直近90日</button>
+          <button class="period-tab" data-period="p180">直近180日</button>
+          <button class="period-tab" data-period="p365">直近365日</button>
         </div>
       </div>
       <div class="period-control-group">
@@ -364,8 +365,8 @@ body.modal-open { overflow: hidden; }
             <th class="num">HPB評価</th>
             <th class="num">Google口コミ</th>
             <th class="num">Google評価</th>
-            <th class="num">今月新着</th>
-            <th class="num">今月ブログ</th>
+            <th class="num">新着(30日)</th>
+            <th class="num">ブログ(30日)</th>
             <th class="num">総合スコア</th>
           </tr>
         </thead>
@@ -403,7 +404,7 @@ body.modal-open { overflow: hidden; }
         <div class="chart-canvas-wrap"><canvas id="chart-rating"></canvas></div>
       </div>
       <div class="chart-card">
-        <div class="chart-title">📝 今月のブログ投稿数</div>
+        <div class="chart-title">📝 ブログ投稿数（直近30日）</div>
         <div class="chart-desc">HPBブログの月内本数</div>
         <div class="chart-canvas-wrap"><canvas id="chart-blog"></canvas></div>
       </div>
@@ -427,6 +428,7 @@ body.modal-open { overflow: hidden; }
   <footer class="footer">
     <p>WithMe エステ事業部 · 店舗別口コミ評価ダッシュボード</p>
     <p class="source">data: salon/data/reviews.json</p>
+    <p class="source" id="footer-data-sources" style="margin-top:6px;"></p>
     <p style="margin-top:8px;"><a href="../index.html">← ハブに戻る</a></p>
   </footer>
 </div>
@@ -465,8 +467,17 @@ async function loadData() {
 
 function renderMeta(latest) {
   const dt = new Date(latest.generated_at);
+  const hoursAgo = Math.max(0, Math.floor((Date.now() - dt.getTime()) / 3600000));
+  const agoText = hoursAgo === 0 ? '(1時間以内)' : `(${hoursAgo}時間前)`;
   document.getElementById('meta-updated').textContent =
-    dt.toLocaleString('ja-JP', { year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit' });
+    dt.toLocaleString('ja-JP', { year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit' }) + ' ' + agoText;
+
+  // データソースの正直な注記をフッターに表示（隠蔽しない）
+  const ds = latest.data_sources || {};
+  const footerEl = document.getElementById('footer-data-sources');
+  if (footerEl && ds.note) {
+    footerEl.textContent = '※ ' + ds.note;
+  }
 }
 
 function buildKpiCard(label, value, unit, detail, featured) {
@@ -479,13 +490,13 @@ function buildKpiCard(label, value, unit, detail, featured) {
   return card;
 }
 function renderKPI(latest) {
-  const c = latest.company_totals;
+  const c = latest.company_totals || {};
   const grid = document.getElementById('kpi-grid');
   clearChildren(grid);
-  grid.appendChild(buildKpiCard('総口コミ件数', c.total_reviews.toLocaleString(), '件', `HPB + Google ${c.store_count}店舗合算`, true));
-  grid.appendChild(buildKpiCard('今月新着', '+' + c.total_new_this_month, '件', '全店舗合計', false));
-  grid.appendChild(buildKpiCard('全社平均評価', c.average_rating.toFixed(2), '★', '5段階・加重平均', false));
-  grid.appendChild(buildKpiCard('今月ブログ', c.total_blog_this_month, '本', `累計 ${c.total_blog_all.toLocaleString()}本`, false));
+  grid.appendChild(buildKpiCard('総口コミ件数', (c.total_reviews || 0).toLocaleString(), '件', `HPB + Google ${c.store_count || 6}店舗合算`, true));
+  grid.appendChild(buildKpiCard('新着(30日)', '+' + (c.total_new_30d ?? c.total_new_this_month ?? 0), '件', '全店舗合計・直近30日', false));
+  grid.appendChild(buildKpiCard('全社平均評価', (c.average_rating || 0).toFixed(2), '★', '5段階・加重平均', false));
+  grid.appendChild(buildKpiCard('ブログ投稿(30日)', c.total_blogs_30d ?? c.total_blog_this_month ?? 0, '本', `累計 ${(c.total_blog_all || 0).toLocaleString()}本`, false));
 }
 
 function renderCompareTable(latest) {
@@ -513,15 +524,18 @@ function renderCompareTable(latest) {
       tr.appendChild(el('td', { cls: 'unavailable', text: '—' }));
     }
 
-    tr.appendChild(el('td', { cls: 'num', text: s.google.review_count.toLocaleString() + '件' }));
+    const google = s.google || { review_count: 0, rating: 0 };
+    tr.appendChild(el('td', { cls: 'num', text: google.review_count.toLocaleString() + '件' }));
     const gR = el('td', { cls: 'num' });
     gR.appendChild(star());
-    gR.appendChild(document.createTextNode(' ' + s.google.rating.toFixed(2)));
+    gR.appendChild(document.createTextNode(' ' + google.rating.toFixed(2)));
     tr.appendChild(gR);
 
-    const newCount = s.totals.new_reviews_this_month;
+    // 「今月新着」は暦月だと月初にほぼ0になり期間別集計(直近30日)と食い違うため、
+    // 一覧性が重要なこの表では直近30日ベース(new_reviews_30d)に統一する
+    const newCount = s.totals.new_reviews_30d ?? s.totals.new_reviews_this_month ?? 0;
     tr.appendChild(el('td', { cls: 'delta' + (newCount === 0 ? ' zero' : ''), text: newCount > 0 ? '+' + newCount : '0' }));
-    const blogMonth = s.totals.blog_count_this_month;
+    const blogMonth = s.totals.new_blogs_30d ?? s.totals.blog_count_this_month ?? 0;
     tr.appendChild(el('td', { cls: 'delta' + (blogMonth === 0 ? ' zero' : ''), text: blogMonth > 0 ? '+' + blogMonth : '0' }));
 
     const scoreTd = el('td', { cls: 'num' });
@@ -559,7 +573,7 @@ function buildUrlLink(url, platformClass, label) {
   return a;
 }
 
-function buildPlatformSummary(count, ratingValue, newCount) {
+function buildPlatformSummary(count, ratingValue, newCount, newLabel) {
   const span = el('span', { cls: 'platform-summary' });
   span.appendChild(document.createTextNode(count.toLocaleString() + '件 '));
   if (ratingValue > 0) {
@@ -567,7 +581,7 @@ function buildPlatformSummary(count, ratingValue, newCount) {
     span.appendChild(document.createTextNode(ratingValue.toFixed(2)));
   }
   if (newCount > 0) {
-    span.appendChild(el('span', { cls: 'delta', text: ' +' + newCount }));
+    span.appendChild(el('span', { cls: 'delta', text: ' +' + newCount + (newLabel ? ' (' + newLabel + ')' : '') }));
   }
   return span;
 }
@@ -593,7 +607,7 @@ function buildStoreCard(s) {
   // HPB セクション
   if (s.hpb && s.hpb.available) {
     const hpbUrl = s.hpb.url ? buildUrlLink(s.hpb.url, 'hpb', 'HPBで確認') : null;
-    const hpbSummary = buildPlatformSummary(s.hpb.review_count, s.hpb.rating, s.hpb.new_reviews_this_month);
+    const hpbSummary = buildPlatformSummary(s.hpb.review_count, s.hpb.rating, s.hpb.new_reviews_30d ?? s.hpb.new_reviews_this_month, '30日');
     body.appendChild(buildPlatformSection('hpb', 'ホットペッパービューティー', hpbSummary, hpbUrl, null, false));
   } else {
     const unavailableSummary = el('span', { cls: 'platform-summary unavailable', text: '広告ページなし' });
@@ -607,15 +621,16 @@ function buildStoreCard(s) {
 
   // Google セクション
   const googleUrl = s.google.url ? buildUrlLink(s.google.url, 'google', 'Googleで確認') : null;
-  const googleSummary = buildPlatformSummary(s.google.review_count, s.google.rating, s.google.new_reviews_this_month);
+  const googleSummary = buildPlatformSummary(s.google.review_count, s.google.rating, s.google.new_reviews_this_month, '今月');
   body.appendChild(buildPlatformSection('google', 'Google マップ', googleSummary, googleUrl, null, false));
 
   // ブログ セクション
   if (s.hpb && s.hpb.available) {
     const blogSummary = el('span', { cls: 'platform-summary' });
     blogSummary.appendChild(document.createTextNode(s.totals.blog_count_total + '本累計'));
-    if (s.totals.blog_count_this_month > 0) {
-      blogSummary.appendChild(el('span', { cls: 'delta', text: ' +' + s.totals.blog_count_this_month + '本' }));
+    const blog30d = s.totals.new_blogs_30d ?? s.totals.blog_count_this_month ?? 0;
+    if (blog30d > 0) {
+      blogSummary.appendChild(el('span', { cls: 'delta', text: ' +' + blog30d + '本(30日)' }));
     }
     body.appendChild(buildPlatformSection('hpb', 'HPBブログ投稿', blogSummary, null, null, false));
   }
@@ -667,7 +682,7 @@ function openModal(s) {
   const statsGrid = el('div', { cls: 'modal-stats-grid' });
   statsGrid.appendChild(buildStatCard('総口コミ', s.totals.review_count, '件', 'HPB+Google'));
   statsGrid.appendChild(buildStatCard('加重評価', s.totals.weighted_rating.toFixed(2), '★', '5段階平均'));
-  statsGrid.appendChild(buildStatCard('ブログ累計', s.totals.blog_count_total, '本', `今月+${s.totals.blog_count_this_month}本`));
+  statsGrid.appendChild(buildStatCard('ブログ累計', s.totals.blog_count_total, '本', `直近30日+${s.totals.new_blogs_30d ?? s.totals.blog_count_this_month ?? 0}本`));
   statsGrid.appendChild(buildStatCard('総合スコア', s.score, '/100', '評価指標'));
   statsSection.appendChild(statsGrid);
   body.appendChild(statsSection);
@@ -685,8 +700,9 @@ function openModal(s) {
     hpbStats.appendChild(document.createTextNode(s.hpb.review_count + '件 '));
     hpbStats.appendChild(el('span', { cls: 'star', text: '★' }));
     hpbStats.appendChild(document.createTextNode(s.hpb.rating.toFixed(2)));
-    if (s.hpb.new_reviews_this_month > 0) {
-      hpbStats.appendChild(el('span', { cls: 'delta', text: ' +' + s.hpb.new_reviews_this_month + '件 今月' }));
+    const hpb30d = s.hpb.new_reviews_30d ?? s.hpb.new_reviews_this_month;
+    if (hpb30d > 0) {
+      hpbStats.appendChild(el('span', { cls: 'delta', text: ' +' + hpb30d + '件 直近30日' }));
     }
     hpbBlock.appendChild(hpbStats);
     if (s.hpb.url) {
@@ -706,8 +722,9 @@ function openModal(s) {
   gStats.appendChild(document.createTextNode(s.google.review_count + '件 '));
   gStats.appendChild(el('span', { cls: 'star', text: '★' }));
   gStats.appendChild(document.createTextNode(s.google.rating.toFixed(2)));
-  if (s.google.new_reviews_this_month > 0) {
-    gStats.appendChild(el('span', { cls: 'delta', text: ' +' + s.google.new_reviews_this_month + '件 今月' }));
+  const googleNewSafe = (s.google && s.google.new_reviews_this_month) || 0;
+  if (googleNewSafe > 0) {
+    gStats.appendChild(el('span', { cls: 'delta', text: ' +' + googleNewSafe + '件 今月(暦月)' }));
   }
   gBlock.appendChild(gStats);
   if (s.google.url) {
@@ -745,10 +762,10 @@ function openModal(s) {
     body.appendChild(trendSection);
   }
 
-  // スコア内訳
+  // スコア内訳（build-reviews-json.js の calcScore と同じ基準＝全店舗中の最大件数で正規化）
   const scoreSection = el('div', { cls: 'modal-section' });
   scoreSection.appendChild(el('div', { cls: 'modal-section-title', text: 'スコア内訳' }));
-  const maxCount = 1000; // 想定最大件数
+  const maxCount = cachedLatest ? Math.max(1, ...cachedLatest.stores.map(st => st.totals.review_count)) : 1000;
   scoreSection.appendChild(buildScoreBar('総件数 (60%)', s.totals.review_count, maxCount, 'count', s.totals.review_count + '件'));
   scoreSection.appendChild(buildScoreBar('加重評価 (30%)', s.totals.weighted_rating, 5, 'rating', '★' + s.totals.weighted_rating.toFixed(2)));
   scoreSection.appendChild(buildScoreBar('ブログ累計 (10%)', s.totals.blog_count_total, 500, 'blog', s.totals.blog_count_total + '本'));
@@ -897,8 +914,8 @@ function renderCharts(latest) {
   new Chart(document.getElementById('chart-blog'), {
     type: 'bar',
     data: { labels, datasets: [{
-      label: '今月ブログ本数',
-      data: sorted.map(s => s.totals.blog_count_this_month),
+      label: 'ブログ本数（直近30日）',
+      data: sorted.map(s => s.totals.new_blogs_30d ?? s.totals.blog_count_this_month ?? 0),
       backgroundColor: colors, borderRadius: 6
     }] },
     options: opts('本数', 0, undefined)
@@ -916,7 +933,7 @@ function renderCharts(latest) {
 }
 
 // ===== 期間別集計セクション =====
-const PERIOD_LABELS = { p7:'1週間', p30:'1ヶ月', p60:'2ヶ月', p90:'3ヶ月', p180:'6ヶ月', p365:'1年' };
+const PERIOD_LABELS = { p7:'直近7日', p30:'直近30日', p60:'直近60日', p90:'直近90日', p180:'直近180日', p365:'直近365日' };
 let currentPeriod = 'p30';
 let currentMode = 'store';
 let cachedLatest = null;
@@ -1016,25 +1033,36 @@ function setupPeriodControls() {
   });
 }
 
-(async () => {
+// 1箇所の描画失敗が画面全体を巻き込まないよう、セクションごとに独立してtry/catchする
+function safeRun(label, fn) {
   try {
-    const latest = await loadData();
-    cachedLatest = latest;
-    renderMeta(latest);
-    renderKPI(latest);
-    setupPeriodControls();
-    renderPeriodTable();
-    renderCompareTable(latest);
-    renderStores(latest);
-    renderAlerts(latest);
-    renderCharts(latest);
+    fn();
+  } catch (e) {
+    console.error(`[render:${label}]`, e);
+  }
+}
+
+(async () => {
+  let latest;
+  try {
+    latest = await loadData();
   } catch (e) {
     document.querySelectorAll('.loading').forEach(node => {
       node.textContent = 'データ取得エラー: ' + e.message;
       node.style.color = 'var(--bad)';
     });
-    console.error(e);
+    console.error('[loadData]', e);
+    return;
   }
+
+  cachedLatest = latest;
+  safeRun('meta', () => renderMeta(latest));
+  safeRun('kpi', () => renderKPI(latest));
+  safeRun('period', () => { setupPeriodControls(); renderPeriodTable(); });
+  safeRun('compareTable', () => renderCompareTable(latest));
+  safeRun('stores', () => renderStores(latest));
+  safeRun('alerts', () => renderAlerts(latest));
+  safeRun('charts', () => renderCharts(latest));
 })();
 </script>
 </body>

@@ -1,5 +1,10 @@
 // Places API (New) Text Search で各店舗を検索 → 件数・評価・Place ID 取得
 // 出力: scripts/cache/google-reviews.json
+//
+// 「今月の新着件数」は月初スナップショットとの差分で算出する。
+// スナップショットは salon/data/google-monthly-snapshot.json に git 管理下で永続化する
+// （scripts/cache/ は .gitignore 対象で GitHub Actions の実行間で消えるため、
+//   以前は「前回cron実行(1時間前)との差分」を計算しており実質常に0になっていた）
 import fs from 'node:fs';
 import path from 'node:path';
 import { STORES } from './stores-config.js';
@@ -7,6 +12,7 @@ import { STORES } from './stores-config.js';
 const CACHE_DIR = path.resolve('scripts/cache');
 fs.mkdirSync(CACHE_DIR, { recursive: true });
 
+const SNAPSHOT_PATH = path.resolve('salon/data/google-monthly-snapshot.json');
 const ENDPOINT = 'https://places.googleapis.com/v1/places:searchText';
 
 async function searchPlace(query, apiKey) {
@@ -35,9 +41,13 @@ async function searchPlace(query, apiKey) {
   };
 }
 
-function readPrev() {
-  const p = path.join(CACHE_DIR, 'google-reviews.json');
-  return fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : {};
+function readSnapshot() {
+  if (!fs.existsSync(SNAPSHOT_PATH)) return { year_month: null, counts: {} };
+  try {
+    return JSON.parse(fs.readFileSync(SNAPSHOT_PATH, 'utf8'));
+  } catch (e) {
+    return { year_month: null, counts: {} };
+  }
 }
 
 async function main() {
@@ -47,7 +57,10 @@ async function main() {
     return;
   }
 
-  const prev = readPrev();
+  const currentMonth = new Date().toISOString().slice(0, 7); // YYYY-MM
+  const snapshot = readSnapshot();
+  const isNewMonth = snapshot.year_month !== currentMonth;
+  const newSnapshotCounts = isNewMonth ? {} : { ...snapshot.counts };
   const result = {};
 
   for (const store of STORES) {
@@ -62,9 +75,12 @@ async function main() {
         console.warn(`[google] No match for ${store.store_id}: "${q}"`);
         continue;
       }
-      // 前回キャッシュとの差分から「今月新着件数」を算出
-      const prevCount = prev[store.store_id]?.review_count ?? data.review_count;
-      const newThisMonth = Math.max(0, data.review_count - prevCount);
+
+      // 今月の月初スナップショットとの差分 = 今月の新着件数
+      const baseline = isNewMonth ? data.review_count : (snapshot.counts?.[store.store_id] ?? data.review_count);
+      const newThisMonth = Math.max(0, data.review_count - baseline);
+      if (isNewMonth) newSnapshotCounts[store.store_id] = data.review_count;
+
       result[store.store_id] = {
         place_id: data.place_id,
         label: data.display_name || store.google.label,
@@ -72,16 +88,20 @@ async function main() {
         rating: data.rating,
         new_reviews_this_month: newThisMonth
       };
-      console.log(`[google] ${store.store_id}: ${data.review_count} reviews, ★${data.rating} (${data.place_id})`);
+      console.log(`[google] ${store.store_id}: ${data.review_count} reviews (+${newThisMonth} this month), ★${data.rating} (${data.place_id})`);
     } catch (e) {
       console.error(`[google] Failed for ${store.store_id}: ${e.message}`);
-      // エラー時は前回の値を維持
-      if (prev[store.store_id]) result[store.store_id] = prev[store.store_id];
     }
   }
 
   fs.writeFileSync(path.join(CACHE_DIR, 'google-reviews.json'), JSON.stringify(result, null, 2));
   console.log(`[google] cache written for ${Object.keys(result).length} stores`);
+
+  // 月が変わったタイミングでのみスナップショットを更新（月内は固定して差分の基準を保つ）
+  if (isNewMonth) {
+    fs.writeFileSync(SNAPSHOT_PATH, JSON.stringify({ year_month: currentMonth, counts: newSnapshotCounts }, null, 2));
+    console.log(`[google] monthly snapshot reset for ${currentMonth}`);
+  }
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

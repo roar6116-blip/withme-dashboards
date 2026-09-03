@@ -25,15 +25,10 @@ jobs:
         run: |
           if [ -f package.json ]; then npm install --no-audit --no-fund; fi
 
-      - name: Fetch Google reviews (Places API or GBP API)
+      - name: Fetch Google reviews (Places API)
         env:
-          # Places API (現状の運用・即利用可)
+          # GBP API は 2026-05 に申請したが却下されたため、Places API のみで運用
           GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
-          # GBP API (申請承認後に有効化)
-          GBP_OAUTH_CLIENT_ID: ${{ secrets.GBP_OAUTH_CLIENT_ID }}
-          GBP_OAUTH_CLIENT_SECRET: ${{ secrets.GBP_OAUTH_CLIENT_SECRET }}
-          GBP_OAUTH_REFRESH_TOKEN: ${{ secrets.GBP_OAUTH_REFRESH_TOKEN }}
-          GBP_ACCOUNT_ID: ${{ secrets.GBP_ACCOUNT_ID }}
         run: node scripts/fetch-google-reviews.js
         continue-on-error: true
 
@@ -54,7 +49,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add salon/data/reviews.json salon/data/reviews-history.json
+          git add salon/data/reviews.json salon/data/reviews-history.json salon/data/google-monthly-snapshot.json
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
