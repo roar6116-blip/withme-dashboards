@@ -42,8 +42,19 @@ jobs:
           git add salon/data/reviews.json salon/data/reviews-history.json
           if git diff --staged --quiet; then
             echo "No changes to commit"
-          else
-            git commit -m "auto(hpb-trends): weekly HPB trend update ($(date -u +'%Y-%m-%d %H:%M UTC'))"
-            git pull --rebase origin main || true
-            git push
+            exit 0
           fi
+          git commit -m "auto(hpb-trends): daily HPB trend update ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+          # 他のワークフロー(毎時Google更新)と同時実行すると push が競合しうるため
+          # rebase失敗時は abort してリトライする（最大5回）
+          for i in 1 2 3 4 5; do
+            if git pull --rebase origin main && git push; then
+              echo "push succeeded on attempt $i"
+              exit 0
+            fi
+            echo "attempt $i failed, retrying..."
+            git rebase --abort 2>/dev/null || true
+            sleep $((RANDOM % 10 + 5))
+          done
+          echo "::error::push failed after 5 attempts"
+          exit 1
