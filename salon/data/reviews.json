@@ -1,11 +1,11 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-09-04T05:14:38.302Z",
+  "generated_at": "2026-09-04T05:18:11.330Z",
   "data_sources": {
-    "google": "前回値を継承（今回の自動取得は失敗）",
-    "hpb": "HPB公式ページ自動取得（毎日）／最終取得: 2026-09-04 05:14 UTC",
-    "blog": "HPBブログ一覧ページから自動集計（毎日）",
+    "google": "Places API Text Search（毎時自動取得、実際の反映は数時間おき）",
+    "hpb": "前回値を継承（今回の自動取得は失敗）",
+    "blog": "前回値を継承",
     "note": "GBP公式API(Google Business Profile API)は2026-05に申請したが却下。Places APIで代替運用中のため件数・評価のみ取得可能（口コミ本文・返信状況は取得不可）"
   },
   "stores": [
@@ -31,7 +31,8 @@
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJr4DRCWj3G2AR-ZL9_5Qrds0",
         "review_count": 394,
         "rating": 5,
-        "new_reviews_this_month": 0
+        "new_reviews_this_month": 0,
+        "place_id": "ChIJr4DRCWj3G2AR-ZL9_5Qrds0"
       },
       "monthly_trend": [
         {
@@ -130,11 +131,12 @@
         "available": true
       },
       "google": {
-        "label": "Touch Me富士店【タッチミー】",
+        "label": "Touch Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJrw9otUMrGmARJgKg8v6_kF8",
         "review_count": 213,
         "rating": 4.9,
-        "new_reviews_this_month": 0
+        "new_reviews_this_month": 0,
+        "place_id": "ChIJrw9otUMrGmARJgKg8v6_kF8"
       },
       "monthly_trend": [
         {
@@ -243,7 +245,8 @@
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJjy9pyNH3G2ARbUkCUHJGYP0",
         "review_count": 144,
         "rating": 4.9,
-        "new_reviews_this_month": 0
+        "new_reviews_this_month": 0,
+        "place_id": "ChIJjy9pyNH3G2ARbUkCUHJGYP0"
       },
       "monthly_trend": [
         {
@@ -362,11 +365,12 @@
         "available": true
       },
       "google": {
-        "label": "KaoKao甲府本店",
+        "label": "小顔矯正コルギ専門店 KaoKao甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJp8kWlv_3G2ARObteUfTXtKM",
         "review_count": 100,
         "rating": 5,
-        "new_reviews_this_month": 0
+        "new_reviews_this_month": 0,
+        "place_id": "ChIJp8kWlv_3G2ARObteUfTXtKM"
       },
       "monthly_trend": [
         {
@@ -486,11 +490,12 @@
         "available": true
       },
       "google": {
-        "label": "KaoKao富士店",
+        "label": "韓国式小顔矯正コルギ・肌管理専門店 KaoKao富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJD_zlmH8rGmAREUkK6yw7qZ0",
         "review_count": 77,
         "rating": 5,
-        "new_reviews_this_month": 0
+        "new_reviews_this_month": 0,
+        "place_id": "ChIJD_zlmH8rGmAREUkK6yw7qZ0"
       },
       "monthly_trend": [
         {
@@ -641,11 +646,12 @@
         "note": "HPB広告ページなし。TouchMe富士店併設で運営"
       },
       "google": {
-        "label": "Slender Me富士店",
+        "label": "痩身ダイエット専門店 Slender Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJX2b9B2QrGmAR6bSYAib6Q0w",
         "review_count": 62,
         "rating": 4.9,
-        "new_reviews_this_month": 0
+        "new_reviews_this_month": 0,
+        "place_id": "ChIJX2b9B2QrGmAR6bSYAib6Q0w"
       },
       "monthly_trend": [],
       "period_summary": {
