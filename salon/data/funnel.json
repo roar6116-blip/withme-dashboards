@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T23:49:44.000Z",
+  "generatedAt": "2026-09-18T02:30:18.255Z",
   "asOf": "2026-09-18",
   "target": {
     "confirmedRate": 80,
@@ -27001,7 +27001,7 @@
         0,
         1,
         1,
-        0,
+        1,
         0,
         0
       ],
@@ -27030,21 +27030,21 @@
   "total": {
     "month": {
       "count": 104,
-      "confirmed": 72,
+      "confirmed": 73,
       "visit": 28,
       "contract": 8,
-      "confirmedRate": 69.2,
-      "visitRate": 38.9,
+      "confirmedRate": 70.2,
+      "visitRate": 38.4,
       "bookingToVisitRate": 26.9,
       "contractRate": 28.6
     },
     "ytd": {
       "count": 1509,
-      "confirmed": 989,
+      "confirmed": 990,
       "visit": 841,
       "contract": 340,
-      "confirmedRate": 65.5,
-      "visitRate": 85,
+      "confirmedRate": 65.6,
+      "visitRate": 84.9,
       "bookingToVisitRate": 55.7,
       "contractRate": 40.4
     },
@@ -27166,21 +27166,21 @@
       "nameEn": "Touch Me · Fuji",
       "month": {
         "count": 48,
-        "confirmed": 35,
+        "confirmed": 36,
         "visit": 14,
         "contract": 4,
-        "confirmedRate": 72.9,
-        "visitRate": 40,
+        "confirmedRate": 75,
+        "visitRate": 38.9,
         "bookingToVisitRate": 29.2,
         "contractRate": 28.6
       },
       "ytd": {
         "count": 596,
-        "confirmed": 431,
+        "confirmed": 432,
         "visit": 341,
         "contract": 137,
-        "confirmedRate": 72.3,
-        "visitRate": 79.1,
+        "confirmedRate": 72.5,
+        "visitRate": 78.9,
         "bookingToVisitRate": 57.2,
         "contractRate": 40.2
       },
@@ -27388,21 +27388,21 @@
       "name": "インスタ広告",
       "month": {
         "count": 37,
-        "confirmed": 28,
+        "confirmed": 29,
         "visit": 7,
         "contract": 1,
-        "confirmedRate": 75.7,
-        "visitRate": 25,
+        "confirmedRate": 78.4,
+        "visitRate": 24.1,
         "bookingToVisitRate": 18.9,
         "contractRate": 14.3
       },
       "ytd": {
         "count": 512,
-        "confirmed": 295,
+        "confirmed": 296,
         "visit": 242,
         "contract": 75,
-        "confirmedRate": 57.6,
-        "visitRate": 82,
+        "confirmedRate": 57.8,
+        "visitRate": 81.8,
         "bookingToVisitRate": 47.3,
         "contractRate": 31
       },
@@ -27520,21 +27520,21 @@
           "name": "TouchMe富士店",
           "month": {
             "count": 22,
-            "confirmed": 17,
+            "confirmed": 18,
             "visit": 3,
             "contract": 0,
-            "confirmedRate": 77.3,
-            "visitRate": 17.6,
+            "confirmedRate": 81.8,
+            "visitRate": 16.7,
             "bookingToVisitRate": 13.6,
             "contractRate": 0
           },
           "ytd": {
             "count": 217,
-            "confirmed": 137,
+            "confirmed": 138,
             "visit": 103,
             "contract": 33,
-            "confirmedRate": 63.1,
-            "visitRate": 75.2,
+            "confirmedRate": 63.6,
+            "visitRate": 74.6,
             "bookingToVisitRate": 47.5,
             "contractRate": 32
           },
@@ -29163,21 +29163,21 @@
           "痩身": {
             "month": {
               "count": 13,
-              "confirmed": 10,
+              "confirmed": 11,
               "visit": 4,
               "contract": 2,
-              "confirmedRate": 76.9,
-              "visitRate": 40,
+              "confirmedRate": 84.6,
+              "visitRate": 36.4,
               "bookingToVisitRate": 30.8,
               "contractRate": 50
             },
             "ytd": {
               "count": 143,
-              "confirmed": 90,
+              "confirmed": 91,
               "visit": 76,
               "contract": 36,
-              "confirmedRate": 62.9,
-              "visitRate": 84.4,
+              "confirmedRate": 63.6,
+              "visitRate": 83.5,
               "bookingToVisitRate": 53.1,
               "contractRate": 47.4
             },
@@ -29290,21 +29290,21 @@
         "total": {
           "month": {
             "count": 48,
-            "confirmed": 35,
+            "confirmed": 36,
             "visit": 14,
             "contract": 4,
-            "confirmedRate": 72.9,
-            "visitRate": 40,
+            "confirmedRate": 75,
+            "visitRate": 38.9,
             "bookingToVisitRate": 29.2,
             "contractRate": 28.6
           },
           "ytd": {
             "count": 596,
-            "confirmed": 431,
+            "confirmed": 432,
             "visit": 341,
             "contract": 137,
-            "confirmedRate": 72.3,
-            "visitRate": 79.1,
+            "confirmedRate": 72.5,
+            "visitRate": 78.9,
             "bookingToVisitRate": 57.2,
             "contractRate": 40.2
           },
