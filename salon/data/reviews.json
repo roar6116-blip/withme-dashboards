@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-09-19T10:04:00.341Z",
+  "generated_at": "2026-09-19T14:04:46.136Z",
   "data_sources": {
     "google": "Places API Text Search（毎時自動取得、実際の反映は数時間おき）",
     "hpb": "前回値を継承（今回の自動取得は失敗）",
@@ -127,9 +127,9 @@
       "google": {
         "label": "Touch Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJrw9otUMrGmARJgKg8v6_kF8",
-        "review_count": 216,
+        "review_count": 215,
         "rating": 4.9,
-        "new_reviews_this_month": 3,
+        "new_reviews_this_month": 2,
         "place_id": "ChIJrw9otUMrGmARJgKg8v6_kF8"
       },
       "monthly_trend": [
@@ -205,12 +205,12 @@
         "2026-05": 21
       },
       "totals": {
-        "review_count": 823,
+        "review_count": 822,
         "weighted_rating": 4.8,
         "blog_count_total": 472,
         "blog_count_this_month": 12,
-        "new_reviews_this_month": 17,
-        "new_reviews_30d": 25,
+        "new_reviews_this_month": 16,
+        "new_reviews_30d": 24,
         "new_blogs_30d": 22
       },
       "score": 81,
@@ -675,9 +675,9 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2974,
-    "total_new_this_month": 77,
-    "total_new_30d": 131,
+    "total_reviews": 2973,
+    "total_new_this_month": 76,
+    "total_new_30d": 130,
     "total_blogs_30d": 116,
     "average_rating": 4.87,
     "total_blog_this_month": 70,
