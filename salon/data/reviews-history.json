@@ -450,7 +450,7 @@
           "rank": 1
         },
         "tm_fuji": {
-          "hpb_count": 605,
+          "hpb_count": 606,
           "hpb_rating": 4.76,
           "google_count": 215,
           "google_rating": 4.9,
@@ -460,17 +460,17 @@
           "rank": 2
         },
         "sm_kofu": {
-          "hpb_count": 329,
-          "hpb_rating": 4.82,
+          "hpb_count": 330,
+          "hpb_rating": 4.81,
           "google_count": 151,
           "google_rating": 4.9,
-          "blog_total": 506,
-          "blog_new": 16,
+          "blog_total": 507,
+          "blog_new": 17,
           "score": 63,
           "rank": 3
         },
         "kk_kofu": {
-          "hpb_count": 252,
+          "hpb_count": 253,
           "hpb_rating": 4.83,
           "google_count": 101,
           "google_rating": 5,
