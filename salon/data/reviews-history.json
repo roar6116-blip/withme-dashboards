@@ -450,12 +450,12 @@
           "rank": 1
         },
         "tm_fuji": {
-          "hpb_count": 606,
+          "hpb_count": 605,
           "hpb_rating": 4.76,
           "google_count": 215,
           "google_rating": 4.9,
-          "blog_total": 475,
-          "blog_new": 15,
+          "blog_total": 476,
+          "blog_new": 16,
           "score": 81,
           "rank": 2
         },
@@ -464,8 +464,8 @@
           "hpb_rating": 4.81,
           "google_count": 151,
           "google_rating": 4.9,
-          "blog_total": 507,
-          "blog_new": 17,
+          "blog_total": 509,
+          "blog_new": 19,
           "score": 63,
           "rank": 3
         },
@@ -484,9 +484,9 @@
           "hpb_rating": 4.93,
           "google_count": 79,
           "google_rating": 5,
-          "blog_total": 138,
-          "blog_new": 17,
-          "score": 44,
+          "blog_total": 139,
+          "blog_new": 18,
+          "score": 45,
           "rank": 5
         },
         "sm_fuji": {
