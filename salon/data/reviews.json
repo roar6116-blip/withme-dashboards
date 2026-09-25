@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-09-25T06:56:12.696Z",
+  "generated_at": "2026-09-25T12:30:52.769Z",
   "data_sources": {
     "google": "Places API Text Search（毎時自動取得、実際の反映は数時間おき）",
     "hpb": "前回値を継承（今回の自動取得は失敗）",
@@ -236,9 +236,9 @@
       "google": {
         "label": "Slender Me甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJjy9pyNH3G2ARbUkCUHJGYP0",
-        "review_count": 152,
+        "review_count": 154,
         "rating": 4.9,
-        "new_reviews_this_month": 8,
+        "new_reviews_this_month": 10,
         "place_id": "ChIJjy9pyNH3G2ARbUkCUHJGYP0"
       },
       "monthly_trend": [
@@ -331,12 +331,12 @@
         "2026-03": 8
       },
       "totals": {
-        "review_count": 483,
+        "review_count": 485,
         "weighted_rating": 4.84,
         "blog_count_total": 511,
         "blog_count_this_month": 21,
-        "new_reviews_this_month": 16,
-        "new_reviews_30d": 17,
+        "new_reviews_this_month": 18,
+        "new_reviews_30d": 19,
         "new_blogs_30d": 24
       },
       "score": 63,
@@ -476,9 +476,9 @@
       "google": {
         "label": "韓国式小顔矯正コルギ・肌管理専門店 KaoKao富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJD_zlmH8rGmAREUkK6yw7qZ0",
-        "review_count": 79,
+        "review_count": 80,
         "rating": 5,
-        "new_reviews_this_month": 2,
+        "new_reviews_this_month": 3,
         "place_id": "ChIJD_zlmH8rGmAREUkK6yw7qZ0"
       },
       "monthly_trend": [
@@ -594,12 +594,12 @@
         "2026-05": 14
       },
       "totals": {
-        "review_count": 228,
+        "review_count": 229,
         "weighted_rating": 4.95,
         "blog_count_total": 142,
         "blog_count_this_month": 21,
-        "new_reviews_this_month": 6,
-        "new_reviews_30d": 7,
+        "new_reviews_this_month": 7,
+        "new_reviews_30d": 8,
         "new_blogs_30d": 26
       },
       "score": 45,
@@ -674,9 +674,9 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2983,
-    "total_new_this_month": 102,
-    "total_new_30d": 122,
+    "total_reviews": 2986,
+    "total_new_this_month": 105,
+    "total_new_30d": 125,
     "total_blogs_30d": 124,
     "average_rating": 4.87,
     "total_blog_this_month": 101,
