@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-09-25T12:30:52.769Z",
+  "generated_at": "2026-09-25T17:40:59.140Z",
   "data_sources": {
     "google": "Places API Text Search（毎時自動取得、実際の反映は数時間おき）",
     "hpb": "前回値を継承（今回の自動取得は失敗）",
@@ -29,9 +29,9 @@
       "google": {
         "label": "Touch Me甲府昭和店【タッチミー】",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJr4DRCWj3G2AR-ZL9_5Qrds0",
-        "review_count": 399,
-        "rating": 5,
-        "new_reviews_this_month": 5,
+        "review_count": 400,
+        "rating": 4.9,
+        "new_reviews_this_month": 6,
         "place_id": "ChIJr4DRCWj3G2AR-ZL9_5Qrds0"
       },
       "monthly_trend": [
@@ -96,15 +96,15 @@
         "2026-01": 2
       },
       "totals": {
-        "review_count": 1033,
-        "weighted_rating": 4.93,
+        "review_count": 1034,
+        "weighted_rating": 4.89,
         "blog_count_total": 528,
         "blog_count_this_month": 19,
-        "new_reviews_this_month": 43,
-        "new_reviews_30d": 50,
+        "new_reviews_this_month": 44,
+        "new_reviews_30d": 51,
         "new_blogs_30d": 24
       },
-      "score": 98,
+      "score": 97,
       "rank": 1
     },
     {
@@ -236,9 +236,9 @@
       "google": {
         "label": "Slender Me甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJjy9pyNH3G2ARbUkCUHJGYP0",
-        "review_count": 154,
+        "review_count": 157,
         "rating": 4.9,
-        "new_reviews_this_month": 10,
+        "new_reviews_this_month": 13,
         "place_id": "ChIJjy9pyNH3G2ARbUkCUHJGYP0"
       },
       "monthly_trend": [
@@ -331,15 +331,15 @@
         "2026-03": 8
       },
       "totals": {
-        "review_count": 485,
+        "review_count": 488,
         "weighted_rating": 4.84,
         "blog_count_total": 511,
         "blog_count_this_month": 21,
-        "new_reviews_this_month": 18,
-        "new_reviews_30d": 19,
+        "new_reviews_this_month": 21,
+        "new_reviews_30d": 22,
         "new_blogs_30d": 24
       },
-      "score": 63,
+      "score": 64,
       "rank": 3
     },
     {
@@ -362,9 +362,9 @@
       "google": {
         "label": "小顔矯正コルギ専門店 KaoKao甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJp8kWlv_3G2ARObteUfTXtKM",
-        "review_count": 101,
+        "review_count": 102,
         "rating": 5,
-        "new_reviews_this_month": 1,
+        "new_reviews_this_month": 2,
         "place_id": "ChIJp8kWlv_3G2ARObteUfTXtKM"
       },
       "monthly_trend": [
@@ -445,12 +445,12 @@
         "2025-12": 5
       },
       "totals": {
-        "review_count": 355,
+        "review_count": 356,
         "weighted_rating": 4.88,
         "blog_count_total": 249,
         "blog_count_this_month": 21,
-        "new_reviews_this_month": 16,
-        "new_reviews_30d": 22,
+        "new_reviews_this_month": 17,
+        "new_reviews_30d": 23,
         "new_blogs_30d": 26
       },
       "score": 52,
@@ -626,9 +626,9 @@
       "google": {
         "label": "痩身ダイエット専門店 Slender Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJX2b9B2QrGmAR6bSYAib6Q0w",
-        "review_count": 62,
+        "review_count": 63,
         "rating": 4.9,
-        "new_reviews_this_month": 0,
+        "new_reviews_this_month": 1,
         "place_id": "ChIJX2b9B2QrGmAR6bSYAib6Q0w"
       },
       "monthly_trend": [],
@@ -661,12 +661,12 @@
       "monthly_reviews": {},
       "monthly_blogs": {},
       "totals": {
-        "review_count": 62,
+        "review_count": 63,
         "weighted_rating": 4.9,
         "blog_count_total": 0,
         "blog_count_this_month": 0,
-        "new_reviews_this_month": 0,
-        "new_reviews_30d": 0,
+        "new_reviews_this_month": 1,
+        "new_reviews_30d": 1,
         "new_blogs_30d": 0
       },
       "score": 31,
@@ -674,11 +674,11 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 2986,
-    "total_new_this_month": 105,
-    "total_new_30d": 125,
+    "total_reviews": 2992,
+    "total_new_this_month": 111,
+    "total_new_30d": 131,
     "total_blogs_30d": 124,
-    "average_rating": 4.87,
+    "average_rating": 4.86,
     "total_blog_this_month": 101,
     "total_blog_all": 1909,
     "store_count": 6
@@ -687,7 +687,7 @@
     {
       "level": "info",
       "store_id": "tm_kofu_showa",
-      "message": "TouchMe甲府昭和店 が総合1位（HPB+Google合計 1033件・★4.93）"
+      "message": "TouchMe甲府昭和店 が総合1位（HPB+Google合計 1034件・★4.89）"
     }
   ]
 }
