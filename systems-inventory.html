@@ -310,10 +310,10 @@ const SYSTEMS = [
     cat: 'etl', catLabel: '大規模ETL',
     name: 'nikkei_bulk_import',
     skill: '—',
-    desc: 'Microsoft Graph API で OneDrive 配下の日計表Excelを取得 → SheetJSパース → Google Sheets総合DBへ同期。マスタDB連携の正規化付き。',
+    desc: '総合DBを読み取りダッシュボード生成・LINEレポート配信・サロンズ突合を行う。旧ETL（OneDrive日計表Excel→総合DB同期）は2026-10-10に廃止。',
     type: 'Node.js',
     location: 'C:/Projects/nikkei_bulk_import/',
-    status: 'active', statusLabel: '稼働中',
+    status: 'active', statusLabel: '稼働中（ETLは廃止）',
   },
 
   // ===== 分析・レポート系 =====
