@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-19T05:32:49.367Z",
+  "generatedAt": "2026-10-19T11:42:49.237Z",
   "asOf": "2026-10-19",
   "target": {
     "confirmedRate": 80,
@@ -27462,7 +27462,7 @@
         0,
         2,
         2,
-        1,
+        2,
         0
       ],
       [
@@ -27472,7 +27472,7 @@
         1,
         1,
         1,
-        0,
+        1,
         0
       ],
       [
@@ -28102,7 +28102,7 @@
         0,
         2,
         2,
-        0,
+        1,
         0
       ],
       [
@@ -28160,9 +28160,39 @@
         1,
         2,
         1,
-        3,
+        4,
         2,
         1,
+        0
+      ],
+      [
+        "2026-10-19",
+        2,
+        2,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        "2026-10-19",
+        0,
+        0,
+        3,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        "2026-10-19",
+        2,
+        2,
+        1,
+        1,
+        1,
+        0,
         0
       ],
       [
@@ -28179,24 +28209,24 @@
   },
   "total": {
     "month": {
-      "count": 93,
-      "confirmed": 71,
-      "visit": 31,
+      "count": 97,
+      "confirmed": 72,
+      "visit": 32,
       "contract": 8,
-      "confirmedRate": 76.3,
-      "visitRate": 43.7,
-      "bookingToVisitRate": 33.3,
-      "contractRate": 25.8
+      "confirmedRate": 74.2,
+      "visitRate": 44.4,
+      "bookingToVisitRate": 33,
+      "contractRate": 25
     },
     "ytd": {
-      "count": 1664,
-      "confirmed": 1111,
-      "visit": 951,
+      "count": 1668,
+      "confirmed": 1112,
+      "visit": 954,
       "contract": 374,
-      "confirmedRate": 66.8,
-      "visitRate": 85.6,
+      "confirmedRate": 66.7,
+      "visitRate": 85.8,
       "bookingToVisitRate": 57.2,
-      "contractRate": 39.3
+      "contractRate": 39.2
     },
     "prevMonth": {
       "count": 103,
@@ -28225,24 +28255,24 @@
       "name": "SlenderMe甲府店",
       "nameEn": "Slender Me · Kofu",
       "month": {
-        "count": 13,
+        "count": 14,
         "confirmed": 9,
         "visit": 4,
         "contract": 2,
-        "confirmedRate": 69.2,
+        "confirmedRate": 64.3,
         "visitRate": 44.4,
-        "bookingToVisitRate": 30.8,
+        "bookingToVisitRate": 28.6,
         "contractRate": 50
       },
       "ytd": {
-        "count": 364,
+        "count": 365,
         "confirmed": 257,
-        "visit": 238,
+        "visit": 239,
         "contract": 94,
-        "confirmedRate": 70.6,
-        "visitRate": 92.6,
-        "bookingToVisitRate": 65.4,
-        "contractRate": 39.5
+        "confirmedRate": 70.4,
+        "visitRate": 93,
+        "bookingToVisitRate": 65.5,
+        "contractRate": 39.3
       },
       "prevMonth": {
         "count": 32,
@@ -28270,23 +28300,23 @@
       "name": "TouchMe甲府昭和店",
       "nameEn": "Touch Me · Kofu Showa",
       "month": {
-        "count": 39,
+        "count": 40,
         "confirmed": 29,
         "visit": 11,
         "contract": 4,
-        "confirmedRate": 74.4,
+        "confirmedRate": 72.5,
         "visitRate": 37.9,
-        "bookingToVisitRate": 28.2,
+        "bookingToVisitRate": 27.5,
         "contractRate": 36.4
       },
       "ytd": {
-        "count": 641,
+        "count": 642,
         "confirmed": 369,
         "visit": 329,
         "contract": 132,
-        "confirmedRate": 57.6,
+        "confirmedRate": 57.5,
         "visitRate": 89.2,
-        "bookingToVisitRate": 51.3,
+        "bookingToVisitRate": 51.2,
         "contractRate": 40.1
       },
       "prevMonth": {
@@ -28315,24 +28345,24 @@
       "name": "TouchMe富士店",
       "nameEn": "Touch Me · Fuji",
       "month": {
-        "count": 41,
-        "confirmed": 33,
-        "visit": 16,
+        "count": 43,
+        "confirmed": 34,
+        "visit": 17,
         "contract": 2,
-        "confirmedRate": 80.5,
-        "visitRate": 48.5,
-        "bookingToVisitRate": 39,
-        "contractRate": 12.5
+        "confirmedRate": 79.1,
+        "visitRate": 50,
+        "bookingToVisitRate": 39.5,
+        "contractRate": 11.8
       },
       "ytd": {
-        "count": 659,
-        "confirmed": 485,
-        "visit": 384,
+        "count": 661,
+        "confirmed": 486,
+        "visit": 386,
         "contract": 148,
-        "confirmedRate": 73.6,
-        "visitRate": 79.2,
-        "bookingToVisitRate": 58.3,
-        "contractRate": 38.5
+        "confirmedRate": 73.5,
+        "visitRate": 79.4,
+        "bookingToVisitRate": 58.4,
+        "contractRate": 38.3
       },
       "prevMonth": {
         "count": 32,
@@ -28360,24 +28390,24 @@
     {
       "name": "HPB",
       "month": {
-        "count": 30,
+        "count": 31,
         "confirmed": 28,
-        "visit": 12,
+        "visit": 13,
         "contract": 2,
-        "confirmedRate": 93.3,
-        "visitRate": 42.9,
-        "bookingToVisitRate": 40,
-        "contractRate": 16.7
+        "confirmedRate": 90.3,
+        "visitRate": 46.4,
+        "bookingToVisitRate": 41.9,
+        "contractRate": 15.4
       },
       "ytd": {
-        "count": 577,
+        "count": 578,
         "confirmed": 456,
-        "visit": 402,
+        "visit": 404,
         "contract": 158,
-        "confirmedRate": 79,
-        "visitRate": 88.2,
-        "bookingToVisitRate": 69.7,
-        "contractRate": 39.3
+        "confirmedRate": 78.9,
+        "visitRate": 88.6,
+        "bookingToVisitRate": 69.9,
+        "contractRate": 39.1
       },
       "prevMonth": {
         "count": 34,
@@ -28416,12 +28446,12 @@
           "ytd": {
             "count": 168,
             "confirmed": 141,
-            "visit": 132,
+            "visit": 133,
             "contract": 57,
             "confirmedRate": 83.9,
-            "visitRate": 93.6,
-            "bookingToVisitRate": 78.6,
-            "contractRate": 43.2
+            "visitRate": 94.3,
+            "bookingToVisitRate": 79.2,
+            "contractRate": 42.9
           },
           "prevMonth": {
             "count": 17,
@@ -28492,24 +28522,24 @@
           "code": "tm-fuji",
           "name": "TouchMe富士店",
           "month": {
-            "count": 16,
+            "count": 17,
             "confirmed": 16,
-            "visit": 9,
+            "visit": 10,
             "contract": 0,
-            "confirmedRate": 100,
-            "visitRate": 56.3,
-            "bookingToVisitRate": 56.3,
+            "confirmedRate": 94.1,
+            "visitRate": 62.5,
+            "bookingToVisitRate": 58.8,
             "contractRate": 0
           },
           "ytd": {
-            "count": 194,
+            "count": 195,
             "confirmed": 177,
-            "visit": 141,
+            "visit": 142,
             "contract": 51,
-            "confirmedRate": 91.2,
-            "visitRate": 79.7,
-            "bookingToVisitRate": 72.7,
-            "contractRate": 36.2
+            "confirmedRate": 90.8,
+            "visitRate": 80.2,
+            "bookingToVisitRate": 72.8,
+            "contractRate": 35.9
           },
           "prevMonth": {
             "count": 7,
@@ -28537,24 +28567,24 @@
     {
       "name": "インスタ広告",
       "month": {
-        "count": 50,
-        "confirmed": 34,
+        "count": 52,
+        "confirmed": 35,
         "visit": 13,
         "contract": 4,
-        "confirmedRate": 68,
-        "visitRate": 38.2,
-        "bookingToVisitRate": 26,
+        "confirmedRate": 67.3,
+        "visitRate": 37.1,
+        "bookingToVisitRate": 25,
         "contractRate": 30.8
       },
       "ytd": {
-        "count": 590,
-        "confirmed": 353,
-        "visit": 290,
+        "count": 592,
+        "confirmed": 354,
+        "visit": 291,
         "contract": 87,
         "confirmedRate": 59.8,
         "visitRate": 82.2,
         "bookingToVisitRate": 49.2,
-        "contractRate": 30
+        "contractRate": 29.9
       },
       "prevMonth": {
         "count": 39,
@@ -28625,23 +28655,23 @@
           "code": "tm-kofu",
           "name": "TouchMe甲府昭和店",
           "month": {
-            "count": 24,
+            "count": 25,
             "confirmed": 17,
             "visit": 6,
             "contract": 3,
-            "confirmedRate": 70.8,
+            "confirmedRate": 68,
             "visitRate": 35.3,
-            "bookingToVisitRate": 25,
+            "bookingToVisitRate": 24,
             "contractRate": 50
           },
           "ytd": {
-            "count": 223,
+            "count": 224,
             "confirmed": 122,
             "visit": 104,
             "contract": 31,
-            "confirmedRate": 54.7,
+            "confirmedRate": 54.5,
             "visitRate": 85.2,
-            "bookingToVisitRate": 46.6,
+            "bookingToVisitRate": 46.4,
             "contractRate": 29.8
           },
           "prevMonth": {
@@ -28669,24 +28699,24 @@
           "code": "tm-fuji",
           "name": "TouchMe富士店",
           "month": {
-            "count": 18,
-            "confirmed": 12,
+            "count": 19,
+            "confirmed": 13,
             "visit": 5,
             "contract": 1,
-            "confirmedRate": 66.7,
-            "visitRate": 41.7,
-            "bookingToVisitRate": 27.8,
+            "confirmedRate": 68.4,
+            "visitRate": 38.5,
+            "bookingToVisitRate": 26.3,
             "contractRate": 20
           },
           "ytd": {
-            "count": 248,
-            "confirmed": 161,
-            "visit": 124,
+            "count": 249,
+            "confirmed": 162,
+            "visit": 125,
             "contract": 39,
-            "confirmedRate": 64.9,
-            "visitRate": 77,
-            "bookingToVisitRate": 50,
-            "contractRate": 31.5
+            "confirmedRate": 65.1,
+            "visitRate": 77.2,
+            "bookingToVisitRate": 50.2,
+            "contractRate": 31.2
           },
           "prevMonth": {
             "count": 9,
@@ -28891,23 +28921,23 @@
     {
       "name": "アフィリエイト",
       "month": {
-        "count": 7,
+        "count": 8,
         "confirmed": 4,
         "visit": 3,
         "contract": 1,
-        "confirmedRate": 57.1,
+        "confirmedRate": 50,
         "visitRate": 75,
-        "bookingToVisitRate": 42.9,
+        "bookingToVisitRate": 37.5,
         "contractRate": 33.3
       },
       "ytd": {
-        "count": 354,
+        "count": 355,
         "confirmed": 185,
         "visit": 155,
         "contract": 70,
-        "confirmedRate": 52.3,
+        "confirmedRate": 52.1,
         "visitRate": 83.8,
-        "bookingToVisitRate": 43.8,
+        "bookingToVisitRate": 43.7,
         "contractRate": 45.2
       },
       "prevMonth": {
@@ -28935,23 +28965,23 @@
           "code": "sm-kofu",
           "name": "SlenderMe甲府店",
           "month": {
-            "count": 2,
+            "count": 3,
             "confirmed": 1,
             "visit": 1,
             "contract": 1,
-            "confirmedRate": 50,
+            "confirmedRate": 33.3,
             "visitRate": 100,
-            "bookingToVisitRate": 50,
+            "bookingToVisitRate": 33.3,
             "contractRate": 100
           },
           "ytd": {
-            "count": 59,
+            "count": 60,
             "confirmed": 30,
             "visit": 29,
             "contract": 13,
-            "confirmedRate": 50.8,
+            "confirmedRate": 50,
             "visitRate": 96.7,
-            "bookingToVisitRate": 49.2,
+            "bookingToVisitRate": 48.3,
             "contractRate": 44.8
           },
           "prevMonth": {
@@ -29964,24 +29994,24 @@
         "menus": {
           "痩身": {
             "month": {
-              "count": 13,
+              "count": 14,
               "confirmed": 9,
               "visit": 4,
               "contract": 2,
-              "confirmedRate": 69.2,
+              "confirmedRate": 64.3,
               "visitRate": 44.4,
-              "bookingToVisitRate": 30.8,
+              "bookingToVisitRate": 28.6,
               "contractRate": 50
             },
             "ytd": {
-              "count": 363,
+              "count": 364,
               "confirmed": 256,
-              "visit": 237,
+              "visit": 238,
               "contract": 93,
-              "confirmedRate": 70.5,
-              "visitRate": 92.6,
-              "bookingToVisitRate": 65.3,
-              "contractRate": 39.2
+              "confirmedRate": 70.3,
+              "visitRate": 93,
+              "bookingToVisitRate": 65.4,
+              "contractRate": 39.1
             },
             "prevMonth": {
               "count": 32,
@@ -30091,24 +30121,24 @@
         },
         "total": {
           "month": {
-            "count": 13,
+            "count": 14,
             "confirmed": 9,
             "visit": 4,
             "contract": 2,
-            "confirmedRate": 69.2,
+            "confirmedRate": 64.3,
             "visitRate": 44.4,
-            "bookingToVisitRate": 30.8,
+            "bookingToVisitRate": 28.6,
             "contractRate": 50
           },
           "ytd": {
-            "count": 364,
+            "count": 365,
             "confirmed": 257,
-            "visit": 238,
+            "visit": 239,
             "contract": 94,
-            "confirmedRate": 70.6,
-            "visitRate": 92.6,
-            "bookingToVisitRate": 65.4,
-            "contractRate": 39.5
+            "confirmedRate": 70.4,
+            "visitRate": 93,
+            "bookingToVisitRate": 65.5,
+            "contractRate": 39.3
           },
           "prevMonth": {
             "count": 32,
@@ -30222,23 +30252,23 @@
           },
           "フェイシャル": {
             "month": {
-              "count": 33,
+              "count": 34,
               "confirmed": 23,
               "visit": 7,
               "contract": 2,
-              "confirmedRate": 69.7,
+              "confirmedRate": 67.6,
               "visitRate": 30.4,
-              "bookingToVisitRate": 21.2,
+              "bookingToVisitRate": 20.6,
               "contractRate": 28.6
             },
             "ytd": {
-              "count": 363,
+              "count": 364,
               "confirmed": 210,
               "visit": 186,
               "contract": 57,
-              "confirmedRate": 57.9,
+              "confirmedRate": 57.7,
               "visitRate": 88.6,
-              "bookingToVisitRate": 51.2,
+              "bookingToVisitRate": 51.1,
               "contractRate": 30.6
             },
             "prevMonth": {
@@ -30265,23 +30295,23 @@
         },
         "total": {
           "month": {
-            "count": 39,
+            "count": 40,
             "confirmed": 29,
             "visit": 11,
             "contract": 4,
-            "confirmedRate": 74.4,
+            "confirmedRate": 72.5,
             "visitRate": 37.9,
-            "bookingToVisitRate": 28.2,
+            "bookingToVisitRate": 27.5,
             "contractRate": 36.4
           },
           "ytd": {
-            "count": 641,
+            "count": 642,
             "confirmed": 369,
             "visit": 329,
             "contract": 132,
-            "confirmedRate": 57.6,
+            "confirmedRate": 57.5,
             "visitRate": 89.2,
-            "bookingToVisitRate": 51.3,
+            "bookingToVisitRate": 51.2,
             "contractRate": 40.1
           },
           "prevMonth": {
@@ -30324,12 +30354,12 @@
             "ytd": {
               "count": 158,
               "confirmed": 103,
-              "visit": 87,
+              "visit": 88,
               "contract": 38,
               "confirmedRate": 65.2,
-              "visitRate": 84.5,
-              "bookingToVisitRate": 55.1,
-              "contractRate": 43.7
+              "visitRate": 85.4,
+              "bookingToVisitRate": 55.7,
+              "contractRate": 43.2
             },
             "prevMonth": {
               "count": 5,
@@ -30396,24 +30426,24 @@
           },
           "フェイシャル": {
             "month": {
-              "count": 26,
-              "confirmed": 22,
-              "visit": 12,
+              "count": 28,
+              "confirmed": 23,
+              "visit": 13,
               "contract": 0,
-              "confirmedRate": 84.6,
-              "visitRate": 54.5,
-              "bookingToVisitRate": 46.2,
+              "confirmedRate": 82.1,
+              "visitRate": 56.5,
+              "bookingToVisitRate": 46.4,
               "contractRate": 0
             },
             "ytd": {
-              "count": 277,
-              "confirmed": 226,
-              "visit": 182,
+              "count": 279,
+              "confirmed": 227,
+              "visit": 183,
               "contract": 66,
-              "confirmedRate": 81.6,
-              "visitRate": 80.5,
-              "bookingToVisitRate": 65.7,
-              "contractRate": 36.3
+              "confirmedRate": 81.4,
+              "visitRate": 80.6,
+              "bookingToVisitRate": 65.6,
+              "contractRate": 36.1
             },
             "prevMonth": {
               "count": 13,
@@ -30439,24 +30469,24 @@
         },
         "total": {
           "month": {
-            "count": 41,
-            "confirmed": 33,
-            "visit": 16,
+            "count": 43,
+            "confirmed": 34,
+            "visit": 17,
             "contract": 2,
-            "confirmedRate": 80.5,
-            "visitRate": 48.5,
-            "bookingToVisitRate": 39,
-            "contractRate": 12.5
+            "confirmedRate": 79.1,
+            "visitRate": 50,
+            "bookingToVisitRate": 39.5,
+            "contractRate": 11.8
           },
           "ytd": {
-            "count": 659,
-            "confirmed": 485,
-            "visit": 384,
+            "count": 661,
+            "confirmed": 486,
+            "visit": 386,
             "contract": 148,
-            "confirmedRate": 73.6,
-            "visitRate": 79.2,
-            "bookingToVisitRate": 58.3,
-            "contractRate": 38.5
+            "confirmedRate": 73.5,
+            "visitRate": 79.4,
+            "bookingToVisitRate": 58.4,
+            "contractRate": 38.3
           },
           "prevMonth": {
             "count": 32,
@@ -30486,7 +30516,7 @@
     "current": [
       {
         "name": "【WithMe】新規予約管理DB / 予約明細",
-        "rows": 1665
+        "rows": 1669
       }
     ],
     "prev": [
