@@ -1,11 +1,11 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-10-20T01:24:38.284Z",
+  "generated_at": "2026-10-20T05:32:47.180Z",
   "data_sources": {
-    "google": "Places API Text Search（毎時自動取得、実際の反映は数時間おき）",
-    "hpb": "前回値を継承（今回の自動取得は失敗）",
-    "blog": "前回値を継承",
+    "google": "前回値を継承（今回の自動取得は失敗）",
+    "hpb": "HPB公式ページ自動取得（毎日）／最終取得: 2026-10-20 05:32 UTC",
+    "blog": "HPBブログ一覧ページから自動集計（毎日）",
     "note": "GBP公式API(Google Business Profile API)は2026-05に申請したが却下。Places APIで代替運用中のため件数・評価のみ取得可能（口コミ本文・返信状況は取得不可）"
   },
   "stores": [
@@ -17,12 +17,12 @@
       "hpb": {
         "salon_name": "TouchMe甲府昭和店",
         "url": "https://beauty.hotpepper.jp/kr/slnH000530271/",
-        "review_count": 636,
+        "review_count": 635,
         "rating": 4.88,
-        "blog_count_total": 549,
-        "blog_count_this_month": 17,
-        "new_reviews_this_month": 20,
-        "new_reviews_30d": 32,
+        "blog_count_total": 550,
+        "blog_count_this_month": 18,
+        "new_reviews_this_month": 22,
+        "new_reviews_30d": 30,
         "new_blogs_30d": 26,
         "available": true
       },
@@ -31,14 +31,9 @@
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJr4DRCWj3G2AR-ZL9_5Qrds0",
         "review_count": 402,
         "rating": 4.9,
-        "new_reviews_this_month": 2,
-        "place_id": "ChIJr4DRCWj3G2AR-ZL9_5Qrds0"
+        "new_reviews_this_month": 2
       },
       "monthly_trend": [
-        {
-          "month": "2026-07",
-          "count": 2
-        },
         {
           "month": "2026-08",
           "count": 54
@@ -49,16 +44,16 @@
         },
         {
           "month": "2026-10",
-          "count": 20
+          "count": 22
         }
       ],
       "period_summary": {
         "p7": {
-          "reviews": 7,
-          "blogs": 5
+          "reviews": 9,
+          "blogs": 6
         },
         "p30": {
-          "reviews": 32,
+          "reviews": 30,
           "blogs": 26
         },
         "p60": {
@@ -79,26 +74,25 @@
         }
       },
       "monthly_reviews": {
-        "2026-10": 20,
+        "2026-10": 22,
         "2026-09": 44,
-        "2026-08": 54,
-        "2026-07": 2
+        "2026-08": 54
       },
       "monthly_blogs": {
-        "2026-10": 17,
+        "2026-10": 18,
         "2026-09": 23,
         "2026-08": 23,
         "2026-07": 24,
         "2026-06": 11,
-        "2026-05": 2
+        "2026-05": 1
       },
       "totals": {
-        "review_count": 1038,
+        "review_count": 1037,
         "weighted_rating": 4.89,
-        "blog_count_total": 549,
-        "blog_count_this_month": 17,
-        "new_reviews_this_month": 22,
-        "new_reviews_30d": 34,
+        "blog_count_total": 550,
+        "blog_count_this_month": 18,
+        "new_reviews_this_month": 24,
+        "new_reviews_30d": 32,
         "new_blogs_30d": 26
       },
       "score": 97,
@@ -118,16 +112,15 @@
         "blog_count_this_month": 12,
         "new_reviews_this_month": 9,
         "new_reviews_30d": 18,
-        "new_blogs_30d": 21,
+        "new_blogs_30d": 20,
         "available": true
       },
       "google": {
-        "label": "Touch Me富士店",
+        "label": "Touch Me富士店【タッチミー】",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJrw9otUMrGmARJgKg8v6_kF8",
         "review_count": 218,
         "rating": 4.9,
-        "new_reviews_this_month": 1,
-        "place_id": "ChIJrw9otUMrGmARJgKg8v6_kF8"
+        "new_reviews_this_month": 1
       },
       "monthly_trend": [
         {
@@ -166,15 +159,15 @@
         },
         "p30": {
           "reviews": 18,
-          "blogs": 21
+          "blogs": 20
         },
         "p60": {
-          "reviews": 41,
-          "blogs": 44
+          "reviews": 40,
+          "blogs": 43
         },
         "p90": {
           "reviews": 65,
-          "blogs": 67
+          "blogs": 66
         },
         "p180": {
           "reviews": 119,
@@ -208,7 +201,7 @@
         "blog_count_this_month": 12,
         "new_reviews_this_month": 10,
         "new_reviews_30d": 19,
-        "new_blogs_30d": 21
+        "new_blogs_30d": 20
       },
       "score": 81,
       "rank": 2
@@ -223,11 +216,11 @@
         "url": "https://beauty.hotpepper.jp/kr/slnH000494565/",
         "review_count": 338,
         "rating": 4.8,
-        "blog_count_total": 531,
-        "blog_count_this_month": 17,
+        "blog_count_total": 533,
+        "blog_count_this_month": 19,
         "new_reviews_this_month": 11,
         "new_reviews_30d": 17,
-        "new_blogs_30d": 25,
+        "new_blogs_30d": 27,
         "available": true
       },
       "google": {
@@ -235,8 +228,7 @@
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJjy9pyNH3G2ARbUkCUHJGYP0",
         "review_count": 164,
         "rating": 4.9,
-        "new_reviews_this_month": 3,
-        "place_id": "ChIJjy9pyNH3G2ARbUkCUHJGYP0"
+        "new_reviews_this_month": 3
       },
       "monthly_trend": [
         {
@@ -282,20 +274,20 @@
       ],
       "period_summary": {
         "p7": {
-          "reviews": 8,
-          "blogs": 6
+          "reviews": 7,
+          "blogs": 7
         },
         "p30": {
           "reviews": 17,
-          "blogs": 25
+          "blogs": 27
         },
         "p60": {
-          "reviews": 27,
-          "blogs": 47
+          "reviews": 26,
+          "blogs": 48
         },
         "p90": {
           "reviews": 40,
-          "blogs": 64
+          "blogs": 65
         },
         "p180": {
           "reviews": 74,
@@ -319,20 +311,20 @@
         "2026-01": 6
       },
       "monthly_blogs": {
-        "2026-10": 17,
+        "2026-10": 19,
         "2026-09": 24,
         "2026-08": 18,
         "2026-07": 23,
-        "2026-06": 18
+        "2026-06": 16
       },
       "totals": {
         "review_count": 502,
         "weighted_rating": 4.83,
-        "blog_count_total": 531,
-        "blog_count_this_month": 17,
+        "blog_count_total": 533,
+        "blog_count_this_month": 19,
         "new_reviews_this_month": 14,
         "new_reviews_30d": 20,
-        "new_blogs_30d": 25
+        "new_blogs_30d": 27
       },
       "score": 64,
       "rank": 3
@@ -347,20 +339,19 @@
         "url": "https://beauty.hotpepper.jp/kr/slnH000652811/",
         "review_count": 268,
         "rating": 4.83,
-        "blog_count_total": 269,
-        "blog_count_this_month": 16,
+        "blog_count_total": 270,
+        "blog_count_this_month": 17,
         "new_reviews_this_month": 9,
-        "new_reviews_30d": 19,
+        "new_reviews_30d": 16,
         "new_blogs_30d": 25,
         "available": true
       },
       "google": {
-        "label": "小顔矯正コルギ専門店 KaoKao甲府本店",
+        "label": "KaoKao甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJp8kWlv_3G2ARObteUfTXtKM",
         "review_count": 105,
         "rating": 5,
-        "new_reviews_this_month": 3,
-        "place_id": "ChIJp8kWlv_3G2ARObteUfTXtKM"
+        "new_reviews_this_month": 3
       },
       "monthly_trend": [
         {
@@ -395,23 +386,23 @@
       "period_summary": {
         "p7": {
           "reviews": 4,
-          "blogs": 5
+          "blogs": 6
         },
         "p30": {
-          "reviews": 19,
+          "reviews": 16,
           "blogs": 25
         },
         "p60": {
-          "reviews": 46,
+          "reviews": 43,
           "blogs": 50
         },
         "p90": {
-          "reviews": 71,
+          "reviews": 69,
           "blogs": 70
         },
         "p180": {
           "reviews": 114,
-          "blogs": 96
+          "blogs": 97
         },
         "p365": {
           "reviews": 120,
@@ -428,21 +419,21 @@
         "2026-04": 8
       },
       "monthly_blogs": {
-        "2026-10": 16,
+        "2026-10": 17,
         "2026-09": 25,
         "2026-08": 21,
         "2026-07": 21,
         "2026-06": 8,
         "2026-05": 3,
-        "2026-04": 6
+        "2026-04": 5
       },
       "totals": {
         "review_count": 373,
         "weighted_rating": 4.88,
-        "blog_count_total": 269,
-        "blog_count_this_month": 16,
+        "blog_count_total": 270,
+        "blog_count_this_month": 17,
         "new_reviews_this_month": 12,
-        "new_reviews_30d": 22,
+        "new_reviews_30d": 19,
         "new_blogs_30d": 25
       },
       "score": 53,
@@ -461,17 +452,16 @@
         "blog_count_total": 162,
         "blog_count_this_month": 17,
         "new_reviews_this_month": 2,
-        "new_reviews_30d": 3,
-        "new_blogs_30d": 26,
+        "new_reviews_30d": 2,
+        "new_blogs_30d": 25,
         "available": true
       },
       "google": {
-        "label": "韓国式小顔矯正コルギ・肌管理専門店 KaoKao富士店",
+        "label": "KaoKao富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJD_zlmH8rGmAREUkK6yw7qZ0",
         "review_count": 83,
         "rating": 5,
-        "new_reviews_this_month": 3,
-        "place_id": "ChIJD_zlmH8rGmAREUkK6yw7qZ0"
+        "new_reviews_this_month": 3
       },
       "monthly_trend": [
         {
@@ -545,23 +535,23 @@
           "blogs": 6
         },
         "p30": {
-          "reviews": 3,
-          "blogs": 26
+          "reviews": 2,
+          "blogs": 25
         },
         "p60": {
           "reviews": 10,
-          "blogs": 51
+          "blogs": 50
         },
         "p90": {
           "reviews": 17,
-          "blogs": 75
+          "blogs": 74
         },
         "p180": {
           "reviews": 41,
           "blogs": 100
         },
         "p365": {
-          "reviews": 97,
+          "reviews": 96,
           "blogs": 100
         }
       },
@@ -596,8 +586,8 @@
         "blog_count_total": 162,
         "blog_count_this_month": 17,
         "new_reviews_this_month": 5,
-        "new_reviews_30d": 6,
-        "new_blogs_30d": 26
+        "new_reviews_30d": 5,
+        "new_blogs_30d": 25
       },
       "score": 45,
       "rank": 5
@@ -621,12 +611,11 @@
         "note": "HPB広告ページなし。TouchMe富士店併設で運営"
       },
       "google": {
-        "label": "痩身ダイエット専門店 Slender Me富士店",
+        "label": "Slender Me富士店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJX2b9B2QrGmAR6bSYAib6Q0w",
         "review_count": 62,
         "rating": 4.9,
-        "new_reviews_this_month": 0,
-        "place_id": "ChIJX2b9B2QrGmAR6bSYAib6Q0w"
+        "new_reviews_this_month": 0
       },
       "monthly_trend": [],
       "period_summary": {
@@ -671,20 +660,20 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 3030,
-    "total_new_this_month": 63,
-    "total_new_30d": 101,
+    "total_reviews": 3029,
+    "total_new_this_month": 65,
+    "total_new_30d": 95,
     "total_blogs_30d": 123,
     "average_rating": 4.86,
-    "total_blog_this_month": 79,
-    "total_blog_all": 2005,
+    "total_blog_this_month": 83,
+    "total_blog_all": 2009,
     "store_count": 6
   },
   "alerts": [
     {
       "level": "info",
       "store_id": "tm_kofu_showa",
-      "message": "TouchMe甲府昭和店 が総合1位（HPB+Google合計 1038件・★4.89）"
+      "message": "TouchMe甲府昭和店 が総合1位（HPB+Google合計 1037件・★4.89）"
     }
   ]
 }
