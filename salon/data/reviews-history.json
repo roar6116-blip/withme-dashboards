@@ -505,7 +505,7 @@
       "year_month": "2026-10",
       "stores": {
         "tm_kofu_showa": {
-          "hpb_count": 634,
+          "hpb_count": 636,
           "hpb_rating": 4.88,
           "google_count": 404,
           "google_rating": 4.9,
@@ -515,12 +515,12 @@
           "rank": 1
         },
         "tm_fuji": {
-          "hpb_count": 605,
+          "hpb_count": 603,
           "hpb_rating": 4.78,
           "google_count": 219,
           "google_rating": 4.9,
-          "blog_total": 498,
-          "blog_new": 16,
+          "blog_total": 499,
+          "blog_new": 17,
           "score": 82,
           "rank": 2
         },
@@ -529,13 +529,13 @@
           "hpb_rating": 4.8,
           "google_count": 170,
           "google_rating": 4.9,
-          "blog_total": 538,
-          "blog_new": 24,
+          "blog_total": 539,
+          "blog_new": 25,
           "score": 64,
           "rank": 3
         },
         "kk_kofu": {
-          "hpb_count": 274,
+          "hpb_count": 275,
           "hpb_rating": 4.85,
           "google_count": 106,
           "google_rating": 5,
@@ -549,8 +549,8 @@
           "hpb_rating": 4.92,
           "google_count": 82,
           "google_rating": 5,
-          "blog_total": 166,
-          "blog_new": 21,
+          "blog_total": 167,
+          "blog_new": 22,
           "score": 45,
           "rank": 5
         },
