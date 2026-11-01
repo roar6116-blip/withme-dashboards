@@ -1,11 +1,11 @@
 {
-  "year_month": "2026-10",
+  "year_month": "2026-11",
   "counts": {
-    "tm_kofu_showa": 400,
-    "tm_fuji": 217,
-    "sm_kofu": 161,
-    "kk_kofu": 102,
-    "kk_fuji": 80,
+    "tm_kofu_showa": 405,
+    "tm_fuji": 219,
+    "sm_kofu": 172,
+    "kk_kofu": 106,
+    "kk_fuji": 82,
     "sm_fuji": 62
   }
 }
