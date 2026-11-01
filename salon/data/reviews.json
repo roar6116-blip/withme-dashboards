@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-11-01T08:30:12.674Z",
+  "generated_at": "2026-11-01T15:38:49.896Z",
   "data_sources": {
     "google": "Places API Text Search（毎時自動取得、実際の反映は数時間おき）",
     "hpb": "前回値を継承（今回の自動取得は失敗）",
@@ -29,7 +29,7 @@
       "google": {
         "label": "Touch Me甲府昭和店【タッチミー】",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJr4DRCWj3G2AR-ZL9_5Qrds0",
-        "review_count": 405,
+        "review_count": 404,
         "rating": 4.9,
         "new_reviews_this_month": 0,
         "place_id": "ChIJr4DRCWj3G2AR-ZL9_5Qrds0"
@@ -92,7 +92,7 @@
         "2026-07": 24
       },
       "totals": {
-        "review_count": 1045,
+        "review_count": 1044,
         "weighted_rating": 4.89,
         "blog_count_total": 562,
         "blog_count_this_month": 2,
@@ -357,9 +357,9 @@
       "google": {
         "label": "小顔矯正コルギ専門店 KaoKao甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJp8kWlv_3G2ARObteUfTXtKM",
-        "review_count": 108,
+        "review_count": 109,
         "rating": 5,
-        "new_reviews_this_month": 2,
+        "new_reviews_this_month": 3,
         "place_id": "ChIJp8kWlv_3G2ARObteUfTXtKM"
       },
       "monthly_trend": [
@@ -436,12 +436,12 @@
         "2026-06": 4
       },
       "totals": {
-        "review_count": 387,
+        "review_count": 388,
         "weighted_rating": 4.88,
         "blog_count_total": 282,
         "blog_count_this_month": 2,
-        "new_reviews_this_month": 3,
-        "new_reviews_30d": 22,
+        "new_reviews_this_month": 4,
+        "new_reviews_30d": 23,
         "new_blogs_30d": 27
       },
       "score": 54,
@@ -671,8 +671,8 @@
   ],
   "company_totals": {
     "total_reviews": 3062,
-    "total_new_this_month": 19,
-    "total_new_30d": 89,
+    "total_new_this_month": 20,
+    "total_new_30d": 90,
     "total_blogs_30d": 126,
     "average_rating": 4.86,
     "total_blog_this_month": 34,
@@ -683,7 +683,7 @@
     {
       "level": "info",
       "store_id": "tm_kofu_showa",
-      "message": "TouchMe甲府昭和店 が総合1位（HPB+Google合計 1045件・★4.89）"
+      "message": "TouchMe甲府昭和店 が総合1位（HPB+Google合計 1044件・★4.89）"
     }
   ]
 }
