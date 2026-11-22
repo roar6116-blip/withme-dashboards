@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22T04:22:14.716Z",
+  "generatedAt": "2026-11-22T12:58:05.148Z",
   "asOf": "2026-11-22",
   "target": {
     "confirmedRate": 80,
@@ -28425,8 +28425,8 @@
         0,
         2,
         2,
-        1,
-        1
+        2,
+        2
       ],
       [
         "2026-10-26",
@@ -29385,7 +29385,7 @@
         1,
         2,
         2,
-        0,
+        1,
         0
       ],
       [
@@ -29535,7 +29535,7 @@
         0,
         1,
         1,
-        0,
+        1,
         0
       ],
       [
@@ -29614,8 +29614,8 @@
         2,
         0,
         1,
-        0,
-        0,
+        1,
+        1,
         0
       ],
       [
@@ -29633,23 +29633,23 @@
   "total": {
     "month": {
       "count": 124,
-      "confirmed": 86,
-      "visit": 47,
+      "confirmed": 87,
+      "visit": 50,
       "contract": 11,
-      "confirmedRate": 69.4,
-      "visitRate": 54.7,
-      "bookingToVisitRate": 37.9,
-      "contractRate": 23.4
+      "confirmedRate": 70.2,
+      "visitRate": 57.5,
+      "bookingToVisitRate": 40.3,
+      "contractRate": 22
     },
     "ytd": {
       "count": 1861,
-      "confirmed": 1239,
-      "visit": 1066,
-      "contract": 409,
+      "confirmed": 1240,
+      "visit": 1070,
+      "contract": 410,
       "confirmedRate": 66.6,
-      "visitRate": 86,
-      "bookingToVisitRate": 57.3,
-      "contractRate": 38.4
+      "visitRate": 86.3,
+      "bookingToVisitRate": 57.5,
+      "contractRate": 38.3
     },
     "prevMonth": {
       "count": 141,
@@ -29690,12 +29690,12 @@
       "ytd": {
         "count": 399,
         "confirmed": 277,
-        "visit": 254,
-        "contract": 104,
+        "visit": 255,
+        "contract": 105,
         "confirmedRate": 69.4,
-        "visitRate": 91.7,
-        "bookingToVisitRate": 63.7,
-        "contractRate": 40.9
+        "visitRate": 92.1,
+        "bookingToVisitRate": 63.9,
+        "contractRate": 41.2
       },
       "prevMonth": {
         "count": 23,
@@ -29724,23 +29724,23 @@
       "nameEn": "Touch Me · Kofu Showa",
       "month": {
         "count": 43,
-        "confirmed": 30,
-        "visit": 20,
+        "confirmed": 31,
+        "visit": 22,
         "contract": 2,
-        "confirmedRate": 69.8,
-        "visitRate": 66.7,
-        "bookingToVisitRate": 46.5,
-        "contractRate": 10
+        "confirmedRate": 72.1,
+        "visitRate": 71,
+        "bookingToVisitRate": 51.2,
+        "contractRate": 9.1
       },
       "ytd": {
         "count": 710,
-        "confirmed": 411,
-        "visit": 377,
+        "confirmed": 412,
+        "visit": 379,
         "contract": 142,
-        "confirmedRate": 57.9,
-        "visitRate": 91.7,
-        "bookingToVisitRate": 53.1,
-        "contractRate": 37.7
+        "confirmedRate": 58,
+        "visitRate": 92,
+        "bookingToVisitRate": 53.4,
+        "contractRate": 37.5
       },
       "prevMonth": {
         "count": 43,
@@ -29770,22 +29770,22 @@
       "month": {
         "count": 62,
         "confirmed": 46,
-        "visit": 24,
+        "visit": 25,
         "contract": 7,
         "confirmedRate": 74.2,
-        "visitRate": 52.2,
-        "bookingToVisitRate": 38.7,
-        "contractRate": 29.2
+        "visitRate": 54.3,
+        "bookingToVisitRate": 40.3,
+        "contractRate": 28
       },
       "ytd": {
         "count": 752,
         "confirmed": 551,
-        "visit": 435,
+        "visit": 436,
         "contract": 163,
         "confirmedRate": 73.3,
-        "visitRate": 78.9,
-        "bookingToVisitRate": 57.8,
-        "contractRate": 37.5
+        "visitRate": 79.1,
+        "bookingToVisitRate": 58,
+        "contractRate": 37.4
       },
       "prevMonth": {
         "count": 75,
@@ -29814,23 +29814,23 @@
       "name": "HPB",
       "month": {
         "count": 44,
-        "confirmed": 36,
-        "visit": 20,
+        "confirmed": 37,
+        "visit": 22,
         "contract": 5,
-        "confirmedRate": 81.8,
-        "visitRate": 55.6,
-        "bookingToVisitRate": 45.5,
-        "contractRate": 25
+        "confirmedRate": 84.1,
+        "visitRate": 59.5,
+        "bookingToVisitRate": 50,
+        "contractRate": 22.7
       },
       "ytd": {
         "count": 639,
-        "confirmed": 504,
-        "visit": 445,
-        "contract": 177,
-        "confirmedRate": 78.9,
-        "visitRate": 88.3,
-        "bookingToVisitRate": 69.6,
-        "contractRate": 39.8
+        "confirmed": 505,
+        "visit": 448,
+        "contract": 178,
+        "confirmedRate": 79,
+        "visitRate": 88.7,
+        "bookingToVisitRate": 70.1,
+        "contractRate": 39.7
       },
       "prevMonth": {
         "count": 52,
@@ -29869,12 +29869,12 @@
           "ytd": {
             "count": 184,
             "confirmed": 152,
-            "visit": 141,
-            "contract": 64,
+            "visit": 142,
+            "contract": 65,
             "confirmedRate": 82.6,
-            "visitRate": 92.8,
-            "bookingToVisitRate": 76.6,
-            "contractRate": 45.4
+            "visitRate": 93.4,
+            "bookingToVisitRate": 77.2,
+            "contractRate": 45.8
           },
           "prevMonth": {
             "count": 12,
@@ -29902,23 +29902,23 @@
           "name": "TouchMe甲府昭和店",
           "month": {
             "count": 25,
-            "confirmed": 19,
-            "visit": 12,
+            "confirmed": 20,
+            "visit": 14,
             "contract": 2,
-            "confirmedRate": 76,
-            "visitRate": 63.2,
-            "bookingToVisitRate": 48,
-            "contractRate": 16.7
+            "confirmedRate": 80,
+            "visitRate": 70,
+            "bookingToVisitRate": 56,
+            "contractRate": 14.3
           },
           "ytd": {
             "count": 244,
-            "confirmed": 158,
-            "visit": 149,
+            "confirmed": 159,
+            "visit": 151,
             "contract": 55,
-            "confirmedRate": 64.8,
-            "visitRate": 94.3,
-            "bookingToVisitRate": 61.1,
-            "contractRate": 36.9
+            "confirmedRate": 65.2,
+            "visitRate": 95,
+            "bookingToVisitRate": 61.9,
+            "contractRate": 36.4
           },
           "prevMonth": {
             "count": 16,
@@ -29992,22 +29992,22 @@
       "month": {
         "count": 54,
         "confirmed": 36,
-        "visit": 21,
+        "visit": 22,
         "contract": 3,
         "confirmedRate": 66.7,
-        "visitRate": 58.3,
-        "bookingToVisitRate": 38.9,
-        "contractRate": 14.3
+        "visitRate": 61.1,
+        "bookingToVisitRate": 40.7,
+        "contractRate": 13.6
       },
       "ytd": {
         "count": 690,
         "confirmed": 410,
-        "visit": 344,
+        "visit": 345,
         "contract": 96,
         "confirmedRate": 59.4,
-        "visitRate": 83.9,
-        "bookingToVisitRate": 49.9,
-        "contractRate": 27.9
+        "visitRate": 84.1,
+        "bookingToVisitRate": 50,
+        "contractRate": 27.8
       },
       "prevMonth": {
         "count": 25,
@@ -30124,22 +30124,22 @@
           "month": {
             "count": 33,
             "confirmed": 26,
-            "visit": 14,
+            "visit": 15,
             "contract": 2,
             "confirmedRate": 78.8,
-            "visitRate": 53.8,
-            "bookingToVisitRate": 42.4,
-            "contractRate": 14.3
+            "visitRate": 57.7,
+            "bookingToVisitRate": 45.5,
+            "contractRate": 13.3
           },
           "ytd": {
             "count": 302,
             "confirmed": 197,
-            "visit": 151,
+            "visit": 152,
             "contract": 43,
             "confirmedRate": 65.2,
-            "visitRate": 76.6,
-            "bookingToVisitRate": 50,
-            "contractRate": 28.5
+            "visitRate": 77.2,
+            "bookingToVisitRate": 50.3,
+            "contractRate": 28.3
           },
           "prevMonth": {
             "count": 6,
@@ -31960,12 +31960,12 @@
             "ytd": {
               "count": 398,
               "confirmed": 276,
-              "visit": 253,
-              "contract": 103,
+              "visit": 254,
+              "contract": 104,
               "confirmedRate": 69.3,
-              "visitRate": 91.7,
-              "bookingToVisitRate": 63.6,
-              "contractRate": 40.7
+              "visitRate": 92,
+              "bookingToVisitRate": 63.8,
+              "contractRate": 40.9
             },
             "prevMonth": {
               "count": 23,
@@ -32087,12 +32087,12 @@
           "ytd": {
             "count": 399,
             "confirmed": 277,
-            "visit": 254,
-            "contract": 104,
+            "visit": 255,
+            "contract": 105,
             "confirmedRate": 69.4,
-            "visitRate": 91.7,
-            "bookingToVisitRate": 63.7,
-            "contractRate": 40.9
+            "visitRate": 92.1,
+            "bookingToVisitRate": 63.9,
+            "contractRate": 41.2
           },
           "prevMonth": {
             "count": 23,
@@ -32207,23 +32207,23 @@
           "フェイシャル": {
             "month": {
               "count": 31,
-              "confirmed": 22,
-              "visit": 15,
+              "confirmed": 23,
+              "visit": 17,
               "contract": 1,
-              "confirmedRate": 71,
-              "visitRate": 68.2,
-              "bookingToVisitRate": 48.4,
-              "contractRate": 6.7
+              "confirmedRate": 74.2,
+              "visitRate": 73.9,
+              "bookingToVisitRate": 54.8,
+              "contractRate": 5.9
             },
             "ytd": {
               "count": 412,
-              "confirmed": 238,
-              "visit": 222,
+              "confirmed": 239,
+              "visit": 224,
               "contract": 62,
-              "confirmedRate": 57.8,
-              "visitRate": 93.3,
-              "bookingToVisitRate": 53.9,
-              "contractRate": 27.9
+              "confirmedRate": 58,
+              "visitRate": 93.7,
+              "bookingToVisitRate": 54.4,
+              "contractRate": 27.7
             },
             "prevMonth": {
               "count": 17,
@@ -32250,23 +32250,23 @@
         "total": {
           "month": {
             "count": 43,
-            "confirmed": 30,
-            "visit": 20,
+            "confirmed": 31,
+            "visit": 22,
             "contract": 2,
-            "confirmedRate": 69.8,
-            "visitRate": 66.7,
-            "bookingToVisitRate": 46.5,
-            "contractRate": 10
+            "confirmedRate": 72.1,
+            "visitRate": 71,
+            "bookingToVisitRate": 51.2,
+            "contractRate": 9.1
           },
           "ytd": {
             "count": 710,
-            "confirmed": 411,
-            "visit": 377,
+            "confirmed": 412,
+            "visit": 379,
             "contract": 142,
-            "confirmedRate": 57.9,
-            "visitRate": 91.7,
-            "bookingToVisitRate": 53.1,
-            "contractRate": 37.7
+            "confirmedRate": 58,
+            "visitRate": 92,
+            "bookingToVisitRate": 53.4,
+            "contractRate": 37.5
           },
           "prevMonth": {
             "count": 43,
@@ -32382,22 +32382,22 @@
             "month": {
               "count": 29,
               "confirmed": 28,
-              "visit": 16,
+              "visit": 17,
               "contract": 3,
               "confirmedRate": 96.6,
-              "visitRate": 57.1,
-              "bookingToVisitRate": 55.2,
-              "contractRate": 18.8
+              "visitRate": 60.7,
+              "bookingToVisitRate": 58.6,
+              "contractRate": 17.6
             },
             "ytd": {
               "count": 326,
               "confirmed": 269,
-              "visit": 215,
+              "visit": 216,
               "contract": 74,
               "confirmedRate": 82.5,
-              "visitRate": 79.9,
-              "bookingToVisitRate": 66,
-              "contractRate": 34.4
+              "visitRate": 80.3,
+              "bookingToVisitRate": 66.3,
+              "contractRate": 34.3
             },
             "prevMonth": {
               "count": 27,
@@ -32425,22 +32425,22 @@
           "month": {
             "count": 62,
             "confirmed": 46,
-            "visit": 24,
+            "visit": 25,
             "contract": 7,
             "confirmedRate": 74.2,
-            "visitRate": 52.2,
-            "bookingToVisitRate": 38.7,
-            "contractRate": 29.2
+            "visitRate": 54.3,
+            "bookingToVisitRate": 40.3,
+            "contractRate": 28
           },
           "ytd": {
             "count": 752,
             "confirmed": 551,
-            "visit": 435,
+            "visit": 436,
             "contract": 163,
             "confirmedRate": 73.3,
-            "visitRate": 78.9,
-            "bookingToVisitRate": 57.8,
-            "contractRate": 37.5
+            "visitRate": 79.1,
+            "bookingToVisitRate": 58,
+            "contractRate": 37.4
           },
           "prevMonth": {
             "count": 75,
