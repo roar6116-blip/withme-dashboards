@@ -1,11 +1,11 @@
 {
   "schema_version": "2.0.0",
   "schema_note": "6ブランド店舗単位の集計（広告露出単位）",
-  "generated_at": "2026-11-26T03:52:11.224Z",
+  "generated_at": "2026-11-26T09:01:06.168Z",
   "data_sources": {
-    "google": "Places API Text Search（毎時自動取得、実際の反映は数時間おき）",
-    "hpb": "前回値を継承（今回の自動取得は失敗）",
-    "blog": "前回値を継承",
+    "google": "前回値を継承（今回の自動取得は失敗）",
+    "hpb": "HPB公式ページ自動取得（毎日）／最終取得: 2026-11-26 09:01 UTC",
+    "blog": "HPBブログ一覧ページから自動集計（毎日）",
     "note": "GBP公式API(Google Business Profile API)は2026-05に申請したが却下。Places APIで代替運用中のため件数・評価のみ取得可能（口コミ本文・返信状況は取得不可）"
   },
   "stores": [
@@ -19,11 +19,11 @@
         "url": "https://beauty.hotpepper.jp/kr/slnH000530271/",
         "review_count": 647,
         "rating": 4.9,
-        "blog_count_total": 583,
-        "blog_count_this_month": 23,
-        "new_reviews_this_month": 34,
+        "blog_count_total": 584,
+        "blog_count_this_month": 24,
+        "new_reviews_this_month": 35,
         "new_reviews_30d": 41,
-        "new_blogs_30d": 27,
+        "new_blogs_30d": 28,
         "available": true
       },
       "google": {
@@ -31,13 +31,12 @@
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJr4DRCWj3G2AR-ZL9_5Qrds0",
         "review_count": 405,
         "rating": 4.9,
-        "new_reviews_this_month": 0,
-        "place_id": "ChIJr4DRCWj3G2AR-ZL9_5Qrds0"
+        "new_reviews_this_month": 0
       },
       "monthly_trend": [
         {
           "month": "2026-08",
-          "count": 3
+          "count": 2
         },
         {
           "month": "2026-09",
@@ -49,20 +48,20 @@
         },
         {
           "month": "2026-11",
-          "count": 34
+          "count": 35
         }
       ],
       "period_summary": {
         "p7": {
-          "reviews": 7,
-          "blogs": 7
+          "reviews": 6,
+          "blogs": 6
         },
         "p30": {
           "reviews": 41,
-          "blogs": 27
+          "blogs": 28
         },
         "p60": {
-          "reviews": 76,
+          "reviews": 77,
           "blogs": 54
         },
         "p90": {
@@ -80,25 +79,25 @@
       },
       "monthly_reviews": {
         "2026-10": 39,
-        "2026-11": 34,
+        "2026-11": 35,
         "2026-09": 44,
-        "2026-08": 3
+        "2026-08": 2
       },
       "monthly_blogs": {
-        "2026-11": 23,
+        "2026-11": 24,
         "2026-10": 28,
         "2026-09": 23,
         "2026-08": 23,
-        "2026-07": 3
+        "2026-07": 2
       },
       "totals": {
         "review_count": 1052,
         "weighted_rating": 4.9,
-        "blog_count_total": 583,
-        "blog_count_this_month": 23,
-        "new_reviews_this_month": 34,
+        "blog_count_total": 584,
+        "blog_count_this_month": 24,
+        "new_reviews_this_month": 35,
         "new_reviews_30d": 41,
-        "new_blogs_30d": 27
+        "new_blogs_30d": 28
       },
       "score": 97,
       "rank": 1
@@ -111,22 +110,21 @@
       "hpb": {
         "salon_name": "TouchMe富士店",
         "url": "https://beauty.hotpepper.jp/kr/slnH000584577/",
-        "review_count": 599,
+        "review_count": 601,
         "rating": 4.79,
-        "blog_count_total": 526,
-        "blog_count_this_month": 23,
-        "new_reviews_this_month": 22,
-        "new_reviews_30d": 23,
-        "new_blogs_30d": 27,
+        "blog_count_total": 527,
+        "blog_count_this_month": 24,
+        "new_reviews_this_month": 24,
+        "new_reviews_30d": 25,
+        "new_blogs_30d": 28,
         "available": true
       },
       "google": {
-        "label": "Touch Me富士店",
+        "label": "Touch Me富士店【タッチミー】",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJrw9otUMrGmARJgKg8v6_kF8",
         "review_count": 221,
         "rating": 4.9,
-        "new_reviews_this_month": 2,
-        "place_id": "ChIJrw9otUMrGmARJgKg8v6_kF8"
+        "new_reviews_this_month": 2
       },
       "monthly_trend": [
         {
@@ -135,7 +133,7 @@
         },
         {
           "month": "2026-06",
-          "count": 8
+          "count": 6
         },
         {
           "month": "2026-07",
@@ -155,24 +153,24 @@
         },
         {
           "month": "2026-11",
-          "count": 22
+          "count": 24
         }
       ],
       "period_summary": {
         "p7": {
-          "reviews": 3,
+          "reviews": 4,
           "blogs": 7
         },
         "p30": {
-          "reviews": 23,
-          "blogs": 27
+          "reviews": 25,
+          "blogs": 28
         },
         "p60": {
-          "reviews": 43,
+          "reviews": 42,
           "blogs": 46
         },
         "p90": {
-          "reviews": 64,
+          "reviews": 65,
           "blogs": 70
         },
         "p180": {
@@ -186,28 +184,28 @@
       },
       "monthly_reviews": {
         "2025-02": 1,
-        "2026-11": 22,
+        "2026-11": 24,
         "2026-10": 14,
         "2026-09": 24,
         "2026-08": 24,
         "2026-07": 27,
-        "2026-06": 8
+        "2026-06": 6
       },
       "monthly_blogs": {
-        "2026-11": 23,
+        "2026-11": 24,
         "2026-10": 21,
         "2026-09": 22,
         "2026-08": 24,
-        "2026-07": 10
+        "2026-07": 9
       },
       "totals": {
-        "review_count": 820,
+        "review_count": 822,
         "weighted_rating": 4.82,
-        "blog_count_total": 526,
-        "blog_count_this_month": 23,
-        "new_reviews_this_month": 24,
-        "new_reviews_30d": 25,
-        "new_blogs_30d": 27
+        "blog_count_total": 527,
+        "blog_count_this_month": 24,
+        "new_reviews_this_month": 26,
+        "new_reviews_30d": 27,
+        "new_blogs_30d": 28
       },
       "score": 81,
       "rank": 2
@@ -220,13 +218,13 @@
       "hpb": {
         "salon_name": "SlenderMe甲府店",
         "url": "https://beauty.hotpepper.jp/kr/slnH000494565/",
-        "review_count": 350,
+        "review_count": 351,
         "rating": 4.77,
         "blog_count_total": 566,
         "blog_count_this_month": 23,
-        "new_reviews_this_month": 15,
-        "new_reviews_30d": 15,
-        "new_blogs_30d": 28,
+        "new_reviews_this_month": 16,
+        "new_reviews_30d": 16,
+        "new_blogs_30d": 27,
         "available": true
       },
       "google": {
@@ -234,13 +232,12 @@
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJjy9pyNH3G2ARbUkCUHJGYP0",
         "review_count": 180,
         "rating": 4.9,
-        "new_reviews_this_month": 8,
-        "place_id": "ChIJjy9pyNH3G2ARbUkCUHJGYP0"
+        "new_reviews_this_month": 8
       },
       "monthly_trend": [
         {
           "month": "2026-02",
-          "count": 4
+          "count": 3
         },
         {
           "month": "2026-03",
@@ -276,28 +273,28 @@
         },
         {
           "month": "2026-11",
-          "count": 15
+          "count": 16
         }
       ],
       "period_summary": {
         "p7": {
-          "reviews": 2,
+          "reviews": 3,
           "blogs": 5
         },
         "p30": {
-          "reviews": 15,
-          "blogs": 28
+          "reviews": 16,
+          "blogs": 27
         },
         "p60": {
           "reviews": 30,
           "blogs": 55
         },
         "p90": {
-          "reviews": 39,
-          "blogs": 78
+          "reviews": 40,
+          "blogs": 77
         },
         "p180": {
-          "reviews": 80,
+          "reviews": 81,
           "blogs": 100
         },
         "p365": {
@@ -307,7 +304,7 @@
       },
       "monthly_reviews": {
         "2026-07": 16,
-        "2026-11": 15,
+        "2026-11": 16,
         "2026-10": 12,
         "2026-09": 11,
         "2026-08": 11,
@@ -315,7 +312,7 @@
         "2026-05": 9,
         "2026-04": 11,
         "2026-03": 18,
-        "2026-02": 4
+        "2026-02": 3
       },
       "monthly_blogs": {
         "2026-11": 23,
@@ -325,13 +322,13 @@
         "2026-07": 6
       },
       "totals": {
-        "review_count": 530,
+        "review_count": 531,
         "weighted_rating": 4.81,
         "blog_count_total": 566,
         "blog_count_this_month": 23,
-        "new_reviews_this_month": 23,
-        "new_reviews_30d": 23,
-        "new_blogs_30d": 28
+        "new_reviews_this_month": 24,
+        "new_reviews_30d": 24,
+        "new_blogs_30d": 27
       },
       "score": 65,
       "rank": 3
@@ -344,22 +341,21 @@
       "hpb": {
         "salon_name": "KaoKao甲府店",
         "url": "https://beauty.hotpepper.jp/kr/slnH000652811/",
-        "review_count": 290,
+        "review_count": 288,
         "rating": 4.83,
-        "blog_count_total": 303,
-        "blog_count_this_month": 23,
+        "blog_count_total": 304,
+        "blog_count_this_month": 24,
         "new_reviews_this_month": 14,
         "new_reviews_30d": 18,
-        "new_blogs_30d": 27,
+        "new_blogs_30d": 28,
         "available": true
       },
       "google": {
-        "label": "小顔矯正コルギ専門店 KaoKao甲府本店",
+        "label": "KaoKao甲府本店",
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJp8kWlv_3G2ARObteUfTXtKM",
         "review_count": 112,
         "rating": 5,
-        "new_reviews_this_month": 6,
-        "place_id": "ChIJp8kWlv_3G2ARObteUfTXtKM"
+        "new_reviews_this_month": 6
       },
       "monthly_trend": [
         {
@@ -390,14 +386,14 @@
       "period_summary": {
         "p7": {
           "reviews": 3,
-          "blogs": 7
+          "blogs": 6
         },
         "p30": {
           "reviews": 18,
-          "blogs": 27
+          "blogs": 28
         },
         "p60": {
-          "reviews": 38,
+          "reviews": 36,
           "blogs": 53
         },
         "p90": {
@@ -422,20 +418,20 @@
         "2026-06": 5
       },
       "monthly_blogs": {
-        "2026-11": 23,
+        "2026-11": 24,
         "2026-10": 27,
         "2026-09": 25,
         "2026-08": 21,
-        "2026-07": 4
+        "2026-07": 3
       },
       "totals": {
-        "review_count": 402,
+        "review_count": 400,
         "weighted_rating": 4.88,
-        "blog_count_total": 303,
-        "blog_count_this_month": 23,
+        "blog_count_total": 304,
+        "blog_count_this_month": 24,
         "new_reviews_this_month": 20,
         "new_reviews_30d": 24,
-        "new_blogs_30d": 27
+        "new_blogs_30d": 28
       },
       "score": 55,
       "rank": 4
@@ -450,11 +446,11 @@
         "url": "https://beauty.hotpepper.jp/kr/slnH000748746/",
         "review_count": 161,
         "rating": 4.89,
-        "blog_count_total": 194,
-        "blog_count_this_month": 23,
+        "blog_count_total": 195,
+        "blog_count_this_month": 24,
         "new_reviews_this_month": 9,
         "new_reviews_30d": 10,
-        "new_blogs_30d": 27,
+        "new_blogs_30d": 28,
         "available": true
       },
       "google": {
@@ -462,8 +458,7 @@
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJD_zlmH8rGmAREUkK6yw7qZ0",
         "review_count": 82,
         "rating": 5,
-        "new_reviews_this_month": 0,
-        "place_id": "ChIJD_zlmH8rGmAREUkK6yw7qZ0"
+        "new_reviews_this_month": 0
       },
       "monthly_trend": [
         {
@@ -529,12 +524,12 @@
       ],
       "period_summary": {
         "p7": {
-          "reviews": 2,
+          "reviews": 1,
           "blogs": 7
         },
         "p30": {
           "reviews": 10,
-          "blogs": 27
+          "blogs": 28
         },
         "p60": {
           "reviews": 12,
@@ -549,7 +544,7 @@
           "blogs": 100
         },
         "p365": {
-          "reviews": 96,
+          "reviews": 95,
           "blogs": 100
         }
       },
@@ -571,20 +566,20 @@
         "2025-09": 1
       },
       "monthly_blogs": {
-        "2026-11": 23,
+        "2026-11": 24,
         "2026-10": 26,
         "2026-09": 24,
         "2026-08": 24,
-        "2026-07": 3
+        "2026-07": 2
       },
       "totals": {
         "review_count": 243,
         "weighted_rating": 4.93,
-        "blog_count_total": 194,
-        "blog_count_this_month": 23,
+        "blog_count_total": 195,
+        "blog_count_this_month": 24,
         "new_reviews_this_month": 9,
         "new_reviews_30d": 10,
-        "new_blogs_30d": 27
+        "new_blogs_30d": 28
       },
       "score": 46,
       "rank": 5
@@ -612,8 +607,7 @@
         "url": "https://www.google.com/maps/place/?q=place_id:ChIJX2b9B2QrGmAR6bSYAib6Q0w",
         "review_count": 62,
         "rating": 4.9,
-        "new_reviews_this_month": 0,
-        "place_id": "ChIJX2b9B2QrGmAR6bSYAib6Q0w"
+        "new_reviews_this_month": 0
       },
       "monthly_trend": [],
       "period_summary": {
@@ -658,13 +652,13 @@
     }
   ],
   "company_totals": {
-    "total_reviews": 3109,
-    "total_new_this_month": 110,
-    "total_new_30d": 123,
-    "total_blogs_30d": 136,
+    "total_reviews": 3110,
+    "total_new_this_month": 114,
+    "total_new_30d": 126,
+    "total_blogs_30d": 139,
     "average_rating": 4.86,
-    "total_blog_this_month": 115,
-    "total_blog_all": 2172,
+    "total_blog_this_month": 119,
+    "total_blog_all": 2176,
     "store_count": 6
   },
   "alerts": [
